@@ -63,7 +63,7 @@ const App: React.FC = () => {
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-200">
+            <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-red-200">
               S
             </div>
             <h1 className="text-xl font-bold tracking-tight text-slate-800">SmartHub</h1>
@@ -80,9 +80,9 @@ const App: React.FC = () => {
         
         {/* Left Column: AI & Info */}
         <div className="md:col-span-1 space-y-6">
-          <section className="bg-indigo-600 rounded-3xl p-6 text-white shadow-xl shadow-indigo-100 relative overflow-hidden">
+          <section className="bg-red-600 rounded-3xl p-6 text-white shadow-xl shadow-red-100 relative overflow-hidden">
             <div className="relative z-10">
-              <h2 className="text-indigo-100 text-xs font-bold uppercase tracking-widest mb-2">Insight do Dia</h2>
+              <h2 className="text-red-100 text-xs font-bold uppercase tracking-widest mb-2">Insight do Dia</h2>
               <p className="text-lg font-medium leading-relaxed italic">
                 "{motivation}"
               </p>
@@ -125,7 +125,7 @@ const App: React.FC = () => {
           <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm min-h-[500px] flex flex-col">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold text-slate-800">Minhas Tarefas</h2>
-              <span className="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold">
+              <span className="bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-bold">
                 {tasks.filter(t => !t.completed).length} Pendentes
               </span>
             </div>
@@ -136,11 +136,11 @@ const App: React.FC = () => {
                 value={newTaskTitle}
                 onChange={(e) => setNewTaskTitle(e.target.value)}
                 placeholder="O que precisa ser feito?"
-                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                className="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 transition-all"
               />
               <button 
                 type="submit"
-                className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-100"
+                className="bg-red-600 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-red-700 transition-colors shadow-lg shadow-red-100"
               >
                 Adicionar
               </button>
@@ -157,14 +157,14 @@ const App: React.FC = () => {
                   <div 
                     key={task.id} 
                     className={`group flex items-center justify-between p-4 rounded-2xl border transition-all ${
-                      task.completed ? 'bg-slate-50 border-transparent opacity-60' : 'bg-white border-slate-100 hover:border-indigo-200 hover:shadow-md'
+                      task.completed ? 'bg-slate-50 border-transparent opacity-60' : 'bg-white border-slate-100 hover:border-red-200 hover:shadow-md'
                     }`}
                   >
                     <div className="flex items-center gap-4">
                       <button 
                         onClick={() => toggleTask(task.id)}
                         className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                          task.completed ? 'bg-indigo-500 border-indigo-500 text-white' : 'border-slate-300 hover:border-indigo-400'
+                          task.completed ? 'bg-red-500 border-red-500 text-white' : 'border-slate-300 hover:border-red-400'
                         }`}
                       >
                         {task.completed && (
@@ -202,9 +202,9 @@ const App: React.FC = () => {
         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-400">© 2024 SmartHub - Criado com Gemini AI</p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-slate-400 hover:text-indigo-600 transition-colors">Privacidade</a>
-            <a href="#" className="text-xs text-slate-400 hover:text-indigo-600 transition-colors">Configurações</a>
-            <a href="#" className="text-xs text-slate-400 hover:text-indigo-600 transition-colors">Ajuda</a>
+            <a href="#" className="text-xs text-slate-400 hover:text-red-600 transition-colors">Privacidade</a>
+            <a href="#" className="text-xs text-slate-400 hover:text-red-600 transition-colors">Configurações</a>
+            <a href="#" className="text-xs text-slate-400 hover:text-red-600 transition-colors">Ajuda</a>
           </div>
         </div>
       </footer>
