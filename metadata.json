@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Personal Smart Hub",
+  "description": "Uma página web moderna e minimalista com assistência de IA para produtividade diária.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
