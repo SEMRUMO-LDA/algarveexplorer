@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center flex-1">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${textColor} transition-colors duration-300`}
+              className={`flex items-center space-x-3 group focus:outline-none rounded transition-colors duration-300 ${isOpen ? 'text-white' : textColor}`}
             >
               <div className="flex flex-col space-y-1.5 w-6">
                 <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
@@ -49,11 +49,11 @@ const Navbar: React.FC = () => {
 
           {/* Center: Logo */}
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center">
-            <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">
+            <Link to="/" className="flex items-center group focus:outline-none rounded">
               <img
-                src={isTransparent ? "/image/algarvexplorer-logo-branco.png" : "/image/algarvexplorer-logo-azul.png"}
+                src={isTransparent || isOpen ? "/image/algarvexplorer-logo-branco.png" : "/image/algarvexplorer-logo-azul.png"}
                 alt="Algarve Explorer Logo"
-                className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent ? 'drop-shadow-lg' : ''}`}
+                className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent || isOpen ? 'drop-shadow-lg' : ''}`}
               />
             </Link>
           </div>
