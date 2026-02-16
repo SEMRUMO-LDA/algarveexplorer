@@ -50,6 +50,7 @@ const Footer: React.FC = () => {
                 <li><Link to="/algarve" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.experience')}</Link></li>
                 <li><Link to="/transfers" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.logistics')}</Link></li>
                 <li><Link to="/about" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.story')}</Link></li>
+                <li><Link to="/contacts" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.contact')}</Link></li>
               </ul>
             </div>
 
