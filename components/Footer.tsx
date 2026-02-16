@@ -76,13 +76,13 @@ const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Newsletter - Right Aligned */}
-            <div className="md:flex-1 lg:text-right">
+            {/* Newsletter - Text aligned to the left */}
+            <div className="md:flex-1">
               <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">
                 {t('footer.newsletter.title')}
               </h4>
-              <div className="flex flex-col lg:items-end">
-                <p className="text-white/40 text-sm leading-relaxed font-light mb-8 max-w-sm lg:ml-auto">
+              <div className="flex flex-col">
+                <p className="text-white/40 text-sm leading-relaxed font-light mb-8 max-w-sm">
                   {t('footer.newsletter.desc')}
                 </p>
                 <form className="relative w-full max-w-sm" onSubmit={(e) => e.preventDefault()}>
