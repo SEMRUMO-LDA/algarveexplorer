@@ -9,9 +9,9 @@ const Algarve: React.FC = () => {
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1920"
+            src="/image/the-region-hero.jpg"
             className="w-full h-full object-cover"
-            alt="Magnificent panoramic view of the Algarve coastline with golden cliffs"
+            alt="Scenic view of the Algarve region"
           />
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
@@ -41,16 +41,16 @@ const Algarve: React.FC = () => {
             <div className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1200"
+                  src="/image/the-region-img1.jpg"
                   className="w-full h-full object-cover"
-                  alt="Dramatic sea stack rocks along the Algarve coast"
+                  alt="Exploring the natural beauty of the Algarve"
                 />
               </div>
               <div className="absolute -bottom-10 -right-10 w-2/3 aspect-square bg-white p-4 rounded-2xl shadow-2xl hidden md:block">
                 <img
-                  src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=800"
+                  src="/image/the-region-img2.jpg"
                   className="w-full h-full object-cover rounded-xl"
-                  alt="Traditional fishing boat on a calm lagoon at sunset"
+                  alt="Local scenery of Southern Portugal"
                 />
               </div>
             </div>
