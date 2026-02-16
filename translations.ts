@@ -39,6 +39,12 @@ export const TRANSLATIONS: any = {
         desc: 'Planning a visit can be an adventure in itself. Let us help you find the perfect route for your next Portuguese escape.',
         browse: 'Browse Adventures',
         contact: 'Get in Touch'
+      },
+      testimonials: {
+        eyebrow: 'Explorers\' Voices',
+        title: 'Stories from the trail',
+        rating: '4.8 Excellent',
+        reviews: '73 Reviews'
       }
     },
     footer: {
@@ -97,6 +103,12 @@ export const TRANSLATIONS: any = {
         desc: 'Planear uma visita pode ser uma aventura em si mesma. Deixe-nos ajudá-lo a encontrar a rota perfeita para a sua próxima escapadinha portuguesa.',
         browse: 'Ver Aventuras',
         contact: 'Entre em Contacto'
+      },
+      testimonials: {
+        eyebrow: 'Vozes dos Exploradores',
+        title: 'Histórias dos nossos trilhos',
+        rating: '4.8 Excelente',
+        reviews: '73 Avaliações'
       }
     },
     footer: {

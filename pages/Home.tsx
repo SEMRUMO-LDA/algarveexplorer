@@ -254,6 +254,86 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-24 md:py-40 bg-white">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-24">
+            <div className="max-w-2xl">
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('home.testimonials.eyebrow')}</span>
+              <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] tracking-tight mb-6 uppercase">
+                {t('home.testimonials.title')}
+              </h2>
+            </div>
+
+            {/* TripAdvisor Branding */}
+            <div className="bg-[#fcfcf9] p-8 rounded-2xl border border-slate-50 flex items-center space-x-6 shadow-sm">
+              <div className="flex flex-col items-center">
+                <span className="text-4xl font-bold text-[#00af87] font-montserrat tracking-tight leading-none mb-2">4.8</span>
+                <div className="flex space-x-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-3 h-3 rounded-full bg-[#00af87]"></div>
+                  ))}
+                </div>
+              </div>
+              <div className="border-l border-slate-200 pl-6">
+                <p className="text-[#0d4357] font-bold text-sm uppercase tracking-wider leading-tight">{t('home.testimonials.rating')}</p>
+                <p className="text-[#0d4357]/40 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">{t('home.testimonials.reviews')}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            {[
+              {
+                name: "Mark C",
+                title: "Great guide tour, book it!",
+                date: "Oct 2025",
+                type: "Couples",
+                content: "Ricardo was a great guide, friendly, engaging and full of local knowledge and able to also give some great recommendations for local places to visit after the tour and places to eat with the locals. The level of activity on the tour was spot on and the locations we visited were picture perfect."
+              },
+              {
+                name: "velvetyvoice",
+                location: "Glasgow, UK",
+                title: "Great tour",
+                date: "Sep 2025",
+                type: "Couples",
+                content: "We had a brilliant time on this tour. Ricardo was a great guide - very knowledgeable, really friendly and made it a great overall experience. The scenery is absolutely beautiful, and a must see in the Algarve. Lots of hidden gems. Thoroughly recommend."
+              },
+              {
+                name: "Gema M",
+                title: "Recommended 100%",
+                date: "Aug 2025",
+                content: "We went on a slightly bigger boat and it couldn't get into all the caves. It is worth the tour along the coast, it is spectacular and very safe even for children. Highly recommended!"
+              }
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-[#fcfcf9] p-10 md:p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all duration-500 flex flex-col h-full group">
+                <div className="flex items-center space-x-1 mb-8">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-2.5 h-2.5 rounded-full bg-[#00af87] group-hover:scale-110 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}></div>
+                  ))}
+                </div>
+                <h3 className="text-xl font-bold text-[#0d4357] mb-6 uppercase tracking-tight leading-tight">{testimonial.title}</h3>
+                <p className="text-[#0d4357]/60 font-light leading-relaxed mb-10 flex-grow italic">"{testimonial.content}"</p>
+                <div className="mt-auto pt-8 border-t border-slate-100 flex justify-between items-end">
+                  <div className="max-w-[60%]">
+                    <p className="text-[#0d4357] font-bold text-[11px] uppercase tracking-widest truncate">{testimonial.name}</p>
+                    {testimonial.location && (
+                      <p className="text-[#0d4357]/30 text-[9px] font-bold uppercase tracking-[0.2em] mt-1 truncate">{testimonial.location}</p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[#0d4357]/40 text-[9px] font-bold uppercase tracking-[0.2em]">{testimonial.date}</p>
+                    {testimonial.type && (
+                      <p className="text-[#da6927] text-[9px] font-bold uppercase tracking-[0.2em] mt-1">{testimonial.type}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer CTA */}
       <section className="py-24 md:py-40 bg-[#0d4357] text-white relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
