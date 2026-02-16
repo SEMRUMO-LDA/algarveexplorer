@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, ArrowRight, Compass } from 'lucide-react';
 import { TOURS } from '../constants';
@@ -7,6 +7,25 @@ import { useLanguage } from '../LanguageContext';
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const aboutSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (aboutSectionRef.current) {
+      observer.observe(aboutSectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -147,28 +166,56 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50">
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-24 md:py-32 lg:py-40">
-          <div className="space-y-6 lg:space-y-8">
-            <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
-              <img src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Hiker overlooking a mountain trail" />
+      <section ref={aboutSectionRef} className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50 overflow-hidden">
+        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8">
+          <div className="flex-1 space-y-12 lg:space-y-32">
+            <div
+              className={`aspect-[3/4] overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+              style={{ transitionDelay: '0ms' }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=800"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                alt="Hiker overlooking a mountain trail"
+              />
             </div>
-            <div className="aspect-square overflow-hidden rounded-2xl shadow-xl">
-              <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Dramatic coastal cliffs meeting the Atlantic Ocean" />
+            <div
+              className={`aspect-square overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+              style={{ transitionDelay: '400ms' }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
+              />
             </div>
           </div>
-          <div className="space-y-6 lg:space-y-8 pt-12 lg:pt-24">
-            <div className="aspect-square overflow-hidden rounded-2xl shadow-xl">
-              <img src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Charming traditional Portuguese village street" />
+          <div className="flex-1 space-y-12 lg:space-y-32 pt-32 lg:pt-64">
+            <div
+              className={`aspect-square overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+              style={{ transitionDelay: '200ms' }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=800"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                alt="Charming traditional Portuguese village street"
+              />
             </div>
-            <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
-              <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Horseback riding adventure through the Algarve countryside" />
+            <div
+              className={`aspect-[3/4] overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+              style={{ transitionDelay: '600ms' }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                alt="Horseback riding adventure through the Algarve countryside"
+              />
             </div>
           </div>
         </div>
 
         <div className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fdfdfb] lg:bg-transparent">
-          <div className="max-w-2xl px-6 lg:pl-10 lg:pr-24 py-48 md:py-56 lg:py-32">
+          <div className="max-w-2xl px-6 lg:pl-24 lg:pr-10 py-24 md:py-32">
             <div className="inline-flex items-center space-x-3 mb-8 text-[#da6927]">
               <Compass size={24} />
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/40">{t('home.about.eyebrow')}</span>
@@ -194,7 +241,7 @@ const Home: React.FC = () => {
 
             <Link
               to="/about"
-              className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+              className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-[#da6927] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
             >
               <span>{t('home.about.philosophy')}</span>
               <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
