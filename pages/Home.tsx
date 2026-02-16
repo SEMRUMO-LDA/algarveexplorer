@@ -4,11 +4,9 @@ import { ChevronRight, ChevronLeft, ArrowRight, Compass } from 'lucide-react';
 import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
 
-const Home: React.FC = () => {
-  const { t, language } = useLanguage();
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+const RevealingImage: React.FC<{ src: string; alt: string; className: string; delay?: number }> = ({ src, alt, className, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const aboutSectionRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -17,15 +15,37 @@ const Home: React.FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.1,
+        rootMargin: '-20% 0px -20% 0px' // Triggers closer to the middle
+      }
     );
 
-    if (aboutSectionRef.current) {
-      observer.observe(aboutSectionRef.current);
+    if (ref.current) {
+      observer.observe(ref.current);
     }
 
     return () => observer.disconnect();
   }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`${className} transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      <img
+        src={src}
+        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+        alt={alt}
+      />
+    </div>
+  );
+};
+
+const Home: React.FC = () => {
+  const { t, language } = useLanguage();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
@@ -166,56 +186,40 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Us Section */}
-      <section ref={aboutSectionRef} className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50">
+      <section className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50">
         <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8">
           <div className="flex-1 space-y-12 lg:space-y-32">
-            <div
-              className={`aspect-[3/4] overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
-              style={{ transitionDelay: '0ms' }}
-            >
-              <img
-                src="/image/about-us-1.jpeg"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                alt="Hiker overlooking a mountain trail"
-              />
-            </div>
-            <div
-              className={`aspect-square overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
-              style={{ transitionDelay: '400ms' }}
-            >
-              <img
-                src="/image/about-us-2.jpeg"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
-              />
-            </div>
+            <RevealingImage
+              src="/image/about-us-1.jpeg"
+              alt="Hiker overlooking a mountain trail"
+              className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl"
+              delay={0}
+            />
+            <RevealingImage
+              src="/image/about-us-2.jpeg"
+              alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
+              className="aspect-square overflow-hidden rounded-2xl shadow-xl"
+              delay={200}
+            />
           </div>
           <div className="flex-1 space-y-12 lg:space-y-32 pt-32 lg:pt-64">
-            <div
-              className={`aspect-square overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
-              style={{ transitionDelay: '200ms' }}
-            >
-              <img
-                src="/image/about-us-3.jpeg"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                alt="Charming traditional Portuguese village street"
-              />
-            </div>
-            <div
-              className={`aspect-[3/4] overflow-hidden rounded-2xl shadow-xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
-              style={{ transitionDelay: '600ms' }}
-            >
-              <img
-                src="/image/about-us-4.jpeg"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                alt="Horseback riding adventure through the Algarve countryside"
-              />
-            </div>
+            <RevealingImage
+              src="/image/about-us-3.jpeg"
+              alt="Charming traditional Portuguese village street"
+              className="aspect-square overflow-hidden rounded-2xl shadow-xl"
+              delay={100}
+            />
+            <RevealingImage
+              src="/image/about-us-4.jpeg"
+              alt="Horseback riding adventure through the Algarve countryside"
+              className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl"
+              delay={300}
+            />
           </div>
         </div>
 
         <div className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fdfdfb] lg:bg-transparent">
-          <div className="max-w-2xl px-6 lg:pl-24 lg:pr-10 py-24 md:py-32">
+          <div className="max-w-2xl px-6 lg:pl-24 lg:pr-10">
             <div className="inline-flex items-center space-x-3 mb-8 text-[#da6927]">
               <Compass size={24} />
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/40">{t('home.about.eyebrow')}</span>
