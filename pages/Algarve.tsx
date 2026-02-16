@@ -141,9 +141,9 @@ const Algarve: React.FC = () => {
       </section>
 
       {/* Regions Callout */}
-      <section className="py-32 bg-[#0d4357] text-white">
+      <section className="py-32 bg-white border-t border-slate-50">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="flex items-center space-x-3 mb-16 text-white/30">
+          <div className="flex items-center space-x-3 mb-16 text-[#0d4357]/30">
             <Footprints size={20} />
             <span className="text-[11px] font-bold uppercase tracking-[0.4em]">The Three Worlds</span>
           </div>
@@ -154,9 +154,9 @@ const Algarve: React.FC = () => {
               { id: "03", name: "The Vicentine Coast", desc: "The wild West. Dramatic cliffs, salt spray, and paths carved by fisherman over centuries." }
             ].map((reg, i) => (
               <div key={i} className="group">
-                <span className="block text-[#da6927] font-bold text-4xl font-montserrat mb-6 opacity-30 group-hover:opacity-100 transition-opacity">{reg.id}</span>
-                <h4 className="text-2xl font-bold font-montserrat mb-6 uppercase tracking-tight">{reg.name}</h4>
-                <p className="text-white/40 font-light leading-relaxed">{reg.desc}</p>
+                <span className="block text-[#da6927] font-bold text-4xl font-montserrat mb-6 opacity-20 group-hover:opacity-100 transition-opacity">{reg.id}</span>
+                <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight">{reg.name}</h4>
+                <p className="text-[#0d4357]/60 font-light leading-relaxed">{reg.desc}</p>
               </div>
             ))}
           </div>
