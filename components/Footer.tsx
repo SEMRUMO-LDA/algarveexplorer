@@ -9,9 +9,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#0d4357] text-white pt-24 pb-12">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-12 mb-24">
-          {/* Brand & Mission */}
-          <div className="space-y-8 lg:col-span-3">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-16 mb-24">
+          {/* Brand & Mission - Far Left */}
+          <div className="space-y-8 lg:w-1/4">
             <div className="flex items-center">
               <img
                 src="/image/algarvexplorer-logo-branco.png"
@@ -40,62 +40,65 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="lg:col-span-2 lg:pl-8">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.links')}</h4>
-            <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.15em] text-white/50">
-              <li><Link to="/tours" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.tours')}</Link></li>
-              <li><Link to="/algarve" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.experience')}</Link></li>
-              <li><Link to="/transfers" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.logistics')}</Link></li>
-              <li><Link to="/about" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.story')}</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Details */}
-          <div className="lg:col-span-3 lg:pl-8">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.contact')}</h4>
-            <ul className="space-y-6 text-white/50 text-sm">
-              <li className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">E-mail</span>
-                <a href="mailto:algarveexplorer@gmail.com" className="font-light hover:text-white transition-colors">E: algarveexplorer@gmail.com</a>
-              </li>
-              <li className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">Phone</span>
-                <a href="tel:+351968306031" className="font-light hover:text-white transition-colors">T: +351 968 306 031</a>
-                <span className="text-[10px] text-white/20 mt-1 italic">(chamada para rede móvel nacional)</span>
-              </li>
-            </ul>
-            <div className="mt-12 pt-12 border-t border-white/5 lg:border-none lg:mt-10 lg:pt-0">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-white/30">{t('footer.legal')}</h4>
-              <p className="text-white/50 text-[11px] leading-relaxed font-light">
-                {t('footer.member')} <br />
-                RNAVT nº 10899 / RNAAT nº409/2023
-              </p>
+          {/* Right Section: 3 Equally Spaced Columns with a bigger gap from the brand */}
+          <div className="flex-1 flex flex-col md:flex-row lg:justify-between gap-16 lg:gap-8 lg:pl-32">
+            {/* Quick Links */}
+            <div className="md:flex-1">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.links')}</h4>
+              <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.15em] text-white/50">
+                <li><Link to="/tours" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.tours')}</Link></li>
+                <li><Link to="/algarve" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.experience')}</Link></li>
+                <li><Link to="/transfers" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.logistics')}</Link></li>
+                <li><Link to="/about" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.story')}</Link></li>
+              </ul>
             </div>
-          </div>
 
-          {/* Newsletter */}
-          <div className="lg:col-span-4 lg:text-right">
-            <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">
-              {t('footer.newsletter.title')}
-            </h4>
-            <div className="flex flex-col lg:items-end">
-              <p className="text-white/40 text-sm leading-relaxed font-light mb-8 max-w-sm">
-                {t('footer.newsletter.desc')}
-              </p>
-              <form className="relative w-full max-w-sm" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder={t('footer.newsletter.placeholder')}
-                  className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#da6927] transition-all placeholder:text-white/20"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-2 bottom-2 px-8 bg-[#da6927] text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-[#0d4357] transition-all duration-300"
-                >
-                  {t('footer.newsletter.button')}
-                </button>
-              </form>
+            {/* Contact Details */}
+            <div className="md:flex-1">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.contact')}</h4>
+              <ul className="space-y-6 text-white/50 text-sm">
+                <li className="flex flex-col">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">E-mail</span>
+                  <a href="mailto:algarveexplorer@gmail.com" className="font-light hover:text-white transition-colors">E: algarveexplorer@gmail.com</a>
+                </li>
+                <li className="flex flex-col">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">Phone</span>
+                  <a href="tel:+351968306031" className="font-light hover:text-white transition-colors">T: +351 968 306 031</a>
+                  <span className="text-[10px] text-white/20 mt-1 italic">(chamada para rede móvel nacional)</span>
+                </li>
+              </ul>
+              <div className="mt-12 pt-12 border-t border-white/5 md:border-none md:mt-10 md:pt-0">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-white/30">{t('footer.legal')}</h4>
+                <p className="text-white/50 text-[11px] leading-relaxed font-light">
+                  {t('footer.member')} <br />
+                  RNAVT nº 10899 / RNAAT nº409/2023
+                </p>
+              </div>
+            </div>
+
+            {/* Newsletter - Right Aligned */}
+            <div className="md:flex-1 lg:text-right">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">
+                {t('footer.newsletter.title')}
+              </h4>
+              <div className="flex flex-col lg:items-end">
+                <p className="text-white/40 text-sm leading-relaxed font-light mb-8 max-w-sm lg:ml-auto">
+                  {t('footer.newsletter.desc')}
+                </p>
+                <form className="relative w-full max-w-sm" onSubmit={(e) => e.preventDefault()}>
+                  <input
+                    type="email"
+                    placeholder={t('footer.newsletter.placeholder')}
+                    className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#da6927] transition-all placeholder:text-white/20"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-2 top-2 bottom-2 px-8 bg-[#da6927] text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-[#0d4357] transition-all duration-300"
+                  >
+                    {t('footer.newsletter.button')}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
