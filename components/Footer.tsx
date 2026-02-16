@@ -9,9 +9,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-[#0d4357] text-white pt-24 pb-12">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 md:gap-12 lg:gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-12 mb-24">
           {/* Brand & Mission */}
-          <div className="space-y-8 lg:col-span-1">
+          <div className="space-y-8 lg:col-span-3">
             <div className="flex items-center">
               <img
                 src="/image/algarvexplorer-logo-branco.png"
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2 lg:pl-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.links')}</h4>
             <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.15em] text-white/50">
               <li><Link to="/tours" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.tours')}</Link></li>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Contact Details */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-3 lg:pl-8">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.contact')}</h4>
             <ul className="space-y-6 text-white/50 text-sm">
               <li className="flex flex-col">
@@ -75,26 +75,28 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-4 lg:text-right">
             <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">
               {t('footer.newsletter.title')}
             </h4>
-            <p className="text-white/40 text-sm leading-relaxed font-light mb-8 max-w-sm">
-              {t('footer.newsletter.desc')}
-            </p>
-            <form className="relative max-w-sm" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder={t('footer.newsletter.placeholder')}
-                className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#da6927] transition-all placeholder:text-white/20"
-              />
-              <button
-                type="submit"
-                className="absolute right-2 top-2 bottom-2 px-8 bg-[#da6927] text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-[#0d4357] transition-all duration-300"
-              >
-                {t('footer.newsletter.button')}
-              </button>
-            </form>
+            <div className="flex flex-col lg:items-end">
+              <p className="text-white/40 text-sm leading-relaxed font-light mb-8 max-w-sm">
+                {t('footer.newsletter.desc')}
+              </p>
+              <form className="relative w-full max-w-sm" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder={t('footer.newsletter.placeholder')}
+                  className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#da6927] transition-all placeholder:text-white/20"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2 top-2 bottom-2 px-8 bg-[#da6927] text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-[#0d4357] transition-all duration-300"
+                >
+                  {t('footer.newsletter.button')}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
