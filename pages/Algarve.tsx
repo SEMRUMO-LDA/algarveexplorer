@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus } from 'lucide-react';
+import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus, Waves } from 'lucide-react';
 
 const Algarve: React.FC = () => {
   const [parallaxOffset, setParallaxOffset] = useState(0);
@@ -28,7 +28,7 @@ const Algarve: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen font-montserrat">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
@@ -108,7 +108,7 @@ const Algarve: React.FC = () => {
           </div>
 
           {/* Seasonal Insights */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
             {[
               {
                 icon: <Trees size={32} />,
@@ -118,6 +118,12 @@ const Algarve: React.FC = () => {
               },
               {
                 icon: <Sun size={32} />,
+                title: "Summer",
+                subtitle: "JUN - AUG",
+                desc: "Long sun-drenched days. Best for early morning explorations followed by refreshing dips in hidden river pools."
+              },
+              {
+                icon: <Waves size={32} />,
                 title: "Autumn",
                 subtitle: "SEPT - NOV",
                 desc: "The 'Golden Season'. Soft light, warm Atlantic waters, and the perfect temperature for long walks."
@@ -129,11 +135,11 @@ const Algarve: React.FC = () => {
                 desc: "Quiet, crisp, and clear. While Northern Europe is frozen, the Algarve trails remain inviting and serene."
               }
             ].map((season, i) => (
-              <div key={i} className="bg-[#fcfcf9] p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all group">
+              <div key={i} className="bg-[#fcfcf9] p-10 rounded-2xl border border-slate-50 hover:shadow-xl transition-all group">
                 <div className="text-[#da6927] mb-8 group-hover:scale-110 transition-transform origin-left">{season.icon}</div>
-                <h3 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-2 tracking-tight uppercase">{season.title}</h3>
+                <h3 className="text-xl font-bold font-montserrat text-[#0d4357] mb-2 tracking-tight uppercase">{season.title}</h3>
                 <p className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-6">{season.subtitle}</p>
-                <p className="text-[#0d4357]/50 font-light leading-relaxed">{season.desc}</p>
+                <p className="text-[#0d4357]/50 text-sm font-light leading-relaxed">{season.desc}</p>
               </div>
             ))}
           </div>
@@ -141,24 +147,50 @@ const Algarve: React.FC = () => {
       </section>
 
       {/* Regions Callout */}
-      <section className="py-32 bg-white border-t border-slate-50">
+      <section className="pb-40 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="flex items-center space-x-3 mb-16 text-[#0d4357]/30">
-            <Footprints size={20} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em]">The Three Worlds</span>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            {[
-              { id: "01", name: "Monchique Serra", desc: "The 'Garden of the Algarve.' Lush peaks, mountain springs, and ancient forests." },
-              { id: "02", name: "The Barrocal", desc: "The limestone belt. Technical paths through orchards, dry-stone walls, and hidden hamlets." },
-              { id: "03", name: "The Vicentine Coast", desc: "The wild West. Dramatic cliffs, salt spray, and paths carved by fisherman over centuries." }
-            ].map((reg, i) => (
-              <div key={i} className="group">
-                <span className="block text-[#da6927] font-bold text-4xl font-montserrat mb-6 opacity-20 group-hover:opacity-100 transition-opacity">{reg.id}</span>
-                <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight">{reg.name}</h4>
-                <p className="text-[#0d4357]/60 font-light leading-relaxed">{reg.desc}</p>
-              </div>
-            ))}
+          <div className="border-t border-slate-100 pt-32">
+            <div className="flex items-center space-x-3 mb-16 text-[#0d4357]/30">
+              <Footprints size={20} />
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em]">The Three Worlds</span>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
+              {[
+                {
+                  id: "01",
+                  name: "Monchique Serra",
+                  desc: "The 'Garden of the Algarve.' Lush peaks, mountain springs, and ancient cork oak forests.",
+                  image: "/image/about-us-1.jpeg"
+                },
+                {
+                  id: "02",
+                  name: "The Barrocal",
+                  desc: "The limestone belt. Technical paths through orange orchards, dry-stone walls, and hidden hamlets.",
+                  image: "/image/albufeira-hidden-gems-&-horse-riding-tour.jpg"
+                },
+                {
+                  id: "03",
+                  name: "The Vicentine Coast",
+                  desc: "The wild West. Dramatic cliffs, salt spray, and paths carved by fishermen over centuries.",
+                  image: "/image/benagil-algar-seco-marinha-&-7-valleys-tour.jpeg"
+                }
+              ].map((reg, i) => (
+                <div key={i} className="group cursor-default">
+                  <div className="aspect-[16/9] overflow-hidden rounded-2xl mb-10 shadow-lg bg-slate-100">
+                    <img
+                      src={reg.image}
+                      alt={reg.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+                  <div className="relative pl-12">
+                    <span className="absolute left-0 top-0 text-[#da6927] font-bold text-2xl font-montserrat opacity-20 group-hover:opacity-100 transition-opacity">{reg.id}</span>
+                    <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight leading-none">{reg.name}</h4>
+                    <p className="text-[#0d4357]/60 font-light leading-relaxed text-lg">{reg.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
