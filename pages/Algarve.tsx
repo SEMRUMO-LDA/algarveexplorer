@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus } from 'lucide-react';
 
 const Algarve: React.FC = () => {
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!parallaxRef.current) return;
+
+      const rect = parallaxRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Only update when image is in viewport
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        // Subtle move: 0.1 speed
+        const offset = (rect.top - windowHeight / 2) * 0.1;
+        setParallaxOffset(offset);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial position
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="bg-white min-h-screen">
       {/* Editorial Dark Header - Matching Transfers Page */}
@@ -46,7 +70,14 @@ const Algarve: React.FC = () => {
                   alt="Exploring the natural beauty of the Algarve"
                 />
               </div>
-              <div className="absolute -bottom-10 -right-10 w-2/3 aspect-square bg-white p-4 rounded-2xl shadow-2xl hidden md:block">
+              <div
+                ref={parallaxRef}
+                className="absolute -bottom-10 -right-10 w-2/3 aspect-square bg-white p-4 rounded-2xl shadow-2xl hidden md:block"
+                style={{
+                  transform: `translate3d(0, ${parallaxOffset}px, 0)`,
+                  transition: 'transform 0.1s ease-out'
+                }}
+              >
                 <img
                   src="/image/the-region-img2.jpg"
                   className="w-full h-full object-cover rounded-xl"
