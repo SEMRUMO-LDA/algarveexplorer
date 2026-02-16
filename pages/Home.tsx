@@ -166,7 +166,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Us Section */}
-      <section ref={aboutSectionRef} className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50 overflow-hidden">
+      <section ref={aboutSectionRef} className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50">
         <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8">
           <div className="flex-1 space-y-12 lg:space-y-32">
             <div
