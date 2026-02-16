@@ -11,7 +11,7 @@ const Algarve: React.FC = () => {
           <img
             src="https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1920"
             className="w-full h-full object-cover"
-            alt="bg"
+            alt="Magnificent panoramic view of the Algarve coastline with golden cliffs"
           />
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
@@ -25,7 +25,7 @@ const Algarve: React.FC = () => {
             <Plus size={16} />
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Southern Portugal</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             A PLAYGROUND <br />FOR THE SOUL
           </h1>
           <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
@@ -43,14 +43,14 @@ const Algarve: React.FC = () => {
                 <img
                   src="https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1200"
                   className="w-full h-full object-cover"
-                  alt="Algarve Coast"
+                  alt="Dramatic sea stack rocks along the Algarve coast"
                 />
               </div>
               <div className="absolute -bottom-10 -right-10 w-2/3 aspect-square bg-white p-4 rounded-2xl shadow-2xl hidden md:block">
                 <img
                   src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=800"
                   className="w-full h-full object-cover rounded-xl"
-                  alt="Lagoon Nature"
+                  alt="Traditional fishing boat on a calm lagoon at sunset"
                 />
               </div>
             </div>
@@ -66,9 +66,12 @@ const Algarve: React.FC = () => {
                 <p>The Algarve is world-famous for its golden beaches, but its true heart lies inland. The "Barrocal" and the "Serra" provide a rugged, authentic landscape where time seems to slow down.</p>
                 <p>We focus on these hidden gems—the cork forests, the shepherd paths, and the traditional villages where you can still taste the authentic flavor of Portuguese life.</p>
               </div>
-              <Link to="/tours" className="mt-16 inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#da6927] transition-all shadow-lg">
+              <Link
+                to="/tours"
+                className="mt-16 inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+              >
                 <span>View Adventures</span>
-                <ArrowRight size={16} />
+                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
           </div>

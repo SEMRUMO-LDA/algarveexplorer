@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const cardWidth = clientWidth * 0.4; 
+      const cardWidth = clientWidth * 0.4;
       const scrollTo = direction === 'left' ? scrollLeft - cardWidth : scrollLeft + cardWidth;
       scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
     }
@@ -25,11 +25,11 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section className="relative h-[90vh] md:h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             className="w-full h-full object-cover opacity-70"
           >
             <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
@@ -48,10 +48,16 @@ const Home: React.FC = () => {
               {t('home.hero.desc')}
             </p>
             <div className="flex flex-wrap gap-6">
-              <Link to="/tours" className="bg-[#da6927] text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-white hover:text-[#0d4357] transition-all shadow-lg">
+              <Link
+                to="/tours"
+                className="bg-[#da6927] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+              >
                 {t('home.hero.exploreBtn')}
               </Link>
-              <Link to="/algarve" className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-white/20 transition-all">
+              <Link
+                to="/algarve"
+                className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+              >
                 {t('home.hero.regionBtn')}
               </Link>
             </div>
@@ -73,15 +79,17 @@ const Home: React.FC = () => {
               </p>
             </div>
             <div className="flex space-x-3 pb-2">
-               <button 
-                 onClick={() => scroll('left')} 
-                 className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-[#0d4357] hover:bg-[#0d4357] hover:text-white transition-all bg-white shadow-sm"
-               >
+              <button
+                onClick={() => scroll('left')}
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-[#0d4357] hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                aria-label="Scroll left"
+              >
                 <ChevronLeft size={20} />
               </button>
-              <button 
-                onClick={() => scroll('right')} 
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-[#0d4357] hover:bg-[#0d4357] hover:text-white transition-all bg-white shadow-sm"
+              <button
+                onClick={() => scroll('right')}
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-[#0d4357] hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                aria-label="Scroll right"
               >
                 <ChevronRight size={20} />
               </button>
@@ -89,15 +97,15 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={scrollContainerRef}
           className="flex overflow-x-auto gap-10 no-scrollbar snap-x snap-mandatory pb-12 cursor-grab active:cursor-grabbing"
-          style={{ 
-              scrollbarWidth: 'none', 
-              msOverflowStyle: 'none',
-              paddingLeft: `var(--container-pl, ${paddingLeftBase})`,
-              paddingRight: '3rem',
-              scrollPaddingLeft: `var(--container-pl, ${paddingLeftBase})`
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            paddingLeft: `var(--container-pl, ${paddingLeftBase})`,
+            paddingRight: '3rem',
+            scrollPaddingLeft: `var(--container-pl, ${paddingLeftBase})`
           }}
         >
           <style>{`
@@ -106,15 +114,15 @@ const Home: React.FC = () => {
               div[ref] { --container-pl: ${paddingLeftLg}; }
             }
           `}</style>
-          
+
           {TOURS.map((tour) => (
             <div key={tour.id} className="flex-none w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw] snap-start group">
               <Link to={`/tours/${tour.slug}`} className="block">
                 <div className="aspect-[3/4] overflow-hidden rounded-xl bg-slate-100 mb-8 relative">
-                  <img 
-                    src={tour.image} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                    alt={tour.title} 
+                  <img
+                    src={tour.image}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                    alt={`Scenic view from ${tour.title}`}
                   />
                   <div className="absolute top-6 left-6 bg-white/95 px-4 py-1.5 rounded-full shadow-sm">
                     <span className="text-[10px] font-bold text-[#0d4357] uppercase tracking-widest">{tour.duration}</span>
@@ -140,23 +148,21 @@ const Home: React.FC = () => {
 
       {/* About Us Section */}
       <section className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50">
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-40 md:py-48 lg:py-56">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 items-start">
-            <div className="space-y-6 lg:space-y-8">
-              <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
-                <img src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Hiking path" />
-              </div>
-              <div className="aspect-square overflow-hidden rounded-2xl shadow-xl">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Coastal cliff" />
-              </div>
+        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-24 md:py-32 lg:py-40">
+          <div className="space-y-6 lg:space-y-8">
+            <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+              <img src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Hiker overlooking a mountain trail" />
             </div>
-            <div className="space-y-6 lg:space-y-8 pt-12 lg:pt-24">
-              <div className="aspect-square overflow-hidden rounded-2xl shadow-xl">
-                <img src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Local village" />
-              </div>
-              <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
-                <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Horse riding" />
-              </div>
+            <div className="aspect-square overflow-hidden rounded-2xl shadow-xl">
+              <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Dramatic coastal cliffs meeting the Atlantic Ocean" />
+            </div>
+          </div>
+          <div className="space-y-6 lg:space-y-8 pt-12 lg:pt-24">
+            <div className="aspect-square overflow-hidden rounded-2xl shadow-xl">
+              <img src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Charming traditional Portuguese village street" />
+            </div>
+            <div className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+              <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" alt="Horseback riding adventure through the Algarve countryside" />
             </div>
           </div>
         </div>
@@ -174,7 +180,7 @@ const Home: React.FC = () => {
               <p>{t('home.about.p1')}</p>
               <p>{t('home.about.p2')}</p>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-12 mb-16">
               <div>
                 <p className="text-4xl md:text-5xl font-bold text-[#0d4357] font-montserrat tracking-tight">300+</p>
@@ -186,7 +192,10 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <Link to="/about" className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#da6927] transition-all shadow-lg group">
+            <Link
+              to="/about"
+              className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+            >
               <span>{t('home.about.philosophy')}</span>
               <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
             </Link>
@@ -203,8 +212,18 @@ const Home: React.FC = () => {
             {t('home.cta.desc')}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link to="/tours" className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-white hover:text-[#0d4357] transition-all shadow-xl">{t('home.cta.browse')}</Link>
-            <Link to="/contacts" className="bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-white/10 transition-all">{t('home.cta.contact')}</Link>
+            <Link
+              to="/tours"
+              className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+            >
+              {t('home.cta.browse')}
+            </Link>
+            <Link
+              to="/contacts"
+              className="bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+            >
+              {t('home.cta.contact')}
+            </Link>
           </div>
         </div>
       </section>

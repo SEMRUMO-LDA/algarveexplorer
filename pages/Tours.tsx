@@ -12,7 +12,7 @@ const Tours: React.FC = () => {
           <img
             src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920"
             className="w-full h-full object-cover"
-            alt="bg"
+            alt="Scenic mountain range background for tour collection"
           />
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
@@ -26,7 +26,7 @@ const Tours: React.FC = () => {
             <Plus size={16} />
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Our Collection</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             THE ADVENTURES
           </h1>
           <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
@@ -44,7 +44,7 @@ const Tours: React.FC = () => {
                 <div className="aspect-video overflow-hidden rounded-3xl bg-slate-100 mb-10 relative">
                   <img
                     src={tour.image}
-                    alt={tour.title}
+                    alt={`Scenic preview of the ${tour.title}`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
                   <div className="absolute top-8 left-8 bg-white/95 px-5 py-2 rounded-full shadow-sm">

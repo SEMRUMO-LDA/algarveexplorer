@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   const isHeroPage = location.pathname === '/' ||
     location.pathname.startsWith('/tours/') ||
-    ['/transfers', '/about', '/contacts', '/algarve'].includes(location.pathname);
+    ['/tours', '/transfers', '/about', '/contacts', '/algarve'].includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,9 +51,9 @@ const Navbar: React.FC = () => {
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center">
             <Link to="/" className="flex items-center group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">
               <img
-                src="/image/algarvexplorer-logo.png"
+                src={isTransparent ? "/image/algarvexplorer-logo-branco.png" : "/image/algarvexplorer-logo-azul.png"}
                 alt="Algarve Explorer Logo"
-                className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent ? 'drop-shadow-lg brightness-0 invert' : ''}`}
+                className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent ? 'drop-shadow-lg' : ''}`}
               />
             </Link>
           </div>
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/contacts"
-              className={`text-[10px] font-bold uppercase tracking-[0.2em] px-3 md:px-8 py-2.5 md:py-3 rounded-full transition-all border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
+              className={`text-[10px] font-bold uppercase tracking-[0.2em] px-3 md:px-8 py-2.5 md:py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
                 ? 'bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-[#0d4357]'
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}

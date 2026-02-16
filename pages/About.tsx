@@ -11,7 +11,7 @@ const About: React.FC = () => {
           <img
             src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920"
             className="w-full h-full object-cover"
-            alt="Algarve Terrain"
+            alt="Scenic mountain landscape in the Algarve region"
           />
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
@@ -25,7 +25,7 @@ const About: React.FC = () => {
             <Plus size={16} />
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Algarve Explorer</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             SINCE 2016
           </h1>
           <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
@@ -61,7 +61,10 @@ const About: React.FC = () => {
                   </p>
                 </div>
                 <div className="mt-16">
-                  <Link to="/tours" className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#da6927] transition-all shadow-lg group">
+                  <Link
+                    to="/tours"
+                    className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                  >
                     <span>Discover the Trails</span>
                     <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                   </Link>
@@ -76,21 +79,21 @@ const About: React.FC = () => {
                   <img
                     src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=1000"
                     className="w-full h-full object-cover"
-                    alt="Main view"
+                    alt="Breathtaking mountain range view from the Monchique peaks"
                   />
                 </div>
                 <div className="absolute bottom-0 left-0 w-[60%] h-[50%] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-30 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
                   <img
                     src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800"
                     className="w-full h-full object-cover"
-                    alt="Coastal cliff detail"
+                    alt="Close-up of golden coastal cliffs along the Atlantic Ocean"
                   />
                 </div>
                 <div className="absolute top-10 left-10 w-[40%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-4 border-white z-10 opacity-80 md:opacity-100">
                   <img
                     src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=600"
                     className="w-full h-full object-cover"
-                    alt="Village life"
+                    alt="Authentic traditional Portuguese village life and architecture"
                   />
                 </div>
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-[#da6927]/10 rounded-full blur-3xl z-0"></div>
@@ -138,7 +141,7 @@ const About: React.FC = () => {
       {/* Closing CTA Section - Moved and Styled with High-Impact Design */}
       <section className="py-32 md:py-56 bg-[#0d4357] text-white overflow-hidden relative">
         <div className="absolute inset-0 opacity-5 grayscale pointer-events-none">
-          <img src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920" alt="Background" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920" alt="Evocative mountain landscape background" className="w-full h-full object-cover" />
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
           <div className="max-w-4xl">
@@ -155,14 +158,14 @@ const About: React.FC = () => {
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link
                 to="/tours"
-                className="inline-flex items-center space-x-4 bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-white hover:text-[#0d4357] transition-all shadow-2xl group"
+                className="inline-flex items-center space-x-4 bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-2xl group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 <span>View Our Adventures</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
               <Link
                 to="/contacts"
-                className="inline-flex items-center space-x-4 bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-white/10 transition-all shadow-2xl"
+                className="inline-flex items-center space-x-4 bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 <span>Get in Touch</span>
               </Link>

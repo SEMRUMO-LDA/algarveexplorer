@@ -7,12 +7,12 @@ const Transfers: React.FC = () => {
   return (
     <div className="bg-[#fdfdfb] min-h-screen">
       {/* Unified Hero Section - Now starts at top with extra padding for navbar */}
-      <section className="bg-[#0d4357] pt-40 pb-24 md:pt-56 md:pb-32 relative overflow-hidden">
+      <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
-          <img 
-            src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1920" 
-            className="w-full h-full object-cover" 
-            alt="bg" 
+          <img
+            src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1920"
+            className="w-full h-full object-cover"
+            alt="Professional shuttle van driving through scenic Algarve landscape"
           />
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
@@ -26,7 +26,7 @@ const Transfers: React.FC = () => {
             <Plus size={16} />
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Seamless Logistics</span>
           </div>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             TRAIL LOGISTICS
           </h1>
           <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
@@ -73,7 +73,10 @@ const Transfers: React.FC = () => {
                 </div>
 
                 <div className="mt-auto">
-                  <Link to="/contacts" className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-[#da6927] transition-all shadow-xl group/btn">
+                  <Link
+                    to="/contacts"
+                    className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-xl group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                  >
                     <span>BOOK TRANSFER</span>
                     <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
@@ -104,7 +107,10 @@ const Transfers: React.FC = () => {
                 </div>
               </div>
               <div className="flex justify-start lg:justify-end">
-                <Link to="/contacts" className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all shadow-2xl">
+                <Link
+                  to="/contacts"
+                  className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                >
                   REQUEST A QUOTE
                 </Link>
               </div>
