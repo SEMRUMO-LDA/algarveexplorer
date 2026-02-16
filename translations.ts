@@ -49,7 +49,13 @@ export const TRANSLATIONS: any = {
       member: 'Member registered at Turismo de Portugal',
       dev: 'Algarve Explorer Tours @ 2026 DEVELOPED BY AORUBRO',
       privacy: 'PRIVACY POLICY & COOKIES',
-      complaints: 'COMPLAINTS BOOK'
+      complaints: 'COMPLAINTS BOOK',
+      newsletter: {
+        title: 'Newsletter',
+        desc: 'Join our mailing list for the latest trail updates and regional secrets.',
+        placeholder: 'Your email',
+        button: 'Join'
+      }
     }
   },
   pt: {
@@ -101,7 +107,13 @@ export const TRANSLATIONS: any = {
       member: 'Membro registado no Turismo de Portugal',
       dev: 'Algarve Explorer Tours @ 2026 DESENVOLVIDO PELA AORUBRO',
       privacy: 'POLÍTICA DE PRIVACIDADE & COOKIES',
-      complaints: 'LIVRO DE RECLAMAÇÕES'
+      complaints: 'LIVRO DE RECLAMAÇÕES',
+      newsletter: {
+        title: 'Newsletter',
+        desc: 'Subscreva a nossa newsletter para atualizações sobre trilhos e segredos regionais.',
+        placeholder: 'O seu e-mail',
+        button: 'Subscrever'
+      }
     }
   }
 };
