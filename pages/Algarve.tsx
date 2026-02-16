@@ -1,0 +1,135 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus } from 'lucide-react';
+
+const Algarve: React.FC = () => {
+  return (
+    <div className="bg-white min-h-screen">
+      {/* Editorial Dark Header - Matching Transfers Page */}
+      <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
+          <img
+            src="https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1920"
+            className="w-full h-full object-cover"
+            alt="bg"
+          />
+        </div>
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+          <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+            <Link to="/" className="hover:text-[#da6927] transition-colors">Home</Link>
+            <span className="text-white/20">/</span>
+            <span className="text-white/80">The Region</span>
+          </div>
+
+          <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
+            <Plus size={16} />
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Southern Portugal</span>
+          </div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
+            A PLAYGROUND <br />FOR THE SOUL
+          </h1>
+          <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
+            From the dramatic Atlantic cliffs to the ancient peaks of Monchique, the Algarve offers a diversity of terrain that invites slow exploration and deep connection with nature.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Narrative */}
+      <section className="py-24 md:py-40">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+            <div className="relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1200"
+                  className="w-full h-full object-cover"
+                  alt="Algarve Coast"
+                />
+              </div>
+              <div className="absolute -bottom-10 -right-10 w-2/3 aspect-square bg-white p-4 rounded-2xl shadow-2xl hidden md:block">
+                <img
+                  src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=800"
+                  className="w-full h-full object-cover rounded-xl"
+                  alt="Lagoon Nature"
+                />
+              </div>
+            </div>
+            <div className="lg:pl-20">
+              <div className="flex items-center space-x-3 mb-10">
+                <Compass className="text-[#da6927]" size={20} />
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/40">Why Explore Here</span>
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight leading-tight uppercase">
+                Beyond the <br />Coastal resorts
+              </h2>
+              <div className="space-y-8 text-[#0d4357]/60 text-lg md:text-xl font-light leading-relaxed">
+                <p>The Algarve is world-famous for its golden beaches, but its true heart lies inland. The "Barrocal" and the "Serra" provide a rugged, authentic landscape where time seems to slow down.</p>
+                <p>We focus on these hidden gems—the cork forests, the shepherd paths, and the traditional villages where you can still taste the authentic flavor of Portuguese life.</p>
+              </div>
+              <Link to="/tours" className="mt-16 inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[11px] hover:bg-[#da6927] transition-all shadow-lg">
+                <span>View Adventures</span>
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Seasonal Insights */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              {
+                icon: <Trees size={32} />,
+                title: "Spring",
+                subtitle: "MAR - MAY",
+                desc: "A tapestry of wildflowers. The hills are lush, and the air is filled with the scent of rockrose and lavender."
+              },
+              {
+                icon: <Sun size={32} />,
+                title: "Autumn",
+                subtitle: "SEPT - NOV",
+                desc: "The 'Golden Season'. Soft light, warm Atlantic waters, and the perfect temperature for long walks."
+              },
+              {
+                icon: <CloudRain size={32} />,
+                title: "Winter",
+                subtitle: "DEC - FEB",
+                desc: "Quiet, crisp, and clear. While Northern Europe is frozen, the Algarve trails remain inviting and serene."
+              }
+            ].map((season, i) => (
+              <div key={i} className="bg-[#fcfcf9] p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all group">
+                <div className="text-[#da6927] mb-8 group-hover:scale-110 transition-transform origin-left">{season.icon}</div>
+                <h3 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-2 tracking-tight uppercase">{season.title}</h3>
+                <p className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-6">{season.subtitle}</p>
+                <p className="text-[#0d4357]/50 font-light leading-relaxed">{season.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regions Callout */}
+      <section className="py-32 bg-[#0d4357] text-white">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center space-x-3 mb-16 text-white/30">
+            <Footprints size={20} />
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em]">The Three Worlds</span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            {[
+              { id: "01", name: "Monchique Serra", desc: "The 'Garden of the Algarve.' Lush peaks, mountain springs, and ancient forests." },
+              { id: "02", name: "The Barrocal", desc: "The limestone belt. Technical paths through orchards, dry-stone walls, and hidden hamlets." },
+              { id: "03", name: "The Vicentine Coast", desc: "The wild West. Dramatic cliffs, salt spray, and paths carved by fisherman over centuries." }
+            ].map((reg, i) => (
+              <div key={i} className="group">
+                <span className="block text-[#da6927] font-bold text-4xl font-montserrat mb-6 opacity-30 group-hover:opacity-100 transition-opacity">{reg.id}</span>
+                <h4 className="text-2xl font-bold font-montserrat mb-6 uppercase tracking-tight">{reg.name}</h4>
+                <p className="text-white/40 font-light leading-relaxed">{reg.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Algarve;

@@ -1,0 +1,7 @@
+{
+  "name": "Algarve Explorer - Trail Adventures",
+  "description": "A premium trail adventure and walking tour operator website for the Algarve region, featuring trail guides, regional secrets, and professional logistics.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
