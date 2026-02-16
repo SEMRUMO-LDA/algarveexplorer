@@ -174,7 +174,7 @@ const Home: React.FC = () => {
               style={{ transitionDelay: '0ms' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=800"
+                src="/image/about-us-1.jpeg"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 alt="Hiker overlooking a mountain trail"
               />
@@ -184,7 +184,7 @@ const Home: React.FC = () => {
               style={{ transitionDelay: '400ms' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800"
+                src="/image/about-us-2.jpeg"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
               />
@@ -196,7 +196,7 @@ const Home: React.FC = () => {
               style={{ transitionDelay: '200ms' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=800"
+                src="/image/about-us-3.jpeg"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 alt="Charming traditional Portuguese village street"
               />
@@ -206,7 +206,7 @@ const Home: React.FC = () => {
               style={{ transitionDelay: '600ms' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=800"
+                src="/image/about-us-4.jpeg"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 alt="Horseback riding adventure through the Algarve countryside"
               />
