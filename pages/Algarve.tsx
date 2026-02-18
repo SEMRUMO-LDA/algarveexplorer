@@ -34,7 +34,7 @@ const Algarve: React.FC = () => {
     <div className="bg-[#fdfdfb] min-h-screen font-montserrat">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
+        <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
           <img
             src="/image/the-region-hero.jpg"
             className="w-full h-full object-cover"
@@ -138,11 +138,11 @@ const Algarve: React.FC = () => {
                 desc: t('algarve.seasons.winter.desc')
               }
             ].map((season, i) => (
-              <div key={i} className="bg-white p-10 rounded-2xl border border-slate-50 hover:shadow-xl transition-all group">
+              <div key={i} className="bg-[#0d4357] p-10 rounded-2xl border border-white/5 hover:shadow-2xl transition-all group">
                 <div className="text-[#da6927] mb-8 group-hover:scale-110 transition-transform origin-left">{season.icon}</div>
-                <h3 className="text-xl font-bold font-montserrat text-[#0d4357] mb-2 tracking-tight uppercase">{season.title}</h3>
+                <h3 className="text-xl font-bold font-montserrat text-white mb-2 tracking-tight uppercase">{season.title}</h3>
                 <p className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-6">{season.subtitle}</p>
-                <p className="text-[#0d4357]/50 text-sm font-light leading-relaxed">{season.desc}</p>
+                <p className="text-white/60 text-sm font-light leading-relaxed">{season.desc}</p>
               </div>
             ))}
           </div>
@@ -153,9 +153,9 @@ const Algarve: React.FC = () => {
       <section className="pb-40 bg-[#fdfdfb]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="border-t border-slate-100 pt-32">
-            <div className="flex items-center space-x-3 mb-16 text-[#0d4357]/30">
-              <Footprints size={20} />
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{t('algarve.regions.eyebrow')}</span>
+            <div className="flex items-center space-x-3 mb-16">
+              <Footprints size={20} className="text-[#da6927]" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/30">{t('algarve.regions.eyebrow')}</span>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
               {[
@@ -187,7 +187,7 @@ const Algarve: React.FC = () => {
                     />
                   </div>
                   <div className="relative pl-12">
-                    <span className="absolute left-0 top-0 text-[#da6927] font-bold text-2xl font-montserrat opacity-20 group-hover:opacity-100 transition-opacity">{reg.id}</span>
+                    <span className="absolute left-0 top-0 text-[#da6927] font-bold text-2xl font-montserrat">{reg.id}</span>
                     <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight leading-none">{reg.name}</h4>
                     <p className="text-[#0d4357]/60 font-light leading-relaxed text-lg">{reg.desc}</p>
                   </div>

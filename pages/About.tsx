@@ -11,7 +11,7 @@ const About: React.FC = () => {
     <div className="bg-[#fdfdfb] min-h-screen">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
+        <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
           <img
             src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920"
             className="w-full h-full object-cover"
@@ -121,10 +121,10 @@ const About: React.FC = () => {
                 { title: t('about.values.slow.title'), icon: <Footprints className="text-[#da6927]" size={28} />, desc: t('about.values.slow.desc') },
                 { title: t('about.values.care.title'), icon: <ShieldCheck className="text-[#da6927]" size={28} />, desc: t('about.values.care.desc') }
               ].map((val, i) => (
-                <div key={i} className="bg-white p-10 rounded-2xl border border-slate-100 hover:shadow-lg transition-all group">
+                <div key={i} className="bg-[#0d4357] p-10 rounded-2xl border border-white/5 hover:shadow-2xl transition-all group">
                   <div className="mb-6">{val.icon}</div>
-                  <h3 className="text-lg font-bold font-montserrat text-[#0d4357] mb-4 uppercase tracking-tight group-hover:text-[#da6927] transition-colors">{val.title}</h3>
-                  <p className="text-[#0d4357]/40 text-sm leading-relaxed font-light">{val.desc}</p>
+                  <h3 className="text-lg font-bold font-montserrat text-white mb-4 uppercase tracking-tight transition-colors">{val.title}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed font-light">{val.desc}</p>
                 </div>
               ))}
             </div>

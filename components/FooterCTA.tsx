@@ -14,9 +14,9 @@ const FooterCTA: React.FC = () => {
                 <img
                     src="/image/the-region-hero.jpg"
                     alt="Scenic Algarve landscape"
-                    className="w-full h-full object-cover opacity-20 grayscale"
+                    className="w-full h-full object-cover opacity-40 grayscale-[0.4]"
                 />
-                <div className="absolute inset-0 bg-[#0d4357]/80"></div>
+                <div className="absolute inset-0 bg-[#0d4357]/60"></div>
             </div>
 
             {/* Transition Gradient to Footer */}

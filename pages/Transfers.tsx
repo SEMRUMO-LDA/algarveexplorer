@@ -12,7 +12,7 @@ const Transfers: React.FC = () => {
     <div className="bg-[#fdfdfb] min-h-screen">
       {/* Unified Hero Section */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
+        <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
           <img
             src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1920"
             className="w-full h-full object-cover"
