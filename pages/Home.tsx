@@ -51,7 +51,7 @@ const Home: React.FC = () => {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const cardWidth = clientWidth * 0.4;
+      const cardWidth = clientWidth * (window.innerWidth < 768 ? 0.8 : 0.3);
       const scrollTo = direction === 'left' ? scrollLeft - cardWidth : scrollLeft + cardWidth;
       scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
     }
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
   const paddingLeftLg = "max(3rem, calc((100vw - 1600px) / 2 + 3rem))";
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-[#fdfdfb]">
       {/* Hero Section */}
       <section className="relative h-[90vh] md:h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
@@ -139,7 +139,7 @@ const Home: React.FC = () => {
 
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-10 no-scrollbar snap-x snap-mandatory pb-12 cursor-grab active:cursor-grabbing"
+          className="flex overflow-x-auto gap-8 no-scrollbar snap-x snap-mandatory pb-12 cursor-grab active:cursor-grabbing"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
@@ -157,27 +157,37 @@ const Home: React.FC = () => {
 
           {TOURS.map((tour) => (
             <div key={tour.id} className="flex-none w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw] snap-start group">
-              <Link to={`/tours/${tour.slug}`} className="block">
-                <div className="aspect-[3/4] overflow-hidden rounded-xl bg-slate-100 mb-8 relative">
+              <Link
+                to={`/tours/${tour.slug}`}
+                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full"
+              >
+                <div className="aspect-[4/5] relative overflow-hidden">
                   <img
                     src={tour.image}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                    alt={`Scenic view from ${tour.title}`}
+                    alt={language === 'pt' ? tour.title_pt : tour.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-6 left-6 bg-white/95 px-4 py-1.5 rounded-full shadow-sm">
-                    <span className="text-[10px] font-bold text-[#0d4357] uppercase tracking-widest">{tour.duration}</span>
+                  <div className="absolute top-6 left-6">
+                    <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
+                      {language === 'pt' ? tour.difficulty_pt : tour.difficulty}
+                    </span>
                   </div>
                 </div>
-                <div className="px-2">
-                  <div className="flex items-center space-x-2 text-[#da6927] mb-3">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em]">{tour.difficulty}</span>
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-[#0d4357] mb-4 group-hover:text-[#da6927] transition-colors tracking-tight leading-tight uppercase">
-                    {tour.title}
+                <div className="p-8">
+                  <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4 block">
+                    {language === 'pt' ? tour.duration_pt : tour.duration}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-[#0d4357] mb-6 font-montserrat uppercase tracking-tight leading-tight group-hover:text-[#da6927] transition-colors h-14 line-clamp-2">
+                    {language === 'pt' ? tour.title_pt : tour.title}
                   </h3>
-                  <div className="flex items-center text-[#0d4357]/40 text-sm">
-                    <span className="font-semibold">{language === 'pt' ? 'Desde' : 'From'} €{tour.price}</span>
-                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform text-[#da6927]" />
+                  <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                    <span className="text-[#0d4357]/40 text-xs font-light italic">
+                      {language === 'pt' ? 'A partir de' : 'Starting from'} €{tour.price}
+                    </span>
+                    <div className="flex items-center space-x-2 text-[#0d4357] group-hover:text-[#da6927] transition-colors">
+                      <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
+                      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -187,8 +197,8 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="relative flex flex-col lg:flex-row bg-white border-t border-slate-50">
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8">
+      <section className="relative flex flex-col lg:flex-row bg-[#fdfdfb]">
+        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8 border-t border-slate-50">
           <div className="flex-1 space-y-12 lg:space-y-32">
             <RevealingImage
               src="/image/about-us-1.jpeg"
@@ -256,7 +266,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 md:py-40 bg-white">
+      <section className="py-24 md:py-40 bg-[#fdfdfb]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-24">
             <div className="max-w-2xl">
@@ -287,30 +297,8 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {[
-              {
-                name: "Mark C",
-                title: "Great guide tour, book it!",
-                date: "Oct 2025",
-                type: "Couples",
-                content: "Ricardo was a great guide, friendly, engaging and full of local knowledge and able to also give some great recommendations for local places to visit after the tour and places to eat with the locals. The level of activity on the tour was spot on and the locations we visited were picture perfect."
-              },
-              {
-                name: "velvetyvoice",
-                location: "Glasgow, UK",
-                title: "Great tour",
-                date: "Sep 2025",
-                type: "Couples",
-                content: "We had a brilliant time on this tour. Ricardo was a great guide - very knowledgeable, really friendly and made it a great overall experience. The scenery is absolutely beautiful, and a must see in the Algarve. Lots of hidden gems. Thoroughly recommend."
-              },
-              {
-                name: "Gema M",
-                title: "Recommended 100%",
-                date: "Aug 2025",
-                content: "We went on a slightly bigger boat and it couldn't get into all the caves. It is worth the tour along the coast, it is spectacular and very safe even for children. Highly recommended!"
-              }
-            ].map((testimonial, i) => (
-              <div key={i} className="bg-[#fcfcf9] p-10 md:p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all duration-500 flex flex-col h-full group">
+            {t('home.testimonials.items').map((testimonial: any, i: number) => (
+              <div key={i} className="bg-white p-10 md:p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all duration-500 flex flex-col h-full group">
                 <div className="flex items-center space-x-1 mb-8">
                   {[...Array(5)].map((_, i) => (
                     <div key={i} className="w-2.5 h-2.5 rounded-full bg-[#00af87] group-hover:scale-110 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}></div>

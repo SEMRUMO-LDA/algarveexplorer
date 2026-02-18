@@ -19,12 +19,14 @@ const TourDetail: React.FC = () => {
   if (!tour) {
     return (
       <div className="pt-32 px-6 text-center min-h-screen bg-[#fdfdfb] flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight">Experience Not Found</h1>
+        <h1 className="text-4xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight">
+          {language === 'pt' ? 'Experiência Não Encontrada' : 'Experience Not Found'}
+        </h1>
         <Link
           to="/tours"
           className="bg-[#da6927] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
         >
-          Back to all tours
+          {language === 'pt' ? 'Voltar para todos os tours' : 'Back to all tours'}
         </Link>
       </div>
     );
@@ -43,18 +45,24 @@ const TourDetail: React.FC = () => {
   const isSevenValleysTour = tour.slug === 'benagil-marinha-7-valleys-tour' || tour.slug === 'seven-hanging-valleys-hiking-albufeira';
   const isSevenValleysHikeOnly = tour.slug === 'seven-hanging-valleys-hiking-albufeira';
 
+  const displayTitle = language === 'pt' ? tour.title_pt : tour.title;
+  const displayDuration = language === 'pt' ? tour.duration_pt : tour.duration;
+  const displayDifficulty = language === 'pt' ? tour.difficulty_pt : tour.difficulty;
+  const displayDesc = language === 'pt' ? tour.description_pt : tour.description;
+  const displayAgeRange = language === 'pt' ? tour.ageRange_pt : tour.ageRange;
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#fdfdfb] min-h-screen">
       {/* Editorial Hero */}
       <section className="relative h-[80vh] flex flex-col justify-end overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={tour.image}
             className="w-full h-full object-cover"
-            alt={`Breathtaking overview of ${tour.title}`}
+            alt={`Breathtaking overview of ${displayTitle}`}
           />
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#fdfdfb] via-transparent to-transparent"></div>
         </div>
 
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-20">
@@ -64,10 +72,10 @@ const TourDetail: React.FC = () => {
               <span>/</span>
               <Link to="/tours" className="hover:text-white transition-colors">{t('nav.tours')}</Link>
               <span>/</span>
-              <span className="text-white">{tour.title}</span>
+              <span className="text-white">{displayTitle}</span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.1] tracking-tight mb-8 drop-shadow-sm uppercase">
-              {tour.title}
+              {displayTitle}
             </h1>
             <div className="flex items-center gap-3 text-white">
               <div className="bg-[#da6927] p-2 rounded-full">
@@ -80,7 +88,7 @@ const TourDetail: React.FC = () => {
       </section>
 
       {/* Main Content Area */}
-      <section className="py-24 md:py-32 bg-white relative">
+      <section className="py-24 md:py-32 bg-[#fdfdfb] relative">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative min-h-screen">
 
@@ -88,50 +96,20 @@ const TourDetail: React.FC = () => {
             <div className="lg:col-span-8 space-y-32">
               <div>
                 <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">
-                  {language === 'pt' ? 'A Experiência' : 'The Experience'}
+                  {t('tourDetail.experience.eyebrow')}
                 </span>
                 <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight leading-tight uppercase">
-                  {tour.title}
+                  {displayTitle}
                 </h2>
                 <div className="prose prose-xl text-[#0d4357]/60 font-light leading-relaxed">
-                  {isAlbufeiraHorseRiding ? (
-                    <div className="text-xl md:text-2xl text-[#0d4357]/80 font-normal leading-relaxed whitespace-pre-line">
-                      {isDedicatedHorseRiding ? (
-                        language === 'pt' ?
-                          `Embarque num emocionante passeio a cavalo enquanto desfruta de paisagens deslumbrantes, animais selvagens e vistas de tirar o fôlego da lagoa enquanto liberta o seu sentido de maravilha.
-
-Uma experiência imersiva na natureza algarvia, perfeita para quem procura tranquilidade e uma ligação profunda com o meio ambiente.` :
-                          `Embark on a thrilling horseback ride as you enjoy stunning landscapes, wild animals and breathtaking views of the lagoon while unleashing your sense of wonder.
-
-An immersive experience in the Algarvian nature, perfect for those seeking tranquility and a deep connection with the environment.`
-                      ) : (
-                        language === 'pt' ?
-                          `Explore as praias mais deslumbrantes, incluindo pérolas escondidas conhecidas apenas pelos locais. Depois embarque num excitante passeio a cavalo, onde terá magníficas vistas panorâmicas sobre a praia, e a oportunidade única de avistar espécies protegidas e em vias de extinção.` :
-                          `Explore the most stunning beaches, including hidden pearls known only to the locals. Then embark on an exciting horseback ride, where you will have magnificent panoramic views over the beach, and the unique opportunity to spot protected and endangered species.`
-                      )}
-                    </div>
-                  ) : isSevenValleysTour ? (
-                    <div className="text-xl md:text-2xl text-[#0d4357]/80 font-normal leading-relaxed space-y-10">
-                      <p>
-                        {isSevenValleysHikeOnly ? (
-                          language === 'pt' ?
-                            'Explore o trilho cénico dos Sete Vales Suspensos no Algarve numa caminhada guiada. Descubra paisagens deslumbrantes, falésias majestosas e vistas inspiradoras a cada passo.' :
-                            'Explore the scenic Seven Hanging Valleys trail in the Algarve on a guided hike. Discover stunning landscapes, majestic cliffs, and awe-inspiring views at every step.'
-                        ) : (
-                          language === 'pt' ?
-                            'Prepare-se para um dia cheio de aventura de Albufeira a Benagil nesta aventura guiada. Explore grutas deslumbrantes, os 7 Vales Suspensos e nade em águas cristalinas, sem estar preso a um barco.' :
-                            'Get ready for a day full of adventure from Albufeira to Benagil on this guided adventure. Explore stunning caves, the 7 Hanging Valleys and swim in crystal-clear waters, without being tied to a boat.'
-                        )}
-                      </p>
-
-                      <p>{language === 'pt' ? 'Comece o tour com uma vista da Gruta de Benagil de cima e experimente as impressionantes vistas panorâmicas. Continue até ao conhecido Algar Seco, conhecido por piscinas naturais, grutas deslumbrantes e a icónica formação rochosa Janela para o Mar.' : 'Start the tour with a view of Benagil Cave from above and experience the impressive panoramic views. Continue to the well-known Algar Seco, known for natural pools, stunning caves, and the icon rock formation Janela para o Mar.'}</p>
-
-                      <p>{language === 'pt' ? 'Explore a Praia da Marinha, aclamada pela CNN Travel como um dos segredos mais bem guardados do Algarve. No meio das infinitas falésias e formações rochoras, descubra os belos mistérios da zona.' : 'Explore Marinha Beach, hailed by CNN Travel as one of the Algarve\'s best-kept secrets. Amidst the endless cliffs and rock formations, discover the area’s beautiful mysteries.'}</p>
+                  {(isAlbufeiraHorseRiding || isSevenValleysTour) ? (
+                    <div className="text-xl md:text-2xl text-[#0d4357]/80 font-normal leading-relaxed space-y-10 whitespace-pre-line">
+                      {displayDesc}
                     </div>
                   ) : (
                     <div className="space-y-10">
                       <p className="text-2xl text-[#0d4357]/80 font-normal leading-relaxed">
-                        {tour.description}
+                        {displayDesc}
                       </p>
                     </div>
                   )}
@@ -168,7 +146,7 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                       {language === 'pt' ? 'Diário Visual' : 'Visual Diary'}
                     </span>
                     <h3 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] tracking-tight uppercase">
-                      {language === 'pt' ? 'Destaques' : 'Highlights'}
+                      {t('tourDetail.highlights')}
                     </h3>
                   </div>
                   <div className="flex space-x-3 pb-2">
@@ -203,7 +181,7 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                         <img
                           src={h.image}
                           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                          alt={`Highlight: ${h.text}`}
+                          alt={`Highlight: ${language === 'pt' ? h.text_pt : h.text}`}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                         <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
@@ -211,7 +189,7 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                             {i + 1} / {tour.highlights.length}
                           </span>
                           <h4 className="text-xl md:text-2xl lg:text-3xl font-bold font-montserrat text-white tracking-tight uppercase leading-tight">
-                            {h.text}
+                            {language === 'pt' ? h.text_pt : h.text}
                           </h4>
                         </div>
                       </div>
@@ -253,14 +231,14 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-24 border-t border-slate-100">
                 <div>
                   <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40 mb-10">
-                    {language === 'pt' ? 'O Que Está Incluído' : 'What\'s Included'}
+                    {t('tourDetail.inclusions.title')}
                   </h4>
                   <ul className="space-y-5">
                     {[
-                      language === 'pt' ? 'Guia Regional Profissional' : 'Professional Regional Guide',
+                      t('tourDetail.inclusions.guide'),
                       isAlbufeiraHorseRiding ? (language === 'pt' ? 'Equipamento de Equitação' : 'Horse Riding Equipment') : (language === 'pt' ? 'Apoio em Trilho' : 'Trail Support'),
                       language === 'pt' ? 'Seguro de Aventura' : 'Adventure Insurance',
-                      language === 'pt' ? 'Snacks Orgânicos e Água' : 'Organic Snacks & Water'
+                      t('tourDetail.inclusions.snack')
                     ].map((item, i) => (
                       <li key={i} className="flex items-center space-x-4 text-[#0d4357]/70 font-medium">
                         <span className="flex-shrink-0"><Check className="text-[#da6927]" size={18} /></span>
@@ -286,7 +264,7 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                 <div className="bg-[#fcfcf9] p-10 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden">
                   <div className="mb-14">
                     <p className="text-[#0d4357]/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
-                      {language === 'pt' ? 'PREÇO INICIAL' : 'STARTING PRICE'}
+                      {t('tourDetail.booking')}
                     </p>
                     <div className="flex items-baseline space-x-2">
                       <span className="text-7xl md:text-8xl font-bold font-montserrat text-[#0d4357] tracking-tighter">€{tour.price}</span>
@@ -300,7 +278,7 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                         <Clock size={18} className="text-[#da6927]" />
                         <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{language === 'pt' ? 'DURAÇÃO' : 'DURATION'}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{tour.duration}</span>
+                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{displayDuration}</span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
@@ -308,24 +286,22 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                         <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/40">{language === 'pt' ? 'NÍVEL' : 'LEVEL'}</span>
                       </div>
                       <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">
-                        {tour.difficulty === 'Easy' ? (language === 'pt' ? 'FÁCIL' : 'EASY') :
-                          tour.difficulty === 'Moderate' ? (language === 'pt' ? 'MODERADO' : 'MODERATE') :
-                            (language === 'pt' ? 'DESAFIANTE' : 'CHALLENGING')}
+                        {displayDifficulty}
                       </span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Users size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{language === 'pt' ? 'GRUPO' : 'GROUP'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{t('tourDetail.maxSize')}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">MAX {tour.maxGroupSize || 8} PERSONS</span>
+                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">MAX {tour.maxGroupSize || 21} PERSONS</span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Calendar size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{language === 'pt' ? 'IDADE' : 'AGE'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{t('tourDetail.ageRange')}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{tour.ageRange || '6+'}</span>
+                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{displayAgeRange || '6-65'}</span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
@@ -341,14 +317,14 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                       to="/contacts"
                       className="flex items-center justify-center space-x-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 shadow-md group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
-                      <span>{language === 'pt' ? 'RESERVAR LUGAR' : 'RESERVE MY SPOT'}</span>
+                      <span>{t('tourDetail.buttons.book')}</span>
                       <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                     <button
                       className="flex items-center justify-center space-x-3 w-full bg-white text-[#0d4357]/40 py-6 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] border border-slate-100 hover:bg-[#0d4357] hover:text-white transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <Download size={14} />
-                      <span>{language === 'pt' ? 'DESCARREGAR DOSSIER' : 'DOWNLOAD DOSSIER'}</span>
+                      <span>{t('tourDetail.buttons.download')}</span>
                     </button>
                   </div>
                 </div>
@@ -364,14 +340,14 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div>
               <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">
-                {language === 'pt' ? 'Continuar a Explorar' : 'Keep Exploring'}
+                {t('tourDetail.recommended.eyebrow')}
               </span>
               <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] tracking-tight uppercase">
-                {language === 'pt' ? 'Mais Aventuras' : 'More Adventures'}
+                {t('tourDetail.recommended.title')}
               </h2>
             </div>
             <Link to="/tours" className="text-[#0d4357] font-bold uppercase tracking-widest text-[11px] border-b border-[#0d4357] pb-2 hover:text-[#da6927] hover:border-[#da6927] transition-all">
-              {language === 'pt' ? 'Ver Todos os Tours' : 'View All Tours'}
+              {t('tourDetail.recommended.viewAll')}
             </Link>
           </div>
 
@@ -382,11 +358,15 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
                   <img
                     src={t.image}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                    alt={`Recommended tour: ${t.title}`}
+                    alt={`Recommended tour: ${language === 'pt' ? t.title_pt : t.title}`}
                   />
                 </div>
-                <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest block mb-3">{t.duration}</span>
-                <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] tracking-tight group-hover:text-[#da6927] transition-colors uppercase">{t.title}</h4>
+                <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest block mb-3">
+                  {language === 'pt' ? t.duration_pt : t.duration}
+                </span>
+                <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] tracking-tight group-hover:text-[#da6927] transition-colors uppercase">
+                  {language === 'pt' ? t.title_pt : t.title}
+                </h4>
               </Link>
             ))}
           </div>

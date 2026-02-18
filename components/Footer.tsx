@@ -5,7 +5,7 @@ import { Instagram, Facebook } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 const Footer: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   return (
     <footer className="bg-[#0d4357] text-white pt-24 pb-12">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
@@ -59,13 +59,13 @@ const Footer: React.FC = () => {
               <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/30">{t('footer.contact')}</h4>
               <ul className="space-y-6 text-white/50 text-sm">
                 <li className="flex flex-col">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">E-mail</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">{t('footer.email')}</span>
                   <a href="mailto:algarveexplorer@gmail.com" className="font-light hover:text-white transition-colors">E: algarveexplorer@gmail.com</a>
                 </li>
                 <li className="flex flex-col">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">Phone</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 mb-1">{t('footer.phone')}</span>
                   <a href="tel:+351968306031" className="font-light hover:text-white transition-colors">T: +351 968 306 031</a>
-                  <span className="text-[10px] text-white/20 mt-1 italic">(chamada para rede móvel nacional)</span>
+                  <span className="text-[10px] text-white/20 mt-1 italic">{language === 'pt' ? '(chamada para rede móvel nacional)' : '(call to national mobile network)'}</span>
                 </li>
               </ul>
               <div className="mt-12 pt-12 border-t border-white/5 md:border-none md:mt-10 md:pt-0">

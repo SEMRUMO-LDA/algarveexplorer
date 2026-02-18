@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Compass, Users, Leaf, ArrowRight, Footprints, ShieldCheck, Plus } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 
 const About: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-[#fdfdfb] min-h-screen">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 grayscale pointer-events-none">
@@ -17,9 +20,9 @@ const About: React.FC = () => {
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link to="/" className="hover:text-[#da6927] transition-colors">Home</Link>
+            <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">Our Philosophy</span>
+            <span className="text-white/80">{t('about.hero.eyebrow')}</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
@@ -27,10 +30,10 @@ const About: React.FC = () => {
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Algarve Explorer</span>
           </div>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-            SINCE 2016
+            {t('about.hero.title')}
           </h1>
           <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
-            Born from a passion for the quiet corners of Southern Portugal. We specialize in trails that tell the region's oldest stories.
+            {t('about.hero.desc')}
           </p>
         </div>
       </section>
@@ -45,28 +48,22 @@ const About: React.FC = () => {
               <div className="max-w-xl">
                 <div className="flex items-center space-x-3 mb-10 text-[#0d4357]/40">
                   <Compass size={24} className="text-[#da6927]" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.4em]">The Core Narrative</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{t('about.story.eyebrow')}</span>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight leading-[1.1] uppercase">
-                  Authenticity <br />comes to life.
+                  {t('about.story.title')}
                 </h2>
                 <div className="space-y-8 text-[#0d4357]/60 text-lg md:text-xl font-light leading-relaxed">
-                  <p>
-                    Our mission has always been to provide the best possible experience to those who seek the true heart of Portugal. We believe the secrets of the region shouldn't be kept hidden—they should be shared with respect and care.
-                  </p>
-                  <p>
-                    Algarve Explorer was created to showcase hidden gems away from the haste and noise of conventional tourism. We travel at the pace of nature, uncovering the soul of the landscape one step at a time.
-                  </p>
-                  <p>
-                    Each trail we curate is a result of hundreds of hours of exploration. We don't just guide you through paths; we connect you with the shepherds, the artisans, and the silence of the Monchique peaks.
-                  </p>
+                  <p>{t('about.story.p1')}</p>
+                  <p>{t('about.story.p2')}</p>
+                  <p>{t('about.story.p3')}</p>
                 </div>
                 <div className="mt-16">
                   <Link
                     to="/tours"
                     className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                   >
-                    <span>Discover the Trails</span>
+                    <span>{t('about.story.cta')}</span>
                     <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                   </Link>
                 </div>
@@ -106,29 +103,25 @@ const About: React.FC = () => {
       </section>
 
       {/* Values Grid */}
-      <section className="py-32 md:py-48 bg-white border-t border-slate-100">
+      <section className="py-32 md:py-48 bg-[#fdfdfb] border-t border-slate-100">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
             <div>
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">Our Commitment</span>
-              <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight uppercase">Community & Sustainability</h2>
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('about.values.eyebrow')}</span>
+              <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight uppercase">{t('about.values.title')}</h2>
               <div className="space-y-8 text-[#0d4357]/50 text-lg font-light leading-relaxed">
-                <p>
-                  By supporting the local economy and the communities that surround us, we work in close partnership with local producers, regional guides, and family-owned businesses.
-                </p>
-                <p>
-                  We promote sustainable development and contribute to the well-being of the Algarve, strengthening the social fabric that unites the coast and the mountains.
-                </p>
+                <p>{t('about.values.p1')}</p>
+                <p>{t('about.values.p2')}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {[
-                { title: "Local Partners", icon: <Users className="text-[#da6927]" size={28} />, desc: "Guided by regional experts." },
-                { title: "Eco-Focus", icon: <Leaf className="text-[#da6927]" size={28} />, desc: "Preserving the trails for tomorrow." },
-                { title: "Slow Travel", icon: <Footprints className="text-[#da6927]" size={28} />, desc: "Escape the noise and haste." },
-                { title: "Total Care", icon: <ShieldCheck className="text-[#da6927]" size={28} />, desc: "Safety and regional knowledge." }
+                { title: t('about.values.partners.title'), icon: <Users className="text-[#da6927]" size={28} />, desc: t('about.values.partners.desc') },
+                { title: t('about.values.eco.title'), icon: <Leaf className="text-[#da6927]" size={28} />, desc: t('about.values.eco.desc') },
+                { title: t('about.values.slow.title'), icon: <Footprints className="text-[#da6927]" size={28} />, desc: t('about.values.slow.desc') },
+                { title: t('about.values.care.title'), icon: <ShieldCheck className="text-[#da6927]" size={28} />, desc: t('about.values.care.desc') }
               ].map((val, i) => (
-                <div key={i} className="bg-[#fcfcf9] p-10 rounded-2xl border border-slate-100 hover:shadow-lg transition-all group">
+                <div key={i} className="bg-white p-10 rounded-2xl border border-slate-100 hover:shadow-lg transition-all group">
                   <div className="mb-6">{val.icon}</div>
                   <h3 className="text-lg font-bold font-montserrat text-[#0d4357] mb-4 uppercase tracking-tight group-hover:text-[#da6927] transition-colors">{val.title}</h3>
                   <p className="text-[#0d4357]/40 text-sm leading-relaxed font-light">{val.desc}</p>
