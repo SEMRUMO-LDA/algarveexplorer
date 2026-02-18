@@ -138,11 +138,21 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Closing CTA Section - Moved and Styled with High-Impact Design */}
+      {/* Closing CTA Section - Standardized with Background Image & Gradient */}
       <section className="py-32 md:py-56 bg-[#0d4357] text-white overflow-hidden relative">
-        <div className="absolute inset-0 opacity-5 grayscale pointer-events-none">
-          <img src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920" alt="Evocative mountain landscape background" className="w-full h-full object-cover" />
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/image/the-region-hero.jpg"
+            className="w-full h-full object-cover opacity-20 grayscale"
+            alt="Evocative regional landscape"
+          />
+          <div className="absolute inset-0 bg-[#0d4357]/80"></div>
         </div>
+
+        {/* Transition Gradient to Footer */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0d4357] via-[#0d4357]/80 to-transparent z-0"></div>
+
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
           <div className="max-w-4xl">
             <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-10 block">Ready to explore?</span>

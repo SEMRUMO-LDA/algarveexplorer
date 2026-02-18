@@ -339,6 +339,19 @@ const Home: React.FC = () => {
 
       {/* Footer CTA */}
       <section className="py-24 md:py-40 bg-[#0d4357] text-white relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/image/the-region-hero.jpg"
+            alt="Scenic Algarve landscape"
+            className="w-full h-full object-cover opacity-20 grayscale"
+          />
+          <div className="absolute inset-0 bg-[#0d4357]/80"></div>
+        </div>
+
+        {/* Transition Gradient to Footer */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0d4357] via-[#0d4357]/80 to-transparent z-0"></div>
+
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-[0.4em] mb-8 block">{t('home.cta.eyebrow')}</span>
           <h2 className="text-3xl md:text-5xl font-bold font-montserrat mb-10 tracking-tight uppercase">{t('home.cta.title')}</h2>
