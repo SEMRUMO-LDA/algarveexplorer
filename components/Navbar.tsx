@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
 
           {/* Right: Lang Toggle & Contact */}
           <div className="flex items-center justify-end flex-1 space-x-4 md:space-x-8">
-            <div className={`hidden xs:flex items-center text-[10px] font-bold uppercase tracking-widest ${textColor} transition-colors duration-300`}>
+            <div className={`flex items-center text-[10px] font-bold uppercase tracking-widest ${textColor} transition-colors duration-300`}>
               <button
                 onClick={() => setLanguage('pt')}
                 className={`px-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
