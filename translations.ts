@@ -44,7 +44,8 @@ export const TRANSLATIONS: any = {
         eyebrow: 'Explorers\' Voices',
         title: 'Stories from the trail',
         rating: '4.8 Excellent',
-        reviews: '73 Reviews'
+        reviews: '73 Reviews',
+        tripadvisor: 'on Tripadvisor'
       }
     },
     footer: {
@@ -108,7 +109,8 @@ export const TRANSLATIONS: any = {
         eyebrow: 'Vozes dos Exploradores',
         title: 'Histórias dos nossos trilhos',
         rating: '4.8 Excelente',
-        reviews: '73 Avaliações'
+        reviews: '73 Avaliações',
+        tripadvisor: 'no Tripadvisor'
       }
     },
     footer: {

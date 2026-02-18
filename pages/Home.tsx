@@ -265,19 +265,22 @@ const Home: React.FC = () => {
               </h2>
             </div>
 
-            {/* TripAdvisor Branding */}
-            <div className="bg-[#fcfcf9] p-8 rounded-2xl border border-slate-50 flex items-center space-x-6 shadow-sm">
-              <div className="flex flex-col items-center">
-                <span className="text-4xl font-bold text-[#00af87] font-montserrat tracking-tight leading-none mb-2">4.8</span>
-                <div className="flex space-x-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-3 h-3 rounded-full bg-[#00af87]"></div>
-                  ))}
+            {/* TripAdvisor Branding - Subtle Version */}
+            <div className="flex items-center space-x-5 lg:pb-2">
+              <div className="flex flex-col items-end border-r border-slate-200 pr-5">
+                <div className="flex items-center space-x-2 mb-1">
+                  <span className="text-2xl font-bold text-[#0d4357] font-montserrat tracking-tight leading-none">4.8</span>
+                  <div className="flex space-x-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-2.5 h-2.5 rounded-full bg-[#00af87]"></div>
+                    ))}
+                  </div>
                 </div>
+                <p className="text-[#0d4357]/40 text-[9px] font-bold uppercase tracking-[0.2em]">{t('home.testimonials.reviews')}</p>
               </div>
-              <div className="border-l border-slate-200 pl-6">
-                <p className="text-[#0d4357] font-bold text-sm uppercase tracking-wider leading-tight">{t('home.testimonials.rating')}</p>
-                <p className="text-[#0d4357]/40 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">{t('home.testimonials.reviews')}</p>
+              <div className="flex flex-col">
+                <p className="text-[#0d4357] font-bold text-[11px] uppercase tracking-wider leading-tight">{t('home.testimonials.rating')}</p>
+                <p className="text-[#00af87] text-[10px] font-bold uppercase tracking-[0.1em] mt-0.5">{t('home.testimonials.tripadvisor')}</p>
               </div>
             </div>
           </div>
