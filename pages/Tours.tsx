@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TOURS } from '../constants';
 import { ChevronRight, ArrowRight, Compass, Plus } from 'lucide-react';
+import FooterCTA from '../components/FooterCTA';
 
 const Tours: React.FC = () => {
   return (
@@ -90,6 +91,8 @@ const Tours: React.FC = () => {
           ))}
         </div>
       </section>
+
+      <FooterCTA />
     </div>
   );
 };

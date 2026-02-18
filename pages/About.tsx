@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Compass, Users, Leaf, ArrowRight, Footprints, ShieldCheck, Plus } from 'lucide-react';
+import FooterCTA from '../components/FooterCTA';
 
 const About: React.FC = () => {
   return (
@@ -138,51 +139,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Closing CTA Section - Standardized with Background Image & Gradient */}
-      <section className="py-32 md:py-56 bg-[#0d4357] text-white overflow-hidden relative">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/image/the-region-hero.jpg"
-            className="w-full h-full object-cover opacity-20 grayscale"
-            alt="Evocative regional landscape"
-          />
-          <div className="absolute inset-0 bg-[#0d4357]/80"></div>
-        </div>
-
-        {/* Transition Gradient to Footer */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0d4357] via-[#0d4357]/80 to-transparent z-0"></div>
-
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex flex-col items-center text-center">
-          <div className="max-w-4xl">
-            <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-10 block">Ready to explore?</span>
-
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat mb-12 tracking-tight leading-tight uppercase">
-              The secret trail <br />awaits.
-            </h2>
-
-            <p className="text-white/50 text-xl font-light leading-relaxed mb-16 max-w-2xl mx-auto">
-              Whether you're looking for a quiet morning walk or a multi-day expedition, we have the regional expertise to make it unforgettable.
-            </p>
-
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Link
-                to="/tours"
-                className="inline-flex items-center space-x-4 bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-2xl group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-              >
-                <span>View Our Adventures</span>
-                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-              <Link
-                to="/contacts"
-                className="inline-flex items-center space-x-4 bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-              >
-                <span>Get in Touch</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FooterCTA />
     </div>
   );
 };

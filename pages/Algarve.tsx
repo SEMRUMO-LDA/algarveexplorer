@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus, Waves } from 'lucide-react';
+import FooterCTA from '../components/FooterCTA';
 
 const Algarve: React.FC = () => {
   const [parallaxOffset, setParallaxOffset] = useState(0);
@@ -194,6 +195,8 @@ const Algarve: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <FooterCTA />
     </div>
   );
 };

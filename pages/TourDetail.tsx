@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
+import FooterCTA from '../components/FooterCTA';
 import {
   MapPin, Clock,
   Download, ArrowRight, Check,
@@ -391,6 +392,8 @@ An immersive experience in the Algarvian nature, perfect for those seeking tranq
           </div>
         </div>
       </section>
+
+      <FooterCTA />
     </div>
   );
 };

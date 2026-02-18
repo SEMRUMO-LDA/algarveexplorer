@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { TRANSFERS } from '../constants';
 import { Truck, Users, Luggage, ShieldCheck, Plus, ChevronRight } from 'lucide-react';
+import FooterCTA from '../components/FooterCTA';
 
 const Transfers: React.FC = () => {
   return (
@@ -118,6 +119,8 @@ const Transfers: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <FooterCTA />
     </div>
   );
 };
