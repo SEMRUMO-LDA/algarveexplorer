@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
 
   const isTransparent = isHeroPage && !scrolled && !isOpen;
 
-  const textColor = isTransparent ? 'text-white' : 'text-[#0d4357]';
+  const textColor = (isTransparent || isOpen) ? 'text-white' : 'text-[#0d4357]';
   const navBg = isTransparent ? 'bg-transparent' : 'bg-white shadow-sm';
   const padding = scrolled ? 'py-4' : 'py-6 md:py-8';
 
@@ -53,24 +53,24 @@ const Navbar: React.FC = () => {
               <img
                 src={isTransparent || isOpen ? "/image/algarvexplorer-logo-branco.png" : "/image/algarvexplorer-logo-azul.png"}
                 alt="Algarve Explorer Logo"
-                className={`h-8 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent || isOpen ? 'drop-shadow-lg' : ''}`}
+                className={`h-7 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent || isOpen ? 'drop-shadow-lg' : ''}`}
               />
             </Link>
           </div>
 
           {/* Right: Lang Toggle & Contact */}
-          <div className="flex items-center justify-end flex-1 space-x-4 md:space-x-8">
+          <div className="flex items-center justify-end flex-1 space-x-2 sm:space-x-4 md:space-x-8">
             <div className={`flex items-center text-[10px] font-bold uppercase tracking-widest ${textColor} transition-colors duration-300`}>
               <button
                 onClick={() => setLanguage('pt')}
-                className={`px-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
+                className={`px-1 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
               >
                 PT
               </button>
               <span className="opacity-20 px-0.5">|</span>
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'en' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
+                className={`px-1 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'en' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
               >
                 EN
               </button>
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/contacts"
-              className={`text-[10px] font-bold uppercase tracking-[0.2em] px-3 md:px-8 py-2.5 md:py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
+              className={`hidden sm:inline-flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
                 ? 'bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-[#0d4357]'
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}
@@ -96,8 +96,8 @@ const Navbar: React.FC = () => {
             {[
               { label: t('nav.home'), path: '/' },
               { label: t('nav.tours'), path: '/tours' },
-              { label: t('nav.experience'), path: '/algarve' },
               { label: t('nav.logistics'), path: '/transfers' },
+              { label: t('nav.experience'), path: '/algarve' },
               { label: t('nav.story'), path: '/about' },
               { label: t('nav.contact'), path: '/contacts' },
             ].map((item, i) => (

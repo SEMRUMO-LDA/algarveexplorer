@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ChevronLeft, ArrowRight, Compass } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowRight, Compass, Car } from 'lucide-react';
 import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
@@ -193,6 +193,48 @@ const Home: React.FC = () => {
               </Link>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Transfers Section */}
+      <section className="py-24 md:py-32 bg-[#0d4357] relative">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+            <div className="w-full lg:w-1/2 order-2 lg:order-1">
+              <div className="inline-flex items-center space-x-3 mb-6">
+                <Car className="text-[#da6927]" size={20} />
+                <span className="text-white/40 text-[11px] font-bold uppercase tracking-[0.4em]">
+                  {t('home.transfers.eyebrow')}
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-white tracking-tight mb-8 uppercase leading-tight">
+                {t('home.transfers.title')}
+              </h2>
+              <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed mb-12">
+                {t('home.transfers.desc')}
+              </p>
+
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white p-4">
+                <iframe
+                  src={`https://transfersgo.pt/app/?org=nunoess&mode=widget&lang=${language === 'pt' ? 'pt' : 'en'}`}
+                  width="100%"
+                  height="225"
+                  frameBorder="0"
+                  style={{ border: 0, width: '100%', height: '225px', borderRadius: '12px', overflow: 'hidden' }}
+                  title="TransfersGo Booking"
+                ></iframe>
+              </div>
+            </div>
+
+            <div className="w-full lg:w-1/2 order-1 lg:order-2">
+              <RevealingImage
+                src="/image/transfer.jpg"
+                alt="Algarve Explorer Transfer Van"
+                className="aspect-[4/3] w-full rounded-2xl overflow-hidden"
+                delay={0}
+              />
+            </div>
+          </div>
         </div>
       </section>
 

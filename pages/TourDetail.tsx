@@ -54,34 +54,38 @@ const TourDetail: React.FC = () => {
   return (
     <div className="bg-[#fdfdfb] min-h-screen">
       {/* Editorial Hero */}
-      <section className="relative h-[80vh] flex flex-col justify-end overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative h-[85vh] flex flex-col justify-end overflow-hidden group">
+        <div className="absolute inset-0 z-0">
           <img
             src={tour.image}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-10000 ease-out"
             alt={`Breathtaking overview of ${displayTitle}`}
           />
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#fdfdfb] via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#fdfdfb] via-[#fdfdfb]/40 to-transparent"></div>
         </div>
 
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-20">
-          <div className="max-w-5xl">
-            <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.4em] text-white/80">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pt-32 pb-32">
+          <div className="max-w-5xl animate-fade-in-up">
+            <div className="flex items-center space-x-2 mb-10 text-[10px] font-bold uppercase tracking-[0.4em] text-white/70">
               <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
               <span>/</span>
               <Link to="/tours" className="hover:text-white transition-colors">{t('nav.tours')}</Link>
               <span>/</span>
-              <span className="text-white">{displayTitle}</span>
+              <span className="text-white/40">{displayTitle}</span>
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.1] tracking-tight mb-8 drop-shadow-sm uppercase">
+
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white leading-[1] tracking-tight mb-12 drop-shadow-2xl uppercase">
               {displayTitle}
             </h1>
-            <div className="flex items-center gap-3 text-white">
-              <div className="bg-[#da6927] p-2 rounded-full">
-                <MapPin size={16} />
+
+            <div className="flex flex-wrap items-center gap-6 md:gap-12">
+              <div className="flex items-center gap-3 text-white/90">
+                <div className="bg-[#da6927] p-2 rounded-full shadow-lg">
+                  <MapPin size={18} />
+                </div>
+                <span className="text-base md:text-lg font-light uppercase tracking-widest">Algarve, Portugal</span>
               </div>
-              <span className="text-lg md:text-xl font-light uppercase tracking-widest">Algarve, Portugal</span>
             </div>
           </div>
         </div>

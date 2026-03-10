@@ -75,7 +75,7 @@ const Algarve: React.FC = () => {
               </div>
               <div
                 ref={parallaxRef}
-                className="absolute -bottom-10 -right-10 w-2/3 aspect-square bg-white p-4 rounded-2xl shadow-2xl hidden md:block"
+                className="absolute -bottom-10 -right-10 w-2/3 aspect-square border-2 border-white rounded-2xl shadow-2xl hidden md:block overflow-hidden"
                 style={{
                   transform: `translate3d(0, ${parallaxOffset}px, 0)`,
                   transition: 'transform 0.1s ease-out'
@@ -83,7 +83,7 @@ const Algarve: React.FC = () => {
               >
                 <img
                   src="/image/the-region-img2.jpg"
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover"
                   alt="Local scenery of Southern Portugal"
                 />
               </div>

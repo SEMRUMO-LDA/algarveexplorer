@@ -73,23 +73,23 @@ const About: React.FC = () => {
             {/* Right Column: Image Composition (Collage) */}
             <div className="w-full lg:w-1/2 order-1 lg:order-2">
               <div className="relative h-[400px] md:h-[500px] w-full max-w-2xl mx-auto">
-                <div className="absolute top-0 right-0 w-[80%] h-[80%] rounded-2xl overflow-hidden shadow-2xl z-20">
+                <div className="absolute top-0 right-0 w-[80%] h-[80%] rounded-2xl overflow-hidden shadow-2xl z-10">
                   <img
-                    src="https://images.unsplash.com/photo-1551632432-c7360b7f0187?auto=format&fit=crop&q=80&w=1000"
+                    src="/image/about-us-7.jpg"
                     className="w-full h-full object-cover"
                     alt="Breathtaking mountain range view from the Monchique peaks"
                   />
                 </div>
-                <div className="absolute bottom-0 left-0 w-[60%] h-[50%] rounded-2xl overflow-hidden shadow-2xl border-4 border-white z-30 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div className="absolute bottom-0 left-0 w-[60%] h-[50%] rounded-2xl overflow-hidden shadow-2xl border-2 border-white z-20 transform -rotate-3 hover:rotate-0 transition-transform duration-500">
                   <img
-                    src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=800"
+                    src="/image/about-us-5.jpg"
                     className="w-full h-full object-cover"
                     alt="Close-up of golden coastal cliffs along the Atlantic Ocean"
                   />
                 </div>
-                <div className="absolute top-10 left-10 w-[40%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-4 border-white z-10 opacity-80 md:opacity-100">
+                <div className="absolute top-10 left-10 w-[40%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-30 opacity-80 md:opacity-100">
                   <img
-                    src="https://images.unsplash.com/photo-1520110120385-ad28c7790c7f?auto=format&fit=crop&q=80&w=600"
+                    src="/image/about-us-6.jpg"
                     className="w-full h-full object-cover"
                     alt="Authentic traditional Portuguese village life and architecture"
                   />

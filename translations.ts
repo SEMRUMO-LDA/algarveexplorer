@@ -4,11 +4,11 @@ export const TRANSLATIONS: any = {
     nav: {
       menu: 'Menu',
       home: 'Home',
-      tours: 'Guided Tours',
-      experience: 'The Experience',
-      logistics: 'Logistics',
+      tours: 'Tours',
+      experience: 'The Algarve',
+      logistics: 'Transfers',
       story: 'Our Story',
-      contact: 'Get in Touch',
+      contact: 'Contacts',
       contactBtn: 'Contact Us'
     },
     home: {
@@ -69,6 +69,11 @@ export const TRANSLATIONS: any = {
             content: 'We went on a slightly bigger boat and it couldn\'t get into all the caves. It is worth the tour along the coast, it is spectacular and very safe even for children. Highly recommended!'
           }
         ]
+      },
+      transfers: {
+        eyebrow: 'Reliable Shuttles',
+        title: 'Trail & Airport Transfers',
+        desc: 'Door-to-door service across the Algarve. Safe, comfortable, and specialized for hikers with equipment.'
       }
     },
     footer: {
@@ -164,6 +169,14 @@ export const TRANSLATIONS: any = {
       p3: 'All our vehicles are equipped with ample storage space and driven by local experts who know the best access points for every major trail in the Algarve.'
     },
     tourDetail: {
+      meta: {
+        duration: 'Duration',
+        group: 'Group Size',
+        difficulty: 'Difficulty',
+        price: 'Starting From',
+        persons: 'Persons',
+        from: 'From'
+      },
       booking: 'Instant Booking',
       maxSize: 'Max Group Size',
       ageRange: 'Age Range',
@@ -221,11 +234,11 @@ export const TRANSLATIONS: any = {
     nav: {
       menu: 'Menu',
       home: 'Início',
-      tours: 'Tours Guiados',
-      experience: 'A Experiência',
-      logistics: 'Logística',
+      tours: 'Tours',
+      experience: 'O Algarve',
+      logistics: 'Transfers',
       story: 'A Nossa História',
-      contact: 'Entre em Contacto',
+      contact: 'Contactos',
       contactBtn: 'Contacte-nos'
     },
     home: {
@@ -286,6 +299,11 @@ export const TRANSLATIONS: any = {
             content: 'Fomos num barco ligeiramente maior e não conseguia entrar em todas as grutas. Vale a pena o passeio pela costa, é espetacular e muito seguro mesmo para crianças. Altamente recomendado!'
           }
         ]
+      },
+      transfers: {
+        eyebrow: 'Shuttles de Confiança',
+        title: 'Transfers de Trilho e Aeroporto',
+        desc: 'Serviço porta-a-porta em todo o Algarve. Seguro, confortável e especializado para caminhantes com equipamento.'
       }
     },
     footer: {
@@ -381,6 +399,14 @@ export const TRANSLATIONS: any = {
       p3: 'Todos os nossos veículos estão equipados com amplo espaço de armazenamento e são conduzidos por especialistas locais que conhecem os melhores pontos de acesso para todos os principais trilhos do Algarve.'
     },
     tourDetail: {
+      meta: {
+        duration: 'Duração',
+        group: 'Tam. Grupo',
+        difficulty: 'Dificuldade',
+        price: 'Preço Inicial',
+        persons: 'Pessoas',
+        from: 'Desde'
+      },
       booking: 'Reserva Imediata',
       maxSize: 'Tam. Máx. Grupo',
       ageRange: 'Faixa Etária',
