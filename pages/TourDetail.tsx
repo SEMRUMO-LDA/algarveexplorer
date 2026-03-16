@@ -189,7 +189,7 @@ const TourDetail: React.FC = () => {
                           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                           alt={`Highlight: ${language === 'pt' ? h.text_pt : h.text}`}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0d4357]/90 via-[#0d4357]/40 to-transparent"></div>
                         <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
                           <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold font-montserrat uppercase tracking-[0.3em] mb-2 block">
                             {i + 1} / {tour.highlights.length}
@@ -210,7 +210,11 @@ const TourDetail: React.FC = () => {
                   {language === 'pt' ? 'O Itinerário' : 'The Itinerary'}
                 </h3>
                 <div className="space-y-0 relative border-l border-slate-100 ml-4">
-                  {[
+                  {(tour.itinerary ? tour.itinerary.map(item => ({
+                    title: language === 'pt' ? item.title_pt : item.title,
+                    desc: language === 'pt' ? item.desc_pt : item.desc,
+                    stopTime: language === 'pt' ? item.stopTime_pt : item.stopTime
+                  })) : [
                     {
                       title: isDedicatedHorseRiding ? (language === 'pt' ? 'Encontro e Preparação' : 'Meet & Prepare') : isSevenValleysHikeOnly ? (language === 'pt' ? 'Farol de Alfanzina' : 'Alfanzina Lighthouse') : (language === 'pt' ? 'Manhã de Descoberta' : 'Morning Discovery'),
                       desc: isDedicatedHorseRiding ? (language === 'pt' ? 'Recolha em Albufeira e introdução aos nossos cavalos gentis.' : 'Pickup in Albufeira and introduction to our gentle horses.') : isSevenValleysHikeOnly ? (language === 'pt' ? 'Começamos no icónico farol com vistas panorâmicas sobre as falésias.' : 'Starting at the iconic lighthouse with sweeping views over the cliffs.') : (language === 'pt' ? 'Explorar praias deslumbrantes e jóias escondidas conhecidas apenas pelos locais.' : 'Explore stunning beaches and hidden gems known only to the locals.')
@@ -223,10 +227,15 @@ const TourDetail: React.FC = () => {
                       title: isDedicatedHorseRiding ? (language === 'pt' ? 'Conclusão Panorâmica' : 'Scenic Conclusion') : isSevenValleysHikeOnly ? (language === 'pt' ? 'Marinha e Vistas do Topo' : 'Marinha & Top Vistas') : (language === 'pt' ? 'O Caminho Final' : 'The Final Path'),
                       desc: isDedicatedHorseRiding ? (language === 'pt' ? 'Uma conclusão tranquila para libertar o seu sentido de maravilha.' : 'A peaceful conclusion to unleash your sense of wonder.') : isSevenValleysHikeOnly ? (language === 'pt' ? 'Explore os Sete Vales Suspensos e relaxe com as vistas da Praia da Marinha.' : 'Explore the Seven Hanging Valleys and relax with the vistas of Marinha Beach.') : (language === 'pt' ? 'Um final relaxante seguindo caminhos cénicos.' : 'A relaxing finish following scenic paths.')
                     }
-                  ].map((item, i) => (
+                  ]).map((item, i) => (
                     <div key={i} className="pl-12 pb-20 relative last:pb-0 group">
                       <div className="absolute left-[-6px] top-1.5 w-3 h-3 bg-white border-2 border-[#da6927] rounded-full group-hover:scale-125 transition-transform"></div>
-                      <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-4 tracking-tight uppercase">{item.title}</h4>
+                      <h4 className={`text-2xl font-bold font-montserrat text-[#0d4357] ${item.stopTime ? 'mb-2' : 'mb-4'} tracking-tight uppercase`}>{item.title}</h4>
+                      {item.stopTime && (
+                        <p className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4">
+                          {language === 'pt' ? 'Paragem:' : 'Stop:'} {item.stopTime}
+                        </p>
+                      )}
                       <p className="text-[#0d4357]/50 text-lg font-light leading-relaxed max-w-2xl">{item.desc}</p>
                     </div>
                   ))}

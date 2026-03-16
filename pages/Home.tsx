@@ -140,7 +140,7 @@ const Home: React.FC = () => {
         {/* Outer wrapper handles horizontal scroll only — inner flex row has padding for shadow room */}
         <div
           ref={scrollContainerRef}
-          className="overflow-x-auto no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing py-6 -my-6"
+          className="overflow-visible overflow-x-auto no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing py-16 -my-16"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',

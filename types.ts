@@ -19,6 +19,14 @@ export interface Tour {
   image: string;
   heroImage?: string;
   highlights: Highlight[];
+  itinerary?: {
+    title: string;
+    title_pt: string;
+    desc: string;
+    desc_pt: string;
+    stopTime?: string;
+    stopTime_pt?: string;
+  }[];
   maxGroupSize?: number;
   ageRange?: string;
   ageRange_pt?: string;
