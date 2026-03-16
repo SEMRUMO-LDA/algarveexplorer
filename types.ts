@@ -17,6 +17,7 @@ export interface Tour {
   description: string;
   description_pt: string;
   image: string;
+  heroImage?: string;
   highlights: Highlight[];
   maxGroupSize?: number;
   ageRange?: string;

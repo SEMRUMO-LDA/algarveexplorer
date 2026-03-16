@@ -106,7 +106,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Adventures Section */}
-      <section id="experiences" className="py-24 md:py-32 bg-[#fdfdfb] overflow-hidden">
+      <section id="experiences" className="py-24 md:py-32 bg-[#fdfdfb] overflow-x-hidden">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-16 md:mb-20">
           <div className="flex flex-col md:flex-row justify-between items-end gap-10">
             <div className="max-w-2xl">
@@ -137,62 +137,69 @@ const Home: React.FC = () => {
           </div>
         </div>
 
+        {/* Outer wrapper handles horizontal scroll only — inner flex row has padding for shadow room */}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-8 no-scrollbar snap-x snap-mandatory pb-12 cursor-grab active:cursor-grabbing"
+          className="overflow-x-auto no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing py-6 -my-6"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
-            paddingLeft: `var(--container-pl, ${paddingLeftBase})`,
-            paddingRight: '3rem',
             scrollPaddingLeft: `var(--container-pl, ${paddingLeftBase})`
           }}
         >
-          <style>{`
-            div[ref] { --container-pl: ${paddingLeftBase}; }
-            @media (min-width: 1024px) {
-              div[ref] { --container-pl: ${paddingLeftLg}; }
-            }
-          `}</style>
+          <div
+            className="flex gap-8 after:content-[''] after:w-[1px] after:shrink-0"
+            style={{
+              paddingLeft: `var(--container-pl, ${paddingLeftBase})`,
+              paddingRight: `calc(var(--container-pl, ${paddingLeftBase}) - 2rem)`,
+            }}
+          >
+            <style>{`
+              div[ref] { --container-pl: ${paddingLeftBase}; }
+              @media (min-width: 1024px) {
+                div[ref] { --container-pl: ${paddingLeftLg}; }
+              }
+            `}</style>
 
-          {TOURS.map((tour) => (
-            <div key={tour.id} className="flex-none w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw] snap-start group">
-              <Link
-                to={`/tours/${tour.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full"
-              >
-                <div className="aspect-[4/5] relative overflow-hidden">
-                  <img
-                    src={tour.image}
-                    alt={language === 'pt' ? tour.title_pt : tour.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute top-6 left-6">
-                    <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
-                      {language === 'pt' ? tour.difficulty_pt : tour.difficulty}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-8">
-                  <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4 block">
-                    {language === 'pt' ? tour.duration_pt : tour.duration}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-[#0d4357] mb-6 font-montserrat uppercase tracking-tight leading-tight group-hover:text-[#da6927] transition-colors h-14 line-clamp-2">
-                    {language === 'pt' ? tour.title_pt : tour.title}
-                  </h3>
-                  <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-                    <span className="text-[#0d4357]/40 text-xs font-light italic">
-                      {language === 'pt' ? 'A partir de' : 'Starting from'} €{tour.price}
-                    </span>
-                    <div className="flex items-center space-x-2 text-[#0d4357] group-hover:text-[#da6927] transition-colors">
-                      <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
-                      <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            {TOURS.map((tour) => (
+              <div key={tour.id} className="flex-none w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw] snap-start group">
+                <Link
+                  to={`/tours/${tour.slug}`}
+                  className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full"
+                >
+                  <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl">
+                    <img
+                      src={tour.image}
+                      alt={language === 'pt' ? tour.title_pt : tour.title}
+                      className="w-full h-full object-cover object-right group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-6 left-6">
+                      <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
+                        {language === 'pt' ? tour.difficulty_pt : tour.difficulty}
+                      </span>
                     </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                  <div className="p-8">
+                    <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4 block">
+                      {language === 'pt' ? tour.duration_pt : tour.duration}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold text-[#0d4357] mb-6 font-montserrat uppercase tracking-tight leading-tight group-hover:text-[#da6927] transition-colors h-14 line-clamp-2">
+                      {language === 'pt' ? tour.title_pt : tour.title}
+                    </h3>
+                    <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                      <span className="text-[#0d4357]/40 text-xs font-light italic">
+                        {language === 'pt' ? 'A partir de' : 'Starting from'} €{tour.price}
+                      </span>
+                      <div className="flex items-center space-x-2 text-[#0d4357] group-hover:text-[#da6927] transition-colors">
+                        <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
+                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

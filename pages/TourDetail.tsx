@@ -53,43 +53,45 @@ const TourDetail: React.FC = () => {
 
   return (
     <div className="bg-[#fdfdfb] min-h-screen">
-      {/* Editorial Hero */}
-      <section className="relative h-[85vh] flex flex-col justify-end overflow-hidden group">
-        <div className="absolute inset-0 z-0">
+      {/* Cinematic Hero — matching site-wide editorial header style */}
+      <section className="relative h-[75vh] flex flex-col justify-end overflow-hidden bg-[#0d4357] group">
+        {/* Background image — same treatment as Tours, Algarve, About headers */}
+        <div className="absolute inset-0 z-0 opacity-30 grayscale-[0.3] pointer-events-none">
           <img
-            src={tour.image}
-            className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-10000 ease-out"
+            src={tour.heroImage || tour.image}
+            className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-out"
             alt={`Breathtaking overview of ${displayTitle}`}
           />
-          <div className="absolute inset-0 bg-black/40"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#fdfdfb] via-[#fdfdfb]/40 to-transparent"></div>
         </div>
 
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pt-32 pb-32">
-          <div className="max-w-5xl animate-fade-in-up">
-            <div className="flex items-center space-x-2 mb-10 text-[10px] font-bold uppercase tracking-[0.4em] text-white/70">
-              <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
-              <span>/</span>
-              <Link to="/tours" className="hover:text-white transition-colors">{t('nav.tours')}</Link>
-              <span>/</span>
-              <span className="text-white/40">{displayTitle}</span>
-            </div>
-
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold font-montserrat text-white leading-[1] tracking-tight mb-12 drop-shadow-2xl uppercase">
-              {displayTitle}
-            </h1>
-
-            <div className="flex flex-wrap items-center gap-6 md:gap-12">
-              <div className="flex items-center gap-3 text-white/90">
-                <div className="bg-[#da6927] p-2 rounded-full shadow-lg">
-                  <MapPin size={18} />
-                </div>
-                <span className="text-base md:text-lg font-light uppercase tracking-widest">Algarve, Portugal</span>
-              </div>
-            </div>
+        {/* Content */}
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-16 md:pb-24">
+          {/* Breadcrumb */}
+          <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+            <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
+            <span className="text-white/20">/</span>
+            <Link to="/tours" className="hover:text-[#da6927] transition-colors">{t('nav.tours')}</Link>
+            <span className="text-white/20">/</span>
+            <span className="text-white/80 truncate max-w-[200px]">{displayTitle}</span>
           </div>
+
+          {/* Meta pills */}
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#da6927] border border-[#da6927]/40 px-4 py-1.5 rounded-full">
+              {displayDuration}
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 border border-white/20 px-4 py-1.5 rounded-full">
+              {displayDifficulty}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.05] tracking-tight uppercase max-w-5xl">
+            {displayTitle}
+          </h1>
         </div>
       </section>
+
 
       {/* Main Content Area */}
       <section className="py-24 md:py-32 bg-[#fdfdfb] relative">
@@ -264,7 +266,7 @@ const TourDetail: React.FC = () => {
 
             {/* Right: Sticky Booking Card */}
             <div className="lg:col-span-4 relative h-full flex flex-col">
-              <div className="sticky top-[20%] z-20 transition-all duration-300">
+              <div className="sticky top-[10%] z-20 transition-all duration-300">
                 <div className="bg-[#fcfcf9] p-10 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden">
                   <div className="mb-14">
                     <p className="text-[#0d4357]/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">

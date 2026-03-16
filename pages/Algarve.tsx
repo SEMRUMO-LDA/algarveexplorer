@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus, Waves } from 'lucide-react';
+import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, Plus, Waves, MapPin } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 
@@ -163,19 +163,19 @@ const Algarve: React.FC = () => {
                   id: "01",
                   name: t('algarve.regions.monchique.title'),
                   desc: t('algarve.regions.monchique.desc'),
-                  image: "/image/about-us-1.jpeg"
+                  image: "/image/algarve-monchique.jpeg"
                 },
                 {
                   id: "02",
                   name: t('algarve.regions.barrocal.title'),
                   desc: t('algarve.regions.barrocal.desc'),
-                  image: "/image/albufeira-hidden-gems-&-horse-riding-tour.jpg"
+                  image: "/image/algarve-barrocal.jpeg"
                 },
                 {
                   id: "03",
                   name: t('algarve.regions.vicentine.title'),
                   desc: t('algarve.regions.vicentine.desc'),
-                  image: "/image/benagil-algar-seco-marinha-&-7-valleys-tour.jpeg"
+                  image: "/image/algarve-costa-vicentina.jpeg"
                 }
               ].map((reg, i) => (
                 <div key={i} className="group cursor-default">
@@ -198,7 +198,20 @@ const Algarve: React.FC = () => {
         </div>
       </section>
 
-      <FooterCTA />
+      {/* Map spread - Algarve Explorer Base */}
+      <section className="h-[500px] w-full bg-[#0d4357] relative overflow-hidden grayscale brightness-50 contrast-125">
+        <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover" alt="Stylized terrain map of the Algarve region" />
+        <div className="absolute inset-0 bg-[#0d4357]/40"></div>
+        <div className="absolute inset-0 flex items-center justify-center grayscale-0 brightness-100">
+          <div className="bg-white p-8 shadow-2xl flex items-center space-x-6 border border-[#0d4357]/10">
+            <div className="bg-[#da6927] p-3 text-white shadow-lg rounded-full"><MapPin size={32} /></div>
+            <div>
+              <p className="font-bold text-2xl font-montserrat text-[#0d4357] uppercase tracking-tighter">{t('contacts.info.base')}</p>
+              <p className="text-[#0d4357]/40 text-[10px] font-bold uppercase tracking-[0.4em] mt-2">FARO, PORTUGAL</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

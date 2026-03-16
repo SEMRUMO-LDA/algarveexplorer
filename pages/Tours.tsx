@@ -14,8 +14,8 @@ const Tours: React.FC = () => {
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920"
-            className="w-full h-full object-cover"
+            src="/image/tours-toppage.jpg"
+            className="w-full h-full object-cover object-right"
             alt="Scenic mountain landscape"
           />
         </div>
@@ -23,7 +23,7 @@ const Tours: React.FC = () => {
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">{t('tours.hero.eyebrow')}</span>
+            <span className="text-white/80">{t('nav.tours')}</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
@@ -71,14 +71,14 @@ const Tours: React.FC = () => {
       {/* Tours Grid */}
       <section className="pb-40">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-4">
             {TOURS.map((tour) => (
               <Link
                 key={tour.id}
                 to={`/tours/${tour.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50"
+                className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50"
               >
-                <div className="aspect-[4/5] relative overflow-hidden">
+                <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl">
                   <img
                     src={tour.image}
                     alt={language === 'pt' ? tour.title_pt : tour.title}
@@ -113,7 +113,7 @@ const Tours: React.FC = () => {
         </div>
       </section>
 
-      <FooterCTA />
+
     </div>
   );
 };

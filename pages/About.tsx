@@ -13,7 +13,7 @@ const About: React.FC = () => {
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1544191696-102dbdaeeaa0?auto=format&fit=crop&q=80&w=1920"
+            src="/image/about-us-toppage.jpg"
             className="w-full h-full object-cover"
             alt="Scenic mountain landscape in the Algarve region"
           />
@@ -22,7 +22,7 @@ const About: React.FC = () => {
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">{t('about.hero.eyebrow')}</span>
+            <span className="text-white/80">{t('nav.story')}</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">

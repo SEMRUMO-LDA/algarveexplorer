@@ -23,7 +23,7 @@ const Transfers: React.FC = () => {
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">{t('transfers.hero.eyebrow')} & {t('nav.transfers')}</span>
+            <span className="text-white/80">{t('nav.transfers')}</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">

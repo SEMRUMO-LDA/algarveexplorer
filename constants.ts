@@ -16,9 +16,10 @@ export const TOURS: Tour[] = [
     ageRange_pt: '6-65 anos',
     description: 'Explore the scenic Seven Hanging Valleys trail on a guided hike. Discover stunning landscapes, majestic cliffs, and the hidden Carvalho beach tunnel.',
     description_pt: 'Explore o cénico trilho dos Sete Vales Suspensos numa caminhada guiada. Descubra paisagens deslumbrantes, falésias majestosas e o túnel escondido da praia do Carvalho.',
-    image: '/image/seven-anging-valleys-guided-hiking-tour-from-albufeira.jpg',
+    image: '/image/seven-hanging-valleys-guided-hiking-tour-from-albufeira-toppage.jpg',
+    heroImage: '/image/seven-hanging-valleys-guided-hiking-tour-from-albufeira-toppage.jpg',
     highlights: [
-      { text: 'Alfanzina Lighthouse vistas', text_pt: 'Vistas do Farol de Alfanzina', image: '/image/seven-anging-valleys-guided-hiking-tour-from-albufeira.jpg' },
+      { text: 'Alfanzina Lighthouse vistas', text_pt: 'Vistas do Farol de Alfanzina', image: '/image/seven-hanging-valleys-guided-hiking-tour-from-albufeira-highlight1.jpeg' },
       { text: 'Carvalho Beach ancient tunnel', text_pt: 'Túnel antigo da Praia do Carvalho', image: 'https://images.unsplash.com/photo-1541542106277-51633d824d6d?auto=format&fit=crop&q=80&w=1000' },
       { text: 'Marinha Beach rock formations', text_pt: 'Formações rochosas da Praia da Marinha', image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae55?auto=format&fit=crop&q=80&w=1000' },
       { text: 'Ocean-side cliff path adventure', text_pt: 'Aventura em trilhos de falésia à beira-mar', image: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=1000' }
@@ -37,13 +38,13 @@ export const TOURS: Tour[] = [
     maxGroupSize: 21,
     ageRange: '6-65',
     ageRange_pt: '6-65 anos',
-    description: 'Embark on a thrilling horseback ride enjoying stunning landscapes, wild animals and breathtaking views of the lagoon.',
+    description: 'Embark on a thrilling horseback ride while enjoying magnificent panoramic views over the lagoon with an experienced local guide. If you have no experience, no problem, as our guide will show you how to do it. For the more experienced, there will be the opportunity to ride along, subject to the instructors\' assessment of safety.\n\nThis horse ride is also a great opportunity to observe the region\'s flora. Discover the sensation of manoeuvring a horse with magnificent, relaxing views. Both experienced riders and beginners can take part in this 1h30 ride. Pick up included if necessary.',
     description_pt: 'Embarque num passeio a cavalo emocionante desfrutando de paisagens deslumbrantes, animais selvagens e vistas de tirar o fôlego da lagoa.',
-    image: '/image/from-albufeira-horse-riding-tour-with-pickup.jpg',
+    image: '/image/from-albufeira-horse-riding-tour-with-pickup-toppage.jpg',
     highlights: [
-      { text: 'Lagoon panoramic views', text_pt: 'Vistas panorâmicas da lagoa', image: '/image/from-albufeira-horse-riding-tour-with-pickup.jpg' },
-      { text: 'Spot wild animals in nature', text_pt: 'Avistamento de animais selvagens na natureza', image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=1000' },
-      { text: 'Professional pickup service', text_pt: 'Serviço de recolha profissional', image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000' }
+      { text: 'Lagoon panoramic views', text_pt: 'Vistas panorâmicas da lagoa', image: '/image/from-albufeira-horse-riding-tour-with-pickup-highlight1.jpg' },
+      { text: 'Spot wild animals in nature', text_pt: 'Avistamento de animais selvagens na natureza', image: '/image/from-albufeira-horse-riding-tour-with-pickup-highlight2.jpg' },
+      { text: 'Professional pickup service', text_pt: 'Serviço de recolha profissional', image: '/image/from-albufeira-horse-riding-tour-with-pickup-highlight3.jpg' }
     ]
   },
   {
@@ -84,7 +85,7 @@ export const TOURS: Tour[] = [
     ageRange_pt: '6-65 anos',
     description: 'Explore stunning caves, the 7 Hanging Valleys and swim in crystal-clear waters.',
     description_pt: 'Explore grutas deslumbrantes, os 7 Vales Suspensos e nade em águas cristalinas.',
-    image: '/image/benagil-algar-seco-marinha-&-7-valleys-tour.jpg',
+    image: '/image/benagil-algar-seco-marinha-&-7-valleys-tour-toppage.jpg',
     highlights: [
       { text: 'Witness views of Benagil Cave', text_pt: 'Testemunhe vistas da Gruta de Benagil', image: '/image/benagil-algar-seco-marinha-&-7-valleys-tour-5.jpeg' },
       { text: 'Discover Algar Seco natural pools', text_pt: 'Descubra as piscinas naturais do Algar Seco', image: '/image/benagil-algar-seco-marinha-&-7-valleys-tour-2.jpeg' },
