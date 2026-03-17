@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
                 className="h-10 md:h-12 w-auto"
               />
             </div>
-            <p className="text-white/40 text-sm leading-relaxed font-light max-w-xs">
+            <p className="text-white text-sm leading-relaxed font-light max-w-xs">
               {t('footer.mission')}
             </p>
             <div className="flex space-x-4 pt-4">
