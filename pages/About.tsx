@@ -27,7 +27,7 @@ const About: React.FC = () => {
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">Algarve Explorer</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">{t('about.hero.eyebrow')}</span>
           </div>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             {t('about.hero.title')}
@@ -56,7 +56,6 @@ const About: React.FC = () => {
                 <div className="space-y-8 text-[#0d4357]/60 text-lg md:text-xl font-light leading-relaxed">
                   <p>{t('about.story.p1')}</p>
                   <p>{t('about.story.p2')}</p>
-                  <p>{t('about.story.p3')}</p>
                 </div>
                 <div className="mt-16">
                   <Link

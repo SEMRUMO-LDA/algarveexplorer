@@ -7,7 +7,7 @@ export const TRANSLATIONS: any = {
       tours: 'Tours',
       experience: 'The Algarve',
       logistics: 'Transfers',
-      story: 'Our Story',
+      story: 'About Us',
       contact: 'Contacts',
       contactBtn: 'Contact Us'
     },
@@ -97,23 +97,22 @@ export const TRANSLATIONS: any = {
     },
     about: {
       hero: {
-        eyebrow: 'Our Philosophy',
+        eyebrow: 'ALGARVE EXPLORER',
         title: 'SINCE 2016',
-        desc: 'Born from a passion for the quiet corners of Southern Portugal. We specialize in trails that tell the region\'s oldest stories.'
+        desc: 'Sharing the most hidden secrets of the Algarve through a unique and memorable experience.'
       },
       story: {
-        eyebrow: 'The Core Narrative',
-        title: 'Authenticity comes to life.',
-        p1: 'Our mission has always been to provide the best possible experience to those who seek the true heart of Portugal. We believe the secrets of the region shouldn\'t be kept hidden—they should be shared with respect and care.',
-        p2: 'Algarve Explorer was created to showcase hidden gems away from the haste and noise of conventional tourism. We travel at the pace of nature, uncovering the soul of the landscape one step at a time.',
-        p3: 'Each trail we curate is a result of hundreds of hours of exploration. We don\'t just guide you through paths; we connect you with the shepherds, the artisans, and the silence of the Monchique peaks.',
+        eyebrow: 'OUR MISSION',
+        title: 'Authentic experiences that come to life!',
+        p1: 'Algarve Explorer was created by proud and passionate locals with the aim of showing the hidden gems of the Southern region of Portugal away from the haste and noise of conventional tourism.',
+        p2: 'We travel at the pace of nature, discovering the soul of the landscape one step at a time, seizing every opportunity to broaden horizons and create lasting memories through trails, horseback riding, wine tasting, beer tasting, transfers...',
         cta: 'Discover the Trails'
       },
       values: {
-        eyebrow: 'Our Commitment',
-        title: 'Community & Sustainability',
-        p1: 'By supporting the local economy and the communities that surround us, we work in close partnership with local producers, regional guides, and family-owned businesses.',
-        p2: 'We promote sustainable development and contribute to the well-being of the Algarve, strengthening the social fabric that unites the coast and the mountains.',
+        eyebrow: 'OUR COMMITMENT',
+        title: 'Community and Sustainability',
+        p1: 'Supporters of the local economy and the communities that surround us, we work in partnership with local producers, guides and other professionals in the region.',
+        p2: 'Algarve Explorer promotes sustainable development and contributes to the well-being of the Algarve, strengthening the social fabric that unites us!',
         partners: { title: 'Local Partners', desc: 'Guided by regional experts.' },
         eco: { title: 'Eco-Focus', desc: 'Preserving the trails for tomorrow.' },
         slow: { title: 'Slow Travel', desc: 'Escape the noise and haste.' },
@@ -238,7 +237,7 @@ export const TRANSLATIONS: any = {
       tours: 'Tours',
       experience: 'O Algarve',
       logistics: 'Transfers',
-      story: 'A Nossa História',
+      story: 'Sobre Nós',
       contact: 'Contactos',
       contactBtn: 'Contacte-nos'
     },
@@ -328,23 +327,22 @@ export const TRANSLATIONS: any = {
     },
     about: {
       hero: {
-        eyebrow: 'A Nossa Filosofia',
-        title: 'DESDE 2016',
-        desc: 'Nascido de uma paixão pelos cantos tranquilos do Sul de Portugal. Especializamo-nos em trilhos que contam as histórias mais antigas da região.'
+        eyebrow: 'ALGARVE EXPLORER',
+        title: 'Desde 2016',
+        desc: 'A partilhar os segredos mais escondidos do Algarve através de uma experiência única e memorável.'
       },
       story: {
-        eyebrow: 'A Narrativa Principal',
-        title: 'A autenticidade ganha vida.',
-        p1: 'A nossa missão sempre foi proporcionar a melhor experiência possível àqueles que procuram o verdadeiro coração de Portugal. Acreditamos que os segredos da região não devem ser mantidos escondidos — devem ser partilhados com respeito e cuidado.',
-        p2: 'O Algarve Explorer foi criado para mostrar joias escondidas longe da pressa e do ruído do turismo convencional. Viajamos ao ritmo da natureza, descobrindo a alma da paisagem, um passo de cada vez.',
-        p3: 'Cada trilho que curamos é o resultado de centenas de horas de exploração. Não nos limitamos a guiá-lo por caminhos; conectamo-lo com os pastores, os artesãos e o silêncio dos picos de Monchique.',
+        eyebrow: 'A NOSSA MISSÃO',
+        title: 'Experiências autênticas que ganham vida!',
+        p1: 'A Algarve Explorer foi criada por orgulhosos e apaixonados algarvios com o intuito de mostrar as joias escondidas da região Sul de Portugal longe da pressa e do ruído do turismo convencional.',
+        p2: 'Viajamos ao ritmo da natureza, descobrindo a alma da paisagem um passo de cada vez, aproveitando cada oportunidade para alargar horizontes e criar memórias duradouras através de trilhos, passeios a cavalo, degustação de vinhos, provas de cerveja, transfers…',
         cta: 'Descobrir os Trilhos'
       },
       values: {
-        eyebrow: 'O Nosso Compromisso',
+        eyebrow: 'O NOSSO COMPROMISSO',
         title: 'Comunidade e Sustentabilidade',
-        p1: 'Ao apoiar a economia local e as comunidades que nos rodeiam, trabalhamos em estreita parceria com produtores locais, guias regionais e empresas familiares.',
-        p2: 'Promovemos o desenvolvimento sustentável e contribuímos para o bem-estar do Algarve, fortalecendo o tecido social que une o litoral e a serra.',
+        p1: 'Apoiantes da economia local e das comunidades que nos rodeiam, trabalhamos em parceria com produtores locais, guias e outros profissionais da região.',
+        p2: 'A Algarve Explorer promove o desenvolvimento sustentável e contribui para o bem-estar do Algarve , fortalecendo o tecido social que nos une!',
         partners: { title: 'Parceiros Locais', desc: 'Guiados por especialistas regionais.' },
         eco: { title: 'Foco Ecológico', desc: 'Preservar os trilhos para o amanhã.' },
         slow: { title: 'Viagens Lentas', desc: 'Fuja do ruído e da pressa.' },
