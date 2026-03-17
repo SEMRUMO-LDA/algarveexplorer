@@ -108,7 +108,9 @@ const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center text-white/20 text-[10px] font-bold uppercase tracking-[0.2em] gap-8">
-          <p>{t('footer.dev')}</p>
+          <p className="text-center md:text-left leading-relaxed">
+            {t('footer.devLine1')} <br className="md:hidden" /> {t('footer.devLine2')}
+          </p>
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
             <a href="#" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
             <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">

@@ -84,7 +84,8 @@ export const TRANSLATIONS: any = {
       member: 'A member of Algarve Tourism Bureau and Portuguese Tourism Board.',
       email: 'E-mail',
       phone: 'Phone',
-      dev: 'Algarve Explorer Tours @ 2026 DEVELOPED BY AORUBRO',
+      devLine1: 'Algarve Explorer Tours @ 2026',
+      devLine2: 'DEVELOPED BY AORUBRO',
       privacy: 'PRIVACY POLICY & COOKIES',
       complaints: 'COMPLAINTS BOOK',
       newsletter: {
@@ -314,7 +315,8 @@ export const TRANSLATIONS: any = {
       member: 'Membro da Associação de Turismo do Algarve e Turismo de Portugal.',
       email: 'E-mail',
       phone: 'Telefone',
-      dev: 'Algarve Explorer Tours @ 2026 DESENVOLVIDO PELA AORUBRO',
+      devLine1: 'Algarve Explorer Tours @ 2026',
+      devLine2: 'DESENVOLVIDO PELA AORUBRO',
       privacy: 'POLÍTICA DE PRIVACIDADE & COOKIES',
       complaints: 'LIVRO DE RECLAMAÇÕES',
       newsletter: {
