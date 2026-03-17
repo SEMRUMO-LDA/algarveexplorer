@@ -13,36 +13,34 @@ export const TRANSLATIONS: any = {
     },
     home: {
       hero: {
-        eyebrow: 'Algarve Explorer Tours',
-        title: 'Your guide to the secrets of the Algarve',
-        desc: 'Authentic trail adventures, walking expeditions, and coastal discoveries. Uncover the soul of Southern Portugal with local experts.',
+        eyebrow: 'ALGARVE EXPLORER TOURS',
+        title: 'Discover the Algarve that few know',
+        desc: 'Trails, tastings, horseback riding, transfers, all designed for an authentic experience in Southern Portugal.',
         exploreBtn: 'Explore Adventures',
-        regionBtn: 'The Region'
+        regionBtn: 'The Algarve'
       },
       featured: {
-        eyebrow: 'Curated Paths',
-        title: 'Featured Experiences',
-        desc: 'Handpicked trails that capture the quiet beauty of Southern Portugal, far from the reach of conventional tourism.'
+        eyebrow: 'ADVENTURES',
+        title: 'Because the Algarve is much more than just the beach!',
+        desc: 'Discover hidden trails, local flavors, and landscapes that don\'t appear on tourist itineraries.'
       },
       about: {
-        eyebrow: 'Our Story',
-        title: 'Crafting authentic nature discoveries',
-        p1: 'Founded in 2016, Algarve Explorer was born from a deep passion to share the hidden landscapes of Southern Portugal.',
-        p2: 'We believe the most profound stories are found on foot, moving at the pace of the wind, along the trails that only locals know. Our mission is to take you beyond the postcards into the true soul of the Algarve.',
-        spots: 'Secret Spots',
-        expertise: 'Local Expertise',
-        philosophy: 'Our Philosophy'
+        eyebrow: 'OUR STORY',
+        title: 'There are experiences we carry with us for a lifetime.',
+        p1: 'Founded in 2016, Algarve Explorer was born from a passion for revealing the most authentic side of Southern Portugal.',
+        p2: 'We believe that the best discoveries are made at the pace of the wind, along paths that only locals know. Our mission is to take you beyond the postcards, to the true soul of the Algarve.',
+        philosophy: 'Know Us Better'
       },
       cta: {
         eyebrow: 'Start Your Journey',
-        title: 'The secret trail awaits.',
-        desc: 'Planning a visit can be an adventure in itself. Let us help you find the perfect route for your next Portuguese escape.',
-        browse: 'Browse Adventures',
-        contact: 'Get in Touch'
+        title: 'Ready to explore the Algarve differently?',
+        desc: 'Planning can be complicated. Exploring doesn\'t have to be. Let us guide you to the right experience.',
+        browse: 'See Experiences',
+        contact: 'Talk to Us'
       },
       testimonials: {
-        eyebrow: 'Explorers\' Voices',
-        title: 'Stories from the trail',
+        eyebrow: 'EXPLORERS\' VOICES',
+        title: 'What remains in memory from the tours in the Algarve?',
         reviews: '500+ REVIEWS',
         rating: 'EXCELLENT',
         tripadvisor: 'ON TRIPADVISOR',
@@ -71,9 +69,9 @@ export const TRANSLATIONS: any = {
         ]
       },
       transfers: {
-        eyebrow: 'Reliable Shuttles',
-        title: 'Trail & Airport Transfers',
-        desc: 'Door-to-door service across the Algarve. Safe, comfortable, and specialized for hikers with equipment.'
+        eyebrow: 'RELIABLE SHUTTLES',
+        title: 'Transfers designed for explorers',
+        desc: 'From the airport to the trails with comfort, safety, and space for all your equipment.'
       }
     },
     footer: {
@@ -243,36 +241,34 @@ export const TRANSLATIONS: any = {
     },
     home: {
       hero: {
-        eyebrow: 'Algarve Explorer Tours',
-        title: 'O seu guia para os segredos do Algarve',
-        desc: 'Aventuras autênticas em trilhos, expedições a pé e descobertas costeiras. Descubra a alma do Sul de Portugal com especialistas locais.',
-        exploreBtn: 'Explorar Aventuras',
-        regionBtn: 'A Região'
+        eyebrow: 'ALGARVE EXPLORER TOURS',
+        title: 'Descubra o Algarve que poucos conhecem',
+        desc: 'Trilhos, degustações, passeios a cavalo, transfers, tudo pensado para uma experiência autêntica no Sul de Portugal.',
+        exploreBtn: 'Explorar aventuras',
+        regionBtn: 'O Algarve'
       },
       featured: {
-        eyebrow: 'Caminhos Curados',
-        title: 'Experiências em Destaque',
-        desc: 'Trilhos selecionados que capturam a beleza tranquila do Sul de Portugal, longe do alcance do turismo convencional.'
+        eyebrow: 'AVENTURAS',
+        title: 'Porque o Algarve é muito mais do que praia!',
+        desc: 'Descubra trilhos escondidos, sabores locais e paisagens que não aparecem nos roteiros turísticos.'
       },
       about: {
-        eyebrow: 'A Nossa História',
-        title: 'Criando descobertas autênticas na natureza',
-        p1: 'Fundada em 2016, a Algarve Explorer nasceu de uma profunda paixão por partilhar as paisagens escondidas do Sul de Portugal.',
-        p2: 'Acreditamos que as histórias mais profundas se encontram a pé, movendo-nos ao ritmo do vento, pelos trilhos que só os locais conhecem. A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.',
-        spots: 'Locais Secretos',
-        expertise: 'Anos de Experiência',
-        philosophy: 'Nossa Filosofia'
+        eyebrow: 'A NOSSA HISTÓRIA',
+        title: 'Há experiências que levamos connosco para a vida toda.',
+        p1: 'Fundada em 2016, a Algarve Explorer nasceu da paixão por revelar o lado mais autêntico do Sul de Portugal.',
+        p2: 'Acreditamos que as melhores descobertas são feitas ao ritmo do vento, por caminhos que só os locais conhecem. A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.',
+        philosophy: 'Conheça-nos melhor'
       },
       cta: {
         eyebrow: 'Comece a sua Viagem',
-        title: 'O trilho secreto espera por si.',
-        desc: 'Planear uma visita pode ser uma aventura em si mesma. Deixe-nos ajudá-lo a encontrar a rota perfeita para a sua próxima escapadinha portuguesa.',
-        browse: 'Ver Aventuras',
-        contact: 'Entre em Contacto'
+        title: 'Pronto para explorar o Algarve de forma diferente?',
+        desc: 'Planear pode ser complicado. Explorar não tem de ser. Deixe-nos guiá-lo até à experiência certa.',
+        browse: 'Ver experiências',
+        contact: 'Falar connosco'
       },
       testimonials: {
-        eyebrow: 'Vozes dos Exploradores',
-        title: 'Histórias dos nossos trilhos',
+        eyebrow: 'VOZES DOS EXPLORADORES',
+        title: 'O que fica na memória das tours no Algarve?',
         reviews: '500+ AVALIAÇÕES',
         rating: 'EXCELENTE',
         tripadvisor: 'NO TRIPADVISOR',
@@ -301,9 +297,9 @@ export const TRANSLATIONS: any = {
         ]
       },
       transfers: {
-        eyebrow: 'Shuttles de Confiança',
-        title: 'Transfers de Trilho e Aeroporto',
-        desc: 'Serviço porta-a-porta em todo o Algarve. Seguro, confortável e especializado para caminhantes com equipamento.'
+        eyebrow: 'SHUTTLES DE CONFIANÇA',
+        title: 'Transfers pensados para exploradores',
+        desc: 'Do aeroporto aos trilhos com conforto, segurança e espaço para todo o seu equipamento.'
       }
     },
     footer: {

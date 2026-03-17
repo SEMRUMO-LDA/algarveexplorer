@@ -292,16 +292,7 @@ const Home: React.FC = () => {
               <p>{t('home.about.p2')}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-12 mb-16">
-              <div>
-                <p className="text-4xl md:text-5xl font-bold text-[#0d4357] font-montserrat tracking-tight">300+</p>
-                <p className="text-[#0d4357]/30 text-[10px] font-bold uppercase tracking-widest mt-2">{t('home.about.spots')}</p>
-              </div>
-              <div>
-                <p className="text-4xl md:text-5xl font-bold text-[#0d4357] font-montserrat tracking-tight">8yrs</p>
-                <p className="text-[#0d4357]/30 text-[10px] font-bold uppercase tracking-widest mt-2">{t('home.about.expertise')}</p>
-              </div>
-            </div>
+
 
             <Link
               to="/about"
