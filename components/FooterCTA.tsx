@@ -1,11 +1,12 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 
 const FooterCTA: React.FC = () => {
     const { t } = useLanguage();
+    const location = useLocation();
 
     return (
         <section className="py-24 md:py-40 bg-[#0d4357] text-white relative overflow-hidden">
@@ -36,12 +37,14 @@ const FooterCTA: React.FC = () => {
                         <span>{t('home.cta.browse')}</span>
                         <ArrowRight size={16} />
                     </Link>
-                    <Link
-                        to="/contacts"
-                        className="inline-flex items-center justify-center bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-                    >
-                        {t('home.cta.contact')}
-                    </Link>
+                    {location.pathname !== '/contacts' && (
+                        <Link
+                            to="/contacts"
+                            className="inline-flex items-center justify-center bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                        >
+                            {t('home.cta.contact')}
+                        </Link>
+                    )}
                 </div>
             </div>
         </section>
