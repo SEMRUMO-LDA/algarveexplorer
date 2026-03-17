@@ -33,9 +33,11 @@ const Footer: React.FC = () => {
               </a>
               <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="TripAdvisor">
                 <span className="sr-only">TripAdvisor</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-4.5-9.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm9 0c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5zm-4.5 5.5c-1.381 0-2.5-1.119-2.5-2.5h1c0 .827.673 1.5 1.5 1.5s1.5-.673 1.5-1.5h1c0 1.381-1.119 2.5-2.5 2.5z" />
-                </svg>
+                <img
+                  src="/image/tripadvisor-icon.png"
+                  alt="Tripadvisor"
+                  className="w-5 h-5 object-contain"
+                />
               </a>
             </div>
           </div>
