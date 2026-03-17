@@ -82,7 +82,7 @@ const Tours: React.FC = () => {
                   <img
                     src={tour.image}
                     alt={language === 'pt' ? tour.title_pt : tour.title}
-                    className="w-full h-full object-cover object-left group-hover:scale-110 transition-transform duration-700"
+                    className={`w-full h-full object-cover ${tour.slug === 'horse-riding-tour-albufeira-pickup' ? 'object-left' : 'object-right'} group-hover:scale-110 transition-transform duration-700`}
                   />
                   <div className="absolute top-8 left-8">
                     <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
