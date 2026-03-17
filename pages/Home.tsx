@@ -183,7 +183,7 @@ const Home: React.FC = () => {
                     <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4 block">
                       {language === 'pt' ? tour.duration_pt : tour.duration}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-[#0d4357] mb-6 font-montserrat uppercase tracking-tight leading-tight group-hover:text-[#da6927] transition-colors h-14 line-clamp-2">
+                    <h3 className="text-xl md:text-2xl font-bold text-[#0d4357] mb-6 font-montserrat uppercase tracking-tight leading-tight group-hover:text-[#da6927] transition-colors min-h-[4.5rem] md:min-h-[3.5rem] line-clamp-3">
                       {language === 'pt' ? tour.title_pt : tour.title}
                     </h3>
                     <div className="flex items-center justify-between pt-6 border-t border-slate-100">
