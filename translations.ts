@@ -28,13 +28,15 @@ export const TRANSLATIONS: any = {
         eyebrow: 'OUR STORY',
         title: 'There are experiences we carry with us for a lifetime.',
         p1: 'Founded in 2016, Algarve Explorer was born from a passion for revealing the most authentic side of Southern Portugal.',
-        p2: 'We believe that the best discoveries are made at the pace of the wind, along paths that only locals know. Our mission is to take you beyond the postcards, to the true soul of the Algarve.',
+        p2: 'We believe that the best discoveries are made at the pace of the wind, along paths that only locals know.',
+        p3: 'Our mission is to take you beyond the postcards, to the true soul of the Algarve.',
         philosophy: 'Know Us Better'
       },
       cta: {
         eyebrow: 'Start Your Journey',
         title: 'Ready to explore the Algarve differently?',
-        desc: 'Planning can be complicated. Exploring doesn\'t have to be. Let us guide you to the right experience.',
+        p1: 'Planning can be complicated. Exploring doesn\'t have to be.',
+        p2: 'Let us guide you to the right experience.',
         browse: 'See Experiences',
         contact: 'Talk to Us'
       },
@@ -120,7 +122,7 @@ export const TRANSLATIONS: any = {
     algarve: {
       hero: {
         eyebrow: 'Southern Portugal',
-        title: 'A PLAYGROUND FOR THE SOUL',
+        title: 'A HAVEN FOR THE SOUL',
         desc: 'From the dramatic Atlantic cliffs to the ancient peaks of Monchique, the Algarve offers a diversity of terrain that invites slow exploration and deep connection with nature.'
       },
       why: {
@@ -256,13 +258,15 @@ export const TRANSLATIONS: any = {
         eyebrow: 'A NOSSA HISTÓRIA',
         title: 'Há experiências que levamos connosco para a vida toda.',
         p1: 'Fundada em 2016, a Algarve Explorer nasceu da paixão por revelar o lado mais autêntico do Sul de Portugal.',
-        p2: 'Acreditamos que as melhores descobertas são feitas ao ritmo do vento, por caminhos que só os locais conhecem. A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.',
+        p2: 'Acreditamos que as melhores descobertas são feitas ao ritmo do vento, por caminhos que só os locais conhecem.',
+        p3: 'A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.',
         philosophy: 'Conheça-nos melhor'
       },
       cta: {
         eyebrow: 'Comece a sua Viagem',
         title: 'Pronto para explorar o Algarve de forma diferente?',
-        desc: 'Planear pode ser complicado. Explorar não tem de ser. Deixe-nos guiá-lo até à experiência certa.',
+        p1: 'Planear pode ser complicado. Explorar não tem de ser.',
+        p2: 'Deixe-nos guiá-lo até à experiência certa.',
         browse: 'Ver experiências',
         contact: 'Falar connosco'
       },

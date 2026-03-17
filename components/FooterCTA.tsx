@@ -27,7 +27,8 @@ const FooterCTA: React.FC = () => {
                 <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-[0.4em] mb-8 block">{t('home.cta.eyebrow')}</span>
                 <h2 className="text-3xl md:text-5xl font-bold font-montserrat mb-10 tracking-tight uppercase leading-tight">{t('home.cta.title')}</h2>
                 <p className="text-white/60 text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                    {t('home.cta.desc')}
+                    {t('home.cta.p1')}<br />
+                    {t('home.cta.p2')}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-6">
                     <Link

@@ -287,9 +287,10 @@ const Home: React.FC = () => {
             <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] leading-[1.1] tracking-tight mb-10 uppercase">
               {t('home.about.title')}
             </h2>
-            <div className="space-y-8 text-[#0d4357]/60 text-lg md:text-xl font-light leading-relaxed mb-12">
-              <p>{t('home.about.p1')}</p>
-              <p>{t('home.about.p2')}</p>
+            <div className="text-[#0d4357]/60 text-lg md:text-xl font-light leading-relaxed mb-12">
+              {t('home.about.p1')}<br /><br />
+              {t('home.about.p2')}<br /><br />
+              {t('home.about.p3')}
             </div>
 
 
