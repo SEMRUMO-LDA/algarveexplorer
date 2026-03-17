@@ -70,7 +70,7 @@ export const TOURS: Tour[] = [
     ageRange_pt: '6-65 anos',
     description: 'Discover coastal secrets and hidden pearl beaches on horseback.',
     description_pt: 'Descubra segredos costeiros e praias pérolas escondidas a cavalo.',
-    image: '/image/albufeira-hidden-gems-&-horse-riding-tour.jpg',
+    image: '/image/albufeira-hidden-gems-&-horse-riding-tour-toppage-2.jpg',
     highlights: [
       { text: 'Hidden pearl beaches', text_pt: 'Praias pérolas escondidas', image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&q=80&w=1000' },
       { text: 'Exciting horseback ride', text_pt: 'Passeio a cavalo emocionante', image: '/image/albufeira-hidden-gems-&-horse-riding-tour.jpg' },

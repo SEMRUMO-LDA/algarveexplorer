@@ -59,7 +59,7 @@ const TourDetail: React.FC = () => {
         <div className="absolute inset-0 z-0 opacity-30 grayscale-[0.3] pointer-events-none">
           <img
             src={tour.heroImage || tour.image}
-            className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-out"
+            className="w-full h-full object-cover object-right scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-out"
             alt={`Breathtaking overview of ${displayTitle}`}
           />
         </div>
@@ -372,7 +372,7 @@ const TourDetail: React.FC = () => {
                 <div className="aspect-[4/5] overflow-hidden rounded-2xl mb-8">
                   <img
                     src={t.image}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                    className="w-full h-full object-cover object-right group-hover:scale-105 transition-transform duration-1000"
                     alt={`Recommended tour: ${language === 'pt' ? t.title_pt : t.title}`}
                   />
                 </div>
