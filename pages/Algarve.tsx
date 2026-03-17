@@ -75,7 +75,7 @@ const Algarve: React.FC = () => {
               </div>
               <div
                 ref={parallaxRef}
-                className="absolute -bottom-10 -right-10 w-2/3 aspect-square border-2 border-white rounded-2xl shadow-2xl hidden md:block overflow-hidden"
+                className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-2/3 aspect-square border-2 border-white rounded-2xl shadow-2xl overflow-hidden"
                 style={{
                   transform: `translate3d(0, ${parallaxOffset}px, 0)`,
                   transition: 'transform 0.1s ease-out'
