@@ -9,7 +9,7 @@ const Tours: React.FC = () => {
   const { t, language } = useLanguage();
 
   return (
-    <div className="bg-[#fdfdfb] min-h-screen">
+    <div className="bg-[#fffbf9] min-h-screen">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
@@ -28,7 +28,7 @@ const Tours: React.FC = () => {
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">{t('tours.hero.eyebrow')}</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('tours.hero.eyebrow')}</span>
           </div>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             {t('tours.hero.title')}
@@ -43,9 +43,8 @@ const Tours: React.FC = () => {
       <section className="py-24 md:py-40 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="max-w-4xl">
-            <div className="flex items-center space-x-3 mb-10 text-[#0d4357]/40">
-              <Compass size={24} className="text-[#da6927]" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{t('home.featured.eyebrow')}</span>
+            <div className="flex items-center mb-10">
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('home.featured.eyebrow')}</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight uppercase leading-[1.1]">
               {t('home.about.title')}

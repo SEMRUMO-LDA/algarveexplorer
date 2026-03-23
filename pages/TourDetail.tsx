@@ -18,7 +18,7 @@ const TourDetail: React.FC = () => {
 
   if (!tour) {
     return (
-      <div className="pt-32 px-6 text-center min-h-screen bg-[#fdfdfb] flex flex-col items-center justify-center">
+      <div className="pt-32 px-6 text-center min-h-screen bg-[#fffbf9] flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight">
           {language === 'pt' ? 'Experiência Não Encontrada' : 'Experience Not Found'}
         </h1>
@@ -52,7 +52,7 @@ const TourDetail: React.FC = () => {
   const displayAgeRange = language === 'pt' ? tour.ageRange_pt : tour.ageRange;
 
   return (
-    <div className="bg-[#fdfdfb] min-h-screen">
+    <div className="bg-[#fffbf9] min-h-screen">
       {/* Cinematic Hero — matching site-wide editorial header style */}
       <section className="relative h-[75vh] flex flex-col justify-end overflow-hidden bg-[#0d4357] group">
         {/* Background image — same treatment as Tours, Algarve, About headers */}
@@ -94,7 +94,7 @@ const TourDetail: React.FC = () => {
 
 
       {/* Main Content Area */}
-      <section className="py-24 md:py-32 bg-[#fdfdfb] relative">
+      <section className="py-24 md:py-32 bg-[#fffbf9] relative">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative min-h-screen">
 
@@ -122,7 +122,7 @@ const TourDetail: React.FC = () => {
                 </div>
 
                 {(isAlbufeiraHorseRiding || isSevenValleysTour) && (
-                  <div className="mt-16 bg-[#fdfdfb] border border-slate-100 p-10 rounded-2xl flex items-start gap-6">
+                  <div className="mt-16 bg-[#fffbf9] border border-slate-100 p-10 rounded-2xl flex items-start gap-6">
                     <div className="bg-[#da6927]/10 p-3 rounded-full">
                       <Info className="text-[#da6927]" size={24} />
                     </div>
@@ -350,7 +350,7 @@ const TourDetail: React.FC = () => {
       </section>
 
       {/* Recommended Section */}
-      <section className="py-32 md:py-48 bg-[#fdfdfb]">
+      <section className="py-32 md:py-48 bg-[#fffbf9]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div>

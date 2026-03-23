@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Compass, Users, Leaf, ArrowRight, Footprints, ShieldCheck, Plus } from 'lucide-react';
+import { Compass, Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const slides = [
+    { title: t('about.values.partners.title'), icon: <Users size={32} />, desc: t('about.values.partners.desc') },
+    { title: t('about.values.eco.title'), icon: <Leaf size={32} />, desc: t('about.values.eco.desc') },
+    { title: t('about.values.slow.title'), icon: <Footprints size={32} />, desc: t('about.values.slow.desc') },
+    { title: t('about.values.care.title'), icon: <ShieldCheck size={32} />, desc: t('about.values.care.desc') }
+  ];
+
+  const handleScroll = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      const scrollRatio = scrollWidth > clientWidth ? scrollLeft / (scrollWidth - clientWidth) : 0;
+      const index = Math.max(0, Math.min(slides.length - 1, Math.round(scrollRatio * (slides.length - 1))));
+      setActiveSlide(index);
+    }
+  };
+
+  const scrollSlider = (direction: 'left' | 'right') => {
+    if (sliderRef.current) {
+      const { clientWidth } = sliderRef.current;
+      const move = direction === 'left' ? -clientWidth * 0.6 : clientWidth * 0.6;
+      sliderRef.current.scrollBy({ left: move, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="bg-[#fdfdfb] min-h-screen">
+    <div className="bg-[#fffbf9] min-h-screen">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
@@ -27,7 +53,7 @@ const About: React.FC = () => {
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white/50">{t('about.hero.eyebrow')}</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('about.hero.eyebrow')}</span>
           </div>
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             {t('about.hero.title')}
@@ -39,16 +65,15 @@ const About: React.FC = () => {
       </section>
 
       {/* Brand Narrative & Image Composition */}
-      <section className="py-24 md:py-48 bg-[#fdfdfb]">
+      <section className="py-24 md:py-48 bg-[#fffbf9]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
 
             {/* Left Column: Brand Story */}
             <div className="w-full lg:w-1/2 order-2 lg:order-1">
               <div className="max-w-xl">
-                <div className="flex items-center space-x-3 mb-10 text-[#0d4357]/40">
-                  <Compass size={24} className="text-[#da6927]" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{t('about.story.eyebrow')}</span>
+                <div className="flex items-center mb-10">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('about.story.eyebrow')}</span>
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight leading-[1.1] uppercase">
                   {t('about.story.title')}
@@ -102,30 +127,64 @@ const About: React.FC = () => {
       </section>
 
       {/* Values Grid */}
-      <section className="py-32 md:py-48 bg-[#fdfdfb] border-t border-slate-100">
+      <section className="py-32 md:py-48 bg-[#fffbf9] border-t border-slate-100">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
+            <div className="pr-0 lg:pr-12">
               <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('about.values.eyebrow')}</span>
-              <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight uppercase">{t('about.values.title')}</h2>
-              <div className="space-y-8 text-[#0d4357]/50 text-lg font-light leading-relaxed">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat text-[#0d4357] mb-8 tracking-tight uppercase leading-none">{t('about.values.title')}</h2>
+              <div className="space-y-6 text-[#0d4357]/60 text-lg font-light leading-relaxed mb-16">
                 <p>{t('about.values.p1')}</p>
                 <p>{t('about.values.p2')}</p>
               </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { title: t('about.values.partners.title'), icon: <Users className="text-[#da6927]" size={28} />, desc: t('about.values.partners.desc') },
-                { title: t('about.values.eco.title'), icon: <Leaf className="text-[#da6927]" size={28} />, desc: t('about.values.eco.desc') },
-                { title: t('about.values.slow.title'), icon: <Footprints className="text-[#da6927]" size={28} />, desc: t('about.values.slow.desc') },
-                { title: t('about.values.care.title'), icon: <ShieldCheck className="text-[#da6927]" size={28} />, desc: t('about.values.care.desc') }
-              ].map((val, i) => (
-                <div key={i} className="bg-[#0d4357] p-10 rounded-2xl border border-white/5 hover:shadow-2xl transition-all group">
-                  <div className="mb-6">{val.icon}</div>
-                  <h3 className="text-lg font-bold font-montserrat text-white mb-4 uppercase tracking-tight transition-colors">{val.title}</h3>
-                  <p className="text-white/60 text-sm leading-relaxed font-light">{val.desc}</p>
+              
+              <div className="flex items-center space-x-6 lg:space-x-8">
+                <div className="flex space-x-3">
+                  <button onClick={() => scrollSlider('left')} className="group w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#0d4357]/20 flex items-center justify-center hover:bg-[#0d4357] hover:border-[#0d4357] outline-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                    <ArrowLeft size={20} strokeWidth={1.5} className="text-[#0d4357] group-hover:text-white group-hover:-translate-x-1 transition-all duration-500" />
+                  </button>
+                  <button onClick={() => scrollSlider('right')} className="group w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#0d4357]/20 flex items-center justify-center hover:bg-[#da6927] hover:border-[#da6927] outline-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                    <ArrowRight size={20} strokeWidth={1.5} className="text-[#0d4357] group-hover:text-white group-hover:translate-x-1 transition-all duration-500" />
+                  </button>
                 </div>
-              ))}
+                
+                <div className="flex-1 h-[2px] bg-[#0d4357]/10 relative overflow-hidden rounded-full">
+                  <div className="absolute top-0 left-0 h-full bg-[#da6927] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full" style={{ width: `${((activeSlide + 1) / slides.length) * 100}%` }} />
+                </div>
+                
+                <div className="text-sm font-bold tracking-widest text-[#0d4357] font-montserrat w-16 text-right">
+                  0{activeSlide + 1} <span className="text-[#0d4357]/30">/ 0{slides.length}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative w-full -mr-6 lg:-mr-12">
+              <div
+                ref={sliderRef}
+                onScroll={handleScroll}
+                className="flex overflow-x-auto gap-6 lg:gap-8 pb-12 pt-12 px-6 lg:px-0 no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {slides.map((val, i) => {
+                  const isActive = activeSlide === i;
+                  return (
+                  <div 
+                    key={i} 
+                    className={`flex-none w-[85%] sm:w-[60%] lg:w-[65%] xl:w-[55%] snap-center p-8 lg:p-12 rounded-[2rem] border transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between min-h-[360px]
+                      ${isActive ? 'bg-[#0d4357] border-white/10 shadow-[0_20px_40px_-15px_rgba(13,67,87,0.3)] scale-100 opacity-100 translate-y-0' : 'bg-white border-[#0d4357]/10 scale-95 opacity-50 blur-[1px] hover:blur-none hover:opacity-100 translate-y-4'}
+                    `}
+                  >
+                    <div className="mb-12 inline-flex text-[#da6927] transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110 origin-left">
+                      {val.icon}
+                    </div>
+                    <div>
+                      <h3 className={`text-2xl font-bold font-montserrat mb-4 uppercase tracking-tight transition-colors duration-700 ${isActive ? 'text-white' : 'text-[#0d4357]'}`}>{val.title}</h3>
+                      <p className={`text-sm leading-relaxed font-light transition-colors duration-700 ${isActive ? 'text-white/70' : 'text-[#0d4357]/60'}`}>{val.desc}</p>
+                    </div>
+                  </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

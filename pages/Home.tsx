@@ -61,7 +61,7 @@ const Home: React.FC = () => {
   const paddingLeftLg = "max(3rem, calc((100vw - 1600px) / 2 + 3rem))";
 
   return (
-    <div className="flex flex-col bg-[#fdfdfb]">
+    <div className="flex flex-col bg-[#fffbf9]">
       {/* Hero Section */}
       <section className="relative h-[90vh] md:h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Adventures Section */}
-      <section id="experiences" className="py-24 md:py-32 bg-[#fdfdfb] overflow-x-hidden">
+      <section id="experiences" className="py-24 md:py-32 bg-[#fffbf9] overflow-x-hidden">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-16 md:mb-20">
           <div className="flex flex-col md:flex-row justify-between items-end gap-10">
             <div className="max-w-2xl">
@@ -208,9 +208,8 @@ const Home: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
             <div className="w-full lg:w-1/2 order-2 lg:order-1">
-              <div className="inline-flex items-center space-x-3 mb-6">
-                <Car className="text-[#da6927]" size={20} />
-                <span className="text-white/40 text-[11px] font-bold uppercase tracking-[0.4em]">
+              <div className="inline-flex items-center mb-6">
+                <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em]">
                   {t('home.transfers.eyebrow')}
                 </span>
               </div>
@@ -246,7 +245,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="relative flex flex-col lg:flex-row bg-[#fdfdfb]">
+      <section className="relative flex flex-col lg:flex-row bg-[#fffbf9]">
         <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8 border-t border-slate-50">
           <div className="flex-1 space-y-12 lg:space-y-32">
             <RevealingImage
@@ -278,11 +277,10 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fdfdfb] lg:bg-transparent">
+        <div className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent">
           <div className="max-w-2xl px-6 lg:pl-24 lg:pr-10">
-            <div className="inline-flex items-center space-x-3 mb-8 text-[#da6927]">
-              <Compass size={24} />
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/40">{t('home.about.eyebrow')}</span>
+            <div className="inline-flex items-center mb-8">
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('home.about.eyebrow')}</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] leading-[1.1] tracking-tight mb-10 uppercase">
               {t('home.about.title')}
@@ -307,7 +305,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 md:py-40 bg-[#fdfdfb]">
+      <section className="py-24 md:py-40 bg-[#fffbf9]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-24">
             <div className="max-w-2xl">

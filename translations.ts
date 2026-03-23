@@ -41,7 +41,7 @@ export const TRANSLATIONS: any = {
         contact: 'Talk to Us'
       },
       testimonials: {
-        eyebrow: 'EXPLORERS\' VOICES',
+        eyebrow: 'EXPLORER\'S VOICES',
         title: 'What remains in memory from the tours in the Algarve?',
         reviews: '500+ REVIEWS',
         rating: 'EXCELLENT',
@@ -123,6 +123,8 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: 'Southern Portugal',
         title: 'A HAVEN FOR THE SOUL',
+        title1: 'A HAVEN FOR',
+        title2: 'THE SOUL',
         desc: 'From the dramatic Atlantic cliffs to the ancient peaks of Monchique, the Algarve offers a diversity of terrain that invites slow exploration and deep connection with nature.'
       },
       why: {
@@ -133,6 +135,10 @@ export const TRANSLATIONS: any = {
         cta: 'View Adventures'
       },
       seasons: {
+        eyebrow: 'All Year Round',
+        title: 'Distinct Seasons',
+        p1: 'The Algarve is a region of contrasts, offering unique experiences depending on when you choose to visit.',
+        p2: 'From the lush blooms of spring to the mild, peaceful winters, every season reveals a different character of our landscapes.',
         spring: { title: 'Spring', subtitle: 'MAR - MAY', desc: 'A tapestry of wildflowers. The hills are lush, and the air is filled with the scent of rockrose and lavender.' },
         summer: { title: 'Summer', subtitle: 'JUN - AUG', desc: 'Long sun-drenched days. Best for early morning explorations followed by refreshing dips in hidden river pools.' },
         autumn: { title: 'Autumn', subtitle: 'SEPT - NOV', desc: 'The \'Golden Season\'. Soft light, warm Atlantic waters, and the perfect temperature for long walks.' },
@@ -353,6 +359,8 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: 'Sul de Portugal',
         title: 'UM RECANTO PARA A ALMA',
+        title1: 'UM RECANTO PARA',
+        title2: 'A ALMA',
         desc: 'Das dramáticas falésias atlânticas aos antigos picos de Monchique, o Algarve oferece uma diversidade de terreno que convida à exploração lenta e à ligação profunda com a natureza.'
       },
       why: {
@@ -363,6 +371,10 @@ export const TRANSLATIONS: any = {
         cta: 'Ver Aventuras'
       },
       seasons: {
+        eyebrow: 'Todo o ano',
+        title: 'Estações Distintas',
+        p1: 'O Algarve é uma região de contrastes, oferecendo experiências únicas dependendo da altura em que decidir explorar.',
+        p2: 'Desde o desabrochar luxuriante da primavera até aos invernos amenos e tranquilos, cada estação revela um carácter diferente das nossas paisagens.',
         spring: { title: 'Primavera', subtitle: 'MAR - MAI', desc: 'Uma tapeçaria de flores silvestres. As colinas são luxuriantes e o ar está cheio do perfume da esteva e da alfazema.' },
         summer: { title: 'Verão', subtitle: 'JUN - AGO', desc: 'Longos dias ensolarados. Ideal para explorações de manhã cedo seguidas de mergulhos refrescantes em piscinas de rios escondidos.' },
         autumn: { title: 'Outono', subtitle: 'SET - NOV', desc: 'A \'Estação Dourada\'. Luz suave, águas atlânticas quentes e a temperatura perfeita para longas caminhadas.' },
