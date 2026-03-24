@@ -191,7 +191,7 @@ const Tours: React.FC = () => {
                   
                   <div className="flex items-end justify-between pt-8 border-t border-slate-50">
                     <div className="flex flex-col">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#da6927] mb-2">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-2">
                         {language === 'pt' ? 'A partir de' : 'Starting from'}
                       </span>
                       <div className="flex items-baseline space-x-1">

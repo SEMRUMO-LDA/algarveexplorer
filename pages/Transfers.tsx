@@ -64,8 +64,8 @@ const Transfers: React.FC = () => {
                     </h3>
                   </div>
                   <div className="text-right">
+                    <span className="block text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-2">{language === 'pt' ? 'A partir de' : 'Starting from'}</span>
                     <span className="text-4xl font-bold font-montserrat text-brand-navy tracking-tighter">€{service.price}</span>
-                    <span className="block text-[10px] font-bold uppercase tracking-widest text-brand-navy/40 mt-1">{language === 'pt' ? 'A partir de' : 'Starting from'}</span>
                   </div>
                 </div>
 

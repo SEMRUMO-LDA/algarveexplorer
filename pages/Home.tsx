@@ -197,9 +197,14 @@ const Home: React.FC = () => {
                       {language === 'pt' ? tour.title_pt : tour.title}
                     </h3>
                     <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-                      <span className="text-brand-body/80 text-xs font-light italic">
-                        {language === 'pt' ? 'A partir de' : 'Starting from'} €{tour.price}
-                      </span>
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-1">
+                          {language === 'pt' ? 'A partir de' : 'Starting from'}
+                        </span>
+                        <span className="text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
+                          €{tour.price}
+                        </span>
+                      </div>
                       <div className="flex items-center space-x-2 text-brand-body group-hover:text-[#da6927] transition-colors">
                         <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
                         <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
