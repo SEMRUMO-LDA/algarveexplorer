@@ -5,6 +5,7 @@ import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
+import ParallaxCard from '../components/ParallaxCard';
 
 const RevealingImage: React.FC<{ src: string; alt: string; className: string; delay?: number }> = ({ src, alt, className, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -71,7 +72,7 @@ const Home: React.FC = () => {
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster="/image/the-region-hero.jpg"
             className="w-full h-full object-cover opacity-70"
           >
@@ -286,47 +287,39 @@ const Home: React.FC = () => {
           blur="160px"
           blendMode="normal"
         />
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-24 md:py-32 lg:py-64 border-t border-slate-50 flex items-center justify-center group">
-          <div className="relative w-full max-w-lg aspect-[4/5] md:aspect-square lg:aspect-[4/5] transition-transform duration-1000">
+        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-24 md:py-32 lg:py-64 border-t border-slate-50 flex items-center justify-center">
+          <div className="relative w-full max-w-lg aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
             {/* Base Image - Bottom Right focus */}
-            <div className="absolute top-0 right-0 w-[85%] h-[75%] rounded-3xl overflow-hidden shadow-xl z-10 transition-all duration-700 group-hover:-translate-y-4 group-hover:translate-x-4">
-              <RevealingImage
-                src="/image/about-us-1.jpeg"
-                alt="Hiker overlooking a mountain trail"
-                className="w-full h-full object-cover"
-                delay={0}
-              />
-            </div>
-            
+            <ParallaxCard
+              src="/image/about-us-1.jpeg"
+              alt="Hiker overlooking a mountain trail"
+              className="absolute top-0 right-0 w-[85%] h-[75%] rounded-3xl overflow-hidden shadow-xl z-10"
+              depth={0.2}
+            />
+
             {/* Overlapping Image - Left side stack */}
-            <div className="absolute bottom-4 left-0 w-[65%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20 transform -rotate-3 hover:rotate-0 transition-all duration-700 group-hover:translate-y-8 group-hover:-translate-x-8">
-              <RevealingImage
-                src="/image/about-us-2.jpeg"
-                alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
-                className="w-full h-full object-cover"
-                delay={200}
-              />
-            </div>
+            <ParallaxCard
+              src="/image/about-us-2.jpeg"
+              alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
+              className="absolute bottom-4 left-0 w-[65%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20 -rotate-3"
+              depth={0.5}
+            />
 
             {/* Accent Image - Floating right */}
-            <div className="absolute bottom-20 -right-8 w-[45%] h-[40%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-30 transform rotate-3 hover:rotate-0 transition-all duration-700 group-hover:translate-y-12 group-hover:translate-x-12">
-              <RevealingImage
-                src="/image/about-us-3.jpeg"
-                alt="Charming traditional Portuguese village street"
-                className="w-full h-full object-cover"
-                delay={100}
-              />
-            </div>
+            <ParallaxCard
+              src="/image/about-us-3.jpeg"
+              alt="Charming traditional Portuguese village street"
+              className="absolute bottom-20 -right-8 w-[45%] h-[40%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-30 rotate-3"
+              depth={0.7}
+            />
 
             {/* Floating Top Image - Offset left */}
-            <div className="hidden md:block absolute top-[15%] left-[8%] w-[35%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-40 transform -rotate-6 hover:rotate-0 transition-all duration-700 opacity-90 group-hover:-translate-y-16 group-hover:-translate-x-12 group-hover:opacity-100">
-              <RevealingImage
-                src="/image/about-us-4.jpeg"
-                alt="Horseback riding adventure through the Algarve countryside"
-                className="w-full h-full object-cover"
-                delay={300}
-              />
-            </div>
+            <ParallaxCard
+              src="/image/about-us-4.jpeg"
+              alt="Horseback riding adventure through the Algarve countryside"
+              className="hidden md:block absolute top-[15%] left-[8%] w-[35%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-40 -rotate-6 opacity-90"
+              depth={0.9}
+            />
           </div>
         </div>
 

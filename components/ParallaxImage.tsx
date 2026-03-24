@@ -97,15 +97,17 @@ const ParallaxImage: React.FC<ParallaxImageProps> = ({
   return (
     <div
       ref={ref}
-      className={`relative overflow-hidden ${containerClassName}`}
+      className={`relative overflow-hidden w-full h-full ${containerClassName}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
       <motion.img
         src={src}
         alt={alt}
-        className={`w-full h-full object-cover ${className}`}
+        className={`absolute w-full object-cover ${className}`}
         style={{
+          height: `${100 + scrollStrength * 200}%`,
+          top: `-${scrollStrength * 100}%`,
           y: isInView ? y : 0,
           scale: isInView ? scale : 1.05,
           x: enableMouseParallax ? mouseXSpring : 0,

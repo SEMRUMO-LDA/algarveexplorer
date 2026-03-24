@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LanguageProvider } from './LanguageContext';
@@ -9,13 +9,15 @@ import MagneticCursor from './components/MagneticCursor';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Assistant from './components/Assistant';
-import Home from './pages/Home';
-import Tours from './pages/Tours';
-import TourDetail from './pages/TourDetail';
-import Algarve from './pages/Algarve';
-import Transfers from './pages/Transfers';
-import About from './pages/About';
-import Contacts from './pages/Contacts';
+
+// Lazy loaded routes for senior-level bundle size optimization
+const Home = lazy(() => import('./pages/Home'));
+const Tours = lazy(() => import('./pages/Tours'));
+const TourDetail = lazy(() => import('./pages/TourDetail'));
+const Algarve = lazy(() => import('./pages/Algarve'));
+const Transfers = lazy(() => import('./pages/Transfers'));
+const About = lazy(() => import('./pages/About'));
+const Contacts = lazy(() => import('./pages/Contacts'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -25,20 +27,29 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Fallback loader while chunks are downloading
+const PageLoader = () => (
+  <div className="min-h-screen bg-[#fffbf9] flex items-center justify-center">
+    <div className="w-12 h-12 border-4 border-[#0d4357]/20 border-t-[#da6927] rounded-full animate-spin"></div>
+  </div>
+);
+
 const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/algarve" element={<Algarve />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/tours" element={<Tours />} />
-        <Route path="/tours/:slug" element={<TourDetail />} />
-        <Route path="/transfers" element={<Transfers />} />
-        <Route path="/contacts" element={<Contacts />} />
-      </Routes>
+      <Suspense key={location.pathname} fallback={<PageLoader />}>
+        <Routes location={location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/algarve" element={<Algarve />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/tours" element={<Tours />} />
+          <Route path="/tours/:slug" element={<TourDetail />} />
+          <Route path="/transfers" element={<Transfers />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 };

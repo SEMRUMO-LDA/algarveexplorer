@@ -108,7 +108,7 @@ const TourDetail: React.FC = () => {
     <PageTransition>
       <div className="bg-[#fffbf9] min-h-screen">
       {/* Cinematic Hero — matching site-wide editorial header style */}
-      <section className="relative h-[75vh] flex flex-col justify-end overflow-hidden bg-white group">
+      <section className="relative h-[100svh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-white group">
         {/* Background image — Revitalized with full color and scrim */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <ParallaxImage
@@ -118,9 +118,8 @@ const TourDetail: React.FC = () => {
             mouseStrength={0.04}
             objectPosition="right center"
           />
-          {/* Scrim Overlay - Editorial Gradient for legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d4357]/60 via-transparent to-transparent"></div>
+          {/* Scrim Overlay - Neutral Gradient for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
         </div>
 
         {/* Content */}
@@ -132,29 +131,29 @@ const TourDetail: React.FC = () => {
         >
           {/* Breadcrumb */}
           <motion.div
-            className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40"
+            className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80 drop-shadow-lg"
             variants={staggerItem}
           >
-            <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
-            <span className="text-white/20">/</span>
-            <Link to="/tours" className="hover:text-[#da6927] transition-colors">{t('nav.tours')}</Link>
-            <span className="text-white/20">/</span>
-            <span className="text-white/80 truncate max-w-[200px]">{displayTitle}</span>
+            <Link to="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
+            <span className="text-white/50">/</span>
+            <Link to="/tours" className="hover:text-white transition-colors">{t('nav.tours')}</Link>
+            <span className="text-white/50">/</span>
+            <span className="text-white truncate max-w-[200px]">{displayTitle}</span>
           </motion.div>
 
           {/* Meta pills */}
           <motion.div className="flex items-center gap-4 mb-6" variants={staggerItem}>
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#da6927] border border-[#da6927]/40 px-4 py-1.5 rounded-full">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#da6927] border border-[#da6927]/60 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full shadow-lg">
               {displayDuration}
             </span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 border border-white/20 px-4 py-1.5 rounded-full">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white border border-white/30 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full shadow-lg">
               {displayDifficulty}
             </span>
           </motion.div>
 
           {/* Title */}
           <motion.h1
-            className="text-3xl md:text-5xl lg:text-6xl font-bold font-montserrat text-white leading-[1.05] tracking-tight uppercase max-w-5xl"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.05] tracking-tight uppercase max-w-5xl drop-shadow-xl"
             variants={staggerItem}
           >
             {displayTitle}

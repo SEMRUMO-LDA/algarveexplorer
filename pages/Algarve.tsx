@@ -4,6 +4,7 @@ import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, ArrowLeft, Plus
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
+import ParallaxCard from '../components/ParallaxCard';
 
 const Algarve: React.FC = () => {
   const { t } = useLanguage();
@@ -101,27 +102,18 @@ const Algarve: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <div className="relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-2xl">
-                <img
-                  src="/image/the-region-img1.jpg"
-                  className="w-full h-full object-cover"
-                  alt="Exploring the natural beauty of the Algarve"
-                />
-              </div>
-              <div
-                ref={parallaxRef}
+              <ParallaxCard
+                src="/image/the-region-img1.jpg"
+                alt="Exploring the natural beauty of the Algarve"
+                className="aspect-[4/5] overflow-hidden rounded-2xl"
+                depth={0.3}
+              />
+              <ParallaxCard
+                src="/image/the-region-img2.jpg"
+                alt="Local scenery of Southern Portugal"
                 className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-2/3 aspect-square border-2 border-white rounded-2xl shadow-2xl overflow-hidden"
-                style={{
-                  transform: `translate3d(0, ${parallaxOffset}px, 0)`,
-                  transition: 'transform 0.1s ease-out'
-                }}
-              >
-                <img
-                  src="/image/the-region-img2.jpg"
-                  className="w-full h-full object-cover"
-                  alt="Local scenery of Southern Portugal"
-                />
-              </div>
+                depth={0.7}
+              />
             </div>
             <div className="lg:pl-20">
               <div className="flex items-center mb-10">
