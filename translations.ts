@@ -153,7 +153,7 @@ export const TRANSLATIONS: any = {
     },
     tours: {
       hero: {
-        eyebrow: 'Our Collection',
+        eyebrow: 'Explore',
         title: 'THE ADVENTURES',
         desc: 'From challenging mountain peaks to serene coastal paths, our tours are designed for those who appreciate nature and adventure in their purest forms.'
       },
@@ -161,7 +161,7 @@ export const TRANSLATIONS: any = {
         adventures: 'Guided Adventures',
         scouted: 'Trails Scouted',
         explorers: 'Happy Explorers',
-        est: 'Est. Regionally'
+        est: '+ 10 years of experience'
       }
     },
     transfers: {
@@ -211,9 +211,9 @@ export const TRANSLATIONS: any = {
     },
     contacts: {
       hero: {
-        eyebrow: 'Direct Connection',
+        eyebrow: "Let's Talk",
         title: 'CONTACT US',
-        desc: 'Have questions about a route? Need custom logistics? We\'re here to make your Algarve adventure happen.'
+        desc: 'Have questions about a tour? Need a custom transfer? We\'re here to make your Algarve adventure happen.'
       },
       info: {
         eyebrow: 'OUR BASE CAMP',
@@ -389,7 +389,7 @@ export const TRANSLATIONS: any = {
     },
     tours: {
       hero: {
-        eyebrow: 'A Nossa Coleção',
+        eyebrow: 'Explorar',
         title: 'AS AVENTURAS',
         desc: 'De picos desafiantes de montanha a caminhos costeiros serenos, os nossos tours são concebidos para quem aprecia a natureza e a aventura nas suas formas mais puras.'
       },
@@ -397,7 +397,7 @@ export const TRANSLATIONS: any = {
         adventures: 'Aventuras Guiadas',
         scouted: 'Trilhos Explorados',
         explorers: 'Exploradores Felizes',
-        est: 'Est. Regionalmente'
+        est: '+ 10 anos de experiência'
       }
     },
     transfers: {
@@ -447,9 +447,9 @@ export const TRANSLATIONS: any = {
     },
     contacts: {
       hero: {
-        eyebrow: 'Conexão Direta',
+        eyebrow: 'Vamos Falar?',
         title: 'CONTACTE-NOS',
-        desc: 'Tem dúvidas sobre uma rota? Precisa de logística personalizada? Estamos aqui para tornar a sua aventura no Algarve realidade.'
+        desc: 'Tem dúvidas sobre alguma tour? Precisa de transfer por medida? Estamos aqui para tornar a sua aventura no Algarve realidade.'
       },
       info: {
         eyebrow: 'O NOSSO ACAMPAMENTO BASE',

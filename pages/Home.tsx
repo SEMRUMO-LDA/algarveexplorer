@@ -33,7 +33,7 @@ const RevealingImage: React.FC<{ src: string; alt: string; className: string; de
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'}`}
+      className={`${className} transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <img

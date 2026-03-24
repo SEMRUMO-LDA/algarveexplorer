@@ -159,53 +159,42 @@ const Tours: React.FC = () => {
                 <Link
                   to={`/tours/${tour.slug}`}
                   onClick={(e) => handleTourClick(e, tour)}
-                  className="group block bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-700 border border-slate-100 overflow-hidden"
+                  className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full"
                 >
-                <div className="aspect-[16/10] relative overflow-hidden">
-                  <ParallaxImage
-                    src={tour.image}
-                    alt={language === 'pt' ? tour.title_pt : tour.title}
-                    className="object-cover"
-                    scrollStrength={0.15}
-                    mouseStrength={0.03}
-                    objectPosition="center"
-                  />
-                  <div className="absolute top-6 left-6 z-10">
-                    <span className="bg-white/90 backdrop-blur-md text-[#0d4357] text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-sm">
-                      {language === 'pt' ? tour.difficulty_pt : tour.difficulty}
-                    </span>
+                  <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl">
+                    <img
+                      src={tour.image}
+                      alt={language === 'pt' ? tour.title_pt : tour.title}
+                      className="w-full h-full object-cover object-right group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-6 left-6">
+                      <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
+                        {language === 'pt' ? tour.difficulty_pt : tour.difficulty}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-8 md:p-10">
-                  <div className="flex items-center space-x-3 mb-6">
-                    <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-[0.2em]">
+                  <div className="p-8">
+                    <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4 block">
                       {language === 'pt' ? tour.duration_pt : tour.duration}
                     </span>
-                    <span className="w-1 h-1 rounded-full bg-slate-200"></span>
-                    <span className="text-slate-400 text-[10px] uppercase tracking-widest font-medium">Verified Adventure</span>
-                  </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#0d4357] mb-8 font-montserrat uppercase tracking-tight leading-[1.1] group-hover:text-[#da6927] transition-colors duration-500">
-                    {language === 'pt' ? tour.title_pt : tour.title}
-                  </h3>
-                  
-                  <div className="flex items-end justify-between pt-8 border-t border-slate-50">
-                    <div className="flex flex-col">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-2">
-                        {language === 'pt' ? 'A partir de' : 'Starting from'}
-                      </span>
-                      <div className="flex items-baseline space-x-1">
-                        <span className="text-3xl font-bold text-[#0d4357] font-montserrat tracking-tighter">€{tour.price}</span>
-                        <span className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">/ pp</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-brand-navy">
+                      {language === 'pt' ? tour.title_pt : tour.title}
+                    </h3>
+                    <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-1">
+                          {language === 'pt' ? 'A partir de' : 'Starting from'}
+                        </span>
+                        <span className="text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
+                          €{tour.price}
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-brand-body group-hover:text-[#da6927] transition-colors">
+                        <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
+                        <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
-                    
-                    <div className="flex items-center space-x-2 text-[#0d4357] group-hover:text-[#da6927] transition-all duration-500 transform group-hover:translate-x-1">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
-                      <ChevronRight size={14} />
-                    </div>
                   </div>
-                </div>
                 </Link>
               </motion.div>
             ))}
