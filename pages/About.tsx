@@ -194,7 +194,7 @@ const About: React.FC = () => {
                       {val.icon}
                     </div>
                     <div>
-                      <h3 className={`text-2xl font-bold font-montserrat mb-4 uppercase tracking-tight transition-colors duration-700 ${isActive ? 'text-brand-body' : 'text-brand-navy'}`}>{val.title}</h3>
+                      <h3 className={`text-2xl font-bold font-montserrat mb-4 uppercase tracking-tight transition-colors duration-700 ${isActive ? 'text-white' : 'text-brand-navy'}`}>{val.title}</h3>
                       <p className={`text-sm leading-relaxed font-light transition-colors duration-700 ${isActive ? 'text-white/70' : 'text-brand-body/90'}`}>{val.desc}</p>
                     </div>
                   </div>
