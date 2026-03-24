@@ -123,8 +123,8 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: 'Southern Portugal',
         title: 'A HAVEN FOR THE SOUL',
-        title1: 'A HAVEN FOR',
-        title2: 'THE SOUL',
+        title1: 'A HAVEN',
+        title2: 'FOR THE SOUL',
         desc: 'From the dramatic Atlantic cliffs to the ancient peaks of Monchique, the Algarve offers a diversity of terrain that invites slow exploration and deep connection with nature.'
       },
       why: {
@@ -359,8 +359,8 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: 'Sul de Portugal',
         title: 'UM RECANTO PARA A ALMA',
-        title1: 'UM RECANTO PARA',
-        title2: 'A ALMA',
+        title1: 'UM RECANTO',
+        title2: 'PARA A ALMA',
         desc: 'Das dramáticas falésias atlânticas aos antigos picos de Monchique, o Algarve oferece uma diversidade de terreno que convida à exploração lenta e à ligação profunda com a natureza.'
       },
       why: {
