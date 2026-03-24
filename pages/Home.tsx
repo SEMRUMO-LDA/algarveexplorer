@@ -6,6 +6,7 @@ import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
 import ParallaxCard from '../components/ParallaxCard';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const RevealingImage: React.FC<{ src: string; alt: string; className: string; delay?: number }> = ({ src, alt, className, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,16 +49,37 @@ const RevealingImage: React.FC<{ src: string; alt: string; className: string; de
 
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
+  const targetRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [scrollRange, setScrollRange] = useState(0);
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const cardWidth = clientWidth * (window.innerWidth < 768 ? 0.8 : 0.3);
-      const scrollTo = direction === 'left' ? scrollLeft - cardWidth : scrollLeft + cardWidth;
-      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
-  };
+  useEffect(() => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+
+    // Use ResizeObserver for sub-pixel accuracy that reacts immediately to images/fonts loading
+    const updateRange = () => {
+      setScrollRange(el.scrollWidth - window.innerWidth);
+    };
+
+    const observer = new ResizeObserver(updateRange);
+    observer.observe(el);
+    window.addEventListener("resize", updateRange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateRange);
+    };
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    // "start start" means when the top of targetRef hits the top of viewport.
+    // "end end" means when the bottom of targetRef hits the bottom of viewport.
+    offset: ["start start", "end end"]
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollRange]);
 
   const paddingLeftBase = "max(1.5rem, calc((100vw - 1600px) / 2 + 1.5rem))";
   const paddingLeftLg = "max(3rem, calc((100vw - 1600px) / 2 + 3rem))";
@@ -65,7 +87,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col bg-[#fffbf9]">
       {/* Hero Section */}
-      <section className="relative h-[90vh] md:h-screen flex items-center overflow-hidden bg-slate-900">
+      <section className="relative min-h-[85vh] md:min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -91,16 +113,16 @@ const Home: React.FC = () => {
             <p className="font-sans text-white/90 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-2xl">
               {t('home.hero.desc')}
             </p>
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <Link
                 to="/tours"
-                className="bg-[#da6927] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-[48px] bg-[#da6927] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[12px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.exploreBtn')}
               </Link>
               <Link
                 to="/algarve"
-                className="bg-white/10 backdrop-blur-md border border-white/30 text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[12px] hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.regionBtn')}
               </Link>
@@ -109,58 +131,45 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section id="experiences" className="relative py-24 md:py-32 bg-[#fffbf9] overflow-x-hidden">
-        {/* Background Blobs */}
-        <AnimatedBlob
-          className="top-[10%] -right-24"
-          opacity={0.28}
-          size="w-[600px] h-[600px]"
-          blur="140px"
-          blendMode="normal"
-        />
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-16 md:mb-20 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-10">
+      <div className="bg-[#fffbf9] pt-8 md:pt-12 pb-16 md:pb-24">
+        {/* Title Section (Scrolls naturally) */}
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
+          <div className="flex flex-col md:flex-row justify-between items-end gap-4 md:gap-10">
             <div className="max-w-2xl">
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('home.featured.eyebrow')}</span>
-              <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight mb-6 uppercase">
+              <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-4 block">{t('home.featured.eyebrow')}</span>
+              <h2 className="text-2xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-4 uppercase">
                 {t('home.featured.title')}
               </h2>
-              <p className="text-brand-body/80 text-lg md:text-xl font-light leading-relaxed">
+              <p className="text-brand-body/80 text-sm md:text-xl font-light leading-relaxed hidden md:block">
                 {t('home.featured.desc')}
               </p>
             </div>
-            <div className="flex space-x-3 pb-2">
-              <button
-                onClick={() => scroll('left')}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-                aria-label="Scroll left"
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-                aria-label="Scroll right"
-              >
-                <ChevronRight size={20} />
-              </button>
+            {/* Optional: Add an indicator to show scroll direction */}
+            <div className="hidden md:flex flex-col items-center justify-center opacity-60">
+              <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-body mb-2">Scroll</span>
+              <div className="w-[1px] h-12 bg-gradient-to-b from-[#da6927] to-transparent"></div>
             </div>
           </div>
         </div>
 
-        {/* Outer wrapper handles horizontal scroll only — inner flex row has padding for shadow room */}
-        <div
-          ref={scrollContainerRef}
-          className="overflow-visible overflow-x-auto no-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing py-16 -my-16"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            scrollPaddingLeft: `var(--container-pl, ${paddingLeftBase})`
-          }}
-        >
-          <div
-            className="flex gap-8 after:content-[''] after:w-[1px] after:shrink-0"
+        {/* Cinematic Horizontal Scroll Section */}
+        <section id="experiences" ref={targetRef} className="relative h-[400vh] bg-[#fffbf9]">
+          <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden">
+            {/* Background Blobs (Now centered for the cards) */}
+            <AnimatedBlob
+              className="top-1/2 -translate-y-1/2 -right-24"
+              opacity={0.28}
+              size="w-[600px] h-[600px]"
+              blur="140px"
+              blendMode="normal"
+            />
+
+          {/* Premium Scroll-Driven Motion Div */}
+          <motion.div
+            ref={scrollContainerRef}
+            className="flex gap-4 md:gap-8 items-stretch w-max pb-12 pt-4 md:pb-16 md:pt-8"
             style={{
+              x,
               paddingLeft: `var(--container-pl, ${paddingLeftBase})`,
               paddingRight: `calc(var(--container-pl, ${paddingLeftBase}) - 2rem)`,
             }}
@@ -173,12 +182,12 @@ const Home: React.FC = () => {
             `}</style>
 
             {TOURS.map((tour) => (
-              <div key={tour.id} className="flex-none w-[80vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw] snap-start group">
+              <div key={tour.id} className="flex-none w-[75vw] sm:w-[50vw] md:w-[40vw] lg:w-[35vw] xl:w-[28vw] group h-[50svh] md:h-[70svh] min-h-[450px] max-h-[650px] flex flex-col">
                 <Link
                   to={`/tours/${tour.slug}`}
-                  className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full"
+                  className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full flex flex-col overflow-hidden"
                 >
-                  <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl">
+                  <div className="h-[45%] md:h-[55%] w-full relative overflow-hidden shrink-0 bg-slate-100">
                     <img
                       src={tour.image}
                       alt={language === 'pt' ? tour.title_pt : tour.title}
@@ -190,19 +199,19 @@ const Home: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="p-8">
-                    <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4 block">
+                  <div className="p-5 md:p-8 flex flex-col flex-grow">
+                    <span className="text-[#da6927] text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-2 md:mb-4 block">
                       {language === 'pt' ? tour.duration_pt : tour.duration}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-brand-navy">
-                      {language === 'pt' ? tour.title_pt : tour.title}
+                    <h3 className="text-lg md:text-2xl font-bold text-brand-navy mb-3 md:mb-6 line-clamp-2">
+                       {language === 'pt' ? tour.title_pt : tour.title}
                     </h3>
-                    <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+                    <div className="mt-auto flex items-center justify-between pt-4 md:pt-6 border-t border-slate-100">
                       <div className="flex flex-col">
-                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-1">
+                        <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5 md:mb-1">
                           {language === 'pt' ? 'A partir de' : 'Starting from'}
                         </span>
-                        <span className="text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
+                        <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
                           €{tour.price}
                         </span>
                       </div>
@@ -215,12 +224,13 @@ const Home: React.FC = () => {
                 </Link>
               </div>
             ))}
+          </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Transfers Section */}
-      <section className="py-24 md:py-32 bg-[#0d4357] relative overflow-hidden">
+      <section className="py-16 md:py-24 lg:py-32 bg-[#0d4357] relative overflow-hidden">
         {/* Background Glowing Blobs */}
         <AnimatedBlob 
           className="-top-24 -right-24" 
@@ -252,13 +262,14 @@ const Home: React.FC = () => {
                 {t('home.transfers.desc')}
               </p>
 
-              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white p-4">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white p-3 md:p-4">
                 <iframe
                   src={`https://transfersgo.pt/app/?org=nunoess&mode=widget&lang=${language === 'pt' ? 'pt' : 'en'}`}
                   width="100%"
-                  height="225"
+                  height="240"
                   frameBorder="0"
-                  style={{ border: 0, width: '100%', height: '225px', borderRadius: '12px', overflow: 'hidden' }}
+                  className="w-full rounded-lg"
+                  style={{ border: 0, minHeight: '240px', maxHeight: '280px' }}
                   title="TransfersGo Booking"
                 ></iframe>
               </div>
@@ -287,7 +298,7 @@ const Home: React.FC = () => {
           blur="160px"
           blendMode="normal"
         />
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-24 md:py-32 lg:py-64 border-t border-slate-50 flex items-center justify-center">
+        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-16 md:py-24 lg:py-32 border-t border-slate-50 flex items-center justify-center">
           <div className="relative w-full max-w-lg aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
             {/* Base Image - Bottom Right focus */}
             <ParallaxCard
@@ -323,40 +334,40 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full lg:w-1/2 lg:h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent">
+        <div className="w-full lg:w-1/2 lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent py-16 md:py-24 lg:py-0">
           <div className="max-w-2xl px-6 lg:pl-24 lg:pr-10">
-            <div className="inline-flex items-center mb-8">
+            <div className="inline-flex items-center mb-6">
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('home.about.eyebrow')}</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy leading-[1.1] tracking-tight mb-10 uppercase">
+            <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy leading-[1.1] tracking-tight mb-8 uppercase">
               {t('home.about.title')}
             </h2>
-            <div className="text-brand-body/90 text-lg md:text-xl font-light leading-relaxed mb-12">
+            <div className="text-brand-body/90 text-base md:text-lg font-light leading-relaxed mb-10">
               {t('home.about.p1')}<br /><br />
               {t('home.about.p2')}<br /><br />
               {t('home.about.p3')}
             </div>
 
-
-
-            <Link
-              to="/about"
-              className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-[#da6927] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-            >
-              <span>{t('home.about.philosophy')}</span>
-              <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-            </Link>
+            <div>
+              <Link
+                to="/about"
+                className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[12px] hover:bg-[#da6927] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+              >
+                <span>{t('home.about.philosophy')}</span>
+                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 md:py-40 bg-[#fffbf9]">
+      <section className="py-16 md:py-24 lg:py-32 bg-[#fffbf9]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 mb-24">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 md:gap-12 mb-12 md:mb-20">
             <div className="max-w-2xl">
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('home.testimonials.eyebrow')}</span>
-              <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight mb-6 uppercase">
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">{t('home.testimonials.eyebrow')}</span>
+              <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
                 {t('home.testimonials.title')}
               </h2>
             </div>
@@ -381,17 +392,55 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {/* Mobile: Stacking Cards Effect / Desktop: Grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
             {t('home.testimonials.items').map((testimonial: any, i: number) => (
-              <div key={i} className="bg-white p-10 md:p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all duration-500 flex flex-col h-full group">
-                <div className="flex items-center space-x-1 mb-8">
+              <div key={i} className="bg-white p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl border border-slate-50 hover:shadow-xl transition-all duration-500 flex flex-col h-full group">
+                <div className="flex items-center space-x-1 mb-4 md:mb-6">
                   {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-2.5 h-2.5 rounded-full bg-[#00af87] group-hover:scale-110 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}></div>
+                    <div key={i} className="w-2 md:w-2.5 h-2 md:h-2.5 rounded-full bg-[#00af87] group-hover:scale-110 transition-transform duration-300" style={{ transitionDelay: `${i * 50}ms` }}></div>
                   ))}
                 </div>
-                <h3 className="text-xl font-bold text-brand-navy mb-6 uppercase tracking-tight leading-tight">{testimonial.title}</h3>
-                <p className="text-brand-body/90 font-light leading-relaxed mb-10 flex-grow italic">"{testimonial.content}"</p>
-                <div className="mt-auto pt-8 border-t border-slate-100 flex justify-between items-end">
+                <h3 className="text-lg md:text-xl font-bold text-brand-navy mb-4 md:mb-6 uppercase tracking-tight leading-tight">{testimonial.title}</h3>
+                <p className="text-sm md:text-base text-brand-body/90 font-light leading-relaxed mb-6 md:mb-8 flex-grow italic">"{testimonial.content}"</p>
+                <div className="mt-auto pt-4 md:pt-6 border-t border-slate-100 flex justify-between items-end">
+                  <div className="max-w-[60%]">
+                    <p className="text-brand-navy font-bold text-[11px] uppercase tracking-widest truncate">{testimonial.name}</p>
+                    {testimonial.location && (
+                      <p className="text-brand-body/30 text-[9px] font-bold uppercase tracking-[0.2em] mt-1 truncate">{testimonial.location}</p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <p className="text-brand-body/80 text-[9px] font-bold uppercase tracking-[0.2em]">{testimonial.date}</p>
+                    {testimonial.type && (
+                      <p className="text-[#da6927] text-[9px] font-bold uppercase tracking-[0.2em] mt-1">{testimonial.type}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Only: Stacking Cards with Sticky Effect */}
+          <div className="md:hidden relative">
+            {t('home.testimonials.items').map((testimonial: any, i: number) => (
+              <div
+                key={i}
+                className="sticky bg-white p-6 rounded-2xl border border-slate-50 flex flex-col mb-4"
+                style={{
+                  top: `${80 + i * 15}px`,
+                  zIndex: 50 - i,
+                  boxShadow: `0 ${10 + i * 5}px ${25 + i * 10}px -5px rgba(0,0,0,${0.1 + i * 0.05})`
+                }}
+              >
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-2 h-2 rounded-full bg-[#00af87]"></div>
+                  ))}
+                </div>
+                <h3 className="text-lg font-bold text-brand-navy mb-4 uppercase tracking-tight leading-tight">{testimonial.title}</h3>
+                <p className="text-sm text-brand-body/90 font-light leading-relaxed mb-6 flex-grow italic">"{testimonial.content}"</p>
+                <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-end">
                   <div className="max-w-[60%]">
                     <p className="text-brand-navy font-bold text-[11px] uppercase tracking-widest truncate">{testimonial.name}</p>
                     {testimonial.location && (

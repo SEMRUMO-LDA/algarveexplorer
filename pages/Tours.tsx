@@ -1,9 +1,8 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { TOURS } from '../constants';
-import { ChevronRight, ArrowRight, Compass, Plus } from 'lucide-react';
+import { ChevronRight, Plus } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
-import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
 import PageTransition from '../components/PageTransition';
 import { motion } from 'framer-motion';
@@ -38,7 +37,7 @@ const Tours: React.FC = () => {
     <PageTransition>
       <div className="bg-[#fffbf9] min-h-screen">
       {/* Cinematic Hero — matching site-wide editorial header style (identical to TourDetail) */}
-      <section className="relative h-[100svh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-white group z-0">
+      <section className="relative h-[90vh] md:h-screen min-h-[600px] flex flex-col justify-end overflow-hidden bg-white group z-0">
         <div className="absolute inset-0 pointer-events-none">
           <video
             autoPlay
@@ -57,7 +56,7 @@ const Tours: React.FC = () => {
 
         {/* Content */}
         <motion.div
-           className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-16 md:pb-24"
+           className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-20 md:pb-24"
            initial={{ opacity: 0, y: 30 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}

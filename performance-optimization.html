@@ -1,0 +1,81 @@
+<!-- ADD THIS TO YOUR index.html <head> SECTION -->
+
+<!-- Preconnect to external domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://transfersgo.pt">
+
+<!-- DNS Prefetch for third-party resources -->
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+<!-- Preload critical resources -->
+<link rel="preload" href="/image/algarvexplorer-logo-branco.png" as="image">
+<link rel="preload" href="/image/algarvexplorer-logo-azul.png" as="image">
+<link rel="preload" href="/fonts/montserrat-bold.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Critical CSS inline -->
+<style>
+  /* Critical CSS - Above the fold styles */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #fffbf9;
+    color: #0d4357;
+    line-height: 1.6;
+  }
+  .loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Navbar critical styles */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    background: white;
+    padding: 1rem;
+    transition: all 0.3s;
+  }
+
+  /* Hero critical styles */
+  .hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #0d4357;
+  }
+
+  /* Font-display swap for faster text rendering */
+  @font-face {
+    font-family: 'Montserrat';
+    font-display: swap;
+    src: local('Montserrat'), url('/fonts/montserrat.woff2') format('woff2');
+  }
+</style>
+
+<!-- Defer non-critical CSS -->
+<link rel="preload" href="/css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/main.css"></noscript>
+
+<!-- Resource hints for next page navigation -->
+<link rel="prefetch" href="/tours">
+<link rel="prefetch" href="/transfers">
+
+<!-- Optimize video loading -->
+<script>
+  // Lazy load hero video on fast connections only
+  if ('connection' in navigator && navigator.connection.effectiveType === '4g') {
+    const video = document.querySelector('video');
+    if (video) {
+      video.setAttribute('preload', 'auto');
+    }
+  }
+</script>

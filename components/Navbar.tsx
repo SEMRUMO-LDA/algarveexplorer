@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
 
   const textColor = (isTransparent || isOpen) ? 'text-white' : 'text-[#0d4357]';
   const navBg = isTransparent ? 'bg-transparent' : 'bg-white shadow-sm';
-  const padding = scrolled ? 'py-4' : 'py-6 md:py-8';
+  const padding = scrolled ? 'py-3 md:py-4' : 'py-4 md:py-6';
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${navBg} ${padding}`}>
@@ -36,14 +36,15 @@ const Navbar: React.FC = () => {
           <div className="flex items-center flex-1">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`flex items-center space-x-3 group focus:outline-none rounded transition-colors duration-300 ${isOpen ? 'text-white' : textColor}`}
+              className={`flex items-center space-x-3 group focus:outline-none rounded-lg p-2 -ml-2 transition-colors duration-300 ${isOpen ? 'text-white' : textColor}`}
+              aria-label="Menu"
             >
-              <div className="flex flex-col space-y-1.5 w-6">
-                <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                <span className={`block h-0.5 w-full bg-current duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-                <span className={`block h-0.5 w-full bg-current transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              <div className="flex flex-col space-y-1.5 w-6 h-6 justify-center">
+                <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'w-full rotate-45 translate-y-2' : 'w-full'}`}></span>
+                <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0 w-full' : 'w-4'}`}></span>
+                <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'w-full -rotate-45 -translate-y-2' : 'w-5'}`}></span>
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] hidden md:block">{t('nav.menu')}</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] hidden sm:block">{t('nav.menu')}</span>
             </button>
           </div>
 
@@ -53,24 +54,26 @@ const Navbar: React.FC = () => {
               <img
                 src={isTransparent || isOpen ? "/image/algarvexplorer-logo-branco.png" : "/image/algarvexplorer-logo-azul.png"}
                 alt="Algarve Explorer Logo"
-                className={`h-7 sm:h-10 md:h-12 w-auto transition-all duration-300 ${isTransparent || isOpen ? 'drop-shadow-lg' : ''}`}
+                className={`h-10 sm:h-11 md:h-12 w-auto transition-all duration-300 ${isTransparent || isOpen ? 'drop-shadow-lg' : ''}`}
               />
             </Link>
           </div>
 
           {/* Right: Lang Toggle & Contact */}
           <div className="flex items-center justify-end flex-1 space-x-2 sm:space-x-4 md:space-x-8">
-            <div className={`flex items-center text-[10px] font-bold uppercase tracking-widest ${textColor} transition-colors duration-300`}>
+            <div className={`flex items-center text-[12px] font-bold uppercase tracking-wider ${textColor} transition-colors duration-300`}>
               <button
                 onClick={() => setLanguage('pt')}
-                className={`px-1 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
+                className={`px-3 py-2 -mx-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded-lg ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
+                aria-label="Português"
               >
                 PT
               </button>
-              <span className="opacity-20 px-0.5">|</span>
+              <span className="opacity-20">|</span>
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-1 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded ${language === 'en' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
+                className={`px-3 py-2 -mx-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded-lg ${language === 'en' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
+                aria-label="English"
               >
                 EN
               </button>
@@ -78,7 +81,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/contacts"
-              className={`hidden sm:inline-flex items-center justify-center text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
+              className={`hidden sm:inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-[0.2em] px-6 sm:px-8 py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
                 ? 'bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-[#0d4357]'
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}

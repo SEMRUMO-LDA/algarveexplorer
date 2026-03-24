@@ -11,7 +11,7 @@ const Transfers: React.FC = () => {
   return (
     <div className="bg-[#fffbf9] min-h-screen">
       {/* Unified Hero Section */}
-      <section className="relative pt-48 pb-24 md:pt-64 md:pb-32 overflow-hidden bg-white">
+      <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
           <video
             autoPlay
@@ -38,7 +38,7 @@ const Transfers: React.FC = () => {
             <Plus size={16} />
             <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('transfers.hero.eyebrow')}</span>
           </div>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             {t('transfers.hero.title')}
           </h1>
           <p className="text-white max-w-2xl text-lg md:text-xl font-light leading-relaxed">

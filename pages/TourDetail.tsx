@@ -108,7 +108,7 @@ const TourDetail: React.FC = () => {
     <PageTransition>
       <div className="bg-[#fffbf9] min-h-screen">
       {/* Cinematic Hero — matching site-wide editorial header style */}
-      <section className="relative h-[100svh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-white group">
+      <section className="relative h-[90vh] md:h-screen min-h-[600px] flex flex-col justify-end overflow-hidden bg-white group">
         {/* Background image — Revitalized with full color and scrim */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <ParallaxImage
@@ -215,8 +215,8 @@ const TourDetail: React.FC = () => {
 
               {/* Highlights Slider */}
               <div className="pt-12">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-10">
-                  <div>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 md:gap-10">
+                  <div className="w-full md:w-auto text-center md:text-left">
                     <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
                       {language === 'pt' ? 'Diário Visual' : 'Visual Diary'}
                     </span>
@@ -224,17 +224,17 @@ const TourDetail: React.FC = () => {
                       {t('tourDetail.highlights')}
                     </h3>
                   </div>
-                  <div className="flex space-x-3 pb-2">
+                  <div className="flex gap-3 pb-2 justify-center md:justify-start">
                     <button
                       onClick={() => scrollSlider('left')}
-                      className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                      className="min-w-[48px] min-h-[48px] md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                       aria-label="Scroll highlights left"
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
                       onClick={() => scrollSlider('right')}
-                      className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                      className="min-w-[48px] min-h-[48px] md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                       aria-label="Scroll highlights right"
                     >
                       <ChevronRight size={20} />
