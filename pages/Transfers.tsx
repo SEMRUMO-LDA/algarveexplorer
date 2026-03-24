@@ -11,13 +11,21 @@ const Transfers: React.FC = () => {
   return (
     <div className="bg-[#fffbf9] min-h-screen">
       {/* Unified Hero Section */}
-      <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
-          <img
-            src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1920"
+      <section className="relative pt-48 pb-24 md:pt-64 md:pb-32 overflow-hidden bg-white">
+        <div className="absolute inset-0 pointer-events-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
             className="w-full h-full object-cover"
-            alt="Professional shuttle van driving through scenic Algarve landscape"
-          />
+            poster="/image/transfer.jpg"
+          >
+            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
+          </video>
+          {/* Scrim Overlay - Editorial Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
@@ -51,28 +59,28 @@ const Transfers: React.FC = () => {
                       <Truck size={20} />
                       <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{language === 'pt' ? 'ROTA REGULAR' : 'REGULAR ROUTE'}</span>
                     </div>
-                    <h3 className="text-3xl md:text-4xl font-bold font-montserrat text-[#0d4357] tracking-tight group-hover:text-[#da6927] transition-colors whitespace-pre-line">
+                    <h3 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight group-hover:text-[#da6927] transition-colors whitespace-pre-line">
                       {(language === 'pt' ? service.route_pt : service.route).replace(language === 'pt' ? ' para ' : ' to ', language === 'pt' ? '\nPara ' : '\nTo ')}
                     </h3>
                   </div>
                   <div className="text-right">
-                    <span className="text-4xl font-bold font-montserrat text-[#0d4357] tracking-tighter">€{service.price}</span>
-                    <span className="block text-[10px] font-bold uppercase tracking-widest text-[#0d4357]/40 mt-1">{language === 'pt' ? 'A partir de' : 'Starting from'}</span>
+                    <span className="text-4xl font-bold font-montserrat text-brand-navy tracking-tighter">€{service.price}</span>
+                    <span className="block text-[10px] font-bold uppercase tracking-widest text-brand-navy/40 mt-1">{language === 'pt' ? 'A partir de' : 'Starting from'}</span>
                   </div>
                 </div>
 
-                <p className="text-[#0d4357]/60 text-lg font-light leading-relaxed mb-12 max-w-md">
+                <p className="text-brand-navy/60 text-lg font-light leading-relaxed mb-12 max-w-md">
                   {language === 'pt' ? service.description_pt : service.description}
                 </p>
 
                 <div className="flex flex-wrap gap-8 mb-16">
                   <div className="flex items-center space-x-3">
                     <Users size={18} className="text-[#da6927]" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#0d4357]">{language === 'pt' ? service.capacity_pt : service.capacity}</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-brand-navy">{language === 'pt' ? service.capacity_pt : service.capacity}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Luggage size={18} className="text-[#da6927]" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#0d4357]">{language === 'pt' ? 'Espaço p/ Equipamento' : 'Equipment Storage'}</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-brand-navy">{language === 'pt' ? 'Espaço p/ Equipamento' : 'Equipment Storage'}</span>
                   </div>
                 </div>
 
@@ -113,7 +121,7 @@ const Transfers: React.FC = () => {
               <div className="flex justify-start lg:justify-end">
                 <Link
                   to="/contacts"
-                  className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                  className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-brand-body transition-all duration-300 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                 >
                   {language === 'pt' ? 'PEDIR ORÇAMENTO' : 'REQUEST A QUOTE'}
                 </Link>

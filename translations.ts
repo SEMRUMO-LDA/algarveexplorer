@@ -14,7 +14,7 @@ export const TRANSLATIONS: any = {
     home: {
       hero: {
         eyebrow: 'ALGARVE EXPLORER TOURS',
-        title: 'Discover the Algarve that few know',
+        title: "Discover the Algarve\nthat few know",
         desc: 'Trails, tastings, horseback riding, transfers, all designed for an authentic experience in Southern Portugal.',
         exploreBtn: 'Explore Adventures',
         regionBtn: 'The Algarve'
@@ -250,7 +250,7 @@ export const TRANSLATIONS: any = {
     home: {
       hero: {
         eyebrow: 'ALGARVE EXPLORER TOURS',
-        title: 'Descubra o Algarve que poucos conhecem',
+        title: "Descubra o Algarve\nque poucos conhecem",
         desc: 'Trilhos, degustações, passeios a cavalo, transfers, tudo pensado para uma experiência autêntica no Sul de Portugal.',
         exploreBtn: 'Explorar aventuras',
         regionBtn: 'O Algarve'

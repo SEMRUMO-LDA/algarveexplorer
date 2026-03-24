@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Compass, Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
+import AnimatedBlob from '../components/AnimatedBlob';
 
 const About: React.FC = () => {
   const { t } = useLanguage();
@@ -36,13 +37,21 @@ const About: React.FC = () => {
   return (
     <div className="bg-[#fffbf9] min-h-screen">
       {/* Editorial Dark Header - Matching Transfers Page */}
-      <section className="bg-[#0d4357] pt-48 pb-24 md:pt-64 md:pb-32 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 grayscale-[0.5] pointer-events-none">
-          <img
-            src="/image/about-us-toppage.jpg"
+      <section className="relative pt-48 pb-24 md:pt-64 md:pb-32 overflow-hidden bg-white">
+        <div className="absolute inset-0 pointer-events-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
             className="w-full h-full object-cover"
-            alt="Scenic mountain landscape in the Algarve region"
-          />
+            poster="/image/about-us-toppage.jpg"
+          >
+            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
+          </video>
+          {/* Scrim Overlay - Editorial Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
@@ -75,10 +84,10 @@ const About: React.FC = () => {
                 <div className="flex items-center mb-10">
                   <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('about.story.eyebrow')}</span>
                 </div>
-                <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight leading-[1.1] uppercase">
+                <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight leading-[1.1] uppercase">
                   {t('about.story.title')}
                 </h2>
-                <div className="space-y-8 text-[#0d4357]/60 text-lg md:text-xl font-light leading-relaxed">
+                <div className="space-y-8 text-brand-body/90 text-lg md:text-xl font-light leading-relaxed">
                   <p>{t('about.story.p1')}</p>
                   <p>{t('about.story.p2')}</p>
                 </div>
@@ -127,13 +136,20 @@ const About: React.FC = () => {
       </section>
 
       {/* Values Grid */}
-      <section className="py-32 md:py-48 bg-[#fffbf9] border-t border-slate-100">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <section className="relative py-32 md:py-48 bg-[#fffbf9] border-t border-slate-100 overflow-hidden">
+        <AnimatedBlob 
+          className="bottom-0 -right-24" 
+          color="bg-[#da6927]" 
+          opacity={0.25} 
+          size="w-[500px] h-[500px]"
+          duration="40s"
+        />
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
             <div className="pr-0 lg:pr-12">
               <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('about.values.eyebrow')}</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat text-[#0d4357] mb-8 tracking-tight uppercase leading-none">{t('about.values.title')}</h2>
-              <div className="space-y-6 text-[#0d4357]/60 text-lg font-light leading-relaxed mb-16">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">{t('about.values.title')}</h2>
+              <div className="space-y-6 text-brand-body/90 text-lg font-light leading-relaxed mb-16">
                 <p>{t('about.values.p1')}</p>
                 <p>{t('about.values.p2')}</p>
               </div>
@@ -141,10 +157,10 @@ const About: React.FC = () => {
               <div className="flex items-center space-x-6 lg:space-x-8">
                 <div className="flex space-x-3">
                   <button onClick={() => scrollSlider('left')} className="group w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#0d4357]/20 flex items-center justify-center hover:bg-[#0d4357] hover:border-[#0d4357] outline-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                    <ArrowLeft size={20} strokeWidth={1.5} className="text-[#0d4357] group-hover:text-white group-hover:-translate-x-1 transition-all duration-500" />
+                    <ArrowLeft size={20} strokeWidth={1.5} className="text-brand-navy group-hover:text-white group-hover:-translate-x-1 transition-all duration-500" />
                   </button>
                   <button onClick={() => scrollSlider('right')} className="group w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#0d4357]/20 flex items-center justify-center hover:bg-[#da6927] hover:border-[#da6927] outline-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                    <ArrowRight size={20} strokeWidth={1.5} className="text-[#0d4357] group-hover:text-white group-hover:translate-x-1 transition-all duration-500" />
+                    <ArrowRight size={20} strokeWidth={1.5} className="text-brand-navy group-hover:text-white group-hover:translate-x-1 transition-all duration-500" />
                   </button>
                 </div>
                 
@@ -152,8 +168,8 @@ const About: React.FC = () => {
                   <div className="absolute top-0 left-0 h-full bg-[#da6927] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full" style={{ width: `${((activeSlide + 1) / slides.length) * 100}%` }} />
                 </div>
                 
-                <div className="text-sm font-bold tracking-widest text-[#0d4357] font-montserrat w-16 text-right">
-                  0{activeSlide + 1} <span className="text-[#0d4357]/30">/ 0{slides.length}</span>
+                <div className="text-sm font-bold tracking-widest text-brand-navy font-montserrat w-16 text-right">
+                  0{activeSlide + 1} <span className="text-brand-body/30">/ 0{slides.length}</span>
                 </div>
               </div>
             </div>
@@ -178,8 +194,8 @@ const About: React.FC = () => {
                       {val.icon}
                     </div>
                     <div>
-                      <h3 className={`text-2xl font-bold font-montserrat mb-4 uppercase tracking-tight transition-colors duration-700 ${isActive ? 'text-white' : 'text-[#0d4357]'}`}>{val.title}</h3>
-                      <p className={`text-sm leading-relaxed font-light transition-colors duration-700 ${isActive ? 'text-white/70' : 'text-[#0d4357]/60'}`}>{val.desc}</p>
+                      <h3 className={`text-2xl font-bold font-montserrat mb-4 uppercase tracking-tight transition-colors duration-700 ${isActive ? 'text-brand-body' : 'text-brand-navy'}`}>{val.title}</h3>
+                      <p className={`text-sm leading-relaxed font-light transition-colors duration-700 ${isActive ? 'text-white/70' : 'text-brand-body/90'}`}>{val.desc}</p>
                     </div>
                   </div>
                   );

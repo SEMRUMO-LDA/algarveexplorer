@@ -3,6 +3,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import AnimatedBlob from './AnimatedBlob';
+import MagneticButton from './MagneticButton';
 
 const FooterCTA: React.FC = () => {
     const { t } = useLanguage();
@@ -10,6 +12,21 @@ const FooterCTA: React.FC = () => {
 
     return (
         <section className="py-24 md:py-40 bg-[#0d4357] text-white relative overflow-hidden">
+            {/* Background Animated Blobs */}
+            <AnimatedBlob 
+                className="-top-24 -left-24" 
+                opacity={0.3} 
+                size="w-[600px] h-[600px]"
+                blendMode="screen"
+            />
+            <AnimatedBlob 
+                className="-bottom-24 -right-24" 
+                opacity={0.2} 
+                size="w-[500px] h-[500px]"
+                duration="40s"
+                blendMode="color-dodge"
+            />
+            
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <img
@@ -31,20 +48,26 @@ const FooterCTA: React.FC = () => {
                     {t('home.cta.p2')}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-6">
-                    <Link
-                        to="/tours"
+                    <MagneticButton
+                        as="a"
+                        href="#/tours"
+                        magneticType="orange"
+                        strength={0.4}
                         className="inline-flex items-center justify-center space-x-4 bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                         <span>{t('home.cta.browse')}</span>
                         <ArrowRight size={16} />
-                    </Link>
+                    </MagneticButton>
                     {location.pathname !== '/contacts' && (
-                        <Link
-                            to="/contacts"
+                        <MagneticButton
+                            as="a"
+                            href="#/contacts"
+                            magneticType="light"
+                            strength={0.3}
                             className="inline-flex items-center justify-center bg-transparent border border-white/20 text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                         >
                             {t('home.cta.contact')}
-                        </Link>
+                        </MagneticButton>
                     )}
                 </div>
             </div>

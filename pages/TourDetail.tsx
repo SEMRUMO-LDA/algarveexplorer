@@ -1,8 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
+import PageTransition from '../components/PageTransition';
+import ParallaxImage from '../components/ParallaxImage';
+import MagneticButton from '../components/MagneticButton';
+import { motion } from 'framer-motion';
+import { useSharedImage } from '../components/SharedImageTransition';
 import {
   MapPin, Clock,
   Download, ArrowRight, Check,
@@ -15,11 +20,22 @@ const TourDetail: React.FC = () => {
   const { t, language } = useLanguage();
   const tour = TOURS.find(t => t.slug === slug);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const { completeTransition, transitionState } = useSharedImage();
+
+  useEffect(() => {
+    // Complete the transition when component mounts
+    if (transitionState.isTransitioning) {
+      const timer = setTimeout(() => {
+        completeTransition();
+      }, 1200); // Match animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [transitionState.isTransitioning, completeTransition]);
 
   if (!tour) {
     return (
       <div className="pt-32 px-6 text-center min-h-screen bg-[#fffbf9] flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold font-montserrat text-[#0d4357] mb-6 uppercase tracking-tight">
+        <h1 className="text-4xl font-bold font-montserrat text-brand-navy mb-6 uppercase tracking-tight">
           {language === 'pt' ? 'Experiência Não Encontrada' : 'Experience Not Found'}
         </h1>
         <Link
@@ -51,45 +67,99 @@ const TourDetail: React.FC = () => {
   const displayDesc = language === 'pt' ? tour.description_pt : tour.description;
   const displayAgeRange = language === 'pt' ? tour.ageRange_pt : tour.ageRange;
 
+  // Stagger animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (delay = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    })
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const staggerItem = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.25, 0.1, 0.25, 1]
+      }
+    }
+  };
+
   return (
-    <div className="bg-[#fffbf9] min-h-screen">
+    <PageTransition>
+      <div className="bg-[#fffbf9] min-h-screen">
       {/* Cinematic Hero — matching site-wide editorial header style */}
-      <section className="relative h-[75vh] flex flex-col justify-end overflow-hidden bg-[#0d4357] group">
-        {/* Background image — same treatment as Tours, Algarve, About headers */}
-        <div className="absolute inset-0 z-0 opacity-30 grayscale-[0.3] pointer-events-none">
-          <img
+      <section className="relative h-[75vh] flex flex-col justify-end overflow-hidden bg-white group">
+        {/* Background image — Revitalized with full color and scrim */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <ParallaxImage
             src={tour.heroImage || tour.image}
-            className="w-full h-full object-cover object-right scale-105 group-hover:scale-100 transition-transform duration-[10000ms] ease-out"
             alt={`Breathtaking overview of ${displayTitle}`}
+            scrollStrength={0.2}
+            mouseStrength={0.04}
+            objectPosition="right center"
           />
+          {/* Scrim Overlay - Editorial Gradient for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d4357]/60 via-transparent to-transparent"></div>
         </div>
 
         {/* Content */}
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-16 md:pb-24">
+        <motion.div
+          className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 w-full pb-16 md:pb-24"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Breadcrumb */}
-          <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+          <motion.div
+            className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40"
+            variants={staggerItem}
+          >
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
             <Link to="/tours" className="hover:text-[#da6927] transition-colors">{t('nav.tours')}</Link>
             <span className="text-white/20">/</span>
             <span className="text-white/80 truncate max-w-[200px]">{displayTitle}</span>
-          </div>
+          </motion.div>
 
           {/* Meta pills */}
-          <div className="flex items-center gap-4 mb-6">
+          <motion.div className="flex items-center gap-4 mb-6" variants={staggerItem}>
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#da6927] border border-[#da6927]/40 px-4 py-1.5 rounded-full">
               {displayDuration}
             </span>
             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 border border-white/20 px-4 py-1.5 rounded-full">
               {displayDifficulty}
             </span>
-          </div>
+          </motion.div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.05] tracking-tight uppercase max-w-5xl">
+          <motion.h1
+            className="text-3xl md:text-5xl lg:text-6xl font-bold font-montserrat text-white leading-[1.05] tracking-tight uppercase max-w-5xl"
+            variants={staggerItem}
+          >
             {displayTitle}
-          </h1>
-        </div>
+          </motion.h1>
+        </motion.div>
       </section>
 
 
@@ -104,17 +174,17 @@ const TourDetail: React.FC = () => {
                 <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">
                   {t('tourDetail.experience.eyebrow')}
                 </span>
-                <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] mb-12 tracking-tight leading-tight uppercase">
+                <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight leading-tight uppercase">
                   {displayTitle}
                 </h2>
-                <div className="prose prose-xl text-[#0d4357]/60 font-light leading-relaxed">
+                <div className="prose prose-xl text-brand-body/90 font-light leading-relaxed">
                   {(isAlbufeiraHorseRiding || isSevenValleysTour) ? (
-                    <div className="text-xl md:text-2xl text-[#0d4357]/80 font-normal leading-relaxed space-y-10 whitespace-pre-line">
+                    <div className="text-xl md:text-2xl text-brand-body/90 font-normal leading-relaxed space-y-10 whitespace-pre-line">
                       {displayDesc}
                     </div>
                   ) : (
                     <div className="space-y-10">
-                      <p className="text-2xl text-[#0d4357]/80 font-normal leading-relaxed">
+                      <p className="text-2xl text-brand-body/90 font-normal leading-relaxed">
                         {displayDesc}
                       </p>
                     </div>
@@ -127,10 +197,10 @@ const TourDetail: React.FC = () => {
                       <Info className="text-[#da6927]" size={24} />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-[#0d4357] uppercase tracking-widest mb-2">
+                      <p className="text-xs font-semibold text-brand-body uppercase tracking-widest mb-2">
                         {language === 'pt' ? 'Informação Importante' : 'Important to Note'}
                       </p>
-                      <p className="text-[#0d4357]/60 text-lg font-light leading-relaxed m-0">
+                      <p className="text-brand-body/90 text-lg font-light leading-relaxed m-0">
                         {isDedicatedHorseRiding ? (
                           language === 'pt' ? "Recolha gratuita incluída em Albufeira. Adequado para todos os níveis de experiência. Idades 6-65." : "Complimentary pickup included from Albufeira. Suitable for all experience levels. Ages 6-65."
                         ) : isSevenValleysHikeOnly ? (
@@ -151,21 +221,21 @@ const TourDetail: React.FC = () => {
                     <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
                       {language === 'pt' ? 'Diário Visual' : 'Visual Diary'}
                     </span>
-                    <h3 className="text-3xl md:text-5xl font-bold font-montserrat text-[#0d4357] tracking-tight uppercase">
+                    <h3 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
                       {t('tourDetail.highlights')}
                     </h3>
                   </div>
                   <div className="flex space-x-3 pb-2">
                     <button
                       onClick={() => scrollSlider('left')}
-                      className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-[#0d4357] hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                       aria-label="Scroll highlights left"
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
                       onClick={() => scrollSlider('right')}
-                      className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-[#0d4357] hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                      className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#0d4357]/10 flex items-center justify-center text-brand-body hover:bg-[#da6927] hover:border-[#da6927] hover:text-white transition-all duration-300 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                       aria-label="Scroll highlights right"
                     >
                       <ChevronRight size={20} />
@@ -206,7 +276,7 @@ const TourDetail: React.FC = () => {
 
               {/* Itinerary */}
               <div>
-                <h3 className="text-2xl font-bold font-montserrat text-[#0d4357] mb-16 uppercase tracking-[0.3em]">
+                <h3 className="text-2xl font-bold font-montserrat text-brand-navy mb-16 uppercase tracking-[0.3em]">
                   {language === 'pt' ? 'O Itinerário' : 'The Itinerary'}
                 </h3>
                 <div className="space-y-0 relative border-l border-slate-100 ml-4">
@@ -230,13 +300,13 @@ const TourDetail: React.FC = () => {
                   ]).map((item, i) => (
                     <div key={i} className="pl-12 pb-20 relative last:pb-0 group">
                       <div className="absolute left-[-6px] top-1.5 w-3 h-3 bg-white border-2 border-[#da6927] rounded-full group-hover:scale-125 transition-transform"></div>
-                      <h4 className={`text-2xl font-bold font-montserrat text-[#0d4357] ${item.stopTime ? 'mb-2' : 'mb-4'} tracking-tight uppercase`}>{item.title}</h4>
+                      <h4 className={`text-2xl font-bold font-montserrat text-brand-navy ${item.stopTime ? 'mb-2' : 'mb-4'} tracking-tight uppercase`}>{item.title}</h4>
                       {item.stopTime && (
                         <p className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest mb-4">
                           {language === 'pt' ? 'Paragem:' : 'Stop:'} {item.stopTime}
                         </p>
                       )}
-                      <p className="text-[#0d4357]/50 text-lg font-light leading-relaxed max-w-2xl">{item.desc}</p>
+                      <p className="text-brand-body/50 text-lg font-light leading-relaxed max-w-2xl">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -245,7 +315,7 @@ const TourDetail: React.FC = () => {
               {/* Included / Preparation */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-24 border-t border-slate-100">
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40 mb-10">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-10">
                     {t('tourDetail.inclusions.title')}
                   </h4>
                   <ul className="space-y-5">
@@ -255,7 +325,7 @@ const TourDetail: React.FC = () => {
                       language === 'pt' ? 'Seguro de Aventura' : 'Adventure Insurance',
                       t('tourDetail.inclusions.snack')
                     ].map((item, i) => (
-                      <li key={i} className="flex items-center space-x-4 text-[#0d4357]/70 font-medium">
+                      <li key={i} className="flex items-center space-x-4 text-brand-body/70 font-medium">
                         <span className="flex-shrink-0"><Check className="text-[#da6927]" size={18} /></span>
                         <span className="text-sm uppercase tracking-tight">{item}</span>
                       </li>
@@ -263,10 +333,10 @@ const TourDetail: React.FC = () => {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40 mb-10">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-10">
                     {language === 'pt' ? 'Preparação' : 'Preparation'}
                   </h4>
-                  <p className="text-[#0d4357]/50 text-sm font-light leading-relaxed">
+                  <p className="text-brand-body/50 text-sm font-light leading-relaxed">
                     {language === 'pt' ? "Recomendamos roupa leve e respirável e calçado resistente. A proteção solar é essencial durante todo o ano. Todo o equipamento fornecido é inspecionado antes de cada passeio para sua segurança." : "We recommend light, breathable clothing and sturdy footwear. Sun protection is essential year-round. All gear provided is inspected before every tour for your safety."}
                   </p>
                 </div>
@@ -278,12 +348,12 @@ const TourDetail: React.FC = () => {
               <div className="sticky top-[10%] z-20 transition-all duration-300">
                 <div className="bg-[#fcfcf9] p-10 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden">
                   <div className="mb-14">
-                    <p className="text-[#0d4357]/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
+                    <p className="text-brand-body/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
                       {t('tourDetail.booking')}
                     </p>
                     <div className="flex items-baseline space-x-2">
-                      <span className="text-7xl md:text-8xl font-bold font-montserrat text-[#0d4357] tracking-tighter">€{tour.price}</span>
-                      <span className="text-[#0d4357]/30 text-xs font-bold uppercase tracking-widest">P.P.</span>
+                      <span className="text-7xl md:text-8xl font-bold font-montserrat text-brand-navy tracking-tighter">€{tour.price}</span>
+                      <span className="text-brand-body/30 text-xs font-bold uppercase tracking-widest">P.P.</span>
                     </div>
                   </div>
 
@@ -291,56 +361,62 @@ const TourDetail: React.FC = () => {
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Clock size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{language === 'pt' ? 'DURAÇÃO' : 'DURATION'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{language === 'pt' ? 'DURAÇÃO' : 'DURATION'}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{displayDuration}</span>
+                      <span className="font-bold text-brand-navy font-bold text-xs uppercase tracking-tight">{displayDuration}</span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Mountain size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0d4357]/40">{language === 'pt' ? 'NÍVEL' : 'LEVEL'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-body/80">{language === 'pt' ? 'NÍVEL' : 'LEVEL'}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">
+                      <span className="font-bold text-brand-body text-xs uppercase tracking-tight">
                         {displayDifficulty}
                       </span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Users size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{t('tourDetail.maxSize')}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{t('tourDetail.maxSize')}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">MAX {tour.maxGroupSize || 21} PERSONS</span>
+                      <span className="font-bold text-brand-body text-xs uppercase tracking-tight">MAX {tour.maxGroupSize || 21} PERSONS</span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Calendar size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{t('tourDetail.ageRange')}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{t('tourDetail.ageRange')}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{displayAgeRange || '6-65'}</span>
+                      <span className="font-bold text-brand-body text-xs uppercase tracking-tight">{displayAgeRange || '6-65'}</span>
                     </div>
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <ShieldCheck size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#0d4357]/40">{language === 'pt' ? 'GUIA' : 'GUIDE'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{language === 'pt' ? 'GUIA' : 'GUIDE'}</span>
                       </div>
-                      <span className="font-bold text-[#0d4357] text-xs uppercase tracking-tight">{language === 'pt' ? 'CERTIFICADO' : 'CERTIFIED'}</span>
+                      <span className="font-bold text-brand-body text-xs uppercase tracking-tight">{language === 'pt' ? 'CERTIFICADO' : 'CERTIFIED'}</span>
                     </div>
                   </div>
 
                   <div className="space-y-4">
-                    <Link
-                      to="/contacts"
+                    <MagneticButton
+                      as="a"
+                      href="#/contacts"
+                      magneticType="dark"
+                      strength={0.35}
                       className="flex items-center justify-center space-x-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 shadow-md group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <span>{t('tourDetail.buttons.book')}</span>
                       <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                    <button
-                      className="flex items-center justify-center space-x-3 w-full bg-white text-[#0d4357]/40 py-6 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] border border-slate-100 hover:bg-[#0d4357] hover:text-white transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                    </MagneticButton>
+                    <MagneticButton
+                      as="button"
+                      magneticType="light"
+                      strength={0.25}
+                      className="flex items-center justify-center space-x-3 w-full bg-white text-brand-body/80 py-6 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] border border-slate-100 hover:bg-[#0d4357] hover:text-white transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <Download size={14} />
                       <span>{t('tourDetail.buttons.download')}</span>
-                    </button>
+                    </MagneticButton>
                   </div>
                 </div>
               </div>
@@ -357,11 +433,11 @@ const TourDetail: React.FC = () => {
               <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">
                 {t('tourDetail.recommended.eyebrow')}
               </span>
-              <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-[#0d4357] tracking-tight uppercase">
+              <h2 className="text-4xl md:text-6xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
                 {t('tourDetail.recommended.title')}
               </h2>
             </div>
-            <Link to="/tours" className="text-[#0d4357] font-bold uppercase tracking-widest text-[11px] border-b border-[#0d4357] pb-2 hover:text-[#da6927] hover:border-[#da6927] transition-all">
+            <Link to="/tours" className="text-brand-navy font-bold uppercase tracking-widest text-[11px] border-b border-[#0d4357] pb-2 hover:text-[#da6927] hover:border-[#da6927] transition-all">
               {t('tourDetail.recommended.viewAll')}
             </Link>
           </div>
@@ -379,7 +455,7 @@ const TourDetail: React.FC = () => {
                 <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest block mb-3">
                   {language === 'pt' ? t.duration_pt : t.duration}
                 </span>
-                <h4 className="text-2xl font-bold font-montserrat text-[#0d4357] tracking-tight group-hover:text-[#da6927] transition-colors uppercase">
+                <h4 className="text-2xl font-bold font-montserrat text-brand-navy tracking-tight group-hover:text-[#da6927] transition-colors uppercase">
                   {language === 'pt' ? t.title_pt : t.title}
                 </h4>
               </Link>
@@ -389,7 +465,8 @@ const TourDetail: React.FC = () => {
       </section>
 
       <FooterCTA />
-    </div>
+      </div>
+    </PageTransition>
   );
 };
 

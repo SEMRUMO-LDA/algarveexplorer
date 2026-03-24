@@ -2,19 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preload" as="video" href="/video/algarvexplorer-video-hero.mp4" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algarve Explorer | MTB Tours & Transfers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#da6927',
+                        'brand-navy': '#0d4357',
+                        'brand-body': '#2E3D45',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
     <style>
+      :root {
+        --blob-color-1: rgba(218, 105, 39, 1);
+        --blob-color-2: rgba(255, 180, 100, 0.8);
+        --blob-scale: 1;
+        --blob-opacity-base: 0.35;
+      }
         body {
             font-family: 'Inter', sans-serif;
+            color: #2E3D45;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
         h1, h2, h3, h4, .font-montserrat {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 700; /* Cap default heading weight at bold */
         }
         .bg-glass {
             background: rgba(255, 255, 255, 0.7);
@@ -26,6 +51,28 @@
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        /* Animated Blobs */
+        @keyframes blob-morph {
+            0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+            25% { border-radius: 73% 27% 26% 74% / 67% 29% 71% 33%; }
+            50% { border-radius: 34% 66% 51% 49% / 57% 42% 58% 43%; }
+            75% { border-radius: 67% 33% 47% 53% / 37% 58% 42% 63%; }
+        }
+
+        @keyframes blob-move {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .animate-blob-morph {
+            animation: blob-morph 25s ease-in-out infinite;
+        }
+
+        .animate-blob-move {
+            animation: blob-move 35s ease-in-out infinite;
         }
     </style>
 <script type="importmap">
@@ -42,7 +89,7 @@
 </script>
 
 </head>
-<body class="bg-white text-slate-900">
+<body class="bg-white text-brand-body font-sans">
     <div id="root"></div>
 <script type="module" src="/index.tsx"></script>
 </body>
