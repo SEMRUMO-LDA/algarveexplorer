@@ -216,7 +216,7 @@ export const TRANSLATIONS: any = {
         desc: 'Have questions about a tour? Need a custom transfer? We\'re here to make your Algarve adventure happen.'
       },
       info: {
-        eyebrow: 'OUR BASE CAMP',
+        eyebrow: 'OUR HAVEN',
         location: 'Location',
         base: 'ALGARVE EXPLORER BASE'
       },
@@ -452,7 +452,7 @@ export const TRANSLATIONS: any = {
         desc: 'Tem dúvidas sobre alguma tour? Precisa de transfer por medida? Estamos aqui para tornar a sua aventura no Algarve realidade.'
       },
       info: {
-        eyebrow: 'O NOSSO ACAMPAMENTO BASE',
+        eyebrow: 'O NOSSO RECANTO',
         location: 'Localização',
         base: 'BASE ALGARVE EXPLORER'
       },

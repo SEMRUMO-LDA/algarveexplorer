@@ -6,7 +6,7 @@ import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
 
 const Contacts: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-[#fffbf9]">
@@ -73,7 +73,7 @@ const Contacts: React.FC = () => {
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">WhatsApp / Call</span>
                   </div>
                   <p className="text-2xl font-bold font-montserrat text-[#0d4357] tracking-tight">+351 968 306 031</p>
-                  <span className="text-[9px] text-brand-body/30 italic">(chamada para rede móvel nacional)</span>
+                  <span className="text-[9px] text-brand-body/30 italic">{language === 'pt' ? '(chamada para rede móvel nacional)' : '(call to national mobile network)'}</span>
                 </div>
 
                 {/* Email */}
