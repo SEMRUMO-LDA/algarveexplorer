@@ -1,31 +1,15 @@
 import React, { useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { TOURS } from '../constants';
 import { ChevronRight, ArrowRight, Compass, Plus } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
-import ParallaxImage from '../components/ParallaxImage';
-import { useSharedImage } from '../components/SharedImageTransition';
 import PageTransition from '../components/PageTransition';
 import { motion } from 'framer-motion';
 
 const Tours: React.FC = () => {
   const { t, language } = useLanguage();
-  const { startTransition } = useSharedImage();
-  const navigate = useNavigate();
-
-  const handleTourClick = (e: React.MouseEvent<HTMLAnchorElement>, tour: typeof TOURS[0]) => {
-    e.preventDefault();
-    const imageElement = e.currentTarget.querySelector('img') as HTMLElement;
-    if (imageElement) {
-      startTransition(tour.image, imageElement);
-      // Navigate after a brief delay to let the animation start
-      setTimeout(() => {
-        navigate(`/tours/${tour.slug}`);
-      }, 50);
-    }
-  };
 
   // Stagger animation for tour cards
   const containerVariants = {
@@ -158,7 +142,6 @@ const Tours: React.FC = () => {
               <motion.div key={tour.id} variants={cardVariants}>
                 <Link
                   to={`/tours/${tour.slug}`}
-                  onClick={(e) => handleTourClick(e, tour)}
                   className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full"
                 >
                   <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl">
