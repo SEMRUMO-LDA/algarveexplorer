@@ -242,7 +242,7 @@ const Home: React.FC = () => {
               <h2 className="text-3xl md:text-5xl font-bold font-montserrat text-white tracking-tight mb-8 uppercase leading-tight">
                 {t('home.transfers.title')}
               </h2>
-              <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed mb-12">
+              <p className="text-white text-lg md:text-xl font-light leading-relaxed mb-12">
                 {t('home.transfers.desc')}
               </p>
 
@@ -281,34 +281,47 @@ const Home: React.FC = () => {
           blur="160px"
           blendMode="normal"
         />
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-32 md:py-48 lg:py-64 flex gap-4 lg:gap-8 border-t border-slate-50">
-          <div className="flex-1 space-y-12 lg:space-y-32">
-            <RevealingImage
-              src="/image/about-us-1.jpeg"
-              alt="Hiker overlooking a mountain trail"
-              className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl"
-              delay={0}
-            />
-            <RevealingImage
-              src="/image/about-us-2.jpeg"
-              alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
-              className="aspect-square overflow-hidden rounded-2xl shadow-xl"
-              delay={200}
-            />
-          </div>
-          <div className="flex-1 space-y-12 lg:space-y-32 pt-32 lg:pt-64">
-            <RevealingImage
-              src="/image/about-us-3.jpeg"
-              alt="Charming traditional Portuguese village street"
-              className="aspect-square overflow-hidden rounded-2xl shadow-xl"
-              delay={100}
-            />
-            <RevealingImage
-              src="/image/about-us-4.jpeg"
-              alt="Horseback riding adventure through the Algarve countryside"
-              className="aspect-[3/4] overflow-hidden rounded-2xl shadow-xl"
-              delay={300}
-            />
+        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-24 md:py-32 lg:py-64 border-t border-slate-50 flex items-center justify-center">
+          <div className="relative w-full max-w-lg aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
+            {/* Base Image - Bottom Right focus */}
+            <div className="absolute top-0 right-0 w-[85%] h-[75%] rounded-3xl overflow-hidden shadow-xl z-10">
+              <RevealingImage
+                src="/image/about-us-1.jpeg"
+                alt="Hiker overlooking a mountain trail"
+                className="w-full h-full object-cover"
+                delay={0}
+              />
+            </div>
+            
+            {/* Overlapping Image - Left side stack */}
+            <div className="absolute bottom-4 left-0 w-[65%] h-[55%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-20 transform -rotate-3 hover:rotate-0 transition-transform duration-700 group/img">
+              <RevealingImage
+                src="/image/about-us-2.jpeg"
+                alt="Dramatic coastal cliffs meeting the Atlantic Ocean"
+                className="w-full h-full object-cover"
+                delay={200}
+              />
+            </div>
+
+            {/* Accent Image - Floating right */}
+            <div className="absolute bottom-20 -right-8 w-[45%] h-[40%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white z-30 transform rotate-3 hover:rotate-0 transition-transform duration-700">
+              <RevealingImage
+                src="/image/about-us-3.jpeg"
+                alt="Charming traditional Portuguese village street"
+                className="w-full h-full object-cover"
+                delay={100}
+              />
+            </div>
+
+            {/* Floating Top Image - Offset left */}
+            <div className="hidden md:block absolute top-[15%] left-[8%] w-[35%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-40 transform -rotate-6 hover:rotate-0 transition-transform duration-700 opacity-90">
+              <RevealingImage
+                src="/image/about-us-4.jpeg"
+                alt="Horseback riding adventure through the Algarve countryside"
+                className="w-full h-full object-cover"
+                delay={300}
+              />
+            </div>
           </div>
         </div>
 

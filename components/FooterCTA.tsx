@@ -43,7 +43,7 @@ const FooterCTA: React.FC = () => {
             <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
                 <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-8 block drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]">{t('home.cta.eyebrow')}</span>
                 <h2 className="text-3xl md:text-5xl font-bold font-montserrat mb-10 tracking-tight uppercase leading-tight">{t('home.cta.title')}</h2>
-                <p className="text-white/60 text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-white text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
                     {t('home.cta.p1')}<br />
                     {t('home.cta.p2')}
                 </p>

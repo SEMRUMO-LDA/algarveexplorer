@@ -84,7 +84,7 @@ const Tours: React.FC = () => {
           <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
             {t('tours.hero.title')}
           </h1>
-          <p className="text-white/60 max-w-2xl text-lg md:text-xl font-light leading-relaxed">
+          <p className="text-white max-w-2xl text-lg md:text-xl font-light leading-relaxed">
             {t('tours.hero.desc')}
           </p>
         </div>

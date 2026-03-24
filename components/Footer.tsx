@@ -46,8 +46,8 @@ const Footer: React.FC = () => {
           <div className="flex-1 flex flex-col md:flex-row lg:justify-between gap-16 lg:gap-8 lg:pl-32">
             {/* Quick Links */}
             <div className="md:flex-1">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/60">{t('footer.links')}</h4>
-              <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.15em] text-white/80">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white">{t('footer.links')}</h4>
+              <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.15em] text-white">
                 <li><Link to="/tours" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.tours')}</Link></li>
                 <li><Link to="/algarve" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.experience')}</Link></li>
                 <li><Link to="/transfers" className="hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded">{t('nav.logistics')}</Link></li>
@@ -58,21 +58,21 @@ const Footer: React.FC = () => {
 
             {/* Contact Details */}
             <div className="md:flex-1">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/60">{t('footer.contact')}</h4>
-              <ul className="space-y-6 text-white/80 text-sm">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white">{t('footer.contact')}</h4>
+              <ul className="space-y-6 text-white text-sm">
                 <li className="flex flex-col">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">{t('footer.email')}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 mb-1">{t('footer.email')}</span>
                   <a href="mailto:algarveexplorer@gmail.com" className="font-light hover:text-white transition-colors">E: algarveexplorer@gmail.com</a>
                 </li>
                 <li className="flex flex-col">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/50 mb-1">{t('footer.phone')}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-white/80 mb-1">{t('footer.phone')}</span>
                   <a href="tel:+351968306031" className="font-light hover:text-white transition-colors">T: +351 968 306 031</a>
-                  <span className="text-[10px] text-white/40 mt-1 italic">{language === 'pt' ? '(chamada para rede móvel nacional)' : '(call to national mobile network)'}</span>
+                  <span className="text-[10px] text-white/60 mt-1 italic">{language === 'pt' ? '(chamada para rede móvel nacional)' : '(call to national mobile network)'}</span>
                 </li>
               </ul>
-              <div className="mt-12 pt-12 border-t border-white/5 md:border-none md:mt-10 md:pt-0">
-                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-white/60">{t('footer.legal')}</h4>
-                <p className="text-white/70 text-[11px] leading-relaxed font-light">
+              <div className="mt-12 pt-12 border-t border-white/10 md:border-none md:mt-10 md:pt-0">
+                <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-white">{t('footer.legal')}</h4>
+                <p className="text-white text-[11px] leading-relaxed font-light">
                   {t('footer.member')} <br />
                   RNAVT nº 10899 / RNAAT nº409/2023
                 </p>
@@ -81,11 +81,11 @@ const Footer: React.FC = () => {
 
             {/* Newsletter - Text aligned to the left */}
             <div className="md:flex-1">
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white/60">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] mb-10 text-white">
                 {t('footer.newsletter.title')}
               </h4>
               <div className="flex flex-col">
-                <p className="text-white/80 text-sm leading-relaxed font-light mb-8 max-w-sm">
+                <p className="text-white text-sm leading-relaxed font-light mb-8 max-w-sm">
                   {t('footer.newsletter.desc')}
                 </p>
                 <form className="relative w-full max-w-sm" onSubmit={(e) => e.preventDefault()}>
