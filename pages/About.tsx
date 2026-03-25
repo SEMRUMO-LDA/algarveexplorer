@@ -128,7 +128,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Values Grid */}
-      <section className="relative py-32 md:py-48 bg-[#fffbf9] border-t border-slate-100 overflow-hidden">
+      <section className="relative py-32 md:py-48 bg-[#fffbf9] overflow-hidden">
         <AnimatedBlob 
           className="bottom-0 -right-24" 
           color="bg-[#da6927]" 

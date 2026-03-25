@@ -304,7 +304,7 @@ const Home: React.FC = () => {
           blur="160px"
           blendMode="normal"
         />
-        <div className="w-full lg:w-1/2 px-4 md:px-6 lg:pl-12 lg:pr-6 py-16 md:py-24 lg:py-32 border-t border-slate-50 flex items-center justify-center">
+        <div className="w-full lg:w-1/2 px-4 md:px-6 lg:pl-12 lg:pr-6 py-16 md:py-24 lg:py-32 flex items-center justify-center">
           <div className="relative w-full max-w-lg aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
             {/* Base Image - Bottom Right focus */}
             <ParallaxCard
