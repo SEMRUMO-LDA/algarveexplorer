@@ -137,25 +137,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-[#fffbf9] pt-12 md:pt-16 pb-32 md:pb-48 lg:pb-64 relative overflow-hidden">
-        {/* Decorative Blobs for Extended Section */}
-        <AnimatedBlob
-          className="bottom-32 -left-32 hidden md:block"
-          opacity={0.15}
-          size="w-[500px] h-[500px]"
-          color="bg-[#da6927]"
-          blur="120px"
-          duration="45s"
-        />
-        <AnimatedBlob
-          className="bottom-48 right-0 hidden lg:block"
-          opacity={0.1}
-          size="w-[600px] h-[600px]"
-          color="bg-[#0d4357]"
-          blur="140px"
-          duration="50s"
-        />
-
+      <div className="bg-[#fffbf9] pt-12 md:pt-16 pb-16 md:pb-24">
         {/* Title Section (Scrolls naturally) */}
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
           <div className="flex flex-col md:flex-row justify-between items-end gap-4 md:gap-10">
@@ -253,8 +235,8 @@ const Home: React.FC = () => {
         </section>
       </div>
 
-      {/* Transfers Section */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[#0d4357] relative overflow-hidden">
+      {/* Transfers Section - No gap between sections */}
+      <section className="py-16 md:py-24 lg:py-32 bg-[#0d4357] relative overflow-hidden -mt-[1px]">
         {/* Background Glowing Blobs */}
         <AnimatedBlob 
           className="-top-24 -right-24" 
