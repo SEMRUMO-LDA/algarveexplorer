@@ -5,6 +5,7 @@ import { ChevronRight, Plus } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import AnimatedBlob from '../components/AnimatedBlob';
 import PageTransition from '../components/PageTransition';
+import FooterCTA from '../components/FooterCTA';
 import { motion } from 'framer-motion';
 
 const Tours: React.FC = () => {
@@ -49,7 +50,7 @@ const Tours: React.FC = () => {
         </div>
 
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-          <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
             <span className="text-white/80">{t('nav.tours')}</span>
@@ -181,7 +182,7 @@ const Tours: React.FC = () => {
         </div>
       </section>
 
-
+      <FooterCTA />
       </div>
     </PageTransition>
   );

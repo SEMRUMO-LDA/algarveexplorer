@@ -22,7 +22,7 @@ const Transfers: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-          <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+          <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
             <span className="text-white/80">{t('nav.transfers')}</span>
@@ -81,7 +81,7 @@ const Transfers: React.FC = () => {
                 <div className="mt-auto">
                   <Link
                     to="/contacts"
-                    className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-xl group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                    className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-xl group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                   >
                     <span>{language === 'pt' ? 'RESERVAR TRANSFER' : 'BOOK TRANSFER'}</span>
                     <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
