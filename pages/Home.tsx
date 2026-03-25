@@ -137,7 +137,25 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-[#fffbf9] pt-12 md:pt-16 pb-16 md:pb-24">
+      <div className="bg-[#fffbf9] pt-12 md:pt-16 pb-32 md:pb-48 lg:pb-64 relative overflow-hidden">
+        {/* Decorative Blobs for Extended Section */}
+        <AnimatedBlob
+          className="bottom-32 -left-32 hidden md:block"
+          opacity={0.15}
+          size="w-[500px] h-[500px]"
+          color="bg-[#da6927]"
+          blur="120px"
+          duration="45s"
+        />
+        <AnimatedBlob
+          className="bottom-48 right-0 hidden lg:block"
+          opacity={0.1}
+          size="w-[600px] h-[600px]"
+          color="bg-[#0d4357]"
+          blur="140px"
+          duration="50s"
+        />
+
         {/* Title Section (Scrolls naturally) */}
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
           <div className="flex flex-col md:flex-row justify-between items-end gap-4 md:gap-10">
@@ -159,7 +177,7 @@ const Home: React.FC = () => {
         </div>
 
         {/* Cinematic Horizontal Scroll Section */}
-        <section id="experiences" ref={targetRef} className="relative h-[400vh] bg-[#fffbf9]">
+        <section id="experiences" ref={targetRef} className="relative h-[400vh] bg-transparent">
           <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden">
             {/* Background Blobs (Now centered for the cards) */}
             <AnimatedBlob
