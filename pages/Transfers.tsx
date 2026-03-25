@@ -13,21 +13,15 @@ const Transfers: React.FC = () => {
       {/* Unified Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+          <img
+            src="/image/transfer.jpg"
+            alt="Airport Transfer Service"
             className="w-full h-full object-cover"
-            poster="/image/transfer.jpg"
-          >
-            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
-          </video>
+          />
           {/* Scrim Overlay - Editorial Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
@@ -48,8 +42,8 @@ const Transfers: React.FC = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <section className="py-16 md:py-24 lg:py-32">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
             {TRANSFERS.map((service) => (
               <div key={service.id} className="group flex flex-col bg-white border border-slate-100 shadow-sm hover:shadow-2xl transition-all p-8 md:p-12 rounded-3xl relative overflow-hidden">

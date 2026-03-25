@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const { t, language } = useLanguage();
   return (
     <footer className="bg-[#0d4357] text-white pt-16 md:pt-24 pb-12">
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
         {/* Mobile: Logo and Social at top */}
         <div className="flex flex-col items-center mb-12 md:hidden">
           <img
@@ -69,6 +69,14 @@ const Footer: React.FC = () => {
                   <li><Link to="/transfers" className="hover:text-[#da6927] transition-colors">{t('nav.logistics')}</Link></li>
                   <li><Link to="/about" className="hover:text-[#da6927] transition-colors">{t('nav.story')}</Link></li>
                   <li><Link to="/contacts" className="hover:text-[#da6927] transition-colors">{t('nav.contact')}</Link></li>
+                  <li className="pt-2 border-t border-white/10">
+                    <a href="#" className="hover:text-[#da6927] transition-colors">{t('footer.privacy')}</a>
+                  </li>
+                  <li>
+                    <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer" className="hover:text-[#da6927] transition-colors">
+                      {t('footer.complaints')}
+                    </a>
+                  </li>
                 </ul>
               </div>
 
@@ -143,17 +151,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar - More compact on mobile */}
-        <div className="border-t border-white/10 pt-8 md:pt-12 flex flex-col md:flex-row justify-between items-center text-white/50 text-[9px] md:text-[10px] font-medium uppercase tracking-wider gap-4 md:gap-8">
-          <p className="text-center md:text-left order-2 md:order-1">
+        {/* Bottom Bar - Centered */}
+        <div className="border-t border-white/10 pt-8 md:pt-12 text-center text-white/50 text-[9px] md:text-[10px] font-medium uppercase tracking-wider">
+          <p>
             {t('footer.devLine1')} {t('footer.devLine2')}
           </p>
-          <div className="flex gap-6 md:gap-12 order-1 md:order-2">
-            <a href="#" className="hover:text-white/80 transition-colors">{t('footer.privacy')}</a>
-            <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer" className="hover:text-white/80 transition-colors">
-              {t('footer.complaints')}
-            </a>
-          </div>
         </div>
       </div>
     </footer>

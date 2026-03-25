@@ -13,21 +13,15 @@ const Contacts: React.FC = () => {
       {/* Editorial Dark Header */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+          <img
+            src="/image/contacts-toppage.jpg"
+            alt="Contact Us"
             className="w-full h-full object-cover"
-            poster="/image/contacts-toppage.jpg"
-          >
-            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
-          </video>
+          />
           {/* Scrim Overlay - Editorial Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
@@ -47,7 +41,7 @@ const Contacts: React.FC = () => {
       </section>
 
       {/* Contact Content Area */}
-      <section className="relative py-24 md:py-40 overflow-hidden">
+      <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
         <AnimatedBlob 
           className="top-1/2 -right-32" 
           opacity={0.1} 
@@ -55,7 +49,7 @@ const Contacts: React.FC = () => {
           duration="45s"
           blendMode="multiply"
         />
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
             {/* Left: Info Panel */}

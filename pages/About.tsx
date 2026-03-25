@@ -40,21 +40,15 @@ const About: React.FC = () => {
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
+          <img
+            src="/image/about-us-toppage.jpg"
+            alt="About Algarve Explorer"
             className="w-full h-full object-cover"
-            poster="/image/about-us-toppage.jpg"
-          >
-            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
-          </video>
+          />
           {/* Scrim Overlay - Editorial Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link to="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
             <span className="text-white/20">/</span>
@@ -75,8 +69,8 @@ const About: React.FC = () => {
       </section>
 
       {/* Brand Narrative & Image Composition */}
-      <section className="py-24 md:py-48 bg-[#fffbf9]">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <section className="py-16 md:py-24 lg:py-32 bg-[#fffbf9]">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
 
             {/* Left Column: Brand Story */}
@@ -142,7 +136,7 @@ const About: React.FC = () => {
           size="w-[500px] h-[500px]"
           duration="40s"
         />
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
             <div className="pr-0 lg:pr-12">
               <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('about.values.eyebrow')}</span>

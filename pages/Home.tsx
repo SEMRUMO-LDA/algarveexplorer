@@ -104,36 +104,42 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative max-w-[1600px] mx-auto px-6 lg:px-12 w-full z-10">
+        <div className="relative max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 w-full z-10">
           <div className="max-w-[100rem]">
-            <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-6 block">{t('home.hero.eyebrow')}</span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-bold text-white mb-8 tracking-tighter leading-[1.0] uppercase whitespace-pre-line">
+            <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">{t('home.hero.eyebrow')}</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[1.0] uppercase whitespace-pre-line">
               {t('home.hero.title')}
             </h1>
-            <p className="font-sans text-white/90 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-2xl">
+            <p className="font-sans text-white/90 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 md:mb-12 max-w-2xl">
               {t('home.hero.desc')}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
               <Link
                 to="/tours"
-                className="inline-flex items-center justify-center min-h-[48px] bg-[#da6927] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[12px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-[#da6927] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.exploreBtn')}
               </Link>
               <Link
                 to="/algarve"
-                className="inline-flex items-center justify-center min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[12px] hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.regionBtn')}
               </Link>
             </div>
           </div>
         </div>
+
+        {/* Premium Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 animate-bounce">
+          <span className="text-white/60 text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
+          <div className="w-[1px] h-12 bg-gradient-to-b from-white/60 to-transparent"></div>
+        </div>
       </section>
 
-      <div className="bg-[#fffbf9] pt-8 md:pt-12 pb-16 md:pb-24">
+      <div className="bg-[#fffbf9] pt-12 md:pt-16 pb-16 md:pb-24">
         {/* Title Section (Scrolls naturally) */}
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
           <div className="flex flex-col md:flex-row justify-between items-end gap-4 md:gap-10">
             <div className="max-w-2xl">
               <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-4 block">{t('home.featured.eyebrow')}</span>
@@ -185,7 +191,7 @@ const Home: React.FC = () => {
               <div key={tour.id} className="flex-none w-[75vw] sm:w-[50vw] md:w-[40vw] lg:w-[35vw] xl:w-[28vw] group h-[50svh] md:h-[70svh] min-h-[450px] max-h-[650px] flex flex-col">
                 <Link
                   to={`/tours/${tour.slug}`}
-                  className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-50 h-full flex flex-col overflow-hidden"
+                  className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full flex flex-col overflow-hidden"
                 >
                   <div className="h-[45%] md:h-[55%] w-full relative overflow-hidden shrink-0 bg-slate-100">
                     <img
@@ -247,7 +253,7 @@ const Home: React.FC = () => {
           duration="35s"
           blendMode="color-dodge"
         />
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
             <div className="w-full lg:w-1/2 order-2 lg:order-1">
               <div className="inline-flex items-center mb-6">
@@ -279,7 +285,7 @@ const Home: React.FC = () => {
               <RevealingImage
                 src="/image/transfer.jpg"
                 alt="Algarve Explorer Transfer Van"
-                className="aspect-[4/3] w-full rounded-2xl overflow-hidden"
+                className="aspect-[4/3] w-full rounded-2xl overflow-hidden border-4 border-white shadow-2xl"
                 delay={0}
               />
             </div>
@@ -298,7 +304,7 @@ const Home: React.FC = () => {
           blur="160px"
           blendMode="normal"
         />
-        <div className="w-full lg:w-1/2 px-6 lg:pl-12 lg:pr-6 py-16 md:py-24 lg:py-32 border-t border-slate-50 flex items-center justify-center">
+        <div className="w-full lg:w-1/2 px-4 md:px-6 lg:pl-12 lg:pr-6 py-16 md:py-24 lg:py-32 border-t border-slate-50 flex items-center justify-center">
           <div className="relative w-full max-w-lg aspect-[4/5] md:aspect-square lg:aspect-[4/5]">
             {/* Base Image - Bottom Right focus */}
             <ParallaxCard
@@ -335,7 +341,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="w-full lg:w-1/2 lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent py-16 md:py-24 lg:py-0">
-          <div className="max-w-2xl px-6 lg:pl-24 lg:pr-10">
+          <div className="max-w-2xl px-4 md:px-6 lg:pl-24 lg:pr-10">
             <div className="inline-flex items-center mb-6">
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('home.about.eyebrow')}</span>
             </div>
@@ -351,7 +357,7 @@ const Home: React.FC = () => {
             <div>
               <Link
                 to="/about"
-                className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[12px] hover:bg-[#da6927] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-[#da6927] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 <span>{t('home.about.philosophy')}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />

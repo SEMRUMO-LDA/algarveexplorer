@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${navBg} ${padding}`}>
-      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
         <div className="flex justify-between items-center relative">
 
           {/* Left: Menu Trigger */}
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Right: Lang Toggle & Contact */}
-          <div className="flex items-center justify-end flex-1 space-x-2 sm:space-x-4 md:space-x-8">
+          <div className="flex items-center justify-end flex-1 space-x-3 sm:space-x-4 md:space-x-8">
             <div className={`flex items-center text-[12px] font-bold uppercase tracking-wider ${textColor} transition-colors duration-300`}>
               <button
                 onClick={() => setLanguage('pt')}
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/contacts"
-              className={`hidden sm:inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-[0.2em] px-6 sm:px-8 py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
+              className={`hidden sm:inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-[0.2em] px-6 py-2.5 sm:px-8 sm:py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
                 ? 'bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-[#0d4357]'
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}
