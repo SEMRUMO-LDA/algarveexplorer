@@ -14,29 +14,29 @@ export const TRANSLATIONS: any = {
     home: {
       hero: {
         eyebrow: 'ALGARVE EXPLORER TOURS',
-        title: "Discover the Algarve\nthat few know",
-        desc: 'Trails, tastings, horseback riding, transfers, all designed for an authentic experience in Southern Portugal.',
+        title: "Discover the Algarve\nFew Have Seen",
+        desc: 'Trails, tastings, horseback riding, and transfers — all designed for an authentic experience in Southern Portugal.',
         exploreBtn: 'Explore Adventures',
         regionBtn: 'The Algarve'
       },
       featured: {
-        eyebrow: 'ADVENTURES',
-        title: 'Because the Algarve is much more than just the beach!',
-        desc: 'Discover hidden trails, local flavors, and landscapes that don\'t appear on tourist itineraries.'
+        eyebrow: 'CURATED ADVENTURES',
+        title: 'The Algarve is More Than Just Beaches',
+        desc: 'Discover hidden trails, authentic flavors, and untouched landscapes far from the tourist crowds.'
       },
       about: {
         eyebrow: 'OUR STORY',
         title: 'There are experiences we carry with us for a lifetime.',
         p1: 'Founded in 2016, Algarve Explorer was born from a passion for revealing the most authentic side of Southern Portugal.',
-        p2: 'We believe that the best discoveries are made at the pace of the wind, along paths that only locals know.',
+        p2: 'We believe that the best discoveries are made at the pace of nature, along paths known only to locals.',
         p3: 'Our mission is to take you beyond the postcards, to the true soul of the Algarve.',
         philosophy: 'Know Us Better'
       },
       cta: {
         eyebrow: 'Start Your Journey',
         title: 'Ready to explore the Algarve differently?',
-        p1: 'Planning can be complicated. Exploring doesn\'t have to be.',
-        p2: 'Let us guide you to the right experience.',
+        p1: 'Planning can be complex. Exploring shouldn\'t be.',
+        p2: 'Let us guide you to the perfect experience.',
         browse: 'See Experiences',
         contact: 'Talk to Us'
       },
@@ -50,7 +50,7 @@ export const TRANSLATIONS: any = {
           {
             name: 'Mark C',
             title: 'Great guide tour, book it!',
-            date: 'Oct 2025',
+            date: 'Oct 2024',
             type: 'Couples',
             content: 'Ricardo was a great guide, friendly, engaging and full of local knowledge and able to also give some great recommendations for local places to visit after the tour and places to eat with the locals. The level of activity on the tour was spot on and the locations we visited were picture perfect.'
           },
@@ -58,14 +58,14 @@ export const TRANSLATIONS: any = {
             name: 'velvetyvoice',
             location: 'Glasgow, UK',
             title: 'Great tour',
-            date: 'Sep 2025',
+            date: 'Sep 2024',
             type: 'Couples',
             content: 'We had a brilliant time on this tour. Ricardo was a great guide - very knowledgeable, really friendly and made it a great overall experience. The scenery is absolutely beautiful, and a must see in the Algarve. Lots of hidden gems. Thoroughly recommend.'
           },
           {
             name: 'Gema M',
             title: 'Recommended 100%',
-            date: 'Aug 2025',
+            date: 'Aug 2024',
             content: 'We went on a slightly bigger boat and it couldn\'t get into all the caves. It is worth the tour along the coast, it is spectacular and very safe even for children. Highly recommended!'
           }
         ]
@@ -155,7 +155,7 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: 'Explore',
         title: 'THE ADVENTURES',
-        desc: 'From challenging mountain peaks to serene coastal paths, our tours are designed for those who appreciate nature and adventure in their purest forms.'
+        desc: 'From challenging mountain peaks to serene coastal paths, our tours are designed for those who seek nature and adventure in their purest form.'
       },
       stats: {
         adventures: 'Guided Adventures',
@@ -213,7 +213,7 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: "Let's Talk",
         title: 'CONTACT US',
-        desc: 'Have questions about a tour? Need a custom transfer? We\'re here to make your Algarve adventure happen.'
+        desc: 'Have questions about a tour? Need a custom transfer? We\'re here to bring your Algarve adventure to life.'
       },
       info: {
         eyebrow: 'OUR HAVEN',
@@ -252,19 +252,19 @@ export const TRANSLATIONS: any = {
         eyebrow: 'ALGARVE EXPLORER TOURS',
         title: "Descubra o Algarve\nque poucos conhecem",
         desc: 'Trilhos, degustações, passeios a cavalo, transfers, tudo pensado para uma experiência autêntica no Sul de Portugal.',
-        exploreBtn: 'Explorar aventuras',
+        exploreBtn: 'Explorar Aventuras',
         regionBtn: 'O Algarve'
       },
       featured: {
-        eyebrow: 'AVENTURAS',
-        title: 'Porque o Algarve é muito mais do que praia!',
-        desc: 'Descubra trilhos escondidos, sabores locais e paisagens que não aparecem nos roteiros turísticos.'
+        eyebrow: 'AVENTURAS SELECIONADAS',
+        title: 'O Algarve é Muito Mais do que Praias',
+        desc: 'Descubra trilhos escondidos, sabores autênticos e paisagens intocadas longe das multidões turísticas.'
       },
       about: {
         eyebrow: 'A NOSSA HISTÓRIA',
         title: 'Há experiências que levamos connosco para a vida toda.',
         p1: 'Fundada em 2016, a Algarve Explorer nasceu da paixão por revelar o lado mais autêntico do Sul de Portugal.',
-        p2: 'Acreditamos que as melhores descobertas são feitas ao ritmo do vento, por caminhos que só os locais conhecem.',
+        p2: 'Acreditamos que as melhores descobertas são feitas ao ritmo da natureza, por caminhos conhecidos apenas pelos locais.',
         p3: 'A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.',
         philosophy: 'Conheça-nos melhor'
       },
@@ -286,7 +286,7 @@ export const TRANSLATIONS: any = {
           {
             name: 'Mark C',
             title: 'Excelente tour, reservem!',
-            date: 'Out 2025',
+            date: 'Out 2024',
             type: 'Casais',
             content: 'O Ricardo foi um guia fantástico, amigável e cheio de conhecimento local. Deu excelentes recomendações de locais para visitar e onde comer como os habitantes locais. O nível de atividade foi perfeito e os locais visitados pareciam saídos de um postal.'
           },
@@ -294,14 +294,14 @@ export const TRANSLATIONS: any = {
             name: 'velvetyvoice',
             location: 'Glasgow, RU',
             title: 'Tour fantástico',
-            date: 'Set 2025',
+            date: 'Set 2024',
             type: 'Casais',
             content: 'Divertimo-nos imenso neste tour. O Ricardo foi um guia excelente - muito conhecedor, simpático e tornou a experiência memorável. A paisagem é deslumbrante e obrigatória no Algarve. Muitas pérolas escondidas. Recomendo totalmente.'
           },
           {
             name: 'Gema M',
             title: 'Recomendado 100%',
-            date: 'Ago 2025',
+            date: 'Ago 2024',
             content: 'Fomos num barco ligeiramente maior e não conseguia entrar em todas as grutas. Vale a pena o passeio pela costa, é espetacular e muito seguro mesmo para crianças. Altamente recomendado!'
           }
         ]
@@ -321,7 +321,7 @@ export const TRANSLATIONS: any = {
       email: 'E-mail',
       phone: 'Telefone',
       devLine1: 'Algarve Explorer Tours @ 2026',
-      devLine2: 'DESENVOLVIDO PELA AORUBRO',
+      devLine2: 'DESENVOLVIDO POR AORUBRO',
       privacy: 'POLÍTICA DE PRIVACIDADE & COOKIES',
       complaints: 'LIVRO DE RECLAMAÇÕES',
       newsletter: {
@@ -449,7 +449,7 @@ export const TRANSLATIONS: any = {
       hero: {
         eyebrow: 'Vamos Falar?',
         title: 'CONTACTE-NOS',
-        desc: 'Tem dúvidas sobre alguma tour? Precisa de transfer por medida? Estamos aqui para tornar a sua aventura no Algarve realidade.'
+        desc: 'Tem dúvidas sobre uma tour? Precisa de um transfer personalizado? Estamos aqui para tornar a sua aventura no Algarve realidade.'
       },
       info: {
         eyebrow: 'O NOSSO RECANTO',
