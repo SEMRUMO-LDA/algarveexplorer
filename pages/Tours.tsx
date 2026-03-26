@@ -36,7 +36,7 @@ const Tours: React.FC = () => {
 
   return (
     <PageTransition>
-      <div className="bg-[#fffbf9] min-h-screen">
+      <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">
       {/* Unified Hero Section - Matching All Internal Pages */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">

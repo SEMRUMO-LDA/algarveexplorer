@@ -105,7 +105,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-[#fffbf9]">
+    <div className="flex flex-col bg-[#fffbf9] overflow-x-hidden">
       {/* Scroll Indicator */}
       <ScrollIndicator sections={sections} language={language} />
 
@@ -162,7 +162,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-[#fffbf9] pt-12 md:pt-16">
+      <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">
         {/* Title Section (Scrolls naturally) */}
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
           <div className="flex flex-col md:flex-row justify-between items-end gap-4 md:gap-10">

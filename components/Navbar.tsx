@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
   const padding = scrolled ? 'py-3 md:py-4' : 'py-4 md:py-6';
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 ease-in-out ${navBg} ${padding}`}>
+    <nav className={`fixed w-full z-[100] transition-all duration-500 ease-in-out ${navBg} ${padding}`}>
       <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
         <div className="flex justify-between items-center relative">
 
