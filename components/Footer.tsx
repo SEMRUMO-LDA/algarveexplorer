@@ -17,13 +17,13 @@ const Footer: React.FC = () => {
             className="h-10 w-auto mb-6"
           />
           <div className="flex gap-3">
-            <a href="#" className="p-2.5 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300" aria-label="Instagram">
+            <a href="https://www.instagram.com/algarveexplorer/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300" aria-label="Instagram">
               <Instagram size={18} />
             </a>
-            <a href="#" className="p-2.5 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300" aria-label="Facebook">
+            <a href="https://www.facebook.com/algarveexplorer" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300" aria-label="Facebook">
               <Facebook size={18} />
             </a>
-            <a href="#" className="p-2.5 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300" aria-label="TripAdvisor">
+            <a href="https://www.tripadvisor.com/Attraction_Review-g189112-d25463557-Reviews-Algarve_Explorer_Tours-Albufeira_Faro_District_Algarve.html" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300" aria-label="TripAdvisor">
               <img src="/image/tripadvisor-icon.png" alt="Tripadvisor" className="w-[18px] h-[18px] object-contain" />
             </a>
           </div>
@@ -44,13 +44,13 @@ const Footer: React.FC = () => {
               {t('footer.mission')}
             </p>
             <div className="flex space-x-4 pt-4">
-              <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="Instagram">
+              <a href="https://www.instagram.com/algarveexplorer/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="Facebook">
+              <a href="https://www.facebook.com/algarveexplorer" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="TripAdvisor">
+              <a href="https://www.tripadvisor.com/Attraction_Review-g189112-d25463557-Reviews-Algarve_Explorer_Tours-Albufeira_Faro_District_Algarve.html" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="TripAdvisor">
                 <img src="/image/tripadvisor-icon.png" alt="Tripadvisor" className="w-5 h-5 object-contain" />
               </a>
             </div>

@@ -6,6 +6,7 @@ import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
 import ParallaxCard from '../components/ParallaxCard';
+import { ScrollIndicator } from '../components/ScrollIndicator';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const RevealingImage: React.FC<{ src: string; alt: string; className: string; delay?: number }> = ({ src, alt, className, delay = 0 }) => {
@@ -84,10 +85,22 @@ const Home: React.FC = () => {
   const paddingLeftBase = "max(1.5rem, calc((100vw - 1600px) / 2 + 1.5rem))";
   const paddingLeftLg = "max(3rem, calc((100vw - 1600px) / 2 + 3rem))";
 
+  // Define sections for the scroll indicator
+  const sections = [
+    { id: 'hero', label: 'Home', labelPt: 'Início' },
+    { id: 'experiences', label: 'Experiences', labelPt: 'Experiências' },
+    { id: 'transfers', label: 'Transfers', labelPt: 'Transfers' },
+    { id: 'about', label: 'About', labelPt: 'Sobre' },
+    { id: 'testimonials', label: 'Reviews', labelPt: 'Avaliações' }
+  ];
+
   return (
     <div className="flex flex-col bg-[#fffbf9]">
+      {/* Scroll Indicator */}
+      <ScrollIndicator sections={sections} language={language} />
+
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] md:min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-slate-900">
+      <section id="hero" className="relative min-h-[85vh] md:min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
           <video
             autoPlay
@@ -236,7 +249,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* Transfers Section - Overlapping to remove gap */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[#0d4357] relative overflow-hidden -mt-20 md:-mt-32">
+      <section id="transfers" className="py-16 md:py-24 lg:py-32 bg-[#0d4357] relative overflow-hidden -mt-20 md:-mt-32">
         {/* Background Glowing Blobs */}
         <AnimatedBlob 
           className="-top-24 -right-24" 
@@ -294,7 +307,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="relative flex flex-col lg:flex-row bg-[#fffbf9] overflow-hidden">
+      <section id="about" className="relative flex flex-col lg:flex-row bg-[#fffbf9] overflow-hidden">
         {/* Background Blob */}
         <AnimatedBlob
           className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -334,7 +347,7 @@ const Home: React.FC = () => {
             <ParallaxCard
               src="/image/about-us-4.jpeg"
               alt="Horseback riding adventure through the Algarve countryside"
-              className="hidden md:block absolute top-[15%] left-[8%] w-[35%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-40 -rotate-6 opacity-90"
+              className="hidden md:block absolute top-[15%] left-[8%] w-[35%] h-[30%] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-40 -rotate-6"
               depth={0.9}
             />
           </div>
@@ -357,7 +370,7 @@ const Home: React.FC = () => {
             <div>
               <Link
                 to="/about"
-                className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-[#da6927] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 <span>{t('home.about.philosophy')}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
@@ -368,7 +381,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 md:py-24 lg:py-32 bg-[#fffbf9]">
+      <section id="testimonials" className="py-16 md:py-24 lg:py-32 bg-[#fffbf9]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 md:gap-12 mb-12 md:mb-20">
             <div className="max-w-2xl">
