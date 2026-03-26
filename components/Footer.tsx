@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
                   <li><Link to="/about" className="hover:text-[#da6927] transition-colors">{t('nav.story')}</Link></li>
                   <li><Link to="/contacts" className="hover:text-[#da6927] transition-colors">{t('nav.contact')}</Link></li>
                   <li className="pt-2 border-t border-white/10">
-                    <a href="#" className="hover:text-[#da6927] transition-colors">{t('footer.privacy')}</a>
+                    <Link to="/privacy" className="hover:text-[#da6927] transition-colors">{t('footer.privacy')}</Link>
                   </li>
                   <li>
                     <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer" className="hover:text-[#da6927] transition-colors">

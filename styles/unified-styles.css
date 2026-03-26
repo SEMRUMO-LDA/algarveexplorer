@@ -1,11 +1,12 @@
-/**
- * Unified Global Styles
- * Senior UX/UI Standards for Mobile-First Design
- */
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --color-brand-orange: #da6927;
+  --color-brand-navy: #0d4357;
+  --color-brand-body: #2E3D45;
+  --font-sans: 'Inter', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
 
 @layer base {
   /* Consistent font smoothing across all devices */
