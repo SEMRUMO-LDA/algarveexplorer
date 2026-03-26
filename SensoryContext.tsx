@@ -5,6 +5,7 @@ type Mood = 'morning' | 'day' | 'sunset' | 'night';
 interface SensoryContextType {
   mood: Mood;
   portugalTime: string;
+  vibrate: (pattern?: number | number[]) => void;
 }
 
 const SensoryContext = createContext<SensoryContextType | undefined>(undefined);
@@ -93,8 +94,14 @@ export const SensoryProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return () => clearInterval(interval);
   }, []);
 
+  const vibrate = (pattern: number | number[] = 15) => {
+    if (typeof window !== 'undefined' && navigator.vibrate) {
+      navigator.vibrate(pattern);
+    }
+  };
+
   return (
-    <SensoryContext.Provider value={{ mood, portugalTime }}>
+    <SensoryContext.Provider value={{ mood, portugalTime, vibrate }}>
       {children}
     </SensoryContext.Provider>
   );

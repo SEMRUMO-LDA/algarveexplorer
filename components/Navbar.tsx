@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../LanguageContext';
+import { useSensoryTheme } from '../SensoryContext';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { vibrate } = useSensoryTheme();
   const location = useLocation();
 
   const isHeroPage = location.pathname === '/' ||
@@ -35,7 +37,10 @@ const Navbar: React.FC = () => {
           {/* Left: Menu Trigger */}
           <div className="flex items-center flex-1">
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() => {
+                vibrate(10);
+                setIsOpen(!isOpen);
+              }}
               className={`flex items-center space-x-3 group focus:outline-none rounded-lg p-2 -ml-2 transition-colors duration-300 ${isOpen ? 'text-white' : textColor}`}
               aria-label="Menu"
             >
@@ -63,7 +68,10 @@ const Navbar: React.FC = () => {
           <div className="flex items-center justify-end flex-1 space-x-3 sm:space-x-4 md:space-x-8">
             <div className={`flex items-center text-[12px] font-bold uppercase tracking-wider ${textColor} transition-colors duration-300`}>
               <button
-                onClick={() => setLanguage('pt')}
+                onClick={() => {
+                  vibrate(10);
+                  setLanguage('pt');
+                }}
                 className={`px-3 py-2 -mx-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded-lg ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
                 aria-label="Português"
               >
@@ -71,7 +79,10 @@ const Navbar: React.FC = () => {
               </button>
               <span className="opacity-20">|</span>
               <button
-                onClick={() => setLanguage('en')}
+                onClick={() => {
+                  vibrate(10);
+                  setLanguage('en');
+                }}
                 className={`px-3 py-2 -mx-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded-lg ${language === 'en' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
                 aria-label="English"
               >

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../LanguageContext';
+import { useSensoryTheme } from '../SensoryContext';
 import { Link } from 'react-router-dom';
 import { Cookie, X } from 'lucide-react';
 
 const CookieNotice: React.FC = () => {
   const { t } = useLanguage();
+  const { vibrate } = useSensoryTheme();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -17,6 +19,7 @@ const CookieNotice: React.FC = () => {
   }, []);
 
   const handleAccept = () => {
+    vibrate(25); // Feedback tactil mais firme para confirmação
     localStorage.setItem('cookie-consent', 'true');
     setIsVisible(false);
   };

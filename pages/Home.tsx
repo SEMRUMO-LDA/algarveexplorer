@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, ArrowRight, Compass, Car } from 'lucide-react';
 import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
+import { useSensoryTheme } from '../SensoryContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
 import ParallaxCard from '../components/ParallaxCard';
@@ -50,9 +51,18 @@ const RevealingImage: React.FC<{ src: string; alt: string; className: string; de
 
 const Home: React.FC = () => {
   const { t, language } = useLanguage();
+  const { vibrate } = useSensoryTheme();
   const targetRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollRange, setScrollRange] = useState(0);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const el = scrollContainerRef.current;
@@ -102,17 +112,25 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[85vh] md:min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="/image/the-region-hero.jpg"
-            className="w-full h-full object-cover opacity-70"
-          >
-            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
-          </video>
+          {!isMobile && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/image/the-region-hero.jpg"
+              className="w-full h-full object-cover opacity-70"
+            >
+              <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
+            </video>
+          )}
+          {isMobile && (
+            <div 
+              className="w-full h-full bg-cover bg-center opacity-70"
+              style={{ backgroundImage: 'url(/image/the-region-hero.jpg)' }}
+            ></div>
+          )}
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>
@@ -120,7 +138,7 @@ const Home: React.FC = () => {
         <div className="relative max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 w-full z-10">
           <div className="max-w-[100rem]">
             <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">{t('home.hero.eyebrow')}</span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-montserrat font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[1.0] uppercase whitespace-pre-line">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black font-montserrat text-white leading-[0.9] tracking-tighter mb-6 md:mb-10 uppercase whitespace-pre-line drop-shadow-2xl">
               {t('home.hero.title')}
             </h1>
             <p className="font-sans text-white/90 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 md:mb-12 max-w-2xl">
@@ -129,12 +147,14 @@ const Home: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
               <Link
                 to="/tours"
+                onClick={() => vibrate(15)}
                 className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-[#da6927] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.exploreBtn')}
               </Link>
               <Link
                 to="/algarve"
+                onClick={() => vibrate(15)}
                 className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-brand-navy transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.regionBtn')}
@@ -308,10 +328,10 @@ const Home: React.FC = () => {
 
       {/* About Us Section */}
       <section id="about" className="relative flex flex-col lg:flex-row bg-[#fffbf9] overflow-hidden">
-        {/* Background Blob */}
+        {/* Background Blob - Reduced opacity for mobile readability */}
         <AnimatedBlob
-          className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          opacity={0.8}
+          className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+          opacity={isMobile ? 0.35 : 0.6}
           size="w-[800px] h-[800px]"
           duration="50s"
           blur="160px"
@@ -447,8 +467,8 @@ const Home: React.FC = () => {
                 key={i}
                 className="sticky bg-white p-6 rounded-2xl border border-slate-50 flex flex-col mb-4"
                 style={{
-                  top: `${80 + i * 15}px`,
-                  zIndex: 50 - i,
+                  top: `${80 + i * 30}px`, // Increased offset for better "stack on top" visibility
+                  zIndex: 50 + i, // Now stacks ON TOP (higher index for later items)
                   boxShadow: `0 ${10 + i * 5}px ${25 + i * 10}px -5px rgba(0,0,0,${0.1 + i * 0.05})`
                 }}
               >
