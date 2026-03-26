@@ -127,8 +127,8 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>
 
-        <div className="relative max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 w-full z-10">
-          <div className="max-w-[100rem]">
+        <div className="relative px-4 md:px-8 lg:px-16 w-full z-10">
+          <div className="w-full">
             <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">{t('home.hero.eyebrow')}</span>
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black font-montserrat text-white leading-[0.9] tracking-tighter mb-6 md:mb-10 uppercase whitespace-pre-line drop-shadow-2xl">
               {t('home.hero.title')}
