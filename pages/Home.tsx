@@ -135,7 +135,7 @@ const Home: React.FC = () => {
               </Link>
               <Link
                 to="/algarve"
-                className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-brand-navy transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
                 {t('home.hero.regionBtn')}
               </Link>
