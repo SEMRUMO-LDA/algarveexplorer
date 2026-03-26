@@ -105,7 +105,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-[#fffbf9] overflow-x-hidden">
+    <div className="flex flex-col bg-[#fffbf9]">
       {/* Scroll Indicator */}
       <ScrollIndicator sections={sections} language={language} />
 
@@ -119,11 +119,14 @@ const Home: React.FC = () => {
             playsInline
             preload="metadata"
             poster="/image/the-region-hero.jpg"
-            className="w-full h-full object-cover opacity-70"
+            className="w-full h-full object-cover"
           >
             <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/10"></div>
+          {/* Lighter, Vibrancy-focused Overlay */}
+          <div className="absolute inset-0 bg-[#0d4357]/10 transition-opacity duration-1000"></div>
+          {/* Left-to-Right Gradient for Text Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/60 via-[#0d4357]/20 to-transparent"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>
 
@@ -162,16 +165,16 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">
-        {/* Title Section (Scrolls naturally) */}
-        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 mb-6 md:mb-10 relative z-10 w-full shrink-0">
+      <div className="bg-[#fffbf9] min-h-screen">
+        {/* Title Section (Scrolls naturally) - Added more spacing to avoid overlap */}
+        <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 pt-16 md:pt-24 pb-4 md:pb-6 mb-4 md:mb-6 relative z-10 w-full shrink-0">
           <div className="flex flex-col md:flex-row justify-between items-end gap-4 md:gap-10">
             <div className="max-w-2xl">
               <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-4 block">{t('home.featured.eyebrow')}</span>
               <h2 className="text-2xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-4 uppercase">
                 {t('home.featured.title')}
               </h2>
-              <p className="text-brand-body/80 text-sm md:text-xl font-light leading-relaxed hidden md:block">
+              <p className="text-brand-body/80 text-sm md:text-xl font-light leading-relaxed">
                 {t('home.featured.desc')}
               </p>
             </div>
@@ -188,8 +191,8 @@ const Home: React.FC = () => {
           <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden z-20">
             {/* Background Blobs (Now centered for the cards) */}
             <AnimatedBlob
-              className="top-1/2 -translate-y-1/2 -right-24"
-              opacity={0.28}
+              className="top-1/2 -translate-y-1/2 -right-48 pointer-events-none"
+              opacity={0.15}
               size="w-[600px] h-[600px]"
               blur="140px"
               blendMode="normal"
@@ -322,8 +325,8 @@ const Home: React.FC = () => {
       <section id="about" className="relative flex flex-col lg:flex-row bg-[#fffbf9] overflow-hidden">
         {/* Background Blob - Reduced opacity for mobile readability */}
         <AnimatedBlob
-          className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
-          opacity={isMobile ? 0.35 : 0.6}
+          className="top-1/3 -right-32 z-0 pointer-events-none"
+          opacity={isMobile ? 0.3 : 0.45}
           size="w-[800px] h-[800px]"
           duration="50s"
           blur="160px"
@@ -366,7 +369,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="w-full lg:w-1/2 lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent py-16 md:py-24 lg:py-0">
-          <div className="max-w-2xl px-4 md:px-6 lg:pl-24 lg:pr-10">
+          <div className="max-w-2xl px-6 md:px-8 lg:pl-24 lg:pr-10">
             <div className="inline-flex items-center mb-6">
               <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('home.about.eyebrow')}</span>
             </div>

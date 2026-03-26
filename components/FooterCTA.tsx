@@ -62,8 +62,8 @@ const FooterCTA: React.FC = () => {
                         <Link to="/contacts" className="inline-flex justify-center">
                             <MagneticButton
                                 magneticType="light"
-                                strength={0.3}
-                                className="inline-flex items-center justify-center bg-transparent border border-white/20 text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 w-full"
+                                strength={0.4}
+                                className="inline-flex items-center justify-center bg-white/0 border border-white/40 text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 w-full group"
                             >
                                 {t('home.cta.contact')}
                             </MagneticButton>

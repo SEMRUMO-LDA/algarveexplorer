@@ -18,6 +18,9 @@
   body {
     @apply font-sans;
     color: #2E3D45;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
 
   h1, h2, h3, h4, .font-montserrat {

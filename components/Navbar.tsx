@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed w-full z-[100] transition-all duration-500 ease-in-out ${navBg} ${padding}`}>
-      <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
+      <div className="w-full mx-auto px-4 md:px-8 lg:px-16">
         <div className="flex justify-between items-center relative">
 
           {/* Left: Menu Trigger */}
