@@ -79,15 +79,22 @@ const Navbar: React.FC = () => {
               </button>
             </div>
 
-            <Link
-              to="/contacts"
+            <button
+              onClick={() => {
+                const languageParam = language === 'pt' ? 'pt-pt' : 'en';
+                window.open(
+                  `https://fareharbor.com/embeds/book/algarveexplorertours/?full-items=yes&language=${languageParam}`,
+                  'FareHarborBooking',
+                  'width=800,height=800,scrollbars=yes'
+                );
+              }}
               className={`hidden sm:inline-flex items-center justify-center text-[11px] font-bold uppercase tracking-[0.2em] px-6 py-2.5 sm:px-8 sm:py-3 rounded-full transition-all duration-300 border focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 ${isTransparent
                 ? 'bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-[#0d4357]'
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}
             >
-              {t('nav.contactBtn')}
-            </Link>
+              {language === 'pt' ? 'Reservar Agora' : 'Book Now'}
+            </button>
           </div>
         </div>
       </div>
