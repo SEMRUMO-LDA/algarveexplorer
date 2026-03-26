@@ -74,7 +74,7 @@ const About: React.FC = () => {
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
 
             {/* Left Column: Brand Story */}
-            <div className="w-full lg:w-1/2 order-2 lg:order-1">
+            <div className="w-full lg:w-1/2 order-1 lg:order-1">
               <div className="max-w-xl">
                 <div className="flex items-center mb-10">
                   <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('about.story.eyebrow')}</span>
@@ -99,7 +99,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Right Column: Image Composition (Collage) */}
-            <div className="w-full lg:w-1/2 order-1 lg:order-2">
+            <div className="w-full lg:w-1/2 order-2 lg:order-2">
               <div className="relative h-[400px] md:h-[500px] w-full max-w-2xl mx-auto">
                 <ParallaxCard
                   src="/image/about-us-7.jpg"
