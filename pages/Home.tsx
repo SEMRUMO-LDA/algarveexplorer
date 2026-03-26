@@ -188,7 +188,7 @@ const Home: React.FC = () => {
 
         {/* Cinematic Horizontal Scroll Section */}
         <section id="experiences" ref={targetRef} className="relative h-[400vh] bg-transparent z-10">
-          <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden z-20">
+          <div className="sticky top-0 h-[100svh] flex flex-col justify-start lg:justify-center pt-32 md:pt-40 lg:pt-0 overflow-hidden z-20">
             {/* Background Blobs (Now centered for the cards) */}
             <AnimatedBlob
               className="top-1/2 -translate-y-1/2 -right-48 pointer-events-none"
@@ -216,7 +216,7 @@ const Home: React.FC = () => {
             `}</style>
 
             {TOURS.map((tour) => (
-              <div key={tour.id} className="flex-none w-[75vw] sm:w-[50vw] md:w-[40vw] lg:w-[35vw] xl:w-[28vw] group h-[50svh] md:h-[70svh] min-h-[450px] max-h-[650px] flex flex-col">
+              <div key={tour.id} className="flex-none w-[85vw] sm:w-[50vw] md:w-[40vw] lg:w-[35vw] xl:w-[28vw] group h-[60svh] md:h-[70svh] min-h-[460px] max-h-[650px] flex flex-col">
                 <Link
                   to={`/tours/${tour.slug}`}
                   className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full flex flex-col overflow-hidden"
