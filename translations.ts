@@ -234,6 +234,12 @@ export const TRANSLATIONS: any = {
         messagePlaceholder: 'TELL US ABOUT YOUR ADVENTURE...',
         submit: 'SEND MESSAGE'
       }
+    },
+    cookie: {
+      title: 'Cookie Policy',
+      message: 'We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.',
+      accept: 'Accept',
+      more: 'Read More'
     }
   },
   pt: {
@@ -470,6 +476,12 @@ export const TRANSLATIONS: any = {
         messagePlaceholder: 'CONTE-NOS SOBRE A SUA AVENTURA...',
         submit: 'ENVIAR MENSAGEM'
       }
+    },
+    cookie: {
+      title: 'Política de Cookies',
+      message: 'Utilizamos cookies para melhorar a sua experiência. Ao continuar a navegar, aceita a nossa utilização de cookies.',
+      accept: 'Aceitar',
+      more: 'Ler Mais'
     }
   }
 };

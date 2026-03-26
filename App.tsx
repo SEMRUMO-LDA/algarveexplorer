@@ -9,6 +9,7 @@ import MagneticCursor from './components/MagneticCursor';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Assistant from './components/Assistant';
+import CookieNotice from './components/CookieNotice';
 
 // Lazy loaded routes for senior-level bundle size optimization
 const Home = lazy(() => import('./pages/Home'));
@@ -71,6 +72,7 @@ const App: React.FC = () => {
               </main>
               <Footer />
               <Assistant />
+              <CookieNotice />
             </div>
           </Router>
         </SharedImageProvider>
