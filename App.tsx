@@ -1,6 +1,6 @@
 
 import React, { useEffect, Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { LanguageProvider } from './LanguageContext';
 import { SensoryProvider } from './SensoryContext';
@@ -18,6 +18,7 @@ const Algarve = lazy(() => import('./pages/Algarve'));
 const Transfers = lazy(() => import('./pages/Transfers'));
 const About = lazy(() => import('./pages/About'));
 const Contacts = lazy(() => import('./pages/Contacts'));
+const Privacy = lazy(() => import('./pages/Privacy'));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -48,6 +49,7 @@ const AnimatedRoutes = () => {
           <Route path="/tours/:slug" element={<TourDetail />} />
           <Route path="/transfers" element={<Transfers />} />
           <Route path="/contacts" element={<Contacts />} />
+          <Route path="/privacy" element={<Privacy />} />
         </Routes>
       </Suspense>
     </AnimatePresence>
