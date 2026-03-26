@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ChevronLeft, ArrowRight, Compass, Car } from 'lucide-react';
+import { ArrowRight, ChevronRight, ChevronLeft } from 'lucide-react';
 import { TOURS } from '../constants';
 import { useLanguage } from '../LanguageContext';
 import { useSensoryTheme } from '../SensoryContext';
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollRange, setScrollRange] = useState(0);
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+  const [isMobile, setIsMobile] = useState(true); // Default to true to prevent initial video load on mobile
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -112,25 +112,17 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <section id="hero" className="relative min-h-[85vh] md:min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
-          {!isMobile && (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="/image/the-region-hero.jpg"
-              className="w-full h-full object-cover opacity-70"
-            >
-              <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
-            </video>
-          )}
-          {isMobile && (
-            <div 
-              className="w-full h-full bg-cover bg-center opacity-70"
-              style={{ backgroundImage: 'url(/image/the-region-hero.jpg)' }}
-            ></div>
-          )}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/image/the-region-hero.jpg"
+            className="w-full h-full object-cover opacity-70"
+          >
+            <source src="/video/algarvexplorer-video-hero.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>

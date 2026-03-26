@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Sun, CloudRain, Compass, Trees, Footprints, ArrowRight, ArrowLeft, Plus, Waves, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Sun, CloudRain, Trees, ArrowRight, ArrowLeft, Plus, Waves } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import FooterCTA from '../components/FooterCTA';
 import AnimatedBlob from '../components/AnimatedBlob';
@@ -59,7 +59,7 @@ const Algarve: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#fffbf9] min-h-screen">
+    <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">
       {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
