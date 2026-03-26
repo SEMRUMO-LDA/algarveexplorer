@@ -172,8 +172,8 @@ const Home: React.FC = () => {
         </div>
 
         {/* Cinematic Horizontal Scroll Section */}
-        <section id="experiences" ref={targetRef} className="relative h-[400vh] bg-transparent">
-          <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden">
+        <section id="experiences" ref={targetRef} className="relative h-[400vh] bg-transparent z-10">
+          <div className="sticky top-0 h-[100svh] flex flex-col justify-center overflow-hidden z-20">
             {/* Background Blobs (Now centered for the cards) */}
             <AnimatedBlob
               className="top-1/2 -translate-y-1/2 -right-24"
