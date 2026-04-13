@@ -1,42 +1,50 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const getAIClient = () => {
-  return new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
-};
+// Use an environment variable with a fallback check
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+let aiClient: GoogleGenAI | null = null;
 
-export const generateMotivation = async (): Promise<string> => {
-  try {
-    const ai = getAIClient();
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: 'Gere uma frase motivacional curta e inspiradora em português para começar o dia de trabalho. Seja conciso.',
-      config: {
-        temperature: 0.8,
-        topP: 0.95,
-      }
-    });
-    return response.text || "Continue focado em seus objetivos!";
-  } catch (error) {
-    console.error("Erro ao gerar motivação:", error);
-    return "O sucesso é a soma de pequenos esforços repetidos dia após dia.";
+export const getTravelAssistantResponse = async (userMessage: string, language: 'en' | 'pt' = 'en') => {
+  // Graceful fallback if no API key is set (common in initial production deployments)
+  if (!apiKey) {
+    console.warn("AI Assistant: API Key is missing. Please set NEXT_PUBLIC_GEMINI_API_KEY in environment variables.");
+    return language === 'pt'
+      ? "Desculpe, o assistente virtual não está configurado. Por favor, contacte-nos diretamente."
+      : "I'm sorry, our AI assistant isn't fully set up yet. Feel free to contact us via the form above!";
   }
-};
 
-export const suggestTasks = async (currentTasks: string[]): Promise<string[]> => {
   try {
-    const ai = getAIClient();
-    const prompt = `Com base nestas tarefas: ${currentTasks.join(', ')}, sugira mais 3 tarefas produtivas e curtas para o dia de hoje em português. Retorne apenas uma lista simples separada por vírgulas.`;
-    
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: prompt,
+    // Lazy initialize to avoid crashing the whole bundle if the key is missing or invalid
+    if (!aiClient) {
+      aiClient = new GoogleGenAI({ apiKey });
+    }
+
+    const langInstruction = language === 'pt'
+      ? "Please respond exclusively in Portuguese."
+      : "Please respond exclusively in English.";
+
+    const response = await aiClient.models.generateContent({
+      model: "gemini-1.5-flash", // Using a stable model name
+      contents: userMessage,
+      config: {
+        systemInstruction: `You are an expert regional guide for Algarve Explorer in Portugal. 
+        You specialize in trail adventures, hidden nature spots, hiking, and cultural discoveries. 
+        You know every path from the Monchique mountains to the Sagres cliffs. 
+        Be helpful, welcoming, and professional. 
+        Promote our guided tours, walks, and transfer services when relevant.
+        Focus on the "secrets of the Algarve"—the spots away from mass tourism.
+        Recommend the best seasons (Spring for flowers, Autumn for light) and local customs.
+        ${langInstruction}`,
+        temperature: 0.7,
+      },
     });
-    
-    const text = response.text || "";
-    return text.split(',').map(t => t.trim()).filter(t => t.length > 0);
+
+    return response.text || (language === 'pt' ? "Desculpe, não consegui encontrar uma resposta." : "I'm sorry, I couldn't find an answer for that right now.");
   } catch (error) {
-    console.error("Erro ao sugerir tarefas:", error);
-    return ["Organizar agenda", "Beber água", "Revisar e-mails"];
+    console.error("AI Assistant Error:", error);
+    return language === 'pt'
+      ? "Desculpe, estou com problemas técnicos. Tente novamente mais tarde."
+      : "I'm sorry, I'm having a bit of trouble reaching our base camp. Can you try again shortly?";
   }
 };

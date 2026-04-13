@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --color-brand-navy: #0d4357;
+  --color-brand-orange: #da6927;
+  --color-brand-body: #2d3748;
+}
