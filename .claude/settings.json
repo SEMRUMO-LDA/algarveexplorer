@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(gh repo:*)",
+      "Read(//private/tmp/kibanCMS/**)",
+      "Read(//tmp/kibanCMS/**)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/SEMRUMO-LDA/kibanCMS/main/.env\")",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(pkill -f \"vite\")",
+      "Bash(npm install:*)",
+      "Bash(npx next:*)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(xargs kill:*)",
+      "Bash(lsof -ti:3002)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)"
+    ],
+    "additionalDirectories": [
+      "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/algarveexplorer/components",
+      "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/app/tours",
+      "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/app/tours/[slug]"
+    ]
+  }
+}

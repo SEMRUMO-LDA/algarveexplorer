@@ -1,20 +1,51 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Algarve Explorer Tours
 
-# Run and deploy your AI Studio app
+Premium trail adventures and nature discoveries in Southern Portugal.
 
-This contains everything you need to run your app locally.
+## Stack
 
-View your app in AI Studio: https://ai.studio/apps/drive/1hO7jlr6-PNYjWGCgA7B7XgQkS8fdkCif
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **CMS:** KIBAN CMS (headless REST API)
+- **Animations:** Framer Motion
+- **AI Assistant:** Google Gemini
 
-## Run Locally
+## Getting Started
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+cp .env.example .env.local
+# Fill in your KIBAN and Gemini API keys
+npm run dev
+```
 
+Open [http://localhost:3000](http://localhost:3000).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_KIBAN_URL` | KIBAN CMS API base URL |
+| `NEXT_PUBLIC_KIBAN_API_KEY` | KIBAN CMS public API key |
+| `NEXT_PUBLIC_GEMINI_API_KEY` | Google Gemini AI key |
+| `TRIPADVISOR_API_KEY` | TripAdvisor Content API key |
+
+## Project Structure
+
+```
+app/                → Next.js App Router pages
+components/         → Shared UI components
+pages_src/          → Page-level components
+services/           → KIBAN CMS + Gemini API clients
+lib/                → Contexts, translations, types
+public/             → Static assets (images, video)
+```
+
+## CMS
+
+Content is managed via [KIBAN CMS](https://github.com/SEMRUMO-LDA/kibanCMS). The `experiences` collection holds tours, transfers, and experiences with bilingual content (PT/EN).
+
+---
+
+Developed by **AORUBRO**
