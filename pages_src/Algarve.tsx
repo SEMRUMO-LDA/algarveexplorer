@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { Sun, CloudRain, Trees, ArrowRight, ArrowLeft, Plus, Waves } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
@@ -10,8 +10,6 @@ import ParallaxCard from '@/components/ParallaxCard';
 
 const Algarve: React.FC = () => {
   const { t } = useLanguage();
-  const [parallaxOffset, setParallaxOffset] = useState(0);
-  const parallaxRef = useRef<HTMLDivElement>(null);
   const seasonsSliderRef = useRef<HTMLDivElement>(null);
   const [activeSeason, setActiveSeason] = useState(0);
 
@@ -38,27 +36,6 @@ const Algarve: React.FC = () => {
       seasonsSliderRef.current.scrollBy({ left: move, behavior: 'smooth' });
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!parallaxRef.current) return;
-
-      const rect = parallaxRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Only update when image is in viewport
-      if (rect.top < windowHeight && rect.bottom > 0) {
-        // Subtle move: 0.1 speed
-        const offset = (rect.top - windowHeight / 2) * 0.1;
-        setParallaxOffset(offset);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial position
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">

@@ -8,6 +8,7 @@
 
 const KIBAN_URL = process.env.NEXT_PUBLIC_KIBAN_URL || '';
 const KIBAN_API_KEY = process.env.NEXT_PUBLIC_KIBAN_API_KEY || '';
+const KIBAN_TENANT = process.env.NEXT_PUBLIC_KIBAN_TENANT || 'algarveexplorer';
 
 export const isKibanConfigured = Boolean(KIBAN_URL && KIBAN_API_KEY);
 
@@ -37,6 +38,7 @@ async function kibanFetch<T>(
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${KIBAN_API_KEY}`,
+      'X-Tenant': KIBAN_TENANT,
       ...options?.headers,
     },
   });

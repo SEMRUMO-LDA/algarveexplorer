@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import MagneticButton from "@/components/MagneticButton";
+import { useLanguage } from "@/lib/LanguageContext";
 import { ArrowRight } from "lucide-react";
 
 // =============================================
@@ -339,6 +340,7 @@ function TripadvisorIcon() {
 // =============================================
 export default function TripadvisorReviews() {
   const { reviews, details, loading, isDemo } = useTripadvisorReviews(LOCATION_ID);
+  const { language } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -414,7 +416,7 @@ export default function TripadvisorReviews() {
               )}
             </div>
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-3 uppercase">
-              O que dizem os nossos exploradores
+              {language === 'pt' ? 'O que dizem os nossos exploradores' : 'What our explorers say'}
             </h2>
           </div>
 
@@ -434,7 +436,7 @@ export default function TripadvisorReviews() {
               <div>
                 <Stars rating={Math.round(details.rating || 0)} size={18} />
                 <p style={{ fontSize: 12, color: "#777", margin: 0, marginTop: 4 }}>
-                  {details.count || 0} avaliações
+                  {details.count || 0} {language === 'pt' ? 'avaliações' : 'reviews'}
                 </p>
               </div>
             </div>
@@ -472,7 +474,7 @@ export default function TripadvisorReviews() {
             strength={0.4}
             className="inline-flex items-center justify-center space-x-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
           >
-            <span>Ver todas as avaliações no Tripadvisor</span>
+            <span>{language === 'pt' ? 'Ver todas as avaliações no Tripadvisor' : 'See all reviews on Tripadvisor'}</span>
             <ArrowRight size={16} />
           </MagneticButton>
         </a>

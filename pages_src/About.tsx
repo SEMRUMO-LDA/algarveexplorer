@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
-import { Compass, Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';

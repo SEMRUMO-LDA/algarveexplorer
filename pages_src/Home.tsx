@@ -9,7 +9,7 @@ import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import ParallaxCard from '@/components/ParallaxCard';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import TripadvisorReviews from '@/components/TripadvisorReviews';
 import { experiences as kibanExperiences, ExperienceEntry } from '@/services/kiban';
 
