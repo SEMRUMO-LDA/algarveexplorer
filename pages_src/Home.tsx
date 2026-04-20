@@ -11,7 +11,7 @@ import ParallaxCard from '@/components/ParallaxCard';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { motion } from 'framer-motion';
 import TripadvisorReviews from '@/components/TripadvisorReviews';
-import { experiences as kibanExperiences, ExperienceEntry } from '@/services/kiban';
+import { tours as kibanTours, TourEntry } from '@/services/kiban';
 
 const RevealingImage: React.FC<{ src: string; alt: string; className: string; delay?: number }> = ({ src, alt, className, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   const { vibrate } = useSensoryTheme();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(true); // Default to true to prevent initial video load on mobile
-  const [featuredExperiences, setFeaturedExperiences] = useState<ExperienceEntry[]>([]);
+  const [featuredTours, setFeaturedTours] = useState<TourEntry[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -68,22 +68,23 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    loadFeaturedExperiences();
+    loadFeaturedTours();
   }, []);
 
-  const loadFeaturedExperiences = async () => {
+  const loadFeaturedTours = async () => {
     try {
-      const { data, error } = await kibanExperiences.featured(6);
+      const { data, error } = await kibanTours.list();
       if (error) throw error;
-      setFeaturedExperiences(data);
+      setFeaturedTours(data.slice(0, 6));
     } catch (error) {
-      console.error('Error loading featured experiences:', error);
+      console.error('Error loading featured tours:', error);
     } finally {
       setLoading(false);
     }
   };
 
   const formatDuration = (minutes: number) => {
+    if (!minutes) return '';
     if (minutes < 60) return `${minutes} min`;
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
@@ -243,55 +244,54 @@ const Home: React.FC = () => {
                   </p>
                 </div>
               </div>
-            ) : featuredExperiences.length === 0 ? (
+            ) : featuredTours.length === 0 ? (
               <div className="flex items-center justify-center w-full py-32">
                 <p className="text-brand-body/60 text-lg">
-                  Nenhuma experiência em destaque no momento.
+                  Nenhum tour em destaque no momento.
                 </p>
               </div>
             ) : (
-              featuredExperiences.map((experience) => (
-                <div key={experience.id} className="snap-start flex-none w-[75vw] sm:w-[45vw] md:w-[32vw] lg:w-[26vw] xl:w-[22vw] group h-[60svh] md:h-[65svh] min-h-[500px] max-h-[750px] flex flex-col">
+              featuredTours.map((tour) => (
+                <div key={tour.slug} className="snap-start flex-none w-[75vw] sm:w-[45vw] md:w-[32vw] lg:w-[26vw] xl:w-[22vw] group h-[60svh] md:h-[65svh] min-h-[500px] max-h-[750px] flex flex-col">
                   <Link
-                    href={`/experiences/${experience.slug}`}
+                    href={`/tours/${tour.slug}`}
                     className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full flex flex-col overflow-hidden"
                   >
                     <div className="h-[45%] md:h-[55%] w-full relative overflow-hidden shrink-0 bg-slate-100">
                       <img
-                        src={experience.image_urls?.[0] || '/image/placeholder.jpg'}
-                        alt={language === 'pt' ? experience.title_pt : experience.title_en}
-                        className="w-full h-full object-cover object-right group-hover:scale-110 transition-transform duration-700"
+                        src={tour.cover_image || tour.gallery?.[0] || '/image/placeholder.jpg'}
+                        alt={tour.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      {experience.difficulty_pt && (
+                      {tour.difficulty_level && (
                         <div className="absolute top-6 left-6">
                           <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
-                            {language === 'pt' ? experience.difficulty_pt : experience.difficulty_en}
+                            {tour.difficulty_level}
                           </span>
                         </div>
                       )}
                     </div>
                     <div className="p-6 md:p-10 pb-12 md:pb-20 flex flex-col flex-grow">
                       <span className="text-[#da6927] text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-2 md:mb-4 block">
-                        {formatDuration(experience.duration_minutes)}
+                        {formatDuration(tour.duration_minutes)}
                       </span>
                       <h3 className="text-lg md:text-2xl font-bold text-brand-navy mb-3 md:mb-6 line-clamp-2">
-                         {language === 'pt' ? experience.title_pt : experience.title_en}
+                        {tour.title}
                       </h3>
                       <div className="mt-auto flex items-center justify-between pt-4 md:pt-6 border-t border-slate-100">
-                      <div className="flex flex-col">
-                        {/* Commercial Badge */}
-                        <div className="mb-2 flex">
-                          <span className="bg-[#da6927] text-white text-[7px] md:text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
-                            10% DESCONTO - RESERVA DIRETA
+                        <div className="flex flex-col">
+                          <div className="mb-2 flex">
+                            <span className="bg-[#da6927] text-white text-[7px] md:text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                              10% DESCONTO - RESERVA DIRETA
+                            </span>
+                          </div>
+                          <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5 md:mb-1">
+                            A partir de
+                          </span>
+                          <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
+                            €{tour.price_adult}
                           </span>
                         </div>
-                        <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5 md:mb-1">
-                          A partir de
-                        </span>
-                        <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
-                          €{experience.price}
-                        </span>
-                      </div>
                         <div className="flex items-center space-x-2 text-brand-body group-hover:text-[#da6927] transition-colors">
                           <span className="text-[10px] font-bold uppercase tracking-widest">Explorar</span>
                           <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
