@@ -549,9 +549,9 @@ const TourDetail: React.FC = () => {
                 )}
               </div>
 
-              {/* Right: Sticky Booking Card — centered vertically on desktop */}
+              {/* Right: Sticky Booking Card — sits in-flow, sticks to top when scrolling */}
               <div className="lg:col-span-4 relative">
-                <div className="sticky top-1/2 lg:-translate-y-1/2 z-20">
+                <div className="sticky top-32 z-20">
                   <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl">
                     <p className="text-brand-body/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-4">
                       Reserva
