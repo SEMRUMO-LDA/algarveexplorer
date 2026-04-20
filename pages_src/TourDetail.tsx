@@ -226,9 +226,10 @@ const TourDetail: React.FC = () => {
                     </p>
                   )}
                   {tour.full_description && (
-                    <div className="text-base md:text-lg text-brand-body/80 font-light leading-relaxed whitespace-pre-line">
-                      {tour.full_description}
-                    </div>
+                    <div
+                      className="prose prose-lg max-w-none text-base md:text-lg text-brand-body/80 font-light leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: tour.full_description }}
+                    />
                   )}
 
                   {/* Quick info pills */}
@@ -329,9 +330,10 @@ const TourDetail: React.FC = () => {
                     <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy mb-10 uppercase tracking-[0.15em]">
                       O Itinerário
                     </h3>
-                    <div className="prose prose-lg max-w-none text-brand-body/80 font-light leading-relaxed whitespace-pre-line">
-                      {tour.itinerary}
-                    </div>
+                    <div
+                      className="prose prose-lg max-w-none text-brand-body/80 font-light leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: tour.itinerary }}
+                    />
                   </div>
                 )}
 
@@ -345,7 +347,10 @@ const TourDetail: React.FC = () => {
                           Ponto de Encontro
                         </h3>
                         {tour.meeting_point && (
-                          <p className="text-brand-body/80 text-base font-light leading-relaxed whitespace-pre-line">{tour.meeting_point}</p>
+                          <div
+                            className="prose max-w-none text-brand-body/80 text-base font-light leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: tour.meeting_point }}
+                          />
                         )}
                       </div>
                     </div>
@@ -453,9 +458,10 @@ const TourDetail: React.FC = () => {
                 {tour.additional_info && (
                   <div className="border-l-4 border-[#da6927] pl-8">
                     <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-3">Informação adicional</p>
-                    <p className="text-brand-body/80 text-base font-light leading-relaxed whitespace-pre-line">
-                      {tour.additional_info}
-                    </p>
+                    <div
+                      className="prose max-w-none text-brand-body/80 text-base font-light leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: tour.additional_info }}
+                    />
                   </div>
                 )}
 
@@ -519,9 +525,10 @@ const TourDetail: React.FC = () => {
                 {tour.fine_print && (
                   <div className="border-t border-slate-100 pt-12">
                     <p className="text-xs font-bold uppercase tracking-widest text-brand-body/60 mb-4">Letra Miúda</p>
-                    <p className="text-xs text-brand-body/60 font-light leading-relaxed whitespace-pre-line">
-                      {tour.fine_print}
-                    </p>
+                    <div
+                      className="prose prose-sm max-w-none text-xs text-brand-body/60 font-light leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: tour.fine_print }}
+                    />
                   </div>
                 )}
               </div>
