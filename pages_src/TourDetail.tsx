@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import FooterCTA from '@/components/FooterCTA';
 import PageTransition from '@/components/PageTransition';
-import ParallaxImage from '@/components/ParallaxImage';
 import MagneticButton from '@/components/MagneticButton';
 import { motion } from 'framer-motion';
 import { useSharedImage } from '@/components/SharedImageTransition';
@@ -118,14 +117,14 @@ const TourDetail: React.FC = () => {
         {/* Hero */}
         <section className="relative h-[90vh] md:h-screen min-h-[600px] flex flex-col justify-end overflow-hidden bg-white">
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <ParallaxImage
+            <img
               src={imageUrl(tour.cover_image || gallery[0]) || '/image/placeholder.jpg'}
               alt={tour.title}
-              scrollStrength={0.2}
-              mouseStrength={0.04}
-              objectPosition={imageObjectPosition(tour.cover_image || gallery[0])}
+              className="w-full h-full object-cover"
+              style={{ objectPosition: imageObjectPosition(tour.cover_image || gallery[0]) }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+            {/* Brand-navy overlay bottom → up for content legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d4357]/85 via-[#0d4357]/40 to-transparent"></div>
           </div>
 
           <motion.div
