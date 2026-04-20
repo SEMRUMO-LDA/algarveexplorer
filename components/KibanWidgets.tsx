@@ -32,19 +32,15 @@ export default function KibanWidgets() {
         strategy="afterInteractive"
       />
 
-      {/* i18n — Auto-translation (language switcher hidden, controlled by Navbar) */}
+      {/* i18n — Auto-translation with built-in language switcher */}
       <Script
         src={`${KIBAN_URL}/api/v1/i18n/widget.js`}
         data-api-key={KIBAN_API_KEY}
         data-tenant={KIBAN_TENANT}
-        data-style="hidden"
+        data-position="bottom-right"
+        data-style="minimal"
         strategy="afterInteractive"
       />
-
-      {/* Hide the KIBAN i18n widget's own language switcher — we use the Navbar's PT/EN toggle */}
-      <style jsx global>{`
-        #kiban-i18n-widget { display: none !important; }
-      `}</style>
     </>
   );
 }

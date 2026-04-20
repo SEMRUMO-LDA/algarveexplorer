@@ -9,7 +9,7 @@ import { useSensoryTheme } from '@/lib/SensoryContext';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
   const { vibrate } = useSensoryTheme();
   const pathname = usePathname();
 
@@ -66,31 +66,8 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Right: Lang Toggle & Contact */}
+          {/* Right: Contact */}
           <div className="flex items-center justify-end flex-1 space-x-3 sm:space-x-4 md:space-x-8">
-            <div className={`flex items-center text-[12px] font-bold uppercase tracking-wider ${textColor} transition-colors duration-300`}>
-              <button
-                onClick={() => {
-                  vibrate(10);
-                  setLanguage('pt');
-                }}
-                className={`px-3 py-2 -mx-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded-lg ${language === 'pt' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
-                aria-label="Português"
-              >
-                PT
-              </button>
-              <span className="opacity-20">|</span>
-              <button
-                onClick={() => {
-                  vibrate(10);
-                  setLanguage('en');
-                }}
-                className={`px-3 py-2 -mx-2 transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded-lg ${language === 'en' ? 'text-[#da6927]' : 'hover:text-[#da6927]/60'}`}
-                aria-label="English"
-              >
-                EN
-              </button>
-            </div>
 
             <button
               onClick={() => {
