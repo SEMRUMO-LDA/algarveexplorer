@@ -53,7 +53,7 @@ const RevealingImage: React.FC<{ src: string; alt: string; className: string; de
 };
 
 const Home: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const { vibrate } = useSensoryTheme();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(true); // Default to true to prevent initial video load on mobile
@@ -84,15 +84,11 @@ const Home: React.FC = () => {
   };
 
   const formatDuration = (minutes: number) => {
-    if (minutes < 60) {
-      return language === 'pt' ? `${minutes} min` : `${minutes} min`;
-    }
+    if (minutes < 60) return `${minutes} min`;
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
-    if (mins === 0) {
-      return language === 'pt' ? `${hours}h` : `${hours}h`;
-    }
-    return language === 'pt' ? `${hours}h ${mins}min` : `${hours}h ${mins}min`;
+    if (mins === 0) return `${hours}h`;
+    return `${hours}h ${mins}min`;
   };
 
   const paddingLeftBase = "max(1.5rem, calc((100vw - 1600px) / 2 + 1.5rem))";
@@ -135,12 +131,12 @@ const Home: React.FC = () => {
 
         <div className="relative px-4 md:px-8 lg:px-16 w-full z-10">
           <div className="w-full">
-            <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">{t('home.hero.eyebrow')}</span>
+            <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">ALGARVE EXPLORER TOURS</span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-montserrat text-white leading-[0.9] tracking-tighter mb-6 md:mb-10 uppercase whitespace-pre-line drop-shadow-2xl">
-              {t('home.hero.title')}
+              {"Descubra o Algarve\nque poucos conhecem"}
             </h1>
             <p className="font-sans text-white/90 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 md:mb-12 max-w-2xl">
-              {t('home.hero.desc')}
+              Trilhos, passeios a cavalo, transfers, tudo pensado para uma experiência autêntica no Sul de Portugal.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
               <Link
@@ -148,14 +144,14 @@ const Home: React.FC = () => {
                 onClick={() => vibrate(15)}
                 className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-[#da6927] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                {t('home.hero.exploreBtn')}
+                Explorar Aventuras
               </Link>
               <Link
                 href="/algarve"
                 onClick={() => vibrate(15)}
                 className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-brand-navy transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                {t('home.hero.regionBtn')}
+                O Algarve
               </Link>
             </div>
           </div>
@@ -166,12 +162,12 @@ const Home: React.FC = () => {
         {/* Title Section – Reduced padding and margin for better flow */}
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 pt-12 md:pt-16 pb-2 relative z-10 w-full shrink-0">
           <div className="max-w-2xl">
-            <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-3 block">{t('home.featured.eyebrow')}</span>
+            <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-3 block">AVENTURAS SELECIONADAS</span>
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-3 uppercase">
-              {t('home.featured.title')}
+              O Algarve é Muito Mais do que Praias
             </h2>
             <p className="text-brand-body/80 text-sm md:text-xl font-light leading-relaxed">
-              {t('home.featured.desc')}
+              Descubra trilhos escondidos, sabores autênticos e paisagens intocadas longe das multidões turísticas.
             </p>
           </div>
         </div>
@@ -243,14 +239,14 @@ const Home: React.FC = () => {
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#da6927] mx-auto mb-4"></div>
                   <p className="text-brand-body/60 text-sm uppercase tracking-widest">
-                    {language === 'pt' ? 'A carregar...' : 'Loading...'}
+                    A carregar...
                   </p>
                 </div>
               </div>
             ) : featuredExperiences.length === 0 ? (
               <div className="flex items-center justify-center w-full py-32">
                 <p className="text-brand-body/60 text-lg">
-                  {language === 'pt' ? 'Nenhuma experiência em destaque no momento.' : 'No featured experiences at the moment.'}
+                  Nenhuma experiência em destaque no momento.
                 </p>
               </div>
             ) : (
@@ -286,18 +282,18 @@ const Home: React.FC = () => {
                         {/* Commercial Badge */}
                         <div className="mb-2 flex">
                           <span className="bg-[#da6927] text-white text-[7px] md:text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
-                            {t('home.featured.discount')}
+                            10% DESCONTO - RESERVA DIRETA
                           </span>
                         </div>
                         <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5 md:mb-1">
-                          {language === 'pt' ? 'A partir de' : 'Starting from'}
+                          A partir de
                         </span>
                         <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
                           €{experience.price}
                         </span>
                       </div>
                         <div className="flex items-center space-x-2 text-brand-body group-hover:text-[#da6927] transition-colors">
-                          <span className="text-[10px] font-bold uppercase tracking-widest">{language === 'pt' ? 'Explorar' : 'Explore'}</span>
+                          <span className="text-[10px] font-bold uppercase tracking-widest">Explorar</span>
                           <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -334,14 +330,14 @@ const Home: React.FC = () => {
             <div className="w-full lg:w-1/2 order-2 lg:order-1">
               <div className="inline-flex items-center mb-6">
                 <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em]">
-                  {t('home.transfers.eyebrow')}
+                  SHUTTLES DE CONFIANÇA
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-white tracking-tight mb-8 uppercase leading-tight">
-                {t('home.transfers.title')}
+                Transfers pensados para exploradores
               </h2>
               <p className="text-white text-lg md:text-xl font-light leading-relaxed mb-12">
-                {t('home.transfers.desc')}
+                Do aeroporto aos trilhos com conforto, segurança e espaço para todo o seu equipamento.
               </p>
 
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white p-3 md:p-4">
@@ -419,15 +415,15 @@ const Home: React.FC = () => {
         <div className="w-full lg:w-1/2 lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent py-16 md:py-24 lg:py-0">
           <div className="max-w-2xl px-6 md:px-8 lg:pl-24 lg:pr-10">
             <div className="inline-flex items-center mb-6">
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('home.about.eyebrow')}</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">A NOSSA HISTÓRIA</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy leading-[1.1] tracking-tight mb-8 uppercase">
-              {t('home.about.title')}
+              Há experiências que levamos connosco para a vida toda.
             </h2>
             <div className="text-brand-body/90 text-base md:text-lg font-light leading-relaxed mb-10">
-              {t('home.about.p1')}<br /><br />
-              {t('home.about.p2')}<br /><br />
-              {t('home.about.p3')}
+              Com experiência no setor do turismo desde 2016, a Algarve Explorer nasceu da paixão por revelar o lado mais autêntico do Sul de Portugal.<br /><br />
+              Acreditamos que as melhores descobertas são feitas ao ritmo da natureza, por caminhos conhecidos apenas pelos locais.<br /><br />
+              A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.
             </div>
 
             <div>
@@ -435,7 +431,7 @@ const Home: React.FC = () => {
                 href="/about"
                 className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                <span>{t('home.about.philosophy')}</span>
+                <span>Conheça-nos melhor</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>

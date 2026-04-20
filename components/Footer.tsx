@@ -3,11 +3,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Instagram, Facebook } from 'lucide-react';
-import { useLanguage } from '@/lib/LanguageContext';
 import { newsletter } from '@/services/kiban';
 
 const Footer: React.FC = () => {
-  const { t, language } = useLanguage();
   const [nlEmail, setNlEmail] = useState('');
   const [nlStatus, setNlStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -61,7 +59,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-white text-sm leading-relaxed font-light max-w-xs">
-              {t('footer.mission')}
+              Aventuras premium em trilhos e descobertas na natureza no coração de Portugal. Guias regionais especialistas e segredos costeiros inesquecíveis.
             </p>
             <div className="flex space-x-4 pt-4">
               <a href="https://www.instagram.com/algarveexplorer/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-[#da6927] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2" aria-label="Instagram">
@@ -82,19 +80,19 @@ const Footer: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 lg:gap-8 lg:pl-0 md:pl-0 lg:pl-32">
               {/* Quick Links */}
               <div>
-                <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8 text-white">{t('footer.links')}</h4>
+                <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8 text-white">Links Rápidos</h4>
                 <ul className="space-y-3 text-[11px] md:text-xs font-medium uppercase tracking-wider text-white/90">
-                  <li><Link href="/tours" className="hover:text-[#da6927] transition-colors">{t('nav.tours')}</Link></li>
-                  <li><Link href="/algarve" className="hover:text-[#da6927] transition-colors">{t('nav.experience')}</Link></li>
-                  <li><Link href="/transfers" className="hover:text-[#da6927] transition-colors">{t('nav.logistics')}</Link></li>
-                  <li><Link href="/about" className="hover:text-[#da6927] transition-colors">{t('nav.story')}</Link></li>
-                  <li><Link href="/contacts" className="hover:text-[#da6927] transition-colors">{t('nav.contact')}</Link></li>
+                  <li><Link href="/tours" className="hover:text-[#da6927] transition-colors">Tours</Link></li>
+                  <li><Link href="/algarve" className="hover:text-[#da6927] transition-colors">O Algarve</Link></li>
+                  <li><Link href="/transfers" className="hover:text-[#da6927] transition-colors">Transfers</Link></li>
+                  <li><Link href="/about" className="hover:text-[#da6927] transition-colors">Sobre Nós</Link></li>
+                  <li><Link href="/contacts" className="hover:text-[#da6927] transition-colors">Contactos</Link></li>
                   <li className="pt-2 border-t border-white/10">
-                    <Link href="/privacy" className="hover:text-[#da6927] transition-colors">{t('footer.privacy')}</Link>
+                    <Link href="/privacy" className="hover:text-[#da6927] transition-colors">POLÍTICA DE PRIVACIDADE & COOKIES</Link>
                   </li>
                   <li>
                     <a href="https://www.livroreclamacoes.pt" target="_blank" rel="noopener noreferrer" className="hover:text-[#da6927] transition-colors">
-                      {t('footer.complaints')}
+                      LIVRO DE RECLAMAÇÕES
                     </a>
                   </li>
                 </ul>
@@ -102,7 +100,7 @@ const Footer: React.FC = () => {
 
               {/* Contact Details */}
               <div>
-                <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8 text-white">{t('footer.contact')}</h4>
+                <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 md:mb-8 text-white">Contacte-nos</h4>
                 <div className="space-y-4 text-white text-xs md:text-sm">
                   <div>
                     <a href="mailto:algarveexplorer@gmail.com" className="font-light hover:text-[#da6927] transition-colors break-all">
@@ -126,14 +124,14 @@ const Footer: React.FC = () => {
               {/* Newsletter - Desktop only in 3rd column */}
               <div className="hidden md:block">
                 <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] mb-8 text-white">
-                  {t('footer.newsletter.title')}
+                  Newsletter
                 </h4>
                 <div className="flex flex-col">
                   <p className="text-white text-sm leading-relaxed font-light mb-6 max-w-sm">
-                    {t('footer.newsletter.desc')}
+                    Subscreva a nossa newsletter para atualizações sobre trilhos e segredos regionais.
                   </p>
                   {nlStatus === 'success' ? (
-                    <p className="text-green-400 text-sm font-medium">{language === 'pt' ? 'Subscrito com sucesso!' : 'Successfully subscribed!'}</p>
+                    <p className="text-green-400 text-sm font-medium">Subscrito com sucesso!</p>
                   ) : (
                     <form className="relative w-full max-w-sm" onSubmit={handleNewsletter}>
                       <input
@@ -141,7 +139,7 @@ const Footer: React.FC = () => {
                         required
                         value={nlEmail}
                         onChange={(e) => setNlEmail(e.target.value)}
-                        placeholder={t('footer.newsletter.placeholder')}
+                        placeholder="O seu e-mail"
                         className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#da6927] transition-all placeholder:text-white/20"
                       />
                       <button
@@ -149,10 +147,10 @@ const Footer: React.FC = () => {
                         disabled={nlStatus === 'loading'}
                         className="absolute right-2 top-2 bottom-2 px-6 bg-[#da6927] text-white rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-white hover:text-[#0d4357] transition-all duration-300 disabled:opacity-50"
                       >
-                        {nlStatus === 'loading' ? '...' : t('footer.newsletter.button')}
+                        {nlStatus === 'loading' ? '...' : 'Subscrever'}
                       </button>
                       {nlStatus === 'error' && (
-                        <p className="text-red-400 text-xs mt-2">{language === 'pt' ? 'Erro. Tente novamente.' : 'Error. Try again.'}</p>
+                        <p className="text-red-400 text-xs mt-2">Erro. Tente novamente.</p>
                       )}
                     </form>
                   )}
@@ -163,10 +161,10 @@ const Footer: React.FC = () => {
             {/* Newsletter - Mobile only full width */}
             <div className="md:hidden w-full">
               <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] mb-6 text-white text-center">
-                {t('footer.newsletter.title')}
+                Newsletter
               </h4>
               {nlStatus === 'success' ? (
-                <p className="text-green-400 text-sm font-medium text-center">{language === 'pt' ? 'Subscrito com sucesso!' : 'Successfully subscribed!'}</p>
+                <p className="text-green-400 text-sm font-medium text-center">Subscrito com sucesso!</p>
               ) : (
                 <form className="relative w-full" onSubmit={handleNewsletter}>
                   <input
@@ -174,7 +172,7 @@ const Footer: React.FC = () => {
                     required
                     value={nlEmail}
                     onChange={(e) => setNlEmail(e.target.value)}
-                    placeholder={t('footer.newsletter.placeholder')}
+                    placeholder="O seu e-mail"
                     className="w-full bg-white/5 border border-white/10 rounded-full px-6 py-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-[#da6927] transition-all placeholder:text-white/20"
                   />
                   <button
@@ -182,7 +180,7 @@ const Footer: React.FC = () => {
                     disabled={nlStatus === 'loading'}
                     className="absolute right-2 top-2 bottom-2 px-6 bg-[#da6927] text-white rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-white hover:text-[#0d4357] transition-all duration-300 disabled:opacity-50"
                   >
-                    {nlStatus === 'loading' ? '...' : (language === 'pt' ? 'OK' : 'OK')}
+                    {nlStatus === 'loading' ? '...' : 'OK'}
                   </button>
                 </form>
               )}
@@ -193,7 +191,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar - Centered */}
         <div className="border-t border-white/10 pt-8 md:pt-12 text-center text-white/50 text-[9px] md:text-[10px] font-medium uppercase tracking-wider relative">
           <p>
-            {t('footer.devLine1')} {t('footer.devLine2')}
+            Algarve Explorer Tours @ 2026 DESENVOLVIDO POR AORUBRO
           </p>
         </div>
       </div>

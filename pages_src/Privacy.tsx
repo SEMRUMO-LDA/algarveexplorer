@@ -1,12 +1,9 @@
 'use client';
 
 import React from 'react';
-import { useLanguage } from '@/lib/LanguageContext';
 import { Shield, Mail, Phone, MapPin } from 'lucide-react';
 
 const Privacy: React.FC = () => {
-  const { t, language } = useLanguage();
-
   const content = {
     en: {
       title: 'Privacy Policy',
@@ -248,7 +245,7 @@ const Privacy: React.FC = () => {
     }
   };
 
-  const currentContent = language === 'pt' ? content.pt : content.en;
+  const currentContent = content.pt;
 
   return (
     <div className="min-h-screen bg-[#fffbf9]">

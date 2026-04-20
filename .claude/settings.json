@@ -17,7 +17,16 @@
       "Bash(xargs kill:*)",
       "Bash(lsof -ti:3002)",
       "Bash(git add:*)",
-      "Bash(git commit -m ':*)"
+      "Bash(git commit -m ':*)",
+      "Bash(convert -size 800x600 xc:'#f1f5f9' -gravity center -pointsize 24 -fill '#94a3b8' -annotate 0 'No Image' public/image/placeholder.jpg)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -sL \"https://api.github.com/repos/SEMRUMO-LDA/kibanCMS/contents/packages/addons/src/addons\")",
+      "Bash(python3 -c \"import sys,json; [print\\(d['name']\\) for d in json.load\\(sys.stdin\\)]\")",
+      "Bash(curl -sL \"https://api.github.com/search/code?q=repo:SEMRUMO-LDA/kibanCMS+tour+in:path\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/SEMRUMO-LDA/kibanCMS/main/apps/api/src/routes/tours.ts\")",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/SEMRUMO-LDA/kibanCMS/main/apps/api/src/server.ts\")",
+      "Bash(curl -sL --connect-timeout 10 https://kiban.pt/api/v1/tours -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer')",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/SEMRUMO-LDA/kibanCMS/main/apps/admin/src/pages/Login.tsx\")"
     ],
     "additionalDirectories": [
       "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/algarveexplorer/components",

@@ -8,7 +8,6 @@ import { useLanguage } from '@/lib/LanguageContext';
 import { Clock, Users, MapPin, Star, Loader2 } from 'lucide-react';
 
 export default function Experiences() {
-  const { language } = useLanguage();
   const [experiencesList, setExperiencesList] = useState<ExperienceEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'tours' | 'transfers' | 'experiences'>('all');
@@ -46,7 +45,7 @@ export default function Experiences() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-bold text-white mb-6"
           >
-            {language === 'pt' ? 'Experiências no Algarve' : 'Algarve Experiences'}
+            Experiências no Algarve
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -54,9 +53,7 @@ export default function Experiences() {
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-300 max-w-3xl mx-auto"
           >
-            {language === 'pt'
-              ? 'Descobre as melhores experiências e aventuras na costa algarvia'
-              : 'Discover the best experiences and adventures on the Algarve coast'}
+            Descobre as melhores experiências e aventuras na costa algarvia
           </motion.p>
         </div>
       </section>
@@ -68,7 +65,7 @@ export default function Experiences() {
             active={filter === 'all'}
             onClick={() => setFilter('all')}
           >
-            {language === 'pt' ? 'Todas' : 'All'}
+            Todas
           </FilterButton>
           <FilterButton
             active={filter === 'tours'}
@@ -86,7 +83,7 @@ export default function Experiences() {
             active={filter === 'experiences'}
             onClick={() => setFilter('experiences')}
           >
-            {language === 'pt' ? 'Experiências' : 'Experiences'}
+            Experiências
           </FilterButton>
         </div>
       </section>
@@ -96,7 +93,7 @@ export default function Experiences() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <Star className="w-8 h-8 text-amber-500 fill-amber-500" />
-            {language === 'pt' ? 'Em Destaque' : 'Featured'}
+            Em Destaque
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredExperiences.map((exp) => (
@@ -115,15 +112,13 @@ export default function Experiences() {
         ) : filteredExperiences.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-slate-400">
-              {language === 'pt'
-                ? 'Nenhuma experiência encontrada'
-                : 'No experiences found'}
+              Nenhuma experiência encontrada
             </p>
           </div>
         ) : (
           <>
             <h2 className="text-2xl font-bold text-white mb-8">
-              {language === 'pt' ? 'Todas as Experiências' : 'All Experiences'}
+              Todas as Experiências
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredExperiences
@@ -196,7 +191,7 @@ function ExperienceCard({
               {featured && (
                 <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-white text-sm font-bold rounded-full flex items-center gap-1">
                   <Star className="w-4 h-4 fill-white" />
-                  {language === 'pt' ? 'Destaque' : 'Featured'}
+                  Destaque
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
@@ -238,7 +233,7 @@ function ExperienceCard({
               {experience.max_participants && (
                 <div className="flex items-center gap-1">
                   <Users className="w-4 h-4" />
-                  {language === 'pt' ? 'Até' : 'Up to'} {experience.max_participants}
+                  Até {experience.max_participants}
                 </div>
               )}
               {experience.meeting_point_pt && (

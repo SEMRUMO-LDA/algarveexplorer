@@ -4,12 +4,10 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
-import { useLanguage } from '@/lib/LanguageContext';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import MagneticButton from '@/components/MagneticButton';
 
 const FooterCTA: React.FC = () => {
-    const { t } = useLanguage();
     const pathname = usePathname();
 
     return (
@@ -43,11 +41,11 @@ const FooterCTA: React.FC = () => {
             <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0d4357] via-[#0d4357]/80 to-transparent z-0"></div>
 
             <div className="max-w-4xl mx-auto px-4 md:px-6 text-center relative z-10">
-                <span className="text-white text-[11px] font-bold uppercase tracking-[0.4em] mb-8 block drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]">{t('home.cta.eyebrow')}</span>
-                <h2 className="text-3xl md:text-5xl font-bold font-montserrat mb-10 tracking-tight uppercase leading-tight">{t('home.cta.title')}</h2>
+                <span className="text-white text-[11px] font-bold uppercase tracking-[0.4em] mb-8 block drop-shadow-[0_1px_6px_rgba(0,0,0,0.8)]">Comece a sua Viagem</span>
+                <h2 className="text-3xl md:text-5xl font-bold font-montserrat mb-10 tracking-tight uppercase leading-tight">Pronto para explorar o Algarve de forma diferente?</h2>
                 <p className="text-white text-lg md:text-xl font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-                    {t('home.cta.p1')}<br />
-                    {t('home.cta.p2')}
+                    Planear pode ser complicado. Explorar não tem de ser.<br />
+                    Deixe-nos guiá-lo até à experiência certa.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                     <Link href="/tours" className="inline-flex justify-center">
@@ -56,7 +54,7 @@ const FooterCTA: React.FC = () => {
                             strength={0.4}
                             className="inline-flex items-center justify-center space-x-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 w-full"
                         >
-                            <span>{t('home.cta.browse')}</span>
+                            <span>Ver experiências</span>
                             <ArrowRight size={16} />
                         </MagneticButton>
                     </Link>
@@ -67,7 +65,7 @@ const FooterCTA: React.FC = () => {
                                 strength={0.4}
                                 className="inline-flex items-center justify-center bg-white/0 border border-white/40 text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 w-full group"
                             >
-                                {t('home.cta.contact')}
+                                Falar connosco
                             </MagneticButton>
                         </Link>
                     )}

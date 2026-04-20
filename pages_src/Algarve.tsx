@@ -3,21 +3,19 @@
 import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { Sun, CloudRain, Trees, ArrowRight, ArrowLeft, Plus, Waves } from 'lucide-react';
-import { useLanguage } from '@/lib/LanguageContext';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import ParallaxCard from '@/components/ParallaxCard';
 
 const Algarve: React.FC = () => {
-  const { t } = useLanguage();
   const seasonsSliderRef = useRef<HTMLDivElement>(null);
   const [activeSeason, setActiveSeason] = useState(0);
 
   const seasons = [
-    { icon: <Trees size={32} />, title: t('algarve.seasons.spring.title'), subtitle: t('algarve.seasons.spring.subtitle'), desc: t('algarve.seasons.spring.desc') },
-    { icon: <Sun size={32} />, title: t('algarve.seasons.summer.title'), subtitle: t('algarve.seasons.summer.subtitle'), desc: t('algarve.seasons.summer.desc') },
-    { icon: <Waves size={32} />, title: t('algarve.seasons.autumn.title'), subtitle: t('algarve.seasons.autumn.subtitle'), desc: t('algarve.seasons.autumn.desc') },
-    { icon: <CloudRain size={32} />, title: t('algarve.seasons.winter.title'), subtitle: t('algarve.seasons.winter.subtitle'), desc: t('algarve.seasons.winter.desc') }
+    { icon: <Trees size={32} />, title: 'Primavera', subtitle: 'MAR - MAI', desc: 'Uma tapeçaria de flores silvestres. As colinas são luxuriantes e o ar está cheio do perfume da esteva e da alfazema.' },
+    { icon: <Sun size={32} />, title: 'Verão', subtitle: 'JUN - AGO', desc: 'Longos dias ensolarados. Ideal para explorações de manhã cedo seguidas de mergulhos refrescantes em piscinas de rios escondidos.' },
+    { icon: <Waves size={32} />, title: 'Outono', subtitle: 'SET - NOV', desc: "A 'Estação Dourada'. Luz suave, águas atlânticas quentes e a temperatura perfeita para longas caminhadas." },
+    { icon: <CloudRain size={32} />, title: 'Inverno', subtitle: 'DEZ - FEV', desc: 'Calmo, fresco e límpido. Enquanto o Norte da Europa está congelado, os trilhos do Algarve permanecem convidativos e serenos.' }
   ];
 
   const handleSeasonsScroll = () => {
@@ -52,20 +50,20 @@ const Algarve: React.FC = () => {
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link href="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
+            <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">{t('nav.experience')}</span>
+            <span className="text-white/80">O Algarve</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('algarve.hero.eyebrow')}</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">Sul de Portugal</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-            {t('algarve.hero.title1')}<br />{t('algarve.hero.title2')}
+            UM RECANTO<br />PARA A ALMA
           </h1>
           <p className="font-sans text-white/90 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-12">
-            {t('algarve.hero.desc')}
+            Das dramáticas falésias atlânticas aos antigos picos de Monchique, o Algarve oferece uma diversidade de terreno que convida à exploração lenta e à ligação profunda com a natureza.
           </p>
         </div>
       </section>
@@ -90,20 +88,20 @@ const Algarve: React.FC = () => {
             </div>
             <div className="lg:pl-20">
               <div className="flex items-center mb-10">
-                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('algarve.why.eyebrow')}</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">Porquê Explorar Aqui</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight leading-tight uppercase">
-                {t('algarve.why.title')}
+                Para além dos resorts costeiros
               </h2>
               <div className="space-y-8 text-brand-body/90 text-lg md:text-xl font-light leading-relaxed">
-                <p>{t('algarve.why.p1')}</p>
-                <p>{t('algarve.why.p2')}</p>
+                <p>O Algarve é mundialmente famoso pelas suas praias douradas, mas o seu verdadeiro coração reside no interior. O &quot;Barrocal&quot; e a &quot;Serra&quot; proporcionam uma paisagem acidentada e autêntica onde o tempo parece abrandar.</p>
+                <p>Focamo-nos nestas joias escondidas — as florestas de sobreiros, os caminhos de pastores e as aldeias tradicionais onde ainda se pode saborear o sabor autêntico da vida portuguesa.</p>
               </div>
               <Link
                 href="/tours"
                 className="mt-16 inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                <span>{t('algarve.why.cta')}</span>
+                <span>Ver Aventuras</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
@@ -119,20 +117,20 @@ const Algarve: React.FC = () => {
               {[
                 {
                   id: "01",
-                  name: t('algarve.regions.monchique.title'),
-                  desc: t('algarve.regions.monchique.desc'),
+                  name: 'Serra de Monchique',
+                  desc: "O 'Jardim do Algarve'. Picos luxuriantes, nascentes de montanha e antigas florestas de sobreiros.",
                   image: "/image/algarve-monchique.jpeg"
                 },
                 {
                   id: "02",
-                  name: t('algarve.regions.barrocal.title'),
-                  desc: t('algarve.regions.barrocal.desc'),
+                  name: 'O Barrocal',
+                  desc: 'A faixa de calcário. Caminhos técnicos por pomares de laranjeiras, muros de pedra seca e aldeias escondidas.',
                   image: "/image/algarve-barrocal.jpeg"
                 },
                 {
                   id: "03",
-                  name: t('algarve.regions.vicentine.title'),
-                  desc: t('algarve.regions.vicentine.desc'),
+                  name: 'Costa Vicentina',
+                  desc: 'O Oeste selvagem. Falésias dramáticas, brisa marítima e caminhos esculpidos por pescadores ao longo de séculos.',
                   image: "/image/algarve-costa-vicentina.jpeg"
                 }
               ].map((reg, i) => (
@@ -168,11 +166,11 @@ const Algarve: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
             <div className="pr-0 lg:pr-12">
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('algarve.seasons.eyebrow')}</span>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">{t('algarve.seasons.title')}</h2>
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">Todo o ano</span>
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">Estações Distintas</h2>
               <div className="space-y-6 text-brand-body/90 text-lg font-light leading-relaxed mb-16">
-                <p>{t('algarve.seasons.p1')}</p>
-                <p>{t('algarve.seasons.p2')}</p>
+                <p>O Algarve é uma região de contrastes, oferecendo experiências únicas dependendo da altura em que decidir explorar.</p>
+                <p>Desde o desabrochar luxuriante da primavera até aos invernos amenos e tranquilos, cada estação revela um carácter diferente das nossas paisagens.</p>
               </div>
               
               <div className="flex items-center space-x-6 lg:space-x-8">

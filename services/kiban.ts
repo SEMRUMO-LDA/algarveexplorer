@@ -52,6 +52,136 @@ async function kibanFetch<T>(
 }
 
 // ===================================
+// TOURS API (add-on Tours & Bookings)
+// ===================================
+// Endpoint: /api/v1/tours
+// Schema alinhado com apps/api/src/routes/tours.ts do KIBAN CMS.
+
+export interface CancellationPolicyTier {
+  hours_before: number;
+  refund_percent: number;
+  label?: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface AccessibilityInfo {
+  wheelchair_accessible?: boolean;
+  stroller_accessible?: boolean;
+  service_animals_allowed?: boolean;
+  public_transport_nearby?: boolean;
+  infant_seats_available?: boolean;
+  notes?: string;
+  [key: string]: any;
+}
+
+export interface TourEntry {
+  slug: string;
+  title: string;
+  subtitle: string;
+  short_description: string;
+  full_description: string;
+  product_code: string;
+  tour_type: string;
+  categories: string[];
+  difficulty_level: string;
+  duration_minutes: number;
+  capacity: number;
+  min_age: number | null;
+  max_age: number | null;
+  languages: string[];
+  price_adult: number;
+  price_child: number;
+  child_age_range: string;
+  currency: string;
+  schedule_type: 'fixed_slots' | 'weekly_schedule' | string;
+  fixed_slots: string[];
+  weekly_schedule: Record<string, any>;
+  slot_interval_minutes: number;
+  cover_image: string;
+  gallery: string[];
+  highlights: string[];
+  itinerary: string;
+  meeting_point: string;
+  pickup_zones: string[];
+  inclusions: string[];
+  exclusions: string[];
+  what_to_bring: string[];
+  additional_info: string;
+  accessibility_info: AccessibilityInfo;
+  health_restrictions: string[];
+  physical_requirements: string;
+  cancellation_policy: CancellationPolicyTier[];
+  weather_policy: string;
+  faq: FAQItem[];
+  fine_print: string;
+  is_digital_ticket: boolean;
+  instant_confirmation: boolean;
+  travellers_choice: boolean;
+  likely_to_sell_out: boolean;
+  rating: number;
+  rating_count: number;
+  resource_slug: string;
+}
+
+export const tours = {
+  /**
+   * Listar todas as tours publicadas.
+   */
+  list: async (): Promise<{ data: TourEntry[]; error: null | Error }> => {
+    try {
+      const response = await kibanFetch<{ data: TourEntry[] }>('/tours');
+      return { data: response.data || [], error: null };
+    } catch (err) {
+      console.error('KIBAN: Error listing tours:', err);
+      return { data: [], error: err as Error };
+    }
+  },
+
+  /**
+   * Obter tour por slug.
+   */
+  getBySlug: async (
+    slug: string
+  ): Promise<{ data: TourEntry | null; error: null | Error }> => {
+    try {
+      const response = await kibanFetch<{ data: TourEntry }>(`/tours/${slug}`);
+      return { data: response.data || null, error: null };
+    } catch (err) {
+      console.error('KIBAN: Error fetching tour:', err);
+      return { data: null, error: err as Error };
+    }
+  },
+
+  /**
+   * Recomendações (mesma categoria, excluindo a atual).
+   */
+  recommended: async (
+    categories: string[],
+    excludeSlug: string,
+    limit = 3
+  ): Promise<{ data: TourEntry[]; error: null | Error }> => {
+    try {
+      const response = await kibanFetch<{ data: TourEntry[] }>('/tours');
+      const all = response.data || [];
+      const filtered = all.filter(
+        (t) =>
+          t.slug !== excludeSlug &&
+          (categories.length === 0 ||
+            t.categories.some((c) => categories.includes(c)))
+      );
+      return { data: filtered.slice(0, limit), error: null };
+    } catch (err) {
+      console.error('KIBAN: Error fetching recommended:', err);
+      return { data: [], error: err as Error };
+    }
+  },
+};
+
+// ===================================
 // ENTRIES API
 // ===================================
 // Collection "experiences" com campo category: 'tours' | 'transfers' | 'experiences'
@@ -426,6 +556,7 @@ const kiban = {
   bookings,
   redirects,
   experiences,
+  tours,
   isConfigured: isKibanConfigured,
 };
 

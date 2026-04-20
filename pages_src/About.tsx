@@ -3,21 +3,19 @@
 import React, { useRef, useState } from 'react';
 import Link from 'next/link';
 import { Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLanguage } from '@/lib/LanguageContext';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import ParallaxCard from '@/components/ParallaxCard';
 
 const About: React.FC = () => {
-  const { t } = useLanguage();
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const slides = [
-    { title: t('about.values.partners.title'), icon: <Users size={32} />, desc: t('about.values.partners.desc') },
-    { title: t('about.values.eco.title'), icon: <Leaf size={32} />, desc: t('about.values.eco.desc') },
-    { title: t('about.values.slow.title'), icon: <Footprints size={32} />, desc: t('about.values.slow.desc') },
-    { title: t('about.values.care.title'), icon: <ShieldCheck size={32} />, desc: t('about.values.care.desc') }
+    { title: 'Parceiros Locais', icon: <Users size={32} />, desc: 'Guiados por especialistas regionais.' },
+    { title: 'Foco Ecológico', icon: <Leaf size={32} />, desc: 'Preservar os trilhos para o amanhã.' },
+    { title: 'Viagens Lentas', icon: <Footprints size={32} />, desc: 'Fuja do ruído e da pressa.' },
+    { title: 'Cuidado Total', icon: <ShieldCheck size={32} />, desc: 'Segurança e conhecimento regional.' }
   ];
 
   const handleScroll = () => {
@@ -52,20 +50,20 @@ const About: React.FC = () => {
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link href="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
+            <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">{t('nav.story')}</span>
+            <span className="text-white/80">A Nossa História</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('about.hero.eyebrow')}</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">ALGARVE EXPLORER</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-            {t('about.hero.title')}
+            EXPERIÊNCIA DESDE 2016
           </h1>
           <p className="text-white max-w-2xl text-lg md:text-xl font-light leading-relaxed">
-            {t('about.hero.desc')}
+            A partilhar os segredos mais escondidos do Algarve através de uma experiência única e memorável.
           </p>
         </div>
       </section>
@@ -79,21 +77,21 @@ const About: React.FC = () => {
             <div className="w-full lg:w-1/2 order-1 lg:order-1">
               <div className="max-w-xl">
                 <div className="flex items-center mb-10">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('about.story.eyebrow')}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">A NOSSA MISSÃO</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight leading-[1.1] uppercase">
-                  {t('about.story.title')}
+                  Experiências autênticas que ganham vida!
                 </h2>
                 <div className="space-y-8 text-brand-body/90 text-lg md:text-xl font-light leading-relaxed">
-                  <p>{t('about.story.p1')}</p>
-                  <p>{t('about.story.p2')}</p>
+                  <p>Com experiência no setor do turismo desde 2016, a Algarve Explorer foi criada por orgulhosos e apaixonados algarvios com o intuito de mostrar as joias escondidas da região Sul de Portugal longe da pressa e do ruído do turismo convencional.</p>
+                  <p>Viajamos ao ritmo da natureza, descobrindo a alma da paisagem um passo de cada vez, aproveitando cada oportunidade para alargar horizons e criar memórias duradouras através de trilhos, passeios a cavalo, degustação de vinhos, provas de cerveja, transfers...</p>
                 </div>
                 <div className="mt-16">
                   <Link
                     href="/tours"
                     className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                   >
-                    <span>{t('about.story.cta')}</span>
+                    <span>Descobrir os Trilhos</span>
                     <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                   </Link>
                 </div>
@@ -140,11 +138,11 @@ const About: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
             <div className="pr-0 lg:pr-12">
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('about.values.eyebrow')}</span>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">{t('about.values.title')}</h2>
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">O NOSSO COMPROMISSO</span>
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">Comunidade e Sustentabilidade</h2>
               <div className="space-y-6 text-brand-body/90 text-lg font-light leading-relaxed mb-16">
-                <p>{t('about.values.p1')}</p>
-                <p>{t('about.values.p2')}</p>
+                <p>Apoiantes da economia local e das comunidades que nos rodeiam, trabalhamos em parceria com produtores locais, guias e outros profissionais da região.</p>
+                <p>A Algarve Explorer promove o desenvolvimento sustentável e contribui para o bem-estar do Algarve, fortalecendo o tecido social que nos une!</p>
               </div>
               
               <div className="flex items-center space-x-6 lg:space-x-8">

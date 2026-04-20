@@ -8,7 +8,7 @@ import FooterCTA from '@/components/FooterCTA';
 import { experiences as kibanExperiences, ExperienceEntry } from '@/services/kiban';
 
 const Transfers: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [transfers, setTransfers] = useState<ExperienceEntry[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -43,20 +43,20 @@ const Transfers: React.FC = () => {
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link href="/" className="hover:text-[#da6927] transition-colors">{t('nav.home')}</Link>
+            <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">{t('nav.transfers')}</span>
+            <span className="text-white/80">Transfers</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('transfers.hero.eyebrow')}</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">Logística</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-            {t('transfers.hero.title')}
+            TRANSFERS DE TRILHO
           </h1>
           <p className="text-white max-w-2xl text-lg md:text-xl font-light leading-relaxed">
-            {t('transfers.hero.desc')}
+            Transporte confiável ponto a ponto especializado para caminhantes e entusiastas de atividades ao ar livre. Fazemos a ponte entre a sua chegada e o início do trilho.
           </p>
         </div>
       </section>
@@ -69,14 +69,14 @@ const Transfers: React.FC = () => {
               <div className="text-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#da6927] mx-auto mb-4"></div>
                 <p className="text-brand-body/60 text-sm uppercase tracking-widest">
-                  {language === 'pt' ? 'A carregar transfers...' : 'Loading transfers...'}
+                  A carregar transfers...
                 </p>
               </div>
             </div>
           ) : transfers.length === 0 ? (
             <div className="text-center py-32">
               <p className="text-brand-body/60 text-lg">
-                {language === 'pt' ? 'Nenhum transfer disponível no momento.' : 'No transfers available at the moment.'}
+                Nenhum transfer disponível no momento.
               </p>
             </div>
           ) : (
@@ -87,14 +87,14 @@ const Transfers: React.FC = () => {
                     <div className="flex-1">
                       <div className="flex items-center space-x-3 mb-4 text-[#da6927]">
                         <Truck size={20} />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{language === 'pt' ? 'ROTA REGULAR' : 'REGULAR ROUTE'}</span>
+                        <span className="text-[11px] font-bold uppercase tracking-[0.4em]">ROTA REGULAR</span>
                       </div>
                       <h3 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight group-hover:text-[#da6927] transition-colors">
                         {language === 'pt' ? service.title_pt : service.title_en}
                       </h3>
                     </div>
                     <div className="text-right">
-                      <span className="block text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-2">{language === 'pt' ? 'A partir de' : 'Starting from'}</span>
+                      <span className="block text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-2">A partir de</span>
                       <span className="text-4xl font-bold font-montserrat text-brand-navy tracking-tighter">€{service.price}</span>
                     </div>
                   </div>
@@ -108,13 +108,13 @@ const Transfers: React.FC = () => {
                       <div className="flex items-center space-x-3">
                         <Users size={18} className="text-[#da6927]" />
                         <span className="text-xs font-bold uppercase tracking-widest text-brand-navy">
-                          {language === 'pt' ? `Até ${service.max_participants} pessoas` : `Up to ${service.max_participants} people`}
+                          Até {service.max_participants} pessoas
                         </span>
                       </div>
                     )}
                     <div className="flex items-center space-x-3">
                       <Luggage size={18} className="text-[#da6927]" />
-                      <span className="text-xs font-bold uppercase tracking-widest text-brand-navy">{language === 'pt' ? 'Espaço p/ Equipamento' : 'Equipment Storage'}</span>
+                      <span className="text-xs font-bold uppercase tracking-widest text-brand-navy">Espaço p/ Equipamento</span>
                     </div>
                   </div>
 
@@ -123,7 +123,7 @@ const Transfers: React.FC = () => {
                       href="/contacts"
                       className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-xl group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
-                      <span>{language === 'pt' ? 'RESERVAR TRANSFER' : 'BOOK TRANSFER'}</span>
+                      <span>RESERVAR TRANSFER</span>
                       <ChevronRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
                   </div>
@@ -138,18 +138,18 @@ const Transfers: React.FC = () => {
               <div>
                 <div className="flex items-center space-x-3 mb-10 text-white/30">
                   <span className="text-xl font-light leading-none">+</span>
-                  <span className="text-[11px] font-bold uppercase tracking-[0.4em]">{language === 'pt' ? 'Logística Personalizada' : 'Bespoke Logistics'}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.4em]">Logística Personalizada</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat mb-12 tracking-tight leading-tight">
-                  {language === 'pt' ? 'PRECISA DE UM' : 'NEED A CUSTOM'} <br />{language === 'pt' ? 'SHUTTLE?' : 'SHUTTLE?'}
+                  PRECISA DE UM <br />SHUTTLE?
                 </h2>
                 <p className="text-white/50 text-xl font-light leading-relaxed mb-12">
-                  {language === 'pt' ? 'De exploradores solitários a grandes grupos, tratamos da logística. Drop-offs em trilhos, apoio a eventos, ou transporte de bagagem regional.' : 'From solo explorers to large groups, we handle the logistics. Trailhead drop-offs, event support, or cross-regional luggage transport.'}
+                  De exploradores solitários a grandes grupos, tratamos da logística. Drop-offs em trilhos, apoio a eventos, ou transporte de bagagem regional.
                 </p>
                 <div className="flex flex-wrap gap-8">
                   <div className="flex items-center space-x-3">
                     <ShieldCheck size={20} className="text-[#da6927]" />
-                    <span className="text-xs font-bold uppercase tracking-widest">{language === 'pt' ? 'SEGURO E LICENCIADO' : 'INSURED & LICENSED'}</span>
+                    <span className="text-xs font-bold uppercase tracking-widest">SEGURO E LICENCIADO</span>
                   </div>
                 </div>
               </div>
@@ -158,7 +158,7 @@ const Transfers: React.FC = () => {
                   href="/contacts"
                   className="bg-[#da6927] text-white px-12 py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-brand-body transition-all duration-300 shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                 >
-                  {language === 'pt' ? 'PEDIR ORÇAMENTO' : 'REQUEST A QUOTE'}
+                  PEDIR ORÇAMENTO
                 </Link>
               </div>
             </div>

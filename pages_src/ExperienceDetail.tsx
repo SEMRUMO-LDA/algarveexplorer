@@ -20,7 +20,7 @@ import {
 
 const ExperienceDetail: React.FC = () => {
   const { slug } = useParams() as { slug: string };
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [experience, setExperience] = useState<ExperienceEntry | null>(null);
   const [loading, setLoading] = useState(true);
   const [recommended, setRecommended] = useState<ExperienceEntry[]>([]);
@@ -74,25 +74,21 @@ const ExperienceDetail: React.FC = () => {
 
   const formatDuration = (minutes: number) => {
     if (!minutes || minutes === 0) {
-      return language === 'pt' ? 'N/A' : 'N/A';
+      return 'N/A';
     }
 
     if (minutes < 60) {
-      return language === 'pt' ? `${minutes} min` : `${minutes} min`;
+      return `${minutes} min`;
     }
 
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
 
     if (mins === 0) {
-      const hourLabel = language === 'pt' ? 'hora' : 'hour';
-      const hoursLabel = language === 'pt' ? 'horas' : 'hours';
-      return `${hours} ${hours === 1 ? hourLabel : hoursLabel}`;
+      return `${hours} ${hours === 1 ? 'hora' : 'horas'}`;
     }
 
-    const hourLabel = language === 'pt' ? 'hora' : 'hour';
-    const hoursLabel = language === 'pt' ? 'horas' : 'hours';
-    return `${hours} ${hours === 1 ? hourLabel : hoursLabel} ${mins}min`;
+    return `${hours} ${hours === 1 ? 'hora' : 'horas'} ${mins}min`;
   };
 
   // Stagger animation variants
@@ -126,7 +122,7 @@ const ExperienceDetail: React.FC = () => {
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#da6927] mx-auto mb-4"></div>
           <p className="text-brand-body/60 text-sm uppercase tracking-widest">
-            {language === 'pt' ? 'A carregar...' : 'Loading...'}
+            A carregar...
           </p>
         </div>
       </div>
@@ -138,13 +134,13 @@ const ExperienceDetail: React.FC = () => {
     return (
       <div className="pt-32 px-6 text-center min-h-screen bg-[#fffbf9] flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold font-montserrat text-brand-navy mb-6 uppercase tracking-tight">
-          {language === 'pt' ? 'Experiência Não Encontrada' : 'Experience Not Found'}
+          Experiência Não Encontrada
         </h1>
         <Link
           href="/experiences"
           className="bg-[#da6927] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
         >
-          {language === 'pt' ? 'Voltar para experiências' : 'Back to experiences'}
+          Voltar para experiências
         </Link>
       </div>
     );
@@ -168,10 +164,10 @@ const ExperienceDetail: React.FC = () => {
 
   // Category label
   const categoryLabel = experience.category === 'tours'
-    ? (language === 'pt' ? 'TOURS' : 'TOURS')
+    ? 'TOURS'
     : experience.category === 'transfers'
-    ? (language === 'pt' ? 'TRANSFERS' : 'TRANSFERS')
-    : (language === 'pt' ? 'EXPERIÊNCIAS' : 'EXPERIENCES');
+    ? 'TRANSFERS'
+    : 'EXPERIÊNCIAS';
 
   return (
     <PageTransition>
@@ -203,10 +199,10 @@ const ExperienceDetail: React.FC = () => {
             className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80 drop-shadow-lg"
             variants={staggerItem}
           >
-            <Link href="/" className="hover:text-white transition-colors">{t('nav.home')}</Link>
+            <Link href="/" className="hover:text-white transition-colors">Início</Link>
             <span className="text-white/50">/</span>
             <Link href="/experiences" className="hover:text-white transition-colors">
-              {language === 'pt' ? 'Experiências' : 'Experiences'}
+              Experiências
             </Link>
             <span className="text-white/50">/</span>
             <span className="text-white truncate max-w-[200px]">{displayTitle}</span>
@@ -261,10 +257,10 @@ const ExperienceDetail: React.FC = () => {
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6 md:gap-8">
                     <div className="w-full md:w-auto text-center md:text-left">
                       <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-3 block">
-                        {language === 'pt' ? 'Diário Visual' : 'Visual Diary'}
+                        Diário Visual
                       </span>
                       <h3 className="text-2xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
-                        {language === 'pt' ? 'Destaques' : 'Highlights'}
+                        Destaques
                       </h3>
                     </div>
                     {mappedHighlights.length > 1 && (
@@ -323,7 +319,7 @@ const ExperienceDetail: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-16 border-t border-slate-100">
                 <div>
                   <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-8">
-                    {language === 'pt' ? 'Incluído' : "What's Included"}
+                    Incluído
                   </h4>
                   {includedItems.length > 0 ? (
                     <ul className="space-y-4">
@@ -338,27 +334,25 @@ const ExperienceDetail: React.FC = () => {
                     <ul className="space-y-4">
                       <li className="flex items-center space-x-3 text-brand-body/70 font-medium">
                         <span className="flex-shrink-0"><Check className="text-[#da6927]" size={16} /></span>
-                        <span className="text-sm uppercase tracking-tight">{language === 'pt' ? 'Guia Experiente' : 'Expert Guide'}</span>
+                        <span className="text-sm uppercase tracking-tight">Guia Experiente</span>
                       </li>
                       <li className="flex items-center space-x-3 text-brand-body/70 font-medium">
                         <span className="flex-shrink-0"><Check className="text-[#da6927]" size={16} /></span>
-                        <span className="text-sm uppercase tracking-tight">{language === 'pt' ? 'Seguro' : 'Insurance'}</span>
+                        <span className="text-sm uppercase tracking-tight">Seguro</span>
                       </li>
                       <li className="flex items-center space-x-3 text-brand-body/70 font-medium">
                         <span className="flex-shrink-0"><Check className="text-[#da6927]" size={16} /></span>
-                        <span className="text-sm uppercase tracking-tight">{language === 'pt' ? 'Equipamento' : 'Equipment'}</span>
+                        <span className="text-sm uppercase tracking-tight">Equipamento</span>
                       </li>
                     </ul>
                   )}
                 </div>
                 <div>
                   <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-8">
-                    {language === 'pt' ? 'Preparação' : 'Preparation'}
+                    Preparação
                   </h4>
                   <p className="text-brand-body/60 text-sm font-light leading-relaxed">
-                    {language === 'pt'
-                      ? "Recomendamos roupa confortável e calçado adequado. Proteção solar é essencial. Todo o equipamento fornecido é inspecionado antes de cada experiência."
-                      : "We recommend comfortable clothing and appropriate footwear. Sun protection is essential. All equipment provided is inspected before each experience."}
+                    Recomendamos roupa confortável e calçado adequado. Proteção solar é essencial. Todo o equipamento fornecido é inspecionado antes de cada experiência.
                   </p>
                 </div>
               </div>
@@ -367,10 +361,10 @@ const ExperienceDetail: React.FC = () => {
               <div className="pt-16 border-t border-slate-100">
                 <div className="mb-12">
                   <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-3 block">
-                    {language === 'pt' ? 'Detalhes' : 'Details'}
+                    Detalhes
                   </span>
                   <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy uppercase tracking-tight">
-                    {language === 'pt' ? 'Informação Prática' : 'Practical Information'}
+                    Informação Prática
                   </h3>
                 </div>
 
@@ -380,10 +374,10 @@ const ExperienceDetail: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-5 flex items-center gap-2">
                         <Users size={14} className="text-[#da6927]" />
-                        {language === 'pt' ? 'Restrições de Idade' : 'Age Restrictions'}
+                        Restrições de Idade
                       </h4>
                       <p className="text-brand-navy font-bold text-base mb-3">
-                        {experience.age_min || 0} - {experience.age_max || 99} {language === 'pt' ? 'anos' : 'years'}
+                        {experience.age_min || 0} - {experience.age_max || 99} anos
                       </p>
                       {experience.age_description_pt && (
                         <p className="text-brand-body/60 text-sm leading-relaxed">
@@ -398,14 +392,14 @@ const ExperienceDetail: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-5 flex items-center gap-2">
                         <XCircle size={14} className="text-[#da6927]" />
-                        {language === 'pt' ? 'Política de Cancelamento' : 'Cancellation Policy'}
+                        Política de Cancelamento
                       </h4>
                       <p className="text-brand-body/60 text-sm leading-relaxed mb-3">
                         {language === 'pt' ? experience.cancellation_policy_pt : experience.cancellation_policy_en}
                       </p>
                       <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold">
                         <CheckCircle size={12} />
-                        {language === 'pt' ? 'Reembolso total' : 'Full refund'}
+                        Reembolso total
                       </div>
                     </div>
                   )}
@@ -415,11 +409,11 @@ const ExperienceDetail: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-5 flex items-center gap-2">
                         <MapPin size={14} className="text-[#da6927]" />
-                        {language === 'pt' ? 'Recolha no Hotel' : 'Hotel Pickup'}
+                        Recolha no Hotel
                       </h4>
                       <div className="mb-3 inline-flex items-center gap-2 bg-[#da6927]/10 text-[#da6927] px-3 py-1.5 rounded-full text-xs font-semibold">
                         <CheckCircle size={12} />
-                        {language === 'pt' ? 'Incluído' : 'Included'}
+                        Incluído
                       </div>
                       <p className="text-brand-body/60 text-sm leading-relaxed">
                         {language === 'pt' ? experience.pickup_details_pt : experience.pickup_details_en}
@@ -432,17 +426,17 @@ const ExperienceDetail: React.FC = () => {
                     <div>
                       <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-5 flex items-center gap-2">
                         <ShieldCheck size={14} className="text-[#da6927]" />
-                        {language === 'pt' ? 'Acessibilidade' : 'Accessibility'}
+                        Acessibilidade
                       </h4>
                       {experience.wheelchair_accessible ? (
                         <div className="mb-3 inline-flex items-center gap-2 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-xs font-semibold">
                           <CheckCircle size={12} />
-                          {language === 'pt' ? 'Acessível' : 'Wheelchair accessible'}
+                          Acessível
                         </div>
                       ) : (
                         <div className="mb-3 inline-flex items-center gap-2 bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full text-xs font-semibold">
                           <AlertCircle size={12} />
-                          {language === 'pt' ? 'Não acessível' : 'Not accessible'}
+                          Não acessível
                         </div>
                       )}
                       <p className="text-brand-body/60 text-sm leading-relaxed">
@@ -457,7 +451,7 @@ const ExperienceDetail: React.FC = () => {
                   <div className="mt-10 p-6 bg-amber-50 border border-amber-200 rounded-xl">
                     <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-amber-900 mb-4 flex items-center gap-2">
                       <AlertTriangle size={14} />
-                      {language === 'pt' ? 'Não Recomendado Para' : 'Not Suitable For'}
+                      Não Recomendado Para
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {(language === 'pt' ? experience.not_suitable_for_pt : experience.not_suitable_for_en)?.map((item, i) => (
@@ -478,12 +472,12 @@ const ExperienceDetail: React.FC = () => {
                 <div className="bg-[#fcfcf9] p-8 md:p-10 rounded-[2rem] border border-slate-100 shadow-xl overflow-hidden">
                   <div className="mb-10">
                     <p className="text-brand-body/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">
-                      {language === 'pt' ? 'Reserve Agora' : 'Book Now'}
+                      Reserve Agora
                     </p>
                     {experience.featured && (
                       <div className="mb-4">
                         <span className="bg-[#da6927] text-white text-[8px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                          {language === 'pt' ? 'Em Destaque' : 'Featured'}
+                          Em Destaque
                         </span>
                       </div>
                     )}
@@ -497,7 +491,7 @@ const ExperienceDetail: React.FC = () => {
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <Clock size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{language === 'pt' ? 'DURAÇÃO' : 'DURATION'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">DURAÇÃO</span>
                       </div>
                       <span className="font-bold text-brand-navy font-bold text-xs uppercase tracking-tight">{displayDuration}</span>
                     </div>
@@ -505,7 +499,7 @@ const ExperienceDetail: React.FC = () => {
                       <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                         <div className="flex items-center gap-4">
                           <Mountain size={18} className="text-[#da6927]" />
-                          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-body/80">{language === 'pt' ? 'NÍVEL' : 'LEVEL'}</span>
+                          <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-brand-body/80">NÍVEL</span>
                         </div>
                         <span className="font-bold text-brand-body text-xs uppercase tracking-tight">
                           {displayDifficulty}
@@ -516,9 +510,9 @@ const ExperienceDetail: React.FC = () => {
                       <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                         <div className="flex items-center gap-4">
                           <Users size={18} className="text-[#da6927]" />
-                          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{language === 'pt' ? 'CAPACIDADE' : 'CAPACITY'}</span>
+                          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">CAPACIDADE</span>
                         </div>
-                        <span className="font-bold text-brand-body text-xs uppercase tracking-tight">MAX {experience.max_participants} {language === 'pt' ? 'PESSOAS' : 'PEOPLE'}</span>
+                        <span className="font-bold text-brand-body text-xs uppercase tracking-tight">MAX {experience.max_participants} PESSOAS</span>
                       </div>
                     )}
 
@@ -528,11 +522,11 @@ const ExperienceDetail: React.FC = () => {
                         <div className="flex items-center gap-4">
                           <Users size={18} className="text-[#da6927]" />
                           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">
-                            {language === 'pt' ? 'IDADES' : 'AGES'}
+                            IDADES
                           </span>
                         </div>
                         <span className="font-bold text-brand-body text-xs uppercase tracking-tight">
-                          {experience.age_min || 0} - {experience.age_max || 99} {language === 'pt' ? 'ANOS' : 'YEARS'}
+                          {experience.age_min || 0} - {experience.age_max || 99} ANOS
                         </span>
                       </div>
                     )}
@@ -543,7 +537,7 @@ const ExperienceDetail: React.FC = () => {
                         <div className="flex items-center gap-4">
                           <MapPin size={18} className="text-[#da6927]" />
                           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">
-                            {language === 'pt' ? 'ENCONTRO' : 'MEETING POINT'}
+                            ENCONTRO
                           </span>
                         </div>
                         <span className="font-bold text-brand-body text-xs text-right max-w-[150px]">
@@ -558,7 +552,7 @@ const ExperienceDetail: React.FC = () => {
                         <div className="flex items-center gap-4">
                           <Calendar size={18} className="text-[#da6927]" />
                           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">
-                            {language === 'pt' ? 'HORÁRIOS' : 'TIMES'}
+                            HORÁRIOS
                           </span>
                         </div>
                         <span className="font-bold text-brand-body text-xs">
@@ -573,7 +567,7 @@ const ExperienceDetail: React.FC = () => {
                         <div className="flex items-center gap-4">
                           <Globe size={18} className="text-[#da6927]" />
                           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">
-                            {language === 'pt' ? 'IDIOMAS' : 'LANGUAGES'}
+                            IDIOMAS
                           </span>
                         </div>
                         <span className="font-bold text-brand-body text-xs uppercase">
@@ -585,9 +579,9 @@ const ExperienceDetail: React.FC = () => {
                     <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                       <div className="flex items-center gap-4">
                         <ShieldCheck size={18} className="text-[#da6927]" />
-                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{language === 'pt' ? 'GUIA' : 'GUIDE'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">GUIA</span>
                       </div>
-                      <span className="font-bold text-brand-body text-xs uppercase tracking-tight">{language === 'pt' ? 'CERTIFICADO' : 'CERTIFIED'}</span>
+                      <span className="font-bold text-brand-body text-xs uppercase tracking-tight">CERTIFICADO</span>
                     </div>
                   </div>
 
@@ -596,13 +590,13 @@ const ExperienceDetail: React.FC = () => {
                     {experience.instant_confirmation && (
                       <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
                         <Zap size={12} />
-                        {language === 'pt' ? 'Confirmação Instantânea' : 'Instant Confirmation'}
+                        Confirmação Instantânea
                       </span>
                     )}
                     {experience.mobile_ticket_accepted && (
                       <span className="inline-flex items-center gap-1 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
                         <Smartphone size={12} />
-                        {language === 'pt' ? 'Ticket Móvel' : 'Mobile Ticket'}
+                        Ticket Móvel
                       </span>
                     )}
                   </div>
@@ -617,7 +611,7 @@ const ExperienceDetail: React.FC = () => {
                       rel={experience.fareharbor_url ? "noopener noreferrer" : undefined}
                       className="flex items-center justify-center space-x-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 shadow-md group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
-                      <span>{language === 'pt' ? 'RESERVAR AGORA' : 'BOOK NOW'}</span>
+                      <span>RESERVAR AGORA</span>
                       <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                     </MagneticButton>
                     <MagneticButton
@@ -627,7 +621,7 @@ const ExperienceDetail: React.FC = () => {
                       className="flex items-center justify-center space-x-3 w-full bg-white text-brand-body/80 py-6 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] border border-slate-100 hover:bg-[#0d4357] hover:text-white transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <Download size={14} />
-                      <span>{language === 'pt' ? 'DESCARREGAR INFO' : 'DOWNLOAD INFO'}</span>
+                      <span>DESCARREGAR INFO</span>
                     </MagneticButton>
                   </div>
                 </div>
@@ -644,14 +638,14 @@ const ExperienceDetail: React.FC = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div>
                 <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-3 block">
-                  {language === 'pt' ? 'Mais Opções' : 'More Options'}
+                  Mais Opções
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
-                  {language === 'pt' ? 'Experiências Recomendadas' : 'Recommended Experiences'}
+                  Experiências Recomendadas
                 </h2>
               </div>
               <Link href="/experiences" className="text-brand-navy font-bold uppercase tracking-widest text-[10px] border-b border-[#0d4357] pb-2 hover:text-[#da6927] hover:border-[#da6927] transition-all">
-                {language === 'pt' ? 'VER TODAS' : 'VIEW ALL'}
+                VER TODAS
               </Link>
             </div>
 

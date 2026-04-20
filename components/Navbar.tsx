@@ -9,7 +9,7 @@ import { useSensoryTheme } from '@/lib/SensoryContext';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const { vibrate } = useSensoryTheme();
   const pathname = usePathname();
 
@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
                 <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0 w-full' : 'w-4'}`}></span>
                 <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'w-full -rotate-45 -translate-y-2' : 'w-5'}`}></span>
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] hidden sm:block">{t('nav.menu')}</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] hidden sm:block">Menu</span>
             </button>
           </div>
 
@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}
             >
-              {language === 'pt' ? 'Reservar Agora' : 'Book Now'}
+              Reservar Agora
             </button>
           </div>
         </div>
@@ -117,12 +117,12 @@ const Navbar: React.FC = () => {
         <div className="h-full flex flex-col justify-center items-center text-center p-8">
           <ul className="space-y-4 md:space-y-6">
             {[
-              { label: t('nav.home'), path: '/' },
-              { label: t('nav.tours'), path: '/tours' },
-              { label: t('nav.logistics'), path: '/transfers' },
-              { label: t('nav.experience'), path: '/algarve' },
-              { label: t('nav.story'), path: '/about' },
-              { label: t('nav.contact'), path: '/contacts' },
+              { label: 'Início', path: '/' },
+              { label: 'Tours', path: '/tours' },
+              { label: 'Transfers', path: '/transfers' },
+              { label: 'O Algarve', path: '/algarve' },
+              { label: 'Sobre Nós', path: '/about' },
+              { label: 'Contactos', path: '/contacts' },
             ].map((item, i) => (
               <li key={i} className={`transition-all duration-700 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: `${i * 100}ms` }}>
                 <Link

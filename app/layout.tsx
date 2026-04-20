@@ -4,6 +4,7 @@ import Providers from './providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Assistant from '@/components/Assistant';
+import KibanWidgets from '@/components/KibanWidgets';
 
 export const metadata: Metadata = {
   title: 'Algarve Explorer Tours',
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="flex-grow">{children}</main>
             <Footer />
             <Assistant />
+            <KibanWidgets />
           </div>
         </Providers>
       </body>
