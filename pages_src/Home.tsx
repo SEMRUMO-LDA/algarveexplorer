@@ -255,7 +255,7 @@ const Home: React.FC = () => {
                 <div key={tour.slug} className="snap-start flex-none w-[75vw] sm:w-[45vw] md:w-[38vw] lg:w-[30vw] xl:w-[26vw] group">
                   <Link
                     href={`/tours/${tour.slug}`}
-                    className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full"
+                    className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full overflow-hidden"
                   >
                     <div className="aspect-[4/3] relative overflow-hidden rounded-t-2xl bg-slate-100">
                       <img

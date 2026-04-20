@@ -133,7 +133,7 @@ const Tours: React.FC = () => {
                   <motion.div key={tour.slug} variants={cardVariants}>
                     <Link
                       href={`/tours/${tour.slug}`}
-                      className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full"
+                      className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full overflow-hidden"
                     >
                       <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl bg-slate-100">
                         <img
