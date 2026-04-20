@@ -37,7 +37,7 @@ export default function KibanWidgets() {
         src={`${KIBAN_URL}/api/v1/i18n/widget.js`}
         data-api-key={KIBAN_API_KEY}
         data-tenant={KIBAN_TENANT}
-        data-position="bottom-right"
+        data-position="bottom-left"
         data-style="minimal"
         strategy="afterInteractive"
       />
