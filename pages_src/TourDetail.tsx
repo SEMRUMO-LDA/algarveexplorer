@@ -569,15 +569,6 @@ const TourDetail: React.FC = () => {
                     )}
 
                     <div className="space-y-4 mb-10">
-                      {tour.duration_minutes > 0 && (
-                        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                          <div className="flex items-center gap-3">
-                            <Clock size={16} className="text-[#da6927]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Duração</span>
-                          </div>
-                          <span className="font-bold text-brand-navy text-xs">{formatDuration(tour.duration_minutes)}</span>
-                        </div>
-                      )}
                       {tour.capacity > 0 && (
                         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                           <div className="flex items-center gap-3">
