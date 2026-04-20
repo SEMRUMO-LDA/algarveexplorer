@@ -11,7 +11,7 @@ import ParallaxCard from '@/components/ParallaxCard';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
 import { motion } from 'framer-motion';
 import TripadvisorReviews from '@/components/TripadvisorReviews';
-import { tours as kibanTours, TourEntry } from '@/services/kiban';
+import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
 
 const RevealingImage: React.FC<{ src: string; alt: string; className: string; delay?: number }> = ({ src, alt, className, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -259,9 +259,10 @@ const Home: React.FC = () => {
                   >
                     <div className="h-[45%] md:h-[55%] w-full relative overflow-hidden shrink-0 bg-slate-100">
                       <img
-                        src={tour.cover_image || tour.gallery?.[0] || '/image/placeholder.jpg'}
+                        src={imageUrl(tour.cover_image || tour.gallery?.[0]) || '/image/placeholder.jpg'}
                         alt={tour.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        style={{ objectPosition: imageObjectPosition(tour.cover_image || tour.gallery?.[0]) }}
                       />
                       {tour.difficulty_level && (
                         <div className="absolute top-6 left-6">

@@ -7,7 +7,7 @@ import AnimatedBlob from '@/components/AnimatedBlob';
 import PageTransition from '@/components/PageTransition';
 import FooterCTA from '@/components/FooterCTA';
 import { motion } from 'framer-motion';
-import { tours as kibanTours, TourEntry } from '@/services/kiban';
+import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
 
 const Tours: React.FC = () => {
   const [tours, setTours] = useState<TourEntry[]>([]);
@@ -137,9 +137,10 @@ const Tours: React.FC = () => {
                     >
                       <div className="aspect-[4/5] relative overflow-hidden rounded-t-2xl bg-slate-100">
                         <img
-                          src={tour.cover_image || tour.gallery?.[0] || '/image/placeholder.jpg'}
+                          src={imageUrl(tour.cover_image || tour.gallery?.[0]) || '/image/placeholder.jpg'}
                           alt={tour.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          style={{ objectPosition: imageObjectPosition(tour.cover_image || tour.gallery?.[0]) }}
                           loading="lazy"
                           decoding="async"
                         />

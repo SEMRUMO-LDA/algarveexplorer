@@ -13,6 +13,33 @@ const KIBAN_TENANT = process.env.NEXT_PUBLIC_KIBAN_TENANT || 'algarveexplorer';
 export const isKibanConfigured = Boolean(KIBAN_URL && KIBAN_API_KEY);
 
 // ===================================
+// FOCAL POINT HELPERS
+// ===================================
+// The KIBAN admin stores the focal point in the image URL hash as `#fp=x,y`
+// (0-100 percentages). Use these helpers to extract the clean URL and the
+// CSS `object-position` value so the right part of the image stays visible
+// regardless of how it's cropped.
+
+/**
+ * Strip the focal point hash from an image URL.
+ */
+export function imageUrl(url?: string | null): string {
+  if (!url) return '';
+  return url.replace(/#fp=\d+(?:\.\d+)?,\d+(?:\.\d+)?$/, '');
+}
+
+/**
+ * Get the `object-position` CSS value for an image URL.
+ * Falls back to `center` if no focal point is set.
+ */
+export function imageObjectPosition(url?: string | null): string {
+  if (!url) return 'center';
+  const match = url.match(/#fp=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/);
+  if (!match) return 'center';
+  return `${match[1]}% ${match[2]}%`;
+}
+
+// ===================================
 // FETCH HELPER
 // ===================================
 

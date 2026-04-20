@@ -9,7 +9,7 @@ import ParallaxImage from '@/components/ParallaxImage';
 import MagneticButton from '@/components/MagneticButton';
 import { motion } from 'framer-motion';
 import { useSharedImage } from '@/components/SharedImageTransition';
-import { tours as kibanTours, TourEntry } from '@/services/kiban';
+import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
 import {
   Clock, ArrowRight, Check, X,
   Info, Users, Mountain, ShieldCheck, Award, Flame,
@@ -119,11 +119,11 @@ const TourDetail: React.FC = () => {
         <section className="relative h-[90vh] md:h-screen min-h-[600px] flex flex-col justify-end overflow-hidden bg-white">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <ParallaxImage
-              src={tour.cover_image || gallery[0] || '/image/placeholder.jpg'}
+              src={imageUrl(tour.cover_image || gallery[0]) || '/image/placeholder.jpg'}
               alt={tour.title}
               scrollStrength={0.2}
               mouseStrength={0.04}
-              objectPosition="center"
+              objectPosition={imageObjectPosition(tour.cover_image || gallery[0])}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
           </div>
