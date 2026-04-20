@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ChevronRight, ChevronLeft } from 'lucide-react';
+import { ArrowRight, ChevronRight, ChevronLeft, Star, Clock, Users, Award, Flame } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useSensoryTheme } from '@/lib/SensoryContext';
 import FooterCTA from '@/components/FooterCTA';
@@ -252,41 +252,79 @@ const Home: React.FC = () => {
               </div>
             ) : (
               featuredTours.map((tour) => (
-                <div key={tour.slug} className="snap-start flex-none w-[75vw] sm:w-[45vw] md:w-[32vw] lg:w-[26vw] xl:w-[22vw] group h-[60svh] md:h-[65svh] min-h-[500px] max-h-[750px] flex flex-col">
+                <div key={tour.slug} className="snap-start flex-none w-[75vw] sm:w-[45vw] md:w-[38vw] lg:w-[30vw] xl:w-[26vw] group">
                   <Link
                     href={`/tours/${tour.slug}`}
-                    className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full flex flex-col overflow-hidden"
+                    className="group block bg-white rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 border-2 border-white h-full"
                   >
-                    <div className="h-[45%] md:h-[55%] w-full relative overflow-hidden shrink-0 bg-slate-100">
+                    <div className="aspect-[4/3] relative overflow-hidden rounded-t-2xl bg-slate-100">
                       <img
                         src={imageUrl(tour.cover_image || tour.gallery?.[0]) || '/image/placeholder.jpg'}
                         alt={tour.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         style={{ objectPosition: imageObjectPosition(tour.cover_image || tour.gallery?.[0]) }}
+                        loading="lazy"
+                        decoding="async"
                       />
-                      {tour.difficulty_level && (
-                        <div className="absolute top-6 left-6">
-                          <span className="bg-[#0d4357] text-white text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
+
+                      <div className="absolute top-4 left-4 flex flex-col gap-2">
+                        {tour.difficulty_level && (
+                          <span className="bg-[#0d4357] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit">
                             {tour.difficulty_level}
                           </span>
+                        )}
+                        {tour.travellers_choice && (
+                          <span className="bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
+                            <Award size={10} /> Travellers&apos; Choice
+                          </span>
+                        )}
+                        {tour.likely_to_sell_out && (
+                          <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
+                            <Flame size={10} /> Quase esgotado
+                          </span>
+                        )}
+                      </div>
+
+                      {tour.rating > 0 && (
+                        <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                          <Star size={12} className="fill-[#da6927] text-[#da6927]" />
+                          <span className="text-[12px] font-bold text-brand-navy">{tour.rating.toFixed(1)}</span>
                         </div>
                       )}
                     </div>
-                    <div className="p-6 md:p-10 pb-12 md:pb-20 flex flex-col flex-grow">
-                      <span className="text-[#da6927] text-[9px] md:text-[10px] font-bold uppercase tracking-widest mb-2 md:mb-4 block">
-                        {formatDuration(tour.duration_minutes)}
-                      </span>
-                      <h3 className="text-lg md:text-2xl font-bold text-brand-navy mb-3 md:mb-6 line-clamp-2">
+
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-3">
+                        {tour.duration_minutes > 0 && (
+                          <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                            <Clock size={12} /> {formatDuration(tour.duration_minutes)}
+                          </span>
+                        )}
+                        {tour.capacity > 0 && (
+                          <span className="text-brand-body/60 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
+                            <Users size={12} /> Até {tour.capacity}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-lg md:text-xl font-bold text-brand-navy mb-2 line-clamp-2">
                         {tour.title}
                       </h3>
-                      <div className="mt-auto flex items-center justify-between pt-4 md:pt-6 border-t border-slate-100">
+
+                      {tour.subtitle && (
+                        <p className="text-brand-body/70 text-sm font-light mb-2 line-clamp-1">
+                          {tour.subtitle}
+                        </p>
+                      )}
+
+                      <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                         <div className="flex flex-col">
-                          <div className="mb-2 flex">
-                            <span className="bg-[#da6927] text-white text-[7px] md:text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
-                              10% DESCONTO - RESERVA DIRETA
+                          {tour.instant_confirmation && (
+                            <span className="text-[8px] font-bold uppercase tracking-wider text-green-600 mb-1">
+                              ✓ Confirmação imediata
                             </span>
-                          </div>
-                          <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5 md:mb-1">
+                          )}
+                          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5">
                             A partir de
                           </span>
                           <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">

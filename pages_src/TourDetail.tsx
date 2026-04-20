@@ -231,42 +231,6 @@ const TourDetail: React.FC = () => {
                     />
                   )}
 
-                  {/* Quick info pills */}
-                  <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-                    {tour.instant_confirmation && (
-                      <div className="flex items-start gap-3">
-                        <Zap className="text-[#da6927] flex-shrink-0 mt-0.5" size={20} />
-                        <div>
-                          <p className="text-xs font-bold uppercase tracking-wider text-brand-navy">Confirmação Imediata</p>
-                        </div>
-                      </div>
-                    )}
-                    {tour.is_digital_ticket && (
-                      <div className="flex items-start gap-3">
-                        <Ticket className="text-[#da6927] flex-shrink-0 mt-0.5" size={20} />
-                        <div>
-                          <p className="text-xs font-bold uppercase tracking-wider text-brand-navy">Bilhete Digital</p>
-                        </div>
-                      </div>
-                    )}
-                    {tour.languages.length > 0 && (
-                      <div className="flex items-start gap-3">
-                        <Languages className="text-[#da6927] flex-shrink-0 mt-0.5" size={20} />
-                        <div>
-                          <p className="text-xs font-bold uppercase tracking-wider text-brand-navy">Idiomas</p>
-                          <p className="text-xs text-brand-body/60 mt-1">{tour.languages.join(', ')}</p>
-                        </div>
-                      </div>
-                    )}
-                    {tour.accessibility_info?.wheelchair_accessible && (
-                      <div className="flex items-start gap-3">
-                        <ShieldCheck className="text-[#da6927] flex-shrink-0 mt-0.5" size={20} />
-                        <div>
-                          <p className="text-xs font-bold uppercase tracking-wider text-brand-navy">Acessível</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
                 </div>
 
                 {/* Gallery */}
@@ -556,7 +520,14 @@ const TourDetail: React.FC = () => {
                       Reserva
                     </p>
 
-                    <div className="mb-10">
+                    {/* Direct booking discount banner */}
+                    <div className="mb-6">
+                      <span className="inline-block bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                        10% Desconto — Reserva Direta
+                      </span>
+                    </div>
+
+                    <div className="mb-8">
                       <div className="flex items-baseline gap-2">
                         <span className="text-xs text-brand-body/60 uppercase tracking-wider">Desde</span>
                         <span className="text-4xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tighter">
@@ -570,6 +541,33 @@ const TourDetail: React.FC = () => {
                         </p>
                       )}
                     </div>
+
+                    {/* Perks — moved from main content */}
+                    {(tour.instant_confirmation || tour.is_digital_ticket || tour.languages.length > 0) && (
+                      <div className="space-y-3 mb-8 pb-8 border-b border-slate-100">
+                        {tour.instant_confirmation && (
+                          <div className="flex items-center gap-3">
+                            <Zap className="text-[#da6927] flex-shrink-0" size={16} />
+                            <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Confirmação Imediata</span>
+                          </div>
+                        )}
+                        {tour.is_digital_ticket && (
+                          <div className="flex items-center gap-3">
+                            <Ticket className="text-[#da6927] flex-shrink-0" size={16} />
+                            <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Bilhete Digital</span>
+                          </div>
+                        )}
+                        {tour.languages.length > 0 && (
+                          <div className="flex items-center gap-3">
+                            <Languages className="text-[#da6927] flex-shrink-0" size={16} />
+                            <div className="flex items-baseline gap-2">
+                              <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Idiomas</span>
+                              <span className="text-xs text-brand-body/60">{tour.languages.join(', ')}</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                     <div className="space-y-4 mb-10">
                       {tour.duration_minutes > 0 && (
@@ -597,26 +595,6 @@ const TourDetail: React.FC = () => {
                             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Capacidade</span>
                           </div>
                           <span className="font-bold text-brand-navy text-xs">Até {tour.capacity}</span>
-                        </div>
-                      )}
-                      {(tour.min_age !== null || tour.max_age !== null) && (
-                        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                          <div className="flex items-center gap-3">
-                            <Calendar size={16} className="text-[#da6927]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Idade</span>
-                          </div>
-                          <span className="font-bold text-brand-navy text-xs">
-                            {tour.min_age ?? '0'}-{tour.max_age ?? '99'}
-                          </span>
-                        </div>
-                      )}
-                      {tour.instant_confirmation && (
-                        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                          <div className="flex items-center gap-3">
-                            <Zap size={16} className="text-[#da6927]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Confirmação</span>
-                          </div>
-                          <span className="font-bold text-green-600 text-xs">IMEDIATA</span>
                         </div>
                       )}
                     </div>
