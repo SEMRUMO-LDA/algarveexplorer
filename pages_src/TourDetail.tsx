@@ -520,11 +520,16 @@ const TourDetail: React.FC = () => {
                       Reserva
                     </p>
 
-                    {/* Direct booking discount banner */}
-                    <div className="mb-6">
-                      <span className="inline-block bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                    {/* Banners: direct-booking discount + likely to sell out */}
+                    <div className="mb-6 flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
                         10% Desconto — Reserva Direta
                       </span>
+                      {tour.likely_to_sell_out && (
+                        <span className="inline-flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                          <Flame size={10} /> Quase esgotado
+                        </span>
+                      )}
                     </div>
 
                     <div className="mb-8">
@@ -577,15 +582,6 @@ const TourDetail: React.FC = () => {
                             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Duração</span>
                           </div>
                           <span className="font-bold text-brand-navy text-xs">{formatDuration(tour.duration_minutes)}</span>
-                        </div>
-                      )}
-                      {tour.difficulty_level && (
-                        <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                          <div className="flex items-center gap-3">
-                            <Mountain size={16} className="text-[#da6927]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Nível</span>
-                          </div>
-                          <span className="font-bold text-brand-navy text-xs uppercase">{tour.difficulty_level}</span>
                         </div>
                       )}
                       {tour.capacity > 0 && (
