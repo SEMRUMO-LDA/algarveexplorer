@@ -462,9 +462,15 @@ const TourDetail: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                    {tour.weather_policy && (
+                    {tour.weather_policy && tour.weather_policy !== 'none' && (
                       <p className="text-sm text-brand-body/60 font-light mt-4">
-                        <strong>Meteorologia:</strong> {tour.weather_policy}
+                        {tour.weather_policy === 'full_refund'
+                          ? 'Em caso de cancelamento por condições meteorológicas, reembolso total.'
+                          : tour.weather_policy === 'reschedule'
+                          ? 'Em caso de cancelamento por condições meteorológicas, a tour pode ser remarcada.'
+                          : tour.weather_policy === 'partial_refund'
+                          ? 'Em caso de cancelamento por condições meteorológicas, reembolso parcial.'
+                          : tour.weather_policy}
                       </p>
                     )}
                   </div>
@@ -567,7 +573,7 @@ const TourDetail: React.FC = () => {
                             <Languages className="text-[#da6927] flex-shrink-0" size={16} />
                             <div className="flex items-baseline gap-2">
                               <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Idiomas</span>
-                              <span className="text-xs text-brand-body/60">{tour.languages.join(', ')}</span>
+                              <span className="text-xs text-brand-body/60 uppercase tracking-wider">{tour.languages.join(', ')}</span>
                             </div>
                           </div>
                         )}
