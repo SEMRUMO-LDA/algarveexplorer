@@ -526,18 +526,6 @@ const TourDetail: React.FC = () => {
                       Reserva
                     </h3>
 
-                    {/* Banners: direct-booking discount + likely to sell out */}
-                    <div className="mb-6 flex flex-wrap gap-2">
-                      <span className="inline-flex items-center bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                        10% Desconto — Reserva Direta
-                      </span>
-                      {tour.likely_to_sell_out && (
-                        <span className="inline-flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-                          <Flame size={10} /> Quase esgotado
-                        </span>
-                      )}
-                    </div>
-
                     <div className="mb-8">
                       <div className="flex items-baseline gap-2">
                         <span className="text-xs text-brand-body/60 uppercase tracking-wider">Desde</span>
@@ -598,6 +586,18 @@ const TourDetail: React.FC = () => {
                           </div>
                           <span className="font-bold text-brand-navy text-xs">Até {tour.capacity}</span>
                         </div>
+                      )}
+                    </div>
+
+                    {/* Banners: direct-booking discount + likely to sell out */}
+                    <div className="mb-5 flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                        10% Desconto — Reserva Direta
+                      </span>
+                      {tour.likely_to_sell_out && (
+                        <span className="inline-flex items-center gap-1.5 bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                          <Flame size={10} /> Quase esgotado
+                        </span>
                       )}
                     </div>
 
