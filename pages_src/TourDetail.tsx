@@ -306,21 +306,37 @@ const TourDetail: React.FC = () => {
                   </div>
                 )}
 
-                {/* Highlights */}
+                {/* Highlights — visual cards with gallery photos */}
                 {tour.highlights.length > 0 && (
                   <div>
                     <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">Destaques</span>
                     <h3 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy mb-10 uppercase tracking-tight">
                       O que vai viver
                     </h3>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5">
-                      {tour.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-4">
-                          <Check className="text-[#da6927] flex-shrink-0 mt-1" size={20} />
-                          <span className="text-brand-body/90 text-base md:text-lg font-light leading-relaxed">{h}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {tour.highlights.map((h, i) => {
+                        const img = tour.gallery?.[i] || tour.gallery?.[i % (tour.gallery?.length || 1)] || tour.cover_image || '/image/placeholder.jpg';
+                        return (
+                          <div key={i} className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 shadow-sm">
+                            <img
+                              src={img}
+                              alt={h}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0d4357]/95 via-[#0d4357]/50 to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-6">
+                              <span className="text-[#da6927] text-[10px] font-bold font-montserrat uppercase tracking-[0.3em] mb-2 block">
+                                {String(i + 1).padStart(2, '0')} / {String(tour.highlights.length).padStart(2, '0')}
+                              </span>
+                              <h4 className="text-lg md:text-xl font-bold font-montserrat text-white tracking-tight leading-tight">
+                                {h}
+                              </h4>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
 
