@@ -52,7 +52,7 @@ const Algarve: React.FC = () => {
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
             <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
             <span className="text-white/20">/</span>
-            <span className="text-white/80">O Algarve</span>
+            <span className="text-[#da6927]">O Algarve</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
