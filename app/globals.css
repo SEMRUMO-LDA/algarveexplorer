@@ -3,6 +3,7 @@
 
 /* Prose customisation — match Algarve Explorer brand */
 @layer components {
+  /* Unified body copy size across prose + the other tour detail sections */
   .prose {
     --tw-prose-body: #2E3D45;
     --tw-prose-headings: #0d4357;
@@ -13,6 +14,12 @@
     --tw-prose-quotes: #0d4357;
     --tw-prose-quote-borders: #da6927;
     --tw-prose-hr: #e5e7eb;
+    font-size: 0.9375rem; /* 15px */
+    line-height: 1.7;
+  }
+  .prose p,
+  .prose li {
+    font-size: 0.9375rem;
   }
   .prose h1, .prose h2, .prose h3, .prose h4 {
     font-family: 'Montserrat', sans-serif;

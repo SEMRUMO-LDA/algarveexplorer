@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import FooterCTA from '@/components/FooterCTA';
 import PageTransition from '@/components/PageTransition';
-import MagneticButton from '@/components/MagneticButton';
+import BookingModal from '@/components/BookingModal';
 import { motion } from 'framer-motion';
 import { useSharedImage } from '@/components/SharedImageTransition';
 import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
@@ -22,6 +22,7 @@ const TourDetail: React.FC = () => {
   const [recommended, setRecommended] = useState<TourEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const { completeTransition, transitionState } = useSharedImage();
 
@@ -178,13 +179,13 @@ const TourDetail: React.FC = () => {
                     {tour.title}
                   </h2>
                   {tour.short_description && (
-                    <p className="text-lg md:text-xl text-brand-body/90 font-light leading-relaxed mb-8">
+                    <p className="text-base text-brand-body/90 font-light leading-relaxed mb-8">
                       {tour.short_description}
                     </p>
                   )}
                   {tour.full_description && (
                     <div
-                      className="prose prose-lg max-w-none text-base md:text-lg text-brand-body/80 font-light leading-relaxed"
+                      className="prose max-w-none text-brand-body/80 font-light leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: tour.full_description }}
                     />
                   )}
@@ -271,7 +272,7 @@ const TourDetail: React.FC = () => {
                       O Itinerário
                     </h3>
                     <div
-                      className="prose prose-lg max-w-none text-brand-body/80 font-light leading-relaxed"
+                      className="prose max-w-none text-brand-body/80 font-light leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: tour.itinerary }}
                     />
                   </div>
@@ -288,7 +289,7 @@ const TourDetail: React.FC = () => {
                         </h3>
                         {tour.meeting_point && (
                           <div
-                            className="prose max-w-none text-brand-body/80 text-base font-light leading-relaxed"
+                            className="prose max-w-none text-brand-body/80 font-light leading-relaxed"
                             dangerouslySetInnerHTML={{ __html: tour.meeting_point }}
                           />
                         )}
@@ -372,7 +373,7 @@ const TourDetail: React.FC = () => {
                           Requisitos e Restrições
                         </h3>
                         {tour.physical_requirements && (
-                          <p className="text-brand-body/80 text-base font-light leading-relaxed mb-6">
+                          <p className="text-brand-body/80 text-[15px] font-light leading-relaxed mb-6">
                             {tour.physical_requirements}
                           </p>
                         )}
@@ -399,7 +400,7 @@ const TourDetail: React.FC = () => {
                   <div className="border-l-4 border-[#da6927] pl-8">
                     <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-3">Informação adicional</p>
                     <div
-                      className="prose max-w-none text-brand-body/80 text-base font-light leading-relaxed"
+                      className="prose max-w-none text-brand-body/80 font-light leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: tour.additional_info }}
                     />
                   </div>
@@ -553,16 +554,14 @@ const TourDetail: React.FC = () => {
                       )}
                     </div>
 
-                    <MagneticButton
-                      as="a"
-                      href="/contacts"
-                      magneticType="dark"
-                      strength={0.35}
-                      className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 shadow-md"
+                    <button
+                      type="button"
+                      onClick={() => setBookingOpen(true)}
+                      className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <span>Reservar Agora</span>
                       <ArrowRight size={14} />
-                    </MagneticButton>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -611,6 +610,12 @@ const TourDetail: React.FC = () => {
 
         <FooterCTA />
       </div>
+
+      <BookingModal
+        tour={tour}
+        open={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+      />
     </PageTransition>
   );
 };

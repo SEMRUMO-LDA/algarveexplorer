@@ -316,6 +316,80 @@ export const media = {
 };
 
 // ===================================
+// BOOKINGS V2 API (Tours & Bookings add-on)
+// ===================================
+// Generic bookable resources. Tours are auto-synced into bookable-resources,
+// so we hit these endpoints with the tour slug.
+
+export interface AvailabilitySlot {
+  time: string;
+  available: number;
+  capacity: number;
+}
+
+export interface AvailabilityResponse {
+  date: string;
+  slots: AvailabilitySlot[];
+}
+
+export interface CheckoutPayload {
+  resource_slug: string;
+  date: string;
+  time_slot: string;
+  party_size: number;
+  party_size_secondary?: number;
+  customer_name: string;
+  customer_email: string;
+  customer_phone?: string;
+  notes?: string;
+  coupon_code?: string;
+  success_url: string;
+  cancel_url: string;
+}
+
+export interface CheckoutResponse {
+  sessionId: string;
+  checkoutUrl: string;
+  bookingId?: string;
+}
+
+export const bookingsV2 = {
+  /**
+   * Check availability for a resource on a given date.
+   */
+  availability: async (
+    slug: string,
+    date: string
+  ): Promise<AvailabilityResponse> => {
+    const response = await kibanFetch<{ data: AvailabilityResponse }>(
+      `/bookings/v2/resources/${slug}/availability?date=${date}`
+    );
+    return (response as any).data ?? response;
+  },
+
+  /**
+   * Create a checkout session. Returns a Stripe checkout URL.
+   */
+  checkout: async (payload: CheckoutPayload): Promise<CheckoutResponse> => {
+    const response = await kibanFetch<{ data: CheckoutResponse }>(
+      '/bookings/v2/checkout',
+      {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      }
+    );
+    return (response as any).data ?? response;
+  },
+
+  /**
+   * Get booking status (after Stripe redirect).
+   */
+  status: async (bookingId: string): Promise<{ status: string; data: any }> => {
+    return kibanFetch(`/bookings/v2/${bookingId}/status`);
+  },
+};
+
+// ===================================
 // FORMS API
 // ===================================
 
@@ -616,6 +690,7 @@ const kiban = {
   forms,
   newsletter,
   bookings,
+  bookingsV2,
   redirects,
   experiences,
   tours,
