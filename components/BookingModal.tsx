@@ -183,7 +183,14 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                     required
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-xl text-brand-navy font-medium focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:border-transparent"
+                    onClick={(e) => {
+                      // Native date input only opens the picker on the calendar
+                      // icon by default in most browsers — expand the hit area
+                      // to the whole input for a more obvious touch target.
+                      const el = e.currentTarget as HTMLInputElement & { showPicker?: () => void };
+                      try { el.showPicker?.(); } catch { /* unsupported browser */ }
+                    }}
+                    className="w-full px-4 py-3 border border-slate-200 rounded-xl text-brand-navy font-medium focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:border-transparent cursor-pointer"
                   />
                 </div>
 
