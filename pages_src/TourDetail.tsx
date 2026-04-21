@@ -144,30 +144,6 @@ const TourDetail: React.FC = () => {
               <span className="text-white truncate max-w-[200px]">{tour.title}</span>
             </motion.div>
 
-            {/* Meta pills */}
-            <motion.div className="flex flex-wrap items-center gap-3 mb-6" variants={staggerItem}>
-              {tour.duration_minutes > 0 && (
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#da6927] border border-[#da6927]/60 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full">
-                  {formatDuration(tour.duration_minutes)}
-                </span>
-              )}
-              {tour.difficulty_level && (
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white border border-white/30 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full">
-                  {tour.difficulty_level}
-                </span>
-              )}
-              {tour.travellers_choice && (
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white bg-[#da6927] px-4 py-1.5 rounded-full flex items-center gap-1.5">
-                  <Award size={12} /> Travellers&apos; Choice
-                </span>
-              )}
-              {tour.likely_to_sell_out && (
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white bg-red-600 px-4 py-1.5 rounded-full flex items-center gap-1.5">
-                  <Flame size={12} /> Quase esgotado
-                </span>
-              )}
-            </motion.div>
-
             <motion.h1
               className="text-4xl md:text-6xl lg:text-7xl font-bold font-montserrat text-white leading-[1.05] tracking-tight uppercase max-w-5xl"
               variants={staggerItem}
@@ -184,24 +160,6 @@ const TourDetail: React.FC = () => {
               </motion.p>
             )}
 
-            {/* Rating */}
-            {tour.rating > 0 && (
-              <motion.div className="mt-8 flex items-center gap-2" variants={staggerItem}>
-                <div className="flex items-center gap-1">
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <Star
-                      key={n}
-                      size={18}
-                      className={n <= Math.round(tour.rating) ? 'fill-[#da6927] text-[#da6927]' : 'text-white/30'}
-                    />
-                  ))}
-                </div>
-                <span className="text-white font-bold text-lg">{tour.rating.toFixed(1)}</span>
-                {tour.rating_count > 0 && (
-                  <span className="text-white/70 text-sm">({tour.rating_count} avaliações)</span>
-                )}
-              </motion.div>
-            )}
           </motion.div>
         </section>
 
