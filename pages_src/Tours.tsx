@@ -158,7 +158,7 @@ const Tours: React.FC = () => {
                           )}
                           {tour.likely_to_sell_out && (
                             <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
-                              <Flame size={10} /> Quase esgotado
+                              <Flame size={10} /> Muito Procurado
                             </span>
                           )}
                         </div>
