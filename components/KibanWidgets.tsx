@@ -32,15 +32,18 @@ export default function KibanWidgets() {
         strategy="afterInteractive"
       />
 
-      {/* i18n — Auto-translation with built-in language switcher */}
+      {/* i18n — Auto-translation engine. The floating switcher is hidden;
+          the Navbar LanguageSwitcher drives it via `kiban-lang` cookie +
+          `kiban-lang-change` event. */}
       <Script
         src={`${KIBAN_URL}/api/v1/i18n/widget.js`}
         data-api-key={KIBAN_API_KEY}
         data-tenant={KIBAN_TENANT}
-        data-position="bottom-left"
-        data-style="minimal"
         strategy="afterInteractive"
       />
+      <style jsx global>{`
+        #kiban-i18n-widget { display: none !important; }
+      `}</style>
     </>
   );
 }

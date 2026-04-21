@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useSensoryTheme } from '@/lib/SensoryContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,8 +67,9 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Right: Contact */}
-          <div className="flex items-center justify-end flex-1 space-x-3 sm:space-x-4 md:space-x-8">
+          {/* Right: Language switcher + Contact */}
+          <div className="flex items-center justify-end flex-1 space-x-2 sm:space-x-3 md:space-x-4">
+            <LanguageSwitcher isTransparent={isTransparent} />
 
             <button
               onClick={() => {
