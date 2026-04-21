@@ -8,6 +8,7 @@ import PageTransition from '@/components/PageTransition';
 import BookingModal from '@/components/BookingModal';
 import { motion } from 'framer-motion';
 import { useSharedImage } from '@/components/SharedImageTransition';
+import AnimatedBlob from '@/components/AnimatedBlob';
 import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
 import {
   Clock, ArrowRight, Check, X,
@@ -483,7 +484,14 @@ const TourDetail: React.FC = () => {
               {/* Right: Sticky Booking Card — sits in-flow, sticks to top when scrolling */}
               <div className="lg:col-span-4 relative">
                 <div className="sticky top-32 z-20">
-                  <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl">
+                  {/* Orange glow behind card — desktop only, follows card on scroll */}
+                  <AnimatedBlob
+                    className="hidden lg:block -top-24 -right-32"
+                    size="w-[520px] h-[520px]"
+                    opacity={0.18}
+                    blur="120px"
+                  />
+                  <div className="relative z-10 bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl">
                     <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy uppercase tracking-tight mb-6">
                       Reserva
                     </h3>

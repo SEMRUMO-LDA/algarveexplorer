@@ -36,6 +36,11 @@ const eur = new Intl.NumberFormat('pt-PT', {
   minimumFractionDigits: 2,
 });
 
+// Default promo pre-filled on modal open; auto-applied once the email is valid.
+// If the code ever becomes invalid/exhausted on KIBAN, the auto-apply fails
+// silently and the user can still check out without it.
+const DEFAULT_COUPON_CODE = 'SITE10';
+
 const DAY_LABELS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const MONTH_LABELS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
@@ -74,9 +79,12 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [couponInput, setCouponInput] = useState('');
+  const [couponInput, setCouponInput] = useState(DEFAULT_COUPON_CODE);
   const [coupon, setCoupon] = useState<CouponValidation | null>(null);
   const [couponLoading, setCouponLoading] = useState(false);
+  // Tracks whether we've already attempted to auto-apply the default code.
+  // Prevents re-applying after the user explicitly removes it.
+  const [defaultCouponTried, setDefaultCouponTried] = useState(false);
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
@@ -98,8 +106,9 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
       setEmailTouched(false);
       setSlots([]);
       setError(null);
-      setCouponInput('');
+      setCouponInput(DEFAULT_COUPON_CODE);
       setCoupon(null);
+      setDefaultCouponTried(false);
     }
   }, [open, tour.slug]);
 
@@ -164,6 +173,33 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
       .catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subtotal, email]);
+
+  // Silent auto-apply of the default promo code once the email is valid.
+  // Runs once per modal open; failures (exhausted, scope, etc.) are swallowed
+  // so the user isn't shown a red error for a code they didn't type.
+  useEffect(() => {
+    if (!open || defaultCouponTried) return;
+    if (coupon?.valid) return;
+    if (couponInput.trim().toUpperCase() !== DEFAULT_COUPON_CODE) return;
+    if (!/^\S+@\S+\.\S+$/.test(email) || subtotal <= 0) return;
+
+    setDefaultCouponTried(true);
+    setCouponLoading(true);
+    coupons
+      .validate({
+        code: DEFAULT_COUPON_CODE,
+        resource_slug: tour.slug,
+        customer_email: email,
+        subtotal_cents: Math.round(subtotal * 100),
+        currency: (tour.currency || 'eur').toLowerCase(),
+      })
+      .then((res) => {
+        if (res.valid) setCoupon(res);
+      })
+      .catch(() => {})
+      .finally(() => setCouponLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, email, subtotal, couponInput, coupon?.valid, defaultCouponTried]);
 
   const applyCoupon = async () => {
     const code = couponInput.trim();
