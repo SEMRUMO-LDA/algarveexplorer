@@ -142,7 +142,7 @@ const TourDetail: React.FC = () => {
               <span className="text-white/50">/</span>
               <Link href="/tours" className="hover:text-white">Tours</Link>
               <span className="text-white/50">/</span>
-              <span className="text-[#da6927] truncate max-w-[200px]">{tour.title}</span>
+              <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs truncate max-w-[260px]">{tour.title}</span>
             </motion.div>
 
             <motion.h1
