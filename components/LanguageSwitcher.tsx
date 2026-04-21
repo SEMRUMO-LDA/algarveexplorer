@@ -35,7 +35,6 @@ export default function LanguageSwitcher({
   isTransparent?: boolean;
 }) {
   const [languages, setLanguages] = useState<Language[]>([]);
-  const [defaultLang, setDefaultLang] = useState('pt');
   const [current, setCurrent] = useState('pt');
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -54,7 +53,6 @@ export default function LanguageSwitcher({
         const data = json.data || json;
         if (data?.available) setLanguages(data.available);
         if (data?.default) {
-          setDefaultLang(data.default);
           const saved = getCookie('kiban-lang');
           setCurrent(saved || data.default);
         }

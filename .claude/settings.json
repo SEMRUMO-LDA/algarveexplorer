@@ -31,14 +31,17 @@
       "Bash(curl -sL \"https://raw.githubusercontent.com/SEMRUMO-LDA/kibanCMS/main/apps/admin/src/lib/api-client.ts\")",
       "Bash(git commit -m ' *)",
       "Bash(curl -sL --connect-timeout 10 https://kiban.pt/api/v1/i18n/languages -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer')",
-      "Bash(curl -sL --connect-timeout 10 -X POST https://kiban.pt/api/v1/i18n/translate -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer' -H 'Content-Type: application/json' -d '{\"texts\":[\"Olá mundo\",\"Descubra o Algarve\"],\"source\":\"pt\",\"target\":\"en\"}')"
+      "Bash(curl -sL --connect-timeout 10 -X POST https://kiban.pt/api/v1/i18n/translate -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer' -H 'Content-Type: application/json' -d '{\"texts\":[\"Olá mundo\",\"Descubra o Algarve\"],\"source\":\"pt\",\"target\":\"en\"}')",
+      "Read(//private/tmp/kiban-fix/apps/api/src/static/**)"
     ],
     "additionalDirectories": [
       "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/algarveexplorer/components",
       "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/app/tours",
       "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/app/tours/[slug]",
       "/tmp/kiban-fix/apps/admin/src/components/fields",
-      "/private/tmp/kiban-fix/apps/admin/src/components/fields"
+      "/private/tmp/kiban-fix/apps/admin/src/components/fields",
+      "/tmp/kiban-fix/apps/api/src/static",
+      "/private/tmp/kiban-fix/apps/api/src/static"
     ]
   }
 }
