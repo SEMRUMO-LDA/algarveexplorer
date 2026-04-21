@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react";
-import MagneticButton from "@/components/MagneticButton";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ArrowRight } from "lucide-react";
 
@@ -468,15 +467,10 @@ export default function TripadvisorReviews() {
           href={tripadvisorUrl}
           target="_blank"
           rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-colors duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
         >
-          <MagneticButton
-            magneticType="orange"
-            strength={0.4}
-            className="inline-flex items-center justify-center space-x-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-          >
-            <span>{language === 'pt' ? 'Ver todas as avaliações no Tripadvisor' : 'See all reviews on Tripadvisor'}</span>
-            <ArrowRight size={16} />
-          </MagneticButton>
+          <span>{language === 'pt' ? 'Ver todas as avaliações no Tripadvisor' : 'See all reviews on Tripadvisor'}</span>
+          <ArrowRight size={16} />
         </a>
       </div>
     </section>

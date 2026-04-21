@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import AnimatedBlob from '@/components/AnimatedBlob';
-import MagneticButton from '@/components/MagneticButton';
 
 const FooterCTA: React.FC = () => {
     const pathname = usePathname();
@@ -48,25 +47,19 @@ const FooterCTA: React.FC = () => {
                     Deixe-nos guiá-lo até à experiência certa.
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                    <Link href="/tours" className="inline-flex justify-center">
-                        <MagneticButton
-                            magneticType="orange"
-                            strength={0.4}
-                            className="inline-flex items-center justify-center space-x-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 w-full"
-                        >
-                            <span>Ver experiências</span>
-                            <ArrowRight size={16} />
-                        </MagneticButton>
+                    <Link
+                        href="/tours"
+                        className="inline-flex items-center justify-center gap-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-colors duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                    >
+                        <span>Ver experiências</span>
+                        <ArrowRight size={16} />
                     </Link>
                     {pathname !== '/contacts' && (
-                        <Link href="/contacts" className="inline-flex justify-center">
-                            <MagneticButton
-                                magneticType="light"
-                                strength={0.4}
-                                className="inline-flex items-center justify-center bg-white/0 border border-white/40 text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 w-full group"
-                            >
-                                Falar connosco
-                            </MagneticButton>
+                        <Link
+                            href="/contacts"
+                            className="inline-flex items-center justify-center bg-white/0 border border-white/40 text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-colors duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                        >
+                            Falar connosco
                         </Link>
                     )}
                 </div>

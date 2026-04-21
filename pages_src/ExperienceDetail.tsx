@@ -7,7 +7,6 @@ import { useLanguage } from '@/lib/LanguageContext';
 import FooterCTA from '@/components/FooterCTA';
 import PageTransition from '@/components/PageTransition';
 import ParallaxImage from '@/components/ParallaxImage';
-import MagneticButton from '@/components/MagneticButton';
 import { motion } from 'framer-motion';
 import { experiences as kibanExperiences, ExperienceEntry } from '@/services/kiban';
 import {
@@ -602,27 +601,22 @@ const ExperienceDetail: React.FC = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <MagneticButton
-                      as="a"
+                    <a
                       href={experience.fareharbor_url || "/contacts"}
-                      magneticType="dark"
-                      strength={0.35}
                       target={experience.fareharbor_url ? "_blank" : undefined}
                       rel={experience.fareharbor_url ? "noopener noreferrer" : undefined}
-                      className="flex items-center justify-center space-x-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-all duration-300 shadow-md group/btn focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                      className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <span>RESERVAR AGORA</span>
-                      <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </MagneticButton>
-                    <MagneticButton
-                      as="button"
-                      magneticType="light"
-                      strength={0.25}
-                      className="flex items-center justify-center space-x-3 w-full bg-white text-brand-body/80 py-6 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] border border-slate-100 hover:bg-[#0d4357] hover:text-white transition-all duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                      <ArrowRight size={14} />
+                    </a>
+                    <button
+                      type="button"
+                      className="flex items-center justify-center gap-3 w-full bg-white text-brand-body/80 py-6 rounded-full font-bold text-[11px] uppercase tracking-[0.2em] border border-slate-100 hover:bg-[#0d4357] hover:text-white transition-colors duration-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
                       <Download size={14} />
                       <span>DESCARREGAR INFO</span>
-                    </MagneticButton>
+                    </button>
                   </div>
                 </div>
               </div>
