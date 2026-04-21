@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { X, Calendar, Users, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
+import { X, Calendar, Users, Loader2, AlertCircle, ArrowRight, Tag, Check } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   bookingsV2,
+  coupons,
   type AvailabilitySlot,
+  type CouponValidation,
   type TourEntry,
 } from '@/services/kiban';
 
@@ -32,6 +34,11 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Coupon state
+  const [couponInput, setCouponInput] = useState('');
+  const [coupon, setCoupon] = useState<CouponValidation | null>(null);
+  const [couponLoading, setCouponLoading] = useState(false);
+
   // Reset when modal opens for a new tour
   useEffect(() => {
     if (open) {
@@ -45,6 +52,8 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
       setNotes('');
       setSlots([]);
       setError(null);
+      setCouponInput('');
+      setCoupon(null);
     }
   }, [open, tour.slug]);
 
@@ -79,9 +88,65 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
     };
   }, [date, tour.slug, open]);
 
-  const total = useMemo(() => {
+  const subtotal = useMemo(() => {
     return adults * (tour.price_adult || 0) + children * (tour.price_child || 0);
   }, [adults, children, tour.price_adult, tour.price_child]);
+
+  const discount = useMemo(() => {
+    if (!coupon?.valid || !coupon.discount_cents) return 0;
+    return coupon.discount_cents / 100;
+  }, [coupon]);
+
+  const total = Math.max(0, subtotal - discount);
+
+  // Revalidate coupon when subtotal or email changes
+  useEffect(() => {
+    if (!coupon?.valid || !coupon.code) return;
+    // Re-validate silently; if no longer valid, clear it.
+    if (!email || !/^\S+@\S+\.\S+$/.test(email) || subtotal <= 0) return;
+    const subtotalCents = Math.round(subtotal * 100);
+    coupons
+      .validate({
+        code: coupon.code,
+        resource_slug: tour.slug,
+        customer_email: email,
+        subtotal_cents: subtotalCents,
+        currency: (tour.currency || 'eur').toLowerCase(),
+      })
+      .then((res) => {
+        if (!res.valid) setCoupon(null);
+        else setCoupon(res);
+      })
+      .catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subtotal, email]);
+
+  const applyCoupon = async () => {
+    const code = couponInput.trim();
+    if (!code) return;
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setCoupon({ valid: false, message: 'Introduza o seu email antes de aplicar o código.' });
+      return;
+    }
+    setCouponLoading(true);
+    try {
+      const res = await coupons.validate({
+        code,
+        resource_slug: tour.slug,
+        customer_email: email,
+        subtotal_cents: Math.round(subtotal * 100),
+        currency: (tour.currency || 'eur').toLowerCase(),
+      });
+      setCoupon(res);
+    } finally {
+      setCouponLoading(false);
+    }
+  };
+
+  const clearCoupon = () => {
+    setCoupon(null);
+    setCouponInput('');
+  };
 
   const canSubmit =
     date &&
@@ -110,6 +175,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
         customer_email: email.trim(),
         customer_phone: phone.trim() || undefined,
         notes: notes.trim() || undefined,
+        coupon_code: coupon?.valid ? coupon.code : undefined,
         success_url: `${origin}/tours/${tour.slug}?booking=success&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/tours/${tour.slug}?booking=cancelled`,
       });
@@ -322,12 +388,79 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                       className="w-full px-4 py-3 border border-slate-200 rounded-xl text-brand-navy font-medium focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:border-transparent resize-none"
                     />
                   </div>
+
+                  {/* Coupon / Promo code */}
+                  <div>
+                    <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-3">
+                      <Tag size={14} className="text-[#da6927]" /> Código Promocional
+                      <span className="opacity-60 lowercase tracking-normal font-normal">(opcional)</span>
+                    </label>
+
+                    {coupon?.valid ? (
+                      <div className="flex items-center justify-between px-4 py-3 bg-green-50 border border-green-200 rounded-xl">
+                        <div className="flex items-center gap-3">
+                          <Check size={16} className="text-green-600 flex-shrink-0" />
+                          <div>
+                            <p className="text-sm font-bold text-green-800">{coupon.code}</p>
+                            <p className="text-xs text-green-700">
+                              Desconto de €{((coupon.discount_cents || 0) / 100).toFixed(2)} aplicado
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={clearCoupon}
+                          className="text-green-700 hover:text-green-900 p-1"
+                          aria-label="Remover código"
+                        >
+                          <X size={16} />
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={couponInput}
+                            onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                e.preventDefault();
+                                applyCoupon();
+                              }
+                            }}
+                            placeholder="EX: WELCOME10"
+                            className="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-brand-navy font-medium uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:border-transparent"
+                          />
+                          <button
+                            type="button"
+                            onClick={applyCoupon}
+                            disabled={!couponInput.trim() || couponLoading}
+                            className="px-5 py-3 bg-[#0d4357] hover:bg-[#da6927] disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2"
+                          >
+                            {couponLoading ? <Loader2 size={14} className="animate-spin" /> : 'Aplicar'}
+                          </button>
+                        </div>
+                        {coupon && !coupon.valid && coupon.reason !== 'unavailable' && (
+                          <p className="text-xs text-red-600 mt-2 flex items-center gap-1.5">
+                            <AlertCircle size={12} />
+                            {coupon.message || 'Código inválido.'}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
 
               {/* Footer with total + CTA */}
               <div className="px-8 py-6 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-4 sticky bottom-0">
                 <div>
+                  {coupon?.valid && discount > 0 && (
+                    <p className="text-xs text-brand-body/60 line-through mb-0.5">
+                      €{subtotal.toFixed(2)}
+                    </p>
+                  )}
                   <p className="text-[10px] font-bold uppercase tracking-wider text-brand-body/60">
                     Total
                   </p>

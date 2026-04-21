@@ -353,6 +353,44 @@ export interface CheckoutResponse {
   bookingId?: string;
 }
 
+// ===================================
+// COUPONS API (Coupons add-on)
+// ===================================
+
+export interface CouponValidation {
+  valid: boolean;
+  code?: string;
+  type?: 'percentage' | 'fixed_amount' | string;
+  discount_cents?: number;
+  reason?: string;
+  message?: string;
+}
+
+export const coupons = {
+  /**
+   * Validate a coupon code without reserving it.
+   * Safe to call from a frontend "apply coupon" form.
+   */
+  validate: async (payload: {
+    code: string;
+    resource_slug: string;
+    customer_email: string;
+    subtotal_cents: number;
+    currency: string;
+  }): Promise<CouponValidation> => {
+    try {
+      const response = await kibanFetch<{ data: CouponValidation }>('/coupons/validate', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      return (response as any).data ?? response;
+    } catch (err) {
+      // 404 from API when add-on isn't installed — treat as "no coupons"
+      return { valid: false, reason: 'unavailable' };
+    }
+  },
+};
+
 export const bookingsV2 = {
   /**
    * Check availability for a resource on a given date.
@@ -691,6 +729,7 @@ const kiban = {
   newsletter,
   bookings,
   bookingsV2,
+  coupons,
   redirects,
   experiences,
   tours,
