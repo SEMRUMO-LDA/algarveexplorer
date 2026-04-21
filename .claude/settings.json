@@ -32,7 +32,9 @@
       "Bash(git commit -m ' *)",
       "Bash(curl -sL --connect-timeout 10 https://kiban.pt/api/v1/i18n/languages -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer')",
       "Bash(curl -sL --connect-timeout 10 -X POST https://kiban.pt/api/v1/i18n/translate -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer' -H 'Content-Type: application/json' -d '{\"texts\":[\"Olá mundo\",\"Descubra o Algarve\"],\"source\":\"pt\",\"target\":\"en\"}')",
-      "Read(//private/tmp/kiban-fix/apps/api/src/static/**)"
+      "Read(//private/tmp/kiban-fix/apps/api/src/static/**)",
+      "Read(//tmp/kiban-fix/apps/admin/src/lib/**)",
+      "Read(//private/tmp/kiban-fix/apps/admin/src/lib/**)"
     ],
     "additionalDirectories": [
       "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/algarveexplorer/components",
@@ -41,7 +43,11 @@
       "/tmp/kiban-fix/apps/admin/src/components/fields",
       "/private/tmp/kiban-fix/apps/admin/src/components/fields",
       "/tmp/kiban-fix/apps/api/src/static",
-      "/private/tmp/kiban-fix/apps/api/src/static"
+      "/private/tmp/kiban-fix/apps/api/src/static",
+      "/tmp/kiban-fix/apps/admin/src/pages",
+      "/private/tmp/kiban-fix/apps/admin/src/pages",
+      "/tmp/kiban-fix/apps/api/src/routes",
+      "/private/tmp/kiban-fix/apps/api/src/routes"
     ]
   }
 }
