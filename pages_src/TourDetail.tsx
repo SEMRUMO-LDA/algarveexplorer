@@ -236,12 +236,15 @@ const TourDetail: React.FC = () => {
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {tour.highlights.map((h, i) => {
-                        const img = tour.gallery?.[i] || tour.gallery?.[i % (tour.gallery?.length || 1)] || tour.cover_image || '/image/placeholder.jpg';
+                        // kibanCMS v1.5: highlight is {image, caption}. If image is
+                        // missing (caption-only, or legacy string-normalised data),
+                        // fall back to the gallery by index, then cover image.
+                        const img = h.image || tour.gallery?.[i] || tour.gallery?.[i % (tour.gallery?.length || 1)] || tour.cover_image || '/image/placeholder.jpg';
                         return (
                           <div key={i} className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 shadow-sm">
                             <img
                               src={img}
-                              alt={h}
+                              alt={h.caption || `Highlight ${i + 1}`}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                               loading="lazy"
                             />
@@ -251,7 +254,7 @@ const TourDetail: React.FC = () => {
                                 {String(i + 1).padStart(2, '0')} / {String(tour.highlights.length).padStart(2, '0')}
                               </span>
                               <h4 className="text-lg md:text-xl font-bold font-montserrat text-white tracking-tight leading-tight">
-                                {h}
+                                {h.caption}
                               </h4>
                             </div>
                           </div>

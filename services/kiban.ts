@@ -130,7 +130,12 @@ export interface TourEntry {
   slot_interval_minutes: number;
   cover_image: string;
   gallery: string[];
-  highlights: string[];
+  /**
+   * Highlights as of kibanCMS v1.5 are always Array<{image, caption}>.
+   * Legacy v1.0-v1.4 returned string[]; the `get`/`list` service functions
+   * normalise both shapes below so consumers only need to handle one.
+   */
+  highlights: Array<{ image: string; caption: string }>;
   itinerary: string;
   meeting_point: string;
   pickup_zones: string[];
@@ -154,6 +159,35 @@ export interface TourEntry {
   resource_slug: string;
 }
 
+/**
+ * Normalise a tour entry coming from the API — kibanCMS v1.5 changed
+ * `highlights` from string[] to Array<{image, caption}>. This helper accepts
+ * both shapes (and raw newline-separated strings, which older admin entries
+ * may still have in content JSON) and always returns the current shape, so
+ * consumer components don't have to branch on shape.
+ */
+function normaliseTour<T extends Partial<TourEntry> | null>(tour: T): T {
+  if (!tour) return tour;
+  const raw = (tour as any).highlights;
+  let highlights: Array<{ image: string; caption: string }>;
+  if (Array.isArray(raw)) {
+    highlights = raw.map(h =>
+      h && typeof h === 'object'
+        ? { image: String(h.image || ''), caption: String(h.caption || '') }
+        : { image: '', caption: String(h || '') }
+    );
+  } else if (typeof raw === 'string' && raw.trim()) {
+    highlights = raw
+      .split(/\r?\n/)
+      .map(s => s.trim())
+      .filter(Boolean)
+      .map(caption => ({ image: '', caption }));
+  } else {
+    highlights = [];
+  }
+  return { ...tour, highlights } as T;
+}
+
 export const tours = {
   /**
    * Listar todas as tours publicadas.
@@ -161,7 +195,8 @@ export const tours = {
   list: async (): Promise<{ data: TourEntry[]; error: null | Error }> => {
     try {
       const response = await kibanFetch<{ data: TourEntry[] }>('/tours');
-      return { data: response.data || [], error: null };
+      const data = (response.data || []).map(t => normaliseTour(t)) as TourEntry[];
+      return { data, error: null };
     } catch (err) {
       console.error('KIBAN: Error listing tours:', err);
       return { data: [], error: err as Error };
@@ -176,7 +211,7 @@ export const tours = {
   ): Promise<{ data: TourEntry | null; error: null | Error }> => {
     try {
       const response = await kibanFetch<{ data: TourEntry }>(`/tours/${slug}`);
-      return { data: response.data || null, error: null };
+      return { data: normaliseTour(response.data || null), error: null };
     } catch (err) {
       console.error('KIBAN: Error fetching tour:', err);
       return { data: null, error: err as Error };
@@ -193,7 +228,7 @@ export const tours = {
   ): Promise<{ data: TourEntry[]; error: null | Error }> => {
     try {
       const response = await kibanFetch<{ data: TourEntry[] }>('/tours');
-      const all = response.data || [];
+      const all = (response.data || []).map(t => normaliseTour(t)) as TourEntry[];
       const filtered = all.filter(
         (t) =>
           t.slug !== excludeSlug &&
