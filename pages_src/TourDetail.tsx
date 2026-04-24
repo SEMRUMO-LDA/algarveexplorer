@@ -564,10 +564,16 @@ const TourDetail: React.FC = () => {
 
                     <button
                       type="button"
-                      onClick={() => setBookingOpen(true)}
+                      onClick={() => {
+                        if (tour.external_booking_url) {
+                          window.open(tour.external_booking_url, '_blank', 'noopener,noreferrer');
+                        } else {
+                          setBookingOpen(true);
+                        }
+                      }}
                       className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                     >
-                      <span>Reservar Agora</span>
+                      <span>{tour.external_booking_label || 'Reservar Agora'}</span>
                       <ArrowRight size={14} />
                     </button>
                   </div>

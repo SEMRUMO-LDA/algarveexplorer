@@ -157,6 +157,12 @@ export interface TourEntry {
   rating: number;
   rating_count: number;
   resource_slug: string;
+  // External booking platforms (Bókun, FareHarbor, GetYourGuide, Viator, etc.)
+  // When external_booking_url is set, the tour still shows in listings with all
+  // its rich content but the "Reservar" button redirects to this URL instead of
+  // opening the internal BookingModal.
+  external_booking_url?: string;
+  external_booking_label?: string;
 }
 
 /**
