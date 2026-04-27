@@ -54,11 +54,36 @@ interface KibanSingleResponse<T = any> {
   data: T;
 }
 
+/**
+ * Read the active language from the kiban-lang cookie (set by the i18n
+ * widget / LanguageSwitcher). Returns null on the server (Next.js SSR)
+ * since the cookie isn't available there. Browser-only.
+ */
+function getActiveLang(): string | null {
+  if (typeof document === 'undefined') return null;
+  const match = document.cookie.match(/(?:^|;\s*)kiban-lang=([^;]+)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 async function kibanFetch<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const url = `${KIBAN_URL}/api/v1${endpoint}`;
+  // Auto-append ?lang=<active> when a language cookie is set, so the API
+  // returns CMS content already translated. The widget's DOM mutation is
+  // a fallback for static UI labels — for content that comes from React
+  // state, server-side translation avoids the React-rerender race.
+  const lang = getActiveLang();
+  let resolvedEndpoint = endpoint;
+  if (lang) {
+    const sep = endpoint.includes('?') ? '&' : '?';
+    // Don't override if the caller already supplied lang explicitly
+    if (!/[?&]lang=/.test(endpoint)) {
+      resolvedEndpoint = `${endpoint}${sep}lang=${encodeURIComponent(lang)}`;
+    }
+  }
+
+  const url = `${KIBAN_URL}/api/v1${resolvedEndpoint}`;
 
   const res = await fetch(url, {
     ...options,
@@ -163,6 +188,13 @@ export interface TourEntry {
   // opening the internal BookingModal.
   external_booking_url?: string;
   external_booking_label?: string;
+  // Server-computed booking flow signal (kibanCMS v1.6.1+):
+  //   "external" — tour has external_booking_url; show only that CTA
+  //   "kiban"    — Bookings add-on installed AND no external URL
+  //   "disabled" — Bookings add-on NOT installed AND no external URL
+  // Older CMS versions don't return this; treat undefined as "kiban" for
+  // backward compatibility (the existing internal flow).
+  booking_mode?: 'external' | 'kiban' | 'disabled';
 }
 
 /**

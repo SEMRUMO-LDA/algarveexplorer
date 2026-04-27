@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { useSharedImage } from '@/components/SharedImageTransition';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
+import { useLanguage } from '@/lib/LanguageContext';
 import {
   Clock, ArrowRight, Check, X,
   Info, Users, Mountain, ShieldCheck, Award, Flame,
@@ -26,11 +27,16 @@ const TourDetail: React.FC = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const { completeTransition, transitionState } = useSharedImage();
+  // Re-fetch when the user switches language so kibanFetch picks up the
+  // new ?lang= and React renders translated content from the API instead
+  // of relying on the i18n widget mutating the DOM (which loses to React
+  // re-renders).
+  const { language } = useLanguage();
 
   useEffect(() => {
     if (slug) loadTour();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);
+  }, [slug, language]);
 
   const loadTour = async () => {
     if (!slug) return;
@@ -562,20 +568,41 @@ const TourDetail: React.FC = () => {
                       )}
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (tour.external_booking_url) {
-                          window.open(tour.external_booking_url, '_blank', 'noopener,noreferrer');
-                        } else {
-                          setBookingOpen(true);
-                        }
-                      }}
-                      className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
-                    >
-                      <span>{tour.external_booking_label || 'Reservar Agora'}</span>
-                      <ArrowRight size={14} />
-                    </button>
+                    {/* Booking CTA — three modes (server-decided via tour.booking_mode):
+                        - "external"  → open external URL in new tab
+                        - "kiban"     → open the internal BookingModal (default fallback)
+                        - "disabled"  → no CTA at all (Bookings addon not installed and no external URL)
+                        Older CMS versions don't return booking_mode; treat undefined as "kiban". */}
+                    {(() => {
+                      const mode = tour.booking_mode ?? (tour.external_booking_url ? 'external' : 'kiban');
+
+                      if (mode === 'disabled') {
+                        return (
+                          <div className="text-center text-sm text-gray-500 italic py-3">
+                            Reservas indisponíveis para esta experiência.
+                          </div>
+                        );
+                      }
+
+                      const isExternal = mode === 'external' && !!tour.external_booking_url;
+
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (isExternal) {
+                              window.open(tour.external_booking_url!, '_blank', 'noopener,noreferrer');
+                            } else {
+                              setBookingOpen(true);
+                            }
+                          }}
+                          className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
+                        >
+                          <span>{isExternal ? (tour.external_booking_label || 'Reservar Agora') : 'Reservar Agora'}</span>
+                          <ArrowRight size={14} />
+                        </button>
+                      );
+                    })()}
                   </div>
                 </div>
               </div>

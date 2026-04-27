@@ -8,17 +8,26 @@ import PageTransition from '@/components/PageTransition';
 import FooterCTA from '@/components/FooterCTA';
 import { motion } from 'framer-motion';
 import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
+import { useLanguage } from '@/lib/LanguageContext';
 
 const Tours: React.FC = () => {
   const [tours, setTours] = useState<TourEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  // Re-fetch whenever the user switches language so the API returns content
+  // pre-translated via ?lang=. The widget's DOM mutation can't reliably
+  // translate React state — server-side translation is the source of truth.
+  const { language } = useLanguage();
 
   useEffect(() => {
     loadTours();
-  }, []);
+    // language is intentionally a dependency: kibanFetch reads the cookie
+    // at call time so the new fetch carries ?lang=<new>.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
 
   const loadTours = async () => {
     try {
+      setLoading(true);
       const { data, error } = await kibanTours.list();
       if (error) throw error;
       setTours(data);
