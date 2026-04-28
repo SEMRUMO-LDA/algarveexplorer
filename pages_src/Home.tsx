@@ -383,10 +383,10 @@ const Home: React.FC = () => {
                 <iframe
                   src={`https://transfersgo.pt/app/?org=algarveexplorer&mode=widget&lang=${language === 'pt' ? 'pt' : 'en'}`}
                   width="100%"
-                  height="200"
+                  height="420"
                   frameBorder="0"
                   className="w-full"
-                  style={{ border: 0, width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden' }}
+                  style={{ border: 0, width: '100%', height: '420px', borderRadius: '12px', overflow: 'hidden' }}
                   title="TransfersGo Booking"
                 ></iframe>
               </div>
