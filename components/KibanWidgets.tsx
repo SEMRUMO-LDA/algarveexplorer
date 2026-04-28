@@ -44,6 +44,16 @@ export default function KibanWidgets() {
       <style jsx global>{`
         #kiban-i18n-widget { display: none !important; }
       `}</style>
+
+      {/* WhatsApp — floating chat button. Visibility, agent, hours, and
+          GDPR consent are all controlled in the KIBAN admin add-on; if the
+          add-on is disabled the script renders nothing. */}
+      <Script
+        src={`${KIBAN_URL}/api/v1/whatsapp-widget/widget.js`}
+        data-api-key={KIBAN_API_KEY}
+        data-tenant={KIBAN_TENANT}
+        strategy="afterInteractive"
+      />
     </>
   );
 }
