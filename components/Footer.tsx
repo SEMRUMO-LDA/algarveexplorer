@@ -84,7 +84,16 @@ const Footer: React.FC = () => {
                 <ul className="space-y-3 text-[11px] md:text-xs font-medium uppercase tracking-wider text-white/90">
                   <li><Link href="/tours" className="hover:text-[#da6927] transition-colors">Tours</Link></li>
                   <li><Link href="/algarve" className="hover:text-[#da6927] transition-colors">O Algarve</Link></li>
-                  <li><Link href="/transfers" className="hover:text-[#da6927] transition-colors">Transfers</Link></li>
+                  <li>
+                    <a
+                      href="https://transfersgo.pt/app/?org=algarveexplorer"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[#da6927] transition-colors"
+                    >
+                      Transfers
+                    </a>
+                  </li>
                   <li><Link href="/about" className="hover:text-[#da6927] transition-colors">Sobre Nós</Link></li>
                   <li><Link href="/contacts" className="hover:text-[#da6927] transition-colors">Contactos</Link></li>
                   <li className="pt-2 border-t border-white/10">
