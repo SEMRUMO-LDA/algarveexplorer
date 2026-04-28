@@ -22,9 +22,13 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+    // Sync once on mount and on every route change — Next.js SPA nav doesn't
+    // emit a scroll event when scrollY snaps back to 0, so scrolled would
+    // stay stuck at true after navigating away from a scrolled page.
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   const isTransparent = isHeroPage && !scrolled && !isOpen;
 
