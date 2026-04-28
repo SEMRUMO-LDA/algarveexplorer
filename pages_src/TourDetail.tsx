@@ -636,9 +636,6 @@ const TourDetail: React.FC = () => {
                         alt={rec.title}
                       />
                     </div>
-                    <span className="text-[#da6927] text-[10px] font-bold uppercase tracking-widest block mb-3">
-                      {formatDuration(rec.duration_minutes)}
-                    </span>
                     <h4 className="text-2xl font-bold font-montserrat text-brand-navy tracking-tight group-hover:text-[#da6927] transition-colors uppercase">
                       {rec.title}
                     </h4>
