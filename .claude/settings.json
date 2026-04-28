@@ -34,7 +34,8 @@
       "Bash(curl -sL --connect-timeout 10 -X POST https://kiban.pt/api/v1/i18n/translate -H 'Authorization: Bearer kiban_live_Ufl7QjJxEsvls2u30dyuxK1CLzdxWVw' -H 'X-Tenant: algarveexplorer' -H 'Content-Type: application/json' -d '{\"texts\":[\"Olá mundo\",\"Descubra o Algarve\"],\"source\":\"pt\",\"target\":\"en\"}')",
       "Read(//private/tmp/kiban-fix/apps/api/src/static/**)",
       "Read(//tmp/kiban-fix/apps/admin/src/lib/**)",
-      "Read(//private/tmp/kiban-fix/apps/admin/src/lib/**)"
+      "Read(//private/tmp/kiban-fix/apps/admin/src/lib/**)",
+      "Read(//tmp/kiban-fix/apps/api/**)"
     ],
     "additionalDirectories": [
       "/Users/tiagopacheco/Documents/GitHub/algarveexplorer/algarveexplorer/components",
