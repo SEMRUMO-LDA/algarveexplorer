@@ -98,19 +98,31 @@ const Navbar: React.FC = () => {
             {[
               { label: 'Início', path: '/' },
               { label: 'Tours', path: '/tours' },
-              { label: 'Transfers', path: '/transfers' },
+              { label: 'Transfers', path: 'https://transfersgo.pt/app/?org=algarveexplorer', external: true },
               { label: 'O Algarve', path: '/algarve' },
               { label: 'Sobre Nós', path: '/about' },
               { label: 'Contactos', path: '/contacts' },
             ].map((item, i) => (
               <li key={i} className={`transition-all duration-700 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: `${i * 100}ms` }}>
-                <Link
-                  href={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-4xl md:text-6xl font-bold font-montserrat text-white hover:text-[#da6927] transition-colors tracking-tight"
-                >
-                  {item.label}
-                </Link>
+                {item.external ? (
+                  <a
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="block text-4xl md:text-6xl font-bold font-montserrat text-white hover:text-[#da6927] transition-colors tracking-tight"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-4xl md:text-6xl font-bold font-montserrat text-white hover:text-[#da6927] transition-colors tracking-tight"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

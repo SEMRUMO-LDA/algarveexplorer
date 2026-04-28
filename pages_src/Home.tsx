@@ -381,12 +381,12 @@ const Home: React.FC = () => {
 
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white p-3 md:p-4">
                 <iframe
-                  src={`https://transfersgo.pt/app/?org=nunoess&mode=widget&lang=${language === 'pt' ? 'pt' : 'en'}`}
+                  src={`https://transfersgo.pt/app/?org=algarveexplorer&mode=widget&lang=${language === 'pt' ? 'pt' : 'en'}`}
                   width="100%"
-                  height="240"
+                  height="200"
                   frameBorder="0"
-                  className="w-full rounded-lg"
-                  style={{ border: 0, minHeight: '240px', maxHeight: '280px' }}
+                  className="w-full"
+                  style={{ border: 0, width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden' }}
                   title="TransfersGo Booking"
                 ></iframe>
               </div>
