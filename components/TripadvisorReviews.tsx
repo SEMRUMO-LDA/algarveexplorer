@@ -338,7 +338,7 @@ function TripadvisorIcon() {
 // COMPONENTE PRINCIPAL — exporta este
 // =============================================
 export default function TripadvisorReviews() {
-  const { reviews, details, loading, isDemo } = useTripadvisorReviews(LOCATION_ID);
+  const { reviews, details, loading } = useTripadvisorReviews(LOCATION_ID);
   const { language } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -405,14 +405,6 @@ export default function TripadvisorReviews() {
               <span style={{ fontSize: 11, fontWeight: 700, color: "#da6927", letterSpacing: 2, textTransform: "uppercase" }}>
                 Tripadvisor
               </span>
-              {isDemo && (
-                <span style={{
-                  fontSize: 10, fontWeight: 600, color: "#E65100",
-                  background: "#FFF3E0", padding: "2px 8px", borderRadius: 10,
-                }}>
-                  DEMO
-                </span>
-              )}
             </div>
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-3 uppercase">
               {language === 'pt' ? 'O que dizem os nossos exploradores' : 'What our explorers say'}
