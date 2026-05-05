@@ -14,9 +14,14 @@ const Navbar: React.FC = () => {
   const { vibrate } = useSensoryTheme();
   const pathname = usePathname();
 
-  const isHeroPage = pathname === '/' ||
+  // Default to "hero" while pathname is still resolving — usePathname can be
+  // null/empty during the initial SSR render of a static export, which would
+  // otherwise flash a white navbar over the hero on first paint.
+  const isHeroPage = !pathname ||
+    pathname === '/' ||
     pathname.startsWith('/tours/') ||
-    ['/tours', '/transfers', '/about', '/contacts', '/algarve'].includes(pathname);
+    pathname.startsWith('/experiences/') ||
+    ['/tours', '/transfers', '/about', '/contacts', '/algarve', '/experiences'].includes(pathname);
 
   useEffect(() => {
     const handleScroll = () => {
