@@ -6,7 +6,11 @@ const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 
-const dev = process.env.NODE_ENV !== 'production';
+// cPanel's "Application mode" dropdown writes NODE_ENV with the literal
+// case from the UI ("Production"), which Next.js doesn't recognise — it
+// would fall back to dev mode and try to webpack the CSS at request time.
+// Compare lowercased so any casing of `production` boots production mode.
+const dev = (process.env.NODE_ENV || '').toLowerCase() !== 'production';
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 const app = next({ dev });
