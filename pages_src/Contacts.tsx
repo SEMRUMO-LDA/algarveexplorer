@@ -11,7 +11,7 @@ const Contacts: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    subject: 'TOUR BOOKING',
+    subject: 'RESERVA DE TOUR',
     message: '',
   });
   const [submitting, setSubmitting] = useState(false);
@@ -32,7 +32,7 @@ const Contacts: React.FC = () => {
         message: formState.message,
       });
       setSubmitted(true);
-      setFormState({ name: '', email: '', subject: 'TOUR BOOKING', message: '' });
+      setFormState({ name: '', email: '', subject: 'RESERVA DE TOUR', message: '' });
     } catch (err) {
       console.error('Error submitting form:', err);
       setError(true);
@@ -99,7 +99,12 @@ const Contacts: React.FC = () => {
                     <Phone size={14} className="text-[#da6927]" />
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">WhatsApp / Call</span>
                   </div>
-                  <p className="text-2xl font-bold font-montserrat text-[#0d4357] tracking-tight">+351 968 306 031</p>
+                  <a
+                    href="tel:+351968306031"
+                    className="block text-2xl font-bold font-montserrat text-[#0d4357] tracking-tight hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded"
+                  >
+                    +351 968 306 031
+                  </a>
                   <span className="text-[9px] text-brand-body/30 italic">(chamada para rede móvel nacional)</span>
                 </div>
 
@@ -109,7 +114,12 @@ const Contacts: React.FC = () => {
                     <Mail size={14} className="text-[#da6927]" />
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Email</span>
                   </div>
-                  <p className="text-lg font-bold font-montserrat text-[#0d4357] tracking-tight break-all lowercase">algarveexplorer@gmail.com</p>
+                  <a
+                    href="mailto:algarveexplorer@gmail.com"
+                    className="block text-lg font-bold font-montserrat text-[#0d4357] tracking-tight break-all lowercase hover:text-[#da6927] transition-colors focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 rounded"
+                  >
+                    algarveexplorer@gmail.com
+                  </a>
                 </div>
 
                 {/* Location */}
