@@ -559,7 +559,7 @@ const TourDetail: React.FC = () => {
                     {/* Informational tags: direct-booking discount + high demand */}
                     <div className="mb-5 flex flex-wrap gap-1.5">
                       <span className="inline-flex items-center bg-[#da6927]/10 text-[#da6927] text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider border border-[#da6927]/20">
-                        10% Desconto — Reserva Direta
+                        10% Desconto — Promocode: ALGARVE10
                       </span>
                       {tour.likely_to_sell_out && (
                         <span className="inline-flex items-center gap-1 bg-red-50 text-red-700 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider border border-red-200">
