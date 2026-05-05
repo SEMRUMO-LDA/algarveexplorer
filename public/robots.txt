@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Sitemaps
-Sitemap: https://algarveexplorer.vercel.app/sitemap.xml

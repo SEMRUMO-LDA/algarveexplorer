@@ -6,10 +6,13 @@ import Footer from '@/components/Footer';
 import KibanWidgets from '@/components/KibanWidgets';
 import KibanSeo, { fetchKibanSeo } from '@/components/KibanSeo';
 
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://algarveexplorertours.com').replace(/\/$/, '');
+
 // Hard-coded fallback used when kibanCMS hasn't been reached yet (build time
 // or first cold render). Once the SEO add-on returns settings, generateMetadata
 // below replaces these values with the CMS-managed copy.
 const FALLBACK: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: 'Algarve Explorer Tours',
   description:
     'Premium trail adventures and nature discoveries in the heart of Portugal. Expert regional guides and unforgettable coastal secrets.',
@@ -30,6 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
   if (seo.verifications.bing) verifications['msvalidate.01'] = seo.verifications.bing;
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: seo.meta.title || FALLBACK.title!,
     description: seo.meta.description || FALLBACK.description!,
     icons: { icon: seo.meta.favicon_url || '/favicon.png' },
@@ -54,7 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
