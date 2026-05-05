@@ -2,18 +2,24 @@
 // Passenger sets process.env.PORT to the socket it'll proxy from; we hand
 // every request to Next.js's request handler. CommonJS for max compat.
 
+// FORCE production mode — cPanel sets NODE_ENV="Production" (capital P)
+// which Next.js does not recognise. We overwrite it unconditionally.
+process.env.NODE_ENV = 'production';
+
+const path = require('path');
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 
-// cPanel's "Application mode" dropdown writes NODE_ENV with the literal
-// case from the UI ("Production"), which Next.js doesn't recognise — it
-// would fall back to dev mode and try to webpack the CSS at request time.
-// Compare lowercased so any casing of `production` boots production mode.
-const dev = (process.env.NODE_ENV || '').toLowerCase() !== 'production';
+const dir = path.resolve(__dirname);
 const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
-const app = next({ dev });
+console.log('Starting Algarve Explorer...');
+console.log('  dir:', dir);
+console.log('  NODE_ENV:', process.env.NODE_ENV);
+console.log('  .next exists:', require('fs').existsSync(path.join(dir, '.next')));
+
+const app = next({ dev: false, dir });
 const handle = app.getRequestHandler();
 
 app
