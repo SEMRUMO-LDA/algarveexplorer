@@ -113,10 +113,40 @@ const Privacy: React.FC = () => {
           content: [
             'We may update this Privacy Policy periodically. Changes will be posted on this page with an updated "Last Updated" date. We encourage you to review this policy regularly.'
           ]
+        },
+        {
+          title: '13. Alternative Consumer Dispute Resolution',
+          content: [
+            'At Algarve Explorer, we are committed to providing an excellent service, based on rigour, transparency and the trust placed in us by every client. Aware that situations may arise where expectations are not fully met, we make available to our clients the appropriate mechanisms for handling complaints and resolving consumer disputes.',
+            '**Direct Contact**',
+            'Before resorting to any formal dispute resolution mechanism, we ask that you contact us directly so that we can assess the situation and seek the best solution.',
+            'We are available through:',
+            '• E-mail: algarveexplorer@gmail.com',
+            '• Phone: +351 968 306 031',
+            'We undertake to respond to all complaints within a maximum of **15 business days**, in line with industry best practices.',
+            '**Complaints Book**',
+            'In compliance with Decree-Law no. 156/2005 of 15 September, and its amendments, we have a **Complaints Book** in physical format at our establishment, and in electronic format, accessible at www.livroreclamacoes.pt',
+            '**Alternative Dispute Resolution (ADR)**',
+            'Pursuant to **Law no. 144/2015 of 8 September**, which establishes the legal framework for out-of-court consumer dispute resolution mechanisms, we inform you that, in the event of a consumer dispute, the consumer may resort to an Alternative Consumer Dispute Resolution Entity. This is a simple, fast, free or low-cost means that dispenses with recourse to the courts.',
+            '**Territorially Competent Entity**',
+            '**Algarve Consumer Dispute Arbitration Centre (CIMAAL)**',
+            '• Address: Edifício Ninho de Empresas, Estrada da Penha, 8005-131 Faro',
+            '• Phone: (+351) 289 823 135',
+            '• E-mail: cimaal@cimaal.pt',
+            '• Website: www.consumoalgarve.pt',
+            '**Other ADR Entities in Portugal**',
+            'The consumer may also consult the full list of Alternative Consumer Dispute Resolution entities available in Portugal at the **Consumer Portal**, at www.consumidor.gov.pt',
+            '**European Online Dispute Resolution Platform (ODR)**',
+            'For disputes arising from contracts concluded online with customers residing in other European Union Member States, the European Online Dispute Resolution Platform is also available, created by Regulation (EU) no. 524/2013, accessible at: https://ec.europa.eu/consumers/odr',
+            'Algarve Explorer is a brand operated by **AGOSTO CORAJOSO UNIPESSOAL LDA.**',
+            '• NIPC: 518 372 251',
+            '• Registered Office: Travessa de Santa Eulália, Lote 4 Loja F, 8200-269 Albufeira',
+            '• RNAAT no. 1197/2024'
+          ]
         }
       ],
       contact: {
-        title: '13. Contact Us',
+        title: '14. Contact Us',
         intro: 'If you have questions about this Privacy Policy or wish to exercise your rights, please contact us:',
         company: 'Algarve Explorer Tours',
         address: 'Albufeira, Algarve, Portugal',
@@ -232,10 +262,40 @@ const Privacy: React.FC = () => {
           content: [
             'Podemos atualizar esta Política de Privacidade periodicamente. As alterações serão publicadas nesta página com uma data de "Última Atualização" atualizada. Encorajamos a rever esta política regularmente.'
           ]
+        },
+        {
+          title: '13. Resolução Alternativa de Litígios de Consumo',
+          content: [
+            'Na Algarve Explorer, comprometemo-nos a prestar um serviço de excelência, assente no rigor, na transparência e na confiança depositada por cada cliente. Conscientes de que poderão surgir situações em que as expectativas não sejam plenamente correspondidas, colocamos à disposição dos nossos clientes os mecanismos adequados para o tratamento de eventuais reclamações e para a resolução de litígios de consumo.',
+            '**Contacto direto**',
+            'Antes de recorrer a qualquer mecanismo formal de resolução de litígios, pedimos que nos contacte diretamente para que possamos analisar a situação e procurar a melhor solução.',
+            'Estamos disponíveis através de:',
+            '• E-mail: algarveexplorer@gmail.com',
+            '• Telefone: +351 968 306 031',
+            'Comprometemo-nos a responder a todas as reclamações no prazo máximo de **15 dias úteis**, conforme as boas práticas do setor.',
+            '**Livro de Reclamações**',
+            'Em cumprimento do disposto no Decreto-Lei n.º 156/2005, de 15 de setembro, e respetivas alterações, dispomos de **Livro de Reclamações** em formato físico, no nosso estabelecimento, e em formato eletrónico, acessível em www.livroreclamacoes.pt',
+            '**Resolução Alternativa de Litígios (RAL)**',
+            'Nos termos da **Lei n.º 144/2015, de 8 de setembro**, que estabelece o regime jurídico dos mecanismos de resolução extrajudicial de litígios de consumo, informamos que, em caso de litígio de consumo, o consumidor pode recorrer a uma Entidade de Resolução Alternativa de Litígios de Consumo. Trata-se de um meio simples, rápido, gratuito ou de baixo custo, e que dispensa o recurso aos tribunais.',
+            '**Entidade competente em razão do território**',
+            '**Centro de Arbitragem de Conflitos de Consumo do Algarve (CIMAAL)**',
+            '• Morada: Edifício Ninho de Empresas, Estrada da Penha, 8005-131 Faro',
+            '• Telefone: (+351) 289 823 135',
+            '• E-mail: cimaal@cimaal.pt',
+            '• Website: www.consumoalgarve.pt',
+            '**Outras entidades de RAL em Portugal**',
+            'O consumidor pode também consultar a lista completa das entidades de Resolução Alternativa de Litígios de Consumo disponíveis em Portugal no **Portal do Consumidor**, em www.consumidor.gov.pt',
+            '**Plataforma Europeia de Resolução de Litígios em Linha (ODR)**',
+            'Para litígios decorrentes de contratos celebrados online com clientes residentes noutros Estados-Membros da União Europeia, está também disponível a Plataforma Europeia de Resolução de Litígios em Linha, criada pelo Regulamento (UE) n.º 524/2013, acessível em: https://ec.europa.eu/consumers/odr',
+            'Algarve Explorer é uma marca operada por **AGOSTO CORAJOSO UNIPESSOAL LDA.**',
+            '• NIPC: 518 372 251',
+            '• Sede: Travessa de Santa Eulália, Lote 4 Loja F, 8200-269 Albufeira',
+            '• RNAAT n.º 1197/2024'
+          ]
         }
       ],
       contact: {
-        title: '13. Contacte-nos',
+        title: '14. Contacte-nos',
         intro: 'Se tiver questões sobre esta Política de Privacidade ou desejar exercer os seus direitos, contacte-nos:',
         company: 'Algarve Explorer Tours',
         address: 'Albufeira, Algarve, Portugal',
