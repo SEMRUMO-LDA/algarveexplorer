@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
 import { Globe, ChevronDown } from 'lucide-react';
+import { useRouter, usePathname } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
 
 const LABELS: Record<Locale, { code: string; name: string }> = {
@@ -12,30 +12,11 @@ const LABELS: Record<Locale, { code: string; name: string }> = {
 };
 
 /**
- * Strip the leading locale segment from a pathname so it can be re-prefixed
- * for another locale. `/en/tours/x` → `/tours/x`. Default-locale paths are
- * un-prefixed, so we leave them as-is.
- */
-function stripLocale(pathname: string): string {
-  for (const l of routing.locales) {
-    if (l === routing.defaultLocale) continue;
-    if (pathname === `/${l}`) return '/';
-    if (pathname.startsWith(`/${l}/`)) return pathname.slice(l.length + 1);
-  }
-  return pathname || '/';
-}
-
-function localeHref(pathname: string, locale: Locale): string {
-  const clean = stripLocale(pathname);
-  if (locale === routing.defaultLocale) return clean;
-  return clean === '/' ? `/${locale}` : `/${locale}${clean}`;
-}
-
-/**
- * Locale switcher driven by the URL segment. On selection it does a hard
- * `router.push()` to the localized path so the server re-renders the page
- * in the new locale (no client DOM mutation). Dropdown styling matches the
- * Navbar's transparent/solid states.
+ * Locale switcher driven by the URL segment. Uses next-intl's locale-aware
+ * router (`@/i18n/navigation`) so the NEXT_LOCALE cookie is updated as part
+ * of the navigation — the bare next/navigation router would leave the cookie
+ * pointing at the old locale and the middleware would redirect us straight
+ * back. Dropdown styling matches the Navbar's transparent/solid states.
  */
 export default function LanguageSwitcher({
   isTransparent = false,
@@ -43,6 +24,9 @@ export default function LanguageSwitcher({
   isTransparent?: boolean;
 }) {
   const router = useRouter();
+  // next-intl's usePathname returns the path WITHOUT the locale prefix
+  // (e.g. /tours/foo for both /pt/tours/foo and /en/tours/foo) which is
+  // exactly the shape router.replace expects.
   const pathname = usePathname();
   const current = useLocale() as Locale;
   const [open, setOpen] = useState(false);
@@ -62,7 +46,7 @@ export default function LanguageSwitcher({
   const switchTo = (code: Locale) => {
     setOpen(false);
     if (code === current) return;
-    router.push(localeHref(pathname || '/', code));
+    router.replace(pathname || '/', { locale: code });
   };
 
   if (routing.locales.length <= 1) return null;
