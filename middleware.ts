@@ -5,6 +5,7 @@ import { routing } from './i18n/routing';
 const intlMiddleware = createIntlMiddleware(routing);
 
 const KIBAN_URL = process.env.NEXT_PUBLIC_KIBAN_URL || '';
+const KIBAN_TENANT = process.env.NEXT_PUBLIC_KIBAN_TENANT || 'algarveexplorer';
 
 type Hit = { to: string; type: string } | null;
 
@@ -18,7 +19,7 @@ async function resolveRedirect(path: string): Promise<Hit> {
   try {
     const r = await fetch(
       `${KIBAN_URL}/api/v1/redirects/resolve?path=${encodeURIComponent(path)}`,
-      { headers: { Accept: 'application/json' } }
+      { headers: { Accept: 'application/json', 'X-Tenant': KIBAN_TENANT } }
     );
     if (!r.ok) {
       cache.set(path, { hit: null, exp: Date.now() + TTL_MS });
