@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import '../globals.css';
 import Providers from '../providers';
 import Navbar from '@/components/Navbar';
@@ -13,14 +13,6 @@ import { routing, type Locale } from '@/i18n/routing';
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://algarveexplorertours.com').replace(/\/$/, '');
 
-const FALLBACK: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: 'Algarve Explorer Tours',
-  description:
-    'Premium trail adventures and nature discoveries in the heart of Portugal. Expert regional guides and unforgettable coastal secrets.',
-  icons: { icon: '/favicon.png' },
-};
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -31,15 +23,27 @@ export function generateStaticParams() {
  * cross-reference the locale variants. The KIBAN settings stay global for now;
  * once Phase 1 of the new i18n add-on lands the copy itself becomes per-locale.
  */
+/**
+ * Layout-level metadata. Pages further down the tree override `title` and
+ * `description` via their own `generateMetadata`; what we emit here is the
+ * per-locale fallback (used by routes without their own override) plus the
+ * site-wide bits — favicon, hreflang map, OG defaults, KIBAN-managed analytics
+ * verifications, and OG/Twitter cards. Pulling defaults from messages keeps
+ * the PT site from showing English fallback copy when KIBAN SEO is empty.
+ */
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: Locale }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const seo = await fetchKibanSeo();
+  const [seo, tDefaults] = await Promise.all([
+    fetchKibanSeo(),
+    getTranslations({ locale, namespace: 'siteDefaults' }),
+  ]);
 
-  const baseFallback: Metadata = { ...FALLBACK };
+  const fallbackTitle = tDefaults('title');
+  const fallbackDescription = tDefaults('description');
 
   // Build hreflang map for every supported locale of this same path (root for now).
   const languages: Record<string, string> = {};
@@ -50,7 +54,10 @@ export async function generateMetadata({
 
   if (!seo || !seo.enabled) {
     return {
-      ...baseFallback,
+      metadataBase: new URL(SITE_URL),
+      title: fallbackTitle,
+      description: fallbackDescription,
+      icons: { icon: '/favicon.png' },
       alternates: { canonical: locale === routing.defaultLocale ? '/' : `/${locale}`, languages },
     };
   }
@@ -61,8 +68,8 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: seo.meta.title || baseFallback.title!,
-    description: seo.meta.description || baseFallback.description!,
+    title: seo.meta.title || fallbackTitle,
+    description: seo.meta.description || fallbackDescription,
     icons: { icon: seo.meta.favicon_url || '/favicon.png' },
     alternates: {
       canonical: locale === routing.defaultLocale ? '/' : `/${locale}`,
@@ -70,8 +77,8 @@ export async function generateMetadata({
     },
     robots: seo.indexing.noindex_default ? 'noindex, nofollow' : undefined,
     openGraph: {
-      title: seo.og.title || seo.meta.title || baseFallback.title!,
-      description: seo.og.description || seo.meta.description || baseFallback.description!,
+      title: seo.og.title || seo.meta.title || fallbackTitle,
+      description: seo.og.description || seo.meta.description || fallbackDescription,
       images: seo.og.image ? [seo.og.image] : undefined,
       type: (seo.og.type as any) || 'website',
       locale,

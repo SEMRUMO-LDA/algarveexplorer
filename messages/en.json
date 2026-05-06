@@ -45,7 +45,15 @@
     "hoursShort": "{n}h",
     "hoursAndMinutes": "{h}h {m}min"
   },
+  "siteDefaults": {
+    "title": "Algarve Explorer Tours | Adventures in Southern Portugal",
+    "description": "Trails, horseback riding, transfers and authentic experiences in the Algarve. Expert regional guides and unforgettable coastal secrets."
+  },
   "home": {
+    "seo": {
+      "title": "Algarve Explorer Tours | Tours, Trails & Transfers in the Algarve",
+      "description": "Trails, horseback riding, transfers and authentic experiences in southern Portugal. Expert local guides. Book your Algarve adventure today."
+    },
     "scrollNav": {
       "home": "Home",
       "experiences": "Experiences",
@@ -79,6 +87,10 @@
     }
   },
   "tours": {
+    "seo": {
+      "title": "Algarve Tours — Trails, Adventures and Guided Experiences",
+      "description": "Discover guided tours across the Algarve: trails, horseback rides, Benagil caves and more. Small groups, local guides. Book your adventure today."
+    },
     "breadcrumbCurrent": "Tours",
     "hero": {
       "kicker": "Explore",
@@ -137,6 +149,10 @@
     "viewAllTours": "View All Tours"
   },
   "contacts": {
+    "seo": {
+      "title": "Contact — Algarve Explorer Tours",
+      "description": "Get in touch about tours, transfers or custom experiences in the Algarve. Email, phone and contact form. Reply within 24h."
+    },
     "breadcrumbCurrent": "Contact",
     "kicker": "Let's Talk?",
     "title": "CONTACT US",
@@ -166,6 +182,10 @@
     }
   },
   "about": {
+    "seo": {
+      "title": "About Us — Algarve Explorer Tours",
+      "description": "Who we are: local experts sharing the most authentic Algarve since 2016. Trails, horseback rides and discoveries away from the crowds."
+    },
     "breadcrumbCurrent": "Our Story",
     "kicker": "ALGARVE EXPLORER",
     "title": "EXPERIENCE SINCE 2016",
@@ -191,6 +211,10 @@
     }
   },
   "algarve": {
+    "seo": {
+      "title": "The Algarve — Region Guide, Sub-Regions and Seasons",
+      "description": "Discover the Algarve: Monchique, Barrocal and Costa Vicentina. Trails, gastronomy and traditions of southern Portugal across distinct seasons."
+    },
     "breadcrumbCurrent": "The Algarve",
     "kicker": "Southern Portugal",
     "title": "A HAVEN\nFOR THE SOUL",
@@ -228,6 +252,10 @@
     }
   },
   "transfers": {
+    "seo": {
+      "title": "Algarve Transfers — Faro Airport and Trail Shuttles",
+      "description": "Point-to-point transfers across the Algarve: Faro airport, hotels, trails and events. Dedicated fleet, gear space, safety and punctuality."
+    },
     "breadcrumbCurrent": "Transfers",
     "kicker": "Logistics",
     "title": "TRAIL TRANSFERS",
@@ -250,6 +278,10 @@
     }
   },
   "privacy": {
+    "seo": {
+      "title": "Privacy Policy — Algarve Explorer Tours",
+      "description": "Algarve Explorer Tours Privacy Policy. How we handle your personal data and your GDPR rights. Dispute resolution and complaints book."
+    },
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: March 26, 2026",
     "intro": "At Algarve Explorer, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
@@ -399,6 +431,10 @@
     }
   },
   "experiences": {
+    "seo": {
+      "title": "Experiences in the Algarve — Algarve Explorer Tours",
+      "description": "The best experiences and adventures on the Algarve coast: tours, transfers and authentic activities with local guides."
+    },
     "title": "Experiences in the Algarve",
     "subtitle": "Discover the best experiences and adventures on the Algarve coast",
     "filters": {

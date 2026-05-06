@@ -45,7 +45,15 @@
     "hoursShort": "{n}h",
     "hoursAndMinutes": "{h}h {m}min"
   },
+  "siteDefaults": {
+    "title": "Algarve Explorer Tours | Aventuras no Sul de Portugal",
+    "description": "Trilhos, passeios a cavalo, transfers e experiências autênticas no Algarve. Guias regionais especialistas e segredos costeiros inesquecíveis."
+  },
   "home": {
+    "seo": {
+      "title": "Algarve Explorer Tours | Tours, Trilhos e Transfers no Algarve",
+      "description": "Trilhos, passeios a cavalo, transfers e experiências autênticas no Sul de Portugal. Guias locais especialistas. Reserve a sua aventura no Algarve."
+    },
     "scrollNav": {
       "home": "Início",
       "experiences": "Experiências",
@@ -79,6 +87,10 @@
     }
   },
   "tours": {
+    "seo": {
+      "title": "Tours no Algarve — Trilhos, Aventuras e Experiências Guiadas",
+      "description": "Descubra tours guiados pelo Algarve: trilhos, passeios a cavalo, grutas de Benagil e mais. Pequenos grupos, guias locais. Reserve já a sua aventura."
+    },
     "breadcrumbCurrent": "Tours",
     "hero": {
       "kicker": "Explorar",
@@ -137,6 +149,10 @@
     "viewAllTours": "Ver Todos os Tours"
   },
   "contacts": {
+    "seo": {
+      "title": "Contactos — Algarve Explorer Tours",
+      "description": "Fale connosco sobre tours, transfers ou experiências personalizadas no Algarve. Email, telefone e formulário de contacto. Resposta em 24h."
+    },
     "breadcrumbCurrent": "Contactos",
     "kicker": "Vamos Falar?",
     "title": "CONTACTE-NOS",
@@ -166,6 +182,10 @@
     }
   },
   "about": {
+    "seo": {
+      "title": "Sobre Nós — Algarve Explorer Tours",
+      "description": "Quem somos: especialistas locais a partilhar o Algarve mais autêntico desde 2016. Trilhos, passeios a cavalo e descobertas longe das multidões."
+    },
     "breadcrumbCurrent": "A Nossa História",
     "kicker": "ALGARVE EXPLORER",
     "title": "EXPERIÊNCIA DESDE 2016",
@@ -191,6 +211,10 @@
     }
   },
   "algarve": {
+    "seo": {
+      "title": "O Algarve — Guia da Região, Sub-Regiões e Estações",
+      "description": "Descubra o Algarve: Monchique, Barrocal e Costa Vicentina. Trilhos, gastronomia e tradições do Sul de Portugal por estações distintas."
+    },
     "breadcrumbCurrent": "O Algarve",
     "kicker": "Sul de Portugal",
     "title": "UM RECANTO\nPARA A ALMA",
@@ -228,6 +252,10 @@
     }
   },
   "transfers": {
+    "seo": {
+      "title": "Transfers no Algarve — Aeroporto de Faro e Trilhos",
+      "description": "Transfers ponto-a-ponto no Algarve: aeroporto de Faro, hotéis, trilhos e eventos. Frota dedicada, espaço para equipamento, segurança e pontualidade."
+    },
     "breadcrumbCurrent": "Transfers",
     "kicker": "Logística",
     "title": "TRANSFERS DE TRILHO",
@@ -250,6 +278,10 @@
     }
   },
   "privacy": {
+    "seo": {
+      "title": "Política de Privacidade — Algarve Explorer Tours",
+      "description": "Política de Privacidade da Algarve Explorer Tours. Como tratamos os seus dados pessoais e direitos GDPR. Resolução de litígios e livro de reclamações."
+    },
     "title": "Política de Privacidade",
     "lastUpdated": "Última atualização: 26 de março de 2026",
     "intro": "Na Algarve Explorer, estamos comprometidos em proteger a sua privacidade e garantir a segurança das suas informações pessoais. Esta Política de Privacidade explica como recolhemos, usamos, divulgamos e protegemos as suas informações quando visita o nosso website ou utiliza os nossos serviços.",
@@ -399,6 +431,10 @@
     }
   },
   "experiences": {
+    "seo": {
+      "title": "Experiências no Algarve — Algarve Explorer Tours",
+      "description": "As melhores experiências e aventuras na costa algarvia: tours, transfers e atividades autênticas com guias locais."
+    },
     "title": "Experiências no Algarve",
     "subtitle": "Descobre as melhores experiências e aventuras na costa algarvia",
     "filters": {
