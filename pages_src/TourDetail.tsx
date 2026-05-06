@@ -147,14 +147,14 @@ const TourDetail: React.FC = () => {
             animate="visible"
           >
             <motion.div
-              className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80"
+              className="flex flex-wrap items-center gap-x-2 gap-y-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80"
               variants={staggerItem}
             >
               <Link href="/" className="hover:text-white">{tNav('home')}</Link>
               <span className="text-white/50">/</span>
               <Link href="/tours" className="hover:text-white">{tNav('tours')}</Link>
               <span className="text-white/50">/</span>
-              <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs truncate max-w-[260px]">{tour.title}</span>
+              <span className="inline-block bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs break-words max-w-full">{tour.title}</span>
             </motion.div>
 
             <motion.h1
