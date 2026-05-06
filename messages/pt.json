@@ -1,0 +1,30 @@
+{
+  "common": {
+    "bookNow": "Reservar Agora",
+    "menu": "Menu",
+    "loading": "A carregar...",
+    "tryAgain": "Tente novamente."
+  },
+  "nav": {
+    "home": "Início",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "algarve": "O Algarve",
+    "about": "Sobre Nós",
+    "contacts": "Contactos"
+  },
+  "footer": {
+    "tagline": "Aventuras premium em trilhos e descobertas na natureza no coração de Portugal. Guias regionais especialistas e segredos costeiros inesquecíveis.",
+    "quickLinks": "Links Rápidos",
+    "privacyAndCookies": "POLÍTICA DE PRIVACIDADE & COOKIES",
+    "complaintsBook": "LIVRO DE RECLAMAÇÕES",
+    "contactUs": "Contacte-nos",
+    "newsletter": "Newsletter",
+    "newsletterCopy": "Subscreva a nossa newsletter para atualizações sobre trilhos e segredos regionais.",
+    "newsletterEmailPlaceholder": "O seu e-mail",
+    "newsletterSubmit": "Subscrever",
+    "newsletterSuccess": "Subscrito com sucesso!",
+    "newsletterError": "Erro. Tente novamente.",
+    "copyright": "Algarve Explorer Tours @ 2026 DESENVOLVIDO POR AORUBRO"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "common": {
+    "bookNow": "Book Now",
+    "menu": "Menu",
+    "loading": "Loading...",
+    "tryAgain": "Please try again."
+  },
+  "nav": {
+    "home": "Home",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "algarve": "The Algarve",
+    "about": "About Us",
+    "contacts": "Contact"
+  },
+  "footer": {
+    "tagline": "Premium trail adventures and nature discoveries in the heart of Portugal. Expert regional guides and unforgettable coastal secrets.",
+    "quickLinks": "Quick Links",
+    "privacyAndCookies": "PRIVACY POLICY & COOKIES",
+    "complaintsBook": "COMPLAINTS BOOK",
+    "contactUs": "Contact Us",
+    "newsletter": "Newsletter",
+    "newsletterCopy": "Subscribe to our newsletter for trail updates and regional secrets.",
+    "newsletterEmailPlaceholder": "Your e-mail",
+    "newsletterSubmit": "Subscribe",
+    "newsletterSuccess": "Subscribed successfully!",
+    "newsletterError": "Error. Please try again.",
+    "copyright": "Algarve Explorer Tours @ 2026 BUILT BY AORUBRO"
+  }
+}

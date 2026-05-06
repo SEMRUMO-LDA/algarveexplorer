@@ -55,29 +55,33 @@ interface KibanSingleResponse<T = any> {
 }
 
 /**
- * Read the active language from the kiban-lang cookie (set by the i18n
- * widget / LanguageSwitcher). Returns null on the server (Next.js SSR)
- * since the cookie isn't available there. Browser-only.
+ * Resolve the active language from the explicit override (server) or the
+ * `kiban-lang` cookie (browser). Returns null when neither is available so
+ * the API uses its default locale.
  */
-function getActiveLang(): string | null {
+function getActiveLang(override?: string | null): string | null {
+  if (override) return override;
   if (typeof document === 'undefined') return null;
   const match = document.cookie.match(/(?:^|;\s*)kiban-lang=([^;]+)/);
   return match ? decodeURIComponent(match[1]) : null;
 }
 
+interface KibanFetchOptions extends RequestInit {
+  /** Override the active language for this request (server-side use). */
+  lang?: string | null;
+}
+
 async function kibanFetch<T>(
   endpoint: string,
-  options?: RequestInit
+  options?: KibanFetchOptions
 ): Promise<T> {
-  // Auto-append ?lang=<active> when a language cookie is set, so the API
-  // returns CMS content already translated. The widget's DOM mutation is
-  // a fallback for static UI labels — for content that comes from React
-  // state, server-side translation avoids the React-rerender race.
-  const lang = getActiveLang();
+  const { lang: langOverride, ...fetchOptions } = options || {};
+  const lang = getActiveLang(langOverride);
+
   let resolvedEndpoint = endpoint;
   if (lang) {
     const sep = endpoint.includes('?') ? '&' : '?';
-    // Don't override if the caller already supplied lang explicitly
+    // Don't override if the caller already supplied lang explicitly in the URL
     if (!/[?&]lang=/.test(endpoint)) {
       resolvedEndpoint = `${endpoint}${sep}lang=${encodeURIComponent(lang)}`;
     }
@@ -86,12 +90,12 @@ async function kibanFetch<T>(
   const url = `${KIBAN_URL}/api/v1${resolvedEndpoint}`;
 
   const res = await fetch(url, {
-    ...options,
+    ...fetchOptions,
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${KIBAN_API_KEY}`,
       'X-Tenant': KIBAN_TENANT,
-      ...options?.headers,
+      ...fetchOptions.headers,
     },
   });
 
@@ -228,11 +232,14 @@ function normaliseTour<T extends Partial<TourEntry> | null>(tour: T): T {
 
 export const tours = {
   /**
-   * Listar todas as tours publicadas.
+   * Listar todas as tours publicadas. Pass `lang` from server components so
+   * KIBAN returns titles/descriptions already translated for the active locale.
    */
-  list: async (): Promise<{ data: TourEntry[]; error: null | Error }> => {
+  list: async (
+    opts?: { lang?: string | null }
+  ): Promise<{ data: TourEntry[]; error: null | Error }> => {
     try {
-      const response = await kibanFetch<{ data: TourEntry[] }>('/tours');
+      const response = await kibanFetch<{ data: TourEntry[] }>('/tours', { lang: opts?.lang });
       const data = (response.data || []).map(t => normaliseTour(t)) as TourEntry[];
       return { data, error: null };
     } catch (err) {
@@ -242,13 +249,14 @@ export const tours = {
   },
 
   /**
-   * Obter tour por slug.
+   * Obter tour por slug. Pass `lang` from server components for SSR translation.
    */
   getBySlug: async (
-    slug: string
+    slug: string,
+    opts?: { lang?: string | null }
   ): Promise<{ data: TourEntry | null; error: null | Error }> => {
     try {
-      const response = await kibanFetch<{ data: TourEntry }>(`/tours/${slug}`);
+      const response = await kibanFetch<{ data: TourEntry }>(`/tours/${slug}`, { lang: opts?.lang });
       return { data: normaliseTour(response.data || null), error: null };
     } catch (err) {
       console.error('KIBAN: Error fetching tour:', err);

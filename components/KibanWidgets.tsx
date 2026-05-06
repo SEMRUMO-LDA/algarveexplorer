@@ -32,18 +32,9 @@ export default function KibanWidgets() {
         strategy="afterInteractive"
       />
 
-      {/* i18n — Auto-translation engine. The floating switcher is hidden;
-          the Navbar LanguageSwitcher drives it via `kiban-lang` cookie +
-          `kiban-lang-change` event. */}
-      <Script
-        src={`${KIBAN_URL}/api/v1/i18n/widget.js`}
-        data-api-key={KIBAN_API_KEY}
-        data-tenant={KIBAN_TENANT}
-        strategy="afterInteractive"
-      />
-      <style jsx global>{`
-        #kiban-i18n-widget { display: none !important; }
-      `}</style>
+      {/* i18n widget intentionally NOT loaded — locale routing is now driven
+          by next-intl. Server-rendered HTML is already in the active locale,
+          so the DOM-mutation widget would only cause flashes/regressions. */}
 
       {/* WhatsApp — floating chat button. Visibility, agent, hours, and
           GDPR consent are all controlled in the KIBAN admin add-on; if the

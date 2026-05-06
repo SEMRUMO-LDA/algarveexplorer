@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useSensoryTheme } from '@/lib/SensoryContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
@@ -13,15 +14,22 @@ const Navbar: React.FC = () => {
   const { language } = useLanguage();
   const { vibrate } = useSensoryTheme();
   const pathname = usePathname();
+  const tCommon = useTranslations('common');
+  const tNav = useTranslations('nav');
 
   // Default to "hero" while pathname is still resolving — usePathname can be
   // null/empty during the initial SSR render of a static export, which would
-  // otherwise flash a white navbar over the hero on first paint.
+  // otherwise flash a white navbar over the hero on first paint. Strip the
+  // optional locale prefix (`/en/...`) before matching so EN routes pick up
+  // the same hero treatment as their PT counterparts.
+  const stripLocale = (p: string) =>
+    p.replace(/^\/en(?=\/|$)/, '') || '/';
+  const localePath = pathname ? stripLocale(pathname) : '/';
   const isHeroPage = !pathname ||
-    pathname === '/' ||
-    pathname.startsWith('/tours/') ||
-    pathname.startsWith('/experiences/') ||
-    ['/tours', '/transfers', '/about', '/contacts', '/algarve', '/experiences'].includes(pathname);
+    localePath === '/' ||
+    localePath.startsWith('/tours/') ||
+    localePath.startsWith('/experiences/') ||
+    ['/tours', '/transfers', '/about', '/contacts', '/algarve', '/experiences'].includes(localePath);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +69,7 @@ const Navbar: React.FC = () => {
                 <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'opacity-0 w-full' : 'w-4'}`}></span>
                 <span className={`block h-0.5 bg-current transition-all duration-300 ${isOpen ? 'w-full -rotate-45 -translate-y-2' : 'w-5'}`}></span>
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] hidden sm:block">Menu</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] hidden sm:block">{tCommon('menu')}</span>
             </button>
           </div>
 
@@ -94,7 +102,7 @@ const Navbar: React.FC = () => {
                 : 'bg-[#0d4357] border-[#0d4357] text-white hover:bg-[#da6927] hover:border-[#da6927]'
                 }`}
             >
-              Reservar Agora
+              {tCommon('bookNow')}
             </button>
           </div>
         </div>
@@ -105,12 +113,12 @@ const Navbar: React.FC = () => {
         <div className="h-full flex flex-col justify-center items-center text-center p-8">
           <ul className="space-y-4 md:space-y-6">
             {[
-              { label: 'Início', path: '/' },
-              { label: 'Tours', path: '/tours' },
-              { label: 'Transfers', path: 'https://transfersgo.pt/app/?org=algarveexplorer', external: true },
-              { label: 'O Algarve', path: '/algarve' },
-              { label: 'Sobre Nós', path: '/about' },
-              { label: 'Contactos', path: '/contacts' },
+              { label: tNav('home'), path: '/' },
+              { label: tNav('tours'), path: '/tours' },
+              { label: tNav('transfers'), path: 'https://transfersgo.pt/app/?org=algarveexplorer', external: true },
+              { label: tNav('algarve'), path: '/algarve' },
+              { label: tNav('about'), path: '/about' },
+              { label: tNav('contacts'), path: '/contacts' },
             ].map((item, i) => (
               <li key={i} className={`transition-all duration-700 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: `${i * 100}ms` }}>
                 {item.external ? (
