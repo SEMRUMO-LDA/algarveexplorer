@@ -1,22 +1,26 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { ChevronRight, Plus, Star, Clock, Users, Award, Flame } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import PageTransition from '@/components/PageTransition';
 import FooterCTA from '@/components/FooterCTA';
 import { motion } from 'framer-motion';
 import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
 import { useLanguage } from '@/lib/LanguageContext';
+import { Link } from '@/i18n/navigation';
 
 const Tours: React.FC = () => {
   const [tours, setTours] = useState<TourEntry[]>([]);
   const [loading, setLoading] = useState(true);
   // Re-fetch whenever the user switches language so the API returns content
-  // pre-translated via ?lang=. The widget's DOM mutation can't reliably
-  // translate React state — server-side translation is the source of truth.
+  // pre-translated via ?lang=. Server-side translation is the source of truth
+  // — see services/kiban.ts kibanFetch for how the locale flows into the URL.
   const { language } = useLanguage();
+  const t = useTranslations('tours');
+  const tNav = useTranslations('nav');
+  const tTour = useTranslations('tour');
 
   useEffect(() => {
     loadTours();
@@ -40,11 +44,11 @@ const Tours: React.FC = () => {
 
   const formatDuration = (minutes: number) => {
     if (!minutes) return '';
-    if (minutes < 60) return `${minutes} min`;
+    if (minutes < 60) return tTour('minutesShort', { n: minutes });
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
-    if (mins === 0) return `${hours}h`;
-    return `${hours}h ${mins}min`;
+    if (mins === 0) return tTour('hoursShort', { n: hours });
+    return tTour('hoursAndMinutes', { h: hours, m: mins });
   };
 
   const containerVariants = {
@@ -70,20 +74,20 @@ const Tours: React.FC = () => {
           </div>
           <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
             <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-              <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
+              <Link href="/" className="hover:text-[#da6927] transition-colors">{tNav('home')}</Link>
               <span className="text-white/20">/</span>
-              <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">Tours</span>
+              <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">{t('breadcrumbCurrent')}</span>
             </div>
 
             <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
               <Plus size={16} />
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">Explorar</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('hero.kicker')}</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-              AS AVENTURAS
+              {t('hero.title')}
             </h1>
             <p className="text-white max-w-2xl text-lg md:text-xl font-light leading-relaxed">
-              De picos desafiantes de montanha a caminhos costeiros serenos, os nossos tours são concebidos para quem aprecia a natureza e a aventura nas suas formas mais puras.
+              {t('hero.subtitle')}
             </p>
           </div>
         </section>
@@ -92,19 +96,19 @@ const Tours: React.FC = () => {
           <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
             <div className="max-w-4xl">
               <div className="flex items-center mb-10">
-                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">AVENTURAS SELECIONADAS</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('selectedKicker')}</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight uppercase leading-[1.1]">
-                Há experiências que levamos connosco para a vida toda.
+                {t('selectedTitle')}
               </h2>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-24 mt-24">
               {[
-                { label: 'Aventuras Guiadas', value: '150+' },
-                { label: 'Trilhos Explorados', value: '2,400km' },
-                { label: 'Exploradores Felizes', value: '5,000+' },
-                { label: '+ 10 anos de experiência', value: '2016' }
+                { label: t('stats.guidedAdventures'), value: '150+' },
+                { label: t('stats.trailsExplored'), value: '2,400km' },
+                { label: t('stats.happyExplorers'), value: '5,000+' },
+                { label: t('stats.yearsExperience'), value: '2016' }
               ].map((stat, i) => (
                 <div key={i} className="border-l border-slate-100 pl-8">
                   <span className="text-[#da6927] font-bold text-3xl md:text-4xl font-montserrat block mb-2">{stat.value}</span>
@@ -124,12 +128,12 @@ const Tours: React.FC = () => {
               <div className="flex justify-center items-center py-32">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#da6927] mx-auto mb-4"></div>
-                  <p className="text-brand-body/60 text-sm uppercase tracking-widest">A carregar tours...</p>
+                  <p className="text-brand-body/60 text-sm uppercase tracking-widest">{t('loading')}</p>
                 </div>
               </div>
             ) : tours.length === 0 ? (
               <div className="text-center py-32">
-                <p className="text-brand-body/60 text-lg">Nenhum tour disponível no momento.</p>
+                <p className="text-brand-body/60 text-lg">{t('empty')}</p>
               </div>
             ) : (
               <motion.div
@@ -162,12 +166,12 @@ const Tours: React.FC = () => {
                           )}
                           {tour.travellers_choice && (
                             <span className="bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
-                              <Award size={10} /> Travellers&apos; Choice
+                              <Award size={10} /> {tTour('travellersChoice')}
                             </span>
                           )}
                           {tour.likely_to_sell_out && (
                             <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
-                              <Flame size={10} /> Muito Procurado
+                              <Flame size={10} /> {tTour('likelyToSellOut')}
                             </span>
                           )}
                         </div>
@@ -187,9 +191,9 @@ const Tours: React.FC = () => {
                               <Clock size={12} /> {formatDuration(tour.duration_minutes)}
                             </span>
                           )}
-                          {tour.capacity > 0 && (
+                            {tour.capacity > 0 && (
                             <span className="text-brand-body/60 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
-                              <Users size={12} /> Até {tour.capacity}
+                              <Users size={12} /> {tTour('upTo', { n: tour.capacity })}
                             </span>
                           )}
                         </div>
@@ -208,18 +212,18 @@ const Tours: React.FC = () => {
                           <div className="flex flex-col">
                             {tour.instant_confirmation && (
                               <span className="text-[8px] font-bold uppercase tracking-wider text-green-600 mb-1">
-                                ✓ Confirmação imediata
+                                {tTour('instantConfirmation')}
                               </span>
                             )}
                             <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5">
-                              A partir de
+                              {tTour('fromPrice')}
                             </span>
                             <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
                               €{tour.price_adult}
                             </span>
                           </div>
                           <div className="flex items-center space-x-2 text-brand-body group-hover:text-[#da6927] transition-colors">
-                            <span className="text-[10px] font-bold uppercase tracking-widest">Explorar</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest">{tTour('explore')}</span>
                             <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                           </div>
                         </div>

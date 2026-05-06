@@ -1,21 +1,30 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import Link from 'next/link';
 import { Sun, CloudRain, Trees, ArrowRight, ArrowLeft, Plus, Waves } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import ParallaxCard from '@/components/ParallaxCard';
+import { Link } from '@/i18n/navigation';
 
 const Algarve: React.FC = () => {
   const seasonsSliderRef = useRef<HTMLDivElement>(null);
   const [activeSeason, setActiveSeason] = useState(0);
+  const t = useTranslations('algarve');
+  const tNav = useTranslations('nav');
 
   const seasons = [
-    { icon: <Trees size={32} />, title: 'Primavera', subtitle: 'MAR - MAI', desc: 'Uma tapeçaria de flores silvestres. As colinas são luxuriantes e o ar está cheio do perfume da esteva e da alfazema.' },
-    { icon: <Sun size={32} />, title: 'Verão', subtitle: 'JUN - AGO', desc: 'Longos dias ensolarados. Ideal para explorações de manhã cedo seguidas de mergulhos refrescantes em piscinas de rios escondidos.' },
-    { icon: <Waves size={32} />, title: 'Outono', subtitle: 'SET - NOV', desc: "A 'Estação Dourada'. Luz suave, águas atlânticas quentes e a temperatura perfeita para longas caminhadas." },
-    { icon: <CloudRain size={32} />, title: 'Inverno', subtitle: 'DEZ - FEV', desc: 'Calmo, fresco e límpido. Enquanto o Norte da Europa está congelado, os trilhos do Algarve permanecem convidativos e serenos.' }
+    { icon: <Trees size={32} />, title: t('seasons.springTitle'), subtitle: t('seasons.springSubtitle'), desc: t('seasons.springDesc') },
+    { icon: <Sun size={32} />, title: t('seasons.summerTitle'), subtitle: t('seasons.summerSubtitle'), desc: t('seasons.summerDesc') },
+    { icon: <Waves size={32} />, title: t('seasons.autumnTitle'), subtitle: t('seasons.autumnSubtitle'), desc: t('seasons.autumnDesc') },
+    { icon: <CloudRain size={32} />, title: t('seasons.winterTitle'), subtitle: t('seasons.winterSubtitle'), desc: t('seasons.winterDesc') }
+  ];
+
+  const regions = [
+    { id: '01', name: t('regions.monchiqueName'), desc: t('regions.monchiqueDesc'), image: '/image/algarve-monchique.jpeg' },
+    { id: '02', name: t('regions.barrocalName'), desc: t('regions.barrocalDesc'), image: '/image/algarve-barrocal.jpeg' },
+    { id: '03', name: t('regions.costaVicentinaName'), desc: t('regions.costaVicentinaDesc'), image: '/image/algarve-costa-vicentina.jpeg' }
   ];
 
   const handleSeasonsScroll = () => {
@@ -37,7 +46,6 @@ const Algarve: React.FC = () => {
 
   return (
     <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">
-      {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
           <img
@@ -45,30 +53,28 @@ const Algarve: React.FC = () => {
             alt="The Algarve Region"
             className="w-full h-full object-cover"
           />
-          {/* Scrim Overlay - Editorial Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
+            <Link href="/" className="hover:text-[#da6927] transition-colors">{tNav('home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">O Algarve</span>
+            <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">{t('breadcrumbCurrent')}</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">Sul de Portugal</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('kicker')}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-            UM RECANTO<br />PARA A ALMA
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase whitespace-pre-line">
+            {t('title')}
           </h1>
           <p className="font-sans text-white/90 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-12">
-            Das dramáticas falésias atlânticas aos antigos picos de Monchique, o Algarve oferece uma diversidade de terreno que convida à exploração lenta e à ligação profunda com a natureza.
+            {t('subtitle')}
           </p>
         </div>
       </section>
 
-      {/* Main Narrative */}
       <section className="pt-24 md:pt-40 pb-12 md:pb-24">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
@@ -88,20 +94,20 @@ const Algarve: React.FC = () => {
             </div>
             <div className="lg:pl-20">
               <div className="flex items-center mb-10">
-                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">Porquê Explorar Aqui</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('narrativeKicker')}</span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight leading-tight uppercase">
-                Para além dos resorts costeiros
+                {t('narrativeTitle')}
               </h2>
               <div className="space-y-8 text-brand-body/90 text-lg md:text-xl font-light leading-relaxed">
-                <p>O Algarve é mundialmente famoso pelas suas praias douradas, mas o seu verdadeiro coração reside no interior. O &quot;Barrocal&quot; e a &quot;Serra&quot; proporcionam uma paisagem acidentada e autêntica onde o tempo parece abrandar.</p>
-                <p>Focamo-nos nestas joias escondidas — as florestas de sobreiros, os caminhos de pastores e as aldeias tradicionais onde ainda se pode saborear o sabor autêntico da vida portuguesa.</p>
+                <p>{t('narrativeParagraph1')}</p>
+                <p>{t('narrativeParagraph2')}</p>
               </div>
               <Link
                 href="/tours"
                 className="mt-16 inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                <span>Ver Aventuras</span>
+                <span>{t('narrativeCta')}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>
@@ -109,31 +115,11 @@ const Algarve: React.FC = () => {
         </div>
       </section>
 
-      {/* Regions Callout */}
       <section className="py-24 md:py-32 bg-white">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
           <div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
-              {[
-                {
-                  id: "01",
-                  name: 'Serra de Monchique',
-                  desc: "O 'Jardim do Algarve'. Picos luxuriantes, nascentes de montanha e antigas florestas de sobreiros.",
-                  image: "/image/algarve-monchique.jpeg"
-                },
-                {
-                  id: "02",
-                  name: 'O Barrocal',
-                  desc: 'A faixa de calcário. Caminhos técnicos por pomares de laranjeiras, muros de pedra seca e aldeias escondidas.',
-                  image: "/image/algarve-barrocal.jpeg"
-                },
-                {
-                  id: "03",
-                  name: 'Costa Vicentina',
-                  desc: 'O Oeste selvagem. Falésias dramáticas, brisa marítima e caminhos esculpidos por pescadores ao longo de séculos.',
-                  image: "/image/algarve-costa-vicentina.jpeg"
-                }
-              ].map((reg, i) => (
+              {regions.map((reg, i) => (
                 <div key={i} className="group cursor-default">
                   <div className="aspect-[16/9] overflow-hidden rounded-2xl mb-10 shadow-lg bg-slate-100">
                     <img
@@ -154,11 +140,10 @@ const Algarve: React.FC = () => {
         </div>
       </section>
 
-      {/* Seasonal Insights */}
       <section className="relative py-24 md:py-40 bg-[#fffbf9] overflow-hidden">
-        <AnimatedBlob 
-          className="top-1/4 -left-24" 
-          opacity={0.3} 
+        <AnimatedBlob
+          className="top-1/4 -left-24"
+          opacity={0.3}
           size="w-[700px] h-[700px]"
           duration="45s"
           blendMode="multiply"
@@ -166,13 +151,13 @@ const Algarve: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
             <div className="pr-0 lg:pr-12">
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">Todo o ano</span>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">Estações Distintas</h2>
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('seasonsKicker')}</span>
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">{t('seasonsTitle')}</h2>
               <div className="space-y-6 text-brand-body/90 text-lg font-light leading-relaxed mb-16">
-                <p>O Algarve é uma região de contrastes, oferecendo experiências únicas dependendo da altura em que decidir explorar.</p>
-                <p>Desde o desabrochar luxuriante da primavera até aos invernos amenos e tranquilos, cada estação revela um carácter diferente das nossas paisagens.</p>
+                <p>{t('seasonsParagraph1')}</p>
+                <p>{t('seasonsParagraph2')}</p>
               </div>
-              
+
               <div className="flex items-center space-x-6 lg:space-x-8">
                 <div className="flex space-x-3">
                   <button onClick={() => scrollSeasons('left')} className="group w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#0d4357]/20 flex items-center justify-center hover:bg-[#0d4357] hover:border-[#0d4357] outline-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
@@ -182,11 +167,11 @@ const Algarve: React.FC = () => {
                     <ArrowRight size={20} strokeWidth={1.5} className="text-brand-navy group-hover:text-white group-hover:translate-x-1 transition-all duration-500" />
                   </button>
                 </div>
-                
+
                 <div className="flex-1 h-[2px] bg-[#0d4357]/10 relative overflow-hidden rounded-full">
                   <div className="absolute top-0 left-0 h-full bg-[#da6927] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full" style={{ width: `${((activeSeason + 1) / seasons.length) * 100}%` }} />
                 </div>
-                
+
                 <div className="text-sm font-bold tracking-widest text-brand-navy font-montserrat w-16 text-right">
                   0{activeSeason + 1} <span className="text-brand-body/30">/ 0{seasons.length}</span>
                 </div>
@@ -203,8 +188,8 @@ const Algarve: React.FC = () => {
                 {seasons.map((season, i) => {
                   const isActive = activeSeason === i;
                   return (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className={`flex-none w-[85%] sm:w-[60%] lg:w-[65%] xl:w-[55%] snap-center p-8 lg:p-12 rounded-[2rem] border transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between min-h-[360px]
                       ${isActive ? 'bg-[#0d4357] border-white/10 shadow-[0_20px_40px_-15px_rgba(13,67,87,0.3)] scale-100 opacity-100 translate-y-0' : 'bg-white border-[#0d4357]/10 scale-95 opacity-50 blur-[1px] hover:blur-none hover:opacity-100 translate-y-4'}
                     `}
@@ -225,7 +210,6 @@ const Algarve: React.FC = () => {
         </div>
       </section>
 
-      {/* Footer CTA */}
       <FooterCTA />
     </div>
   );

@@ -16,6 +16,7 @@ import {
   RotateCcw,
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslations, useLocale } from 'next-intl';
 import {
   bookingsV2,
   coupons,
@@ -30,19 +31,10 @@ interface BookingModalProps {
   onClose: () => void;
 }
 
-const eur = new Intl.NumberFormat('pt-PT', {
-  style: 'currency',
-  currency: 'EUR',
-  minimumFractionDigits: 2,
-});
-
 // Default promo pre-filled on modal open; auto-applied once the email is valid.
 // If the code ever becomes invalid/exhausted on KIBAN, the auto-apply fails
 // silently and the user can still check out without it.
 const DEFAULT_COUPON_CODE = 'SITE10';
-
-const DAY_LABELS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-const MONTH_LABELS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
 
 function toISODate(d: Date): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -63,6 +55,29 @@ function buildNextDays(count: number): Date[] {
 export default function BookingModal({ tour, open, onClose }: BookingModalProps) {
   const today = useMemo(() => toISODate(new Date()), []);
   const quickDates = useMemo(() => buildNextDays(14), []);
+  const locale = useLocale();
+  const t = useTranslations('booking');
+  const tDate = useTranslations('booking.date');
+  const tTime = useTranslations('booking.time');
+  const tParty = useTranslations('booking.party');
+  const tCustomer = useTranslations('booking.customer');
+  const tCoupon = useTranslations('booking.coupon');
+  const tSummary = useTranslations('booking.summary');
+  const tSubmit = useTranslations('booking.submit');
+  const tErrors = useTranslations('booking.errors');
+  const tValidation = useTranslations('booking.validation');
+
+  const eur = useMemo(
+    () => new Intl.NumberFormat(locale === 'pt' ? 'pt-PT' : 'en-GB', {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+    }),
+    [locale],
+  );
+  const dayLabels = tDate.raw('dayLabels') as string[];
+  const monthLabels = tDate.raw('monthLabels') as string[];
+  const dateLocaleTag = tDate('localeTag');
 
   const [date, setDate] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
@@ -132,7 +147,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
         if (cancelled) return;
         console.error(err);
         setSlots([]);
-        setError('Não foi possível carregar disponibilidade.');
+        setError(tErrors('loadAvailability'));
       })
       .finally(() => {
         if (!cancelled) setLoadingSlots(false);
@@ -205,7 +220,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
     const code = couponInput.trim();
     if (!code) return;
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
-      setCoupon({ valid: false, message: 'Introduza o seu email antes de aplicar o código.' });
+      setCoupon({ valid: false, message: tErrors('couponNeedsEmail') });
       return;
     }
     setCouponLoading(true);
@@ -231,12 +246,12 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
   const emailValid = /^\S+@\S+\.\S+$/.test(email);
 
   const validation = useMemo(() => {
-    if (!date) return 'Escolhe a data';
-    if (!timeSlot) return 'Escolhe o horário';
-    if (!name.trim()) return 'Indica o teu nome';
-    if (!emailValid) return 'Email inválido';
+    if (!date) return tValidation('pickDate');
+    if (!timeSlot) return tValidation('pickTime');
+    if (!name.trim()) return tValidation('needName');
+    if (!emailValid) return tValidation('emailInvalid');
     return null;
-  }, [date, timeSlot, name, emailValid]);
+  }, [date, timeSlot, name, emailValid, tValidation]);
 
   const canSubmit = !validation && !submitting;
 
@@ -267,7 +282,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
       window.location.href = checkoutUrl;
     } catch (err: any) {
       console.error('Checkout error:', err);
-      setError(err?.message || 'Erro ao criar reserva. Tente novamente.');
+      setError(err?.message || tErrors('checkout'));
       setSubmitting(false);
     }
   };
@@ -343,7 +358,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
             <div className="flex items-center justify-between px-6 md:px-8 py-5 border-b border-slate-100">
               <div className="flex-1 min-w-0">
                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#da6927] mb-1">
-                  Reservar
+                  {t('kicker')}
                 </p>
                 <h2
                   id="booking-modal-title"
@@ -356,7 +371,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                 ref={closeBtnRef}
                 onClick={onClose}
                 className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center flex-shrink-0 ml-4"
-                aria-label="Fechar"
+                aria-label={t('close')}
               >
                 <X size={18} className="text-brand-navy" />
               </button>
@@ -377,14 +392,14 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                   <section>
                     <div className="flex items-baseline justify-between mb-3">
                       <h3 className="flex items-center gap-2 text-sm font-bold text-brand-navy">
-                        <Calendar size={16} className="text-[#da6927]" /> Quando queres ir?
+                        <Calendar size={16} className="text-[#da6927]" /> {tDate('title')}
                       </h3>
                       <button
                         type="button"
                         onClick={openNativeDate}
                         className="text-xs font-semibold text-[#da6927] hover:underline"
                       >
-                        Outra data
+                        {tDate('other')}
                       </button>
                     </div>
                     {/* Native date input kept offscreen for "Outra data" trigger */}
@@ -414,11 +429,11 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                             }`}
                           >
                             <div className={`text-[10px] font-bold uppercase tracking-wider ${selected ? 'text-white/70' : 'text-brand-body/60'}`}>
-                              {DAY_LABELS[d.getDay()]}
+                              {dayLabels[d.getDay()]}
                             </div>
                             <div className="text-lg font-bold leading-tight">{d.getDate()}</div>
                             <div className={`text-[10px] ${selected ? 'text-white/70' : 'text-brand-body/60'}`}>
-                              {MONTH_LABELS[d.getMonth()]}
+                              {monthLabels[d.getMonth()]}
                             </div>
                           </button>
                         );
@@ -426,9 +441,9 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                     </div>
                     {date && !quickDates.some((d) => toISODate(d) === date) && (
                       <p className="text-xs text-brand-body/70 mt-2">
-                        Data escolhida:{' '}
+                        {tDate('chosen')}{' '}
                         <span className="font-semibold text-brand-navy">
-                          {new Date(date).toLocaleDateString('pt-PT', {
+                          {new Date(date).toLocaleDateString(dateLocaleTag, {
                             weekday: 'long',
                             day: 'numeric',
                             month: 'long',
@@ -441,14 +456,14 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                   {/* TIME */}
                   {date && (
                     <section>
-                      <h3 className="text-sm font-bold text-brand-navy mb-3">Horário</h3>
+                      <h3 className="text-sm font-bold text-brand-navy mb-3">{tTime('title')}</h3>
                       {loadingSlots ? (
                         <div className="flex items-center gap-2 text-brand-body/60 text-sm">
-                          <Loader2 size={14} className="animate-spin" /> A verificar disponibilidade…
+                          <Loader2 size={14} className="animate-spin" /> {tTime('loading')}
                         </div>
                       ) : slots.length === 0 ? (
                         <p className="text-sm text-brand-body/60">
-                          Sem disponibilidade nesta data. Tenta outra.
+                          {tTime('noSlots')}
                         </p>
                       ) : (
                         <div className="grid grid-cols-3 gap-2">
@@ -471,7 +486,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                               >
                                 {slot.time}
                                 <span className={`block text-[10px] font-medium mt-0.5 ${selected ? 'text-white/70' : 'text-brand-body/60'}`}>
-                                  {full ? 'esgotado' : `${slot.available} vagas`}
+                                  {full ? tTime('soldOut') : tTime('spotsLeft', { n: slot.available })}
                                 </span>
                               </button>
                             );
@@ -483,34 +498,34 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
 
                   {/* PARTY SIZE */}
                   <section>
-                    <h3 className="text-sm font-bold text-brand-navy mb-4">Pessoas</h3>
+                    <h3 className="text-sm font-bold text-brand-navy mb-4">{tParty('title')}</h3>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between py-2">
                         <div>
-                          <p className="font-semibold text-brand-navy">Adultos</p>
-                          <p className="text-xs text-brand-body/60">{eur.format(tour.price_adult || 0)} por pessoa</p>
+                          <p className="font-semibold text-brand-navy">{tParty('adults')}</p>
+                          <p className="text-xs text-brand-body/60">{tParty('perPerson', { price: eur.format(tour.price_adult || 0) })}</p>
                         </div>
                         <div className="flex items-center gap-3">
-                          {stepperButton('Remover adulto', () => setAdults((n) => Math.max(1, n - 1)), adults <= 1, 'minus')}
+                          {stepperButton(tParty('removeAdult'), () => setAdults((n) => Math.max(1, n - 1)), adults <= 1, 'minus')}
                           <span className="w-8 text-center text-lg font-bold text-brand-navy tabular-nums">{adults}</span>
-                          {stepperButton('Adicionar adulto', () => setAdults((n) => Math.min(capacity, n + 1)), adults + children >= capacity, 'plus')}
+                          {stepperButton(tParty('addAdult'), () => setAdults((n) => Math.min(capacity, n + 1)), adults + children >= capacity, 'plus')}
                         </div>
                       </div>
                       {hasChildPricing && (
                         <div className="flex items-center justify-between py-2 border-t border-slate-100 pt-3">
                           <div>
                             <p className="font-semibold text-brand-navy">
-                              Crianças{' '}
+                              {tParty('children')}{' '}
                               {tour.child_age_range && (
                                 <span className="font-normal text-brand-body/60 text-sm">({tour.child_age_range})</span>
                               )}
                             </p>
-                            <p className="text-xs text-brand-body/60">{eur.format(tour.price_child || 0)} por criança</p>
+                            <p className="text-xs text-brand-body/60">{tParty('perChild', { price: eur.format(tour.price_child || 0) })}</p>
                           </div>
                           <div className="flex items-center gap-3">
-                            {stepperButton('Remover criança', () => setChildren((n) => Math.max(0, n - 1)), children <= 0, 'minus')}
+                            {stepperButton(tParty('removeChild'), () => setChildren((n) => Math.max(0, n - 1)), children <= 0, 'minus')}
                             <span className="w-8 text-center text-lg font-bold text-brand-navy tabular-nums">{children}</span>
-                            {stepperButton('Adicionar criança', () => setChildren((n) => n + 1), adults + children >= capacity, 'plus')}
+                            {stepperButton(tParty('addChild'), () => setChildren((n) => n + 1), adults + children >= capacity, 'plus')}
                           </div>
                         </div>
                       )}
@@ -519,10 +534,10 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
 
                   {/* CUSTOMER */}
                   <section className="pt-2 border-t border-slate-100">
-                    <h3 className="text-sm font-bold text-brand-navy mb-4 pt-4">Os teus dados</h3>
+                    <h3 className="text-sm font-bold text-brand-navy mb-4 pt-4">{tCustomer('title')}</h3>
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-xs font-semibold text-brand-body/70 mb-1.5">Nome completo</label>
+                        <label className="block text-xs font-semibold text-brand-body/70 mb-1.5">{tCustomer('fullName')}</label>
                         <input
                           type="text"
                           required
@@ -534,7 +549,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-semibold text-brand-body/70 mb-1.5">Email</label>
+                          <label className="block text-xs font-semibold text-brand-body/70 mb-1.5">{tCustomer('email')}</label>
                           <input
                             type="email"
                             required
@@ -547,12 +562,12 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                             }`}
                           />
                           {emailTouched && email && !emailValid && (
-                            <p className="text-xs text-red-600 mt-1">Verifica o formato do email.</p>
+                            <p className="text-xs text-red-600 mt-1">{tErrors('emailFormat')}</p>
                           )}
                         </div>
                         <div>
                           <label className="block text-xs font-semibold text-brand-body/70 mb-1.5">
-                            Telefone <span className="font-normal text-brand-body/50">(opcional)</span>
+                            {tCustomer('phone')} <span className="font-normal text-brand-body/50">{tCustomer('optional')}</span>
                           </label>
                           <input
                             type="tel"
@@ -565,13 +580,13 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-brand-body/70 mb-1.5">
-                          Notas <span className="font-normal text-brand-body/50">(opcional)</span>
+                          {tCustomer('notes')} <span className="font-normal text-brand-body/50">{tCustomer('optional')}</span>
                         </label>
                         <textarea
                           rows={2}
                           value={notes}
                           onChange={(e) => setNotes(e.target.value)}
-                          placeholder="Alergias, pedidos especiais, etc."
+                          placeholder={tCustomer('notesPlaceholder')}
                           className="w-full px-4 py-3 border border-slate-200 rounded-xl text-brand-navy font-medium focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:border-transparent resize-none placeholder:text-brand-body/40"
                         />
                       </div>
@@ -581,8 +596,8 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                   {/* COUPON */}
                   <section className="pt-2">
                     <h3 className="flex items-center gap-2 text-sm font-bold text-brand-navy mb-3">
-                      <Tag size={14} className="text-[#da6927]" /> Código promocional
-                      <span className="font-normal text-brand-body/50">(opcional)</span>
+                      <Tag size={14} className="text-[#da6927]" /> {tCoupon('title')}
+                      <span className="font-normal text-brand-body/50">{tCustomer('optional')}</span>
                     </h3>
                     {coupon?.valid ? (
                       <div className="flex items-center justify-between px-4 py-3 bg-green-50 border border-green-200 rounded-xl">
@@ -591,7 +606,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                           <div>
                             <p className="text-sm font-bold text-green-800">{coupon.code}</p>
                             <p className="text-xs text-green-700">
-                              Desconto de {eur.format((coupon.discount_cents || 0) / 100)} aplicado
+                              {tCoupon('applied', { amount: eur.format((coupon.discount_cents || 0) / 100) })}
                             </p>
                           </div>
                         </div>
@@ -599,7 +614,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                           type="button"
                           onClick={clearCoupon}
                           className="text-green-700 hover:text-green-900 p-1"
-                          aria-label="Remover código"
+                          aria-label={tCoupon('remove')}
                         >
                           <X size={16} />
                         </button>
@@ -617,7 +632,7 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                                 applyCoupon();
                               }
                             }}
-                            placeholder="EX: WELCOME10"
+                            placeholder={tCoupon('placeholder')}
                             className="flex-1 px-4 py-3 border border-slate-200 rounded-xl text-brand-navy font-medium uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:border-transparent placeholder:text-brand-body/40"
                           />
                           <button
@@ -626,18 +641,18 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                             disabled={!couponInput.trim() || couponLoading}
                             className="px-5 py-3 bg-[#0d4357] hover:bg-[#da6927] disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2"
                           >
-                            {couponLoading ? <Loader2 size={14} className="animate-spin" /> : 'Aplicar'}
+                            {couponLoading ? <Loader2 size={14} className="animate-spin" /> : tCoupon('apply')}
                           </button>
                         </div>
                         {!emailValid && couponInput && (
                           <p className="text-xs text-brand-body/60 mt-2">
-                            Preenche o email acima antes de aplicar o código.
+                            {tErrors('couponNeedsEmailShort')}
                           </p>
                         )}
                         {coupon && !coupon.valid && coupon.reason !== 'unavailable' && (
                           <p className="text-xs text-red-600 mt-2 flex items-center gap-1.5">
                             <AlertCircle size={12} />
-                            {coupon.message || 'Código inválido.'}
+                            {coupon.message || tErrors('couponInvalid')}
                           </p>
                         )}
                       </>
@@ -650,28 +665,28 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
               <aside className="md:w-80 md:flex-shrink-0 bg-slate-50 md:bg-white border-t md:border-t-0 border-slate-100 flex flex-col">
                 <div className="px-6 md:px-6 py-5 md:py-6 md:flex-1 md:overflow-y-auto">
                   <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-3">
-                    Resumo
+                    {tSummary('title')}
                   </p>
 
                   {/* Selection recap */}
                   <div className="space-y-2 text-sm mb-4">
                     <div className="flex justify-between text-brand-body">
-                      <span>Data</span>
+                      <span>{tSummary('date')}</span>
                       <span className="font-semibold text-brand-navy text-right">
                         {date
-                          ? new Date(date).toLocaleDateString('pt-PT', { day: 'numeric', month: 'short' })
+                          ? new Date(date).toLocaleDateString(dateLocaleTag, { day: 'numeric', month: 'short' })
                           : '—'}
                       </span>
                     </div>
                     <div className="flex justify-between text-brand-body">
-                      <span>Horário</span>
+                      <span>{tSummary('time')}</span>
                       <span className="font-semibold text-brand-navy">{timeSlot || '—'}</span>
                     </div>
                     <div className="flex justify-between text-brand-body">
-                      <span>Pessoas</span>
+                      <span>{tSummary('people')}</span>
                       <span className="font-semibold text-brand-navy">
-                        {adults} adulto{adults !== 1 ? 's' : ''}
-                        {children > 0 && `, ${children} criança${children !== 1 ? 's' : ''}`}
+                        {tSummary('adultsLine', { n: adults })}
+                        {children > 0 && `, ${tSummary('childrenLine', { n: children })}`}
                       </span>
                     </div>
                   </div>
@@ -694,14 +709,14 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                     )}
                     {coupon?.valid && discount > 0 && (
                       <div className="flex justify-between text-green-700">
-                        <span>Desconto ({coupon.code})</span>
+                        <span>{tSummary('discountLine', { code: coupon.code })}</span>
                         <span className="tabular-nums">−{eur.format(discount)}</span>
                       </div>
                     )}
                   </div>
 
                   <div className="border-t border-slate-200 mt-3 pt-3 flex items-baseline justify-between">
-                    <span className="text-sm font-bold text-brand-navy">Total</span>
+                    <span className="text-sm font-bold text-brand-navy">{tSummary('total')}</span>
                     <span className="text-2xl font-bold font-montserrat text-brand-navy tabular-nums">
                       {eur.format(total)}
                     </span>
@@ -718,11 +733,11 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
                   >
                     {submitting ? (
                       <>
-                        <Loader2 size={16} className="animate-spin" /> A processar…
+                        <Loader2 size={16} className="animate-spin" /> {tSubmit('processing')}
                       </>
                     ) : (
                       <>
-                        {validation ? validation : `Reservar por ${eur.format(total)}`}
+                        {validation ? validation : tSubmit('cta', { amount: eur.format(total) })}
                         {!validation && <ArrowRight size={16} />}
                       </>
                     )}
@@ -730,13 +745,13 @@ export default function BookingModal({ tour, open, onClose }: BookingModalProps)
 
                   <ul className="mt-3 space-y-1.5 text-[11px] text-brand-body/70">
                     <li className="flex items-center gap-1.5">
-                      <ShieldCheck size={12} className="text-green-600 flex-shrink-0" /> Pagamento seguro via Stripe
+                      <ShieldCheck size={12} className="text-green-600 flex-shrink-0" /> {tSubmit('trustStripe')}
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <Zap size={12} className="text-[#da6927] flex-shrink-0" /> Confirmação imediata por email
+                      <Zap size={12} className="text-[#da6927] flex-shrink-0" /> {tSubmit('trustEmail')}
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <RotateCcw size={12} className="text-brand-navy flex-shrink-0" /> Cancelamento grátis até 24h antes
+                      <RotateCcw size={12} className="text-brand-navy flex-shrink-0" /> {tSubmit('trustCancel')}
                     </li>
                   </ul>
                 </div>

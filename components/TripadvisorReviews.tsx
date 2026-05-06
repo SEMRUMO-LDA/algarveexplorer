@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from 'next-intl';
 import { useLanguage } from "@/lib/LanguageContext";
 import { ArrowRight } from "lucide-react";
 
@@ -340,6 +341,7 @@ function TripadvisorIcon() {
 export default function TripadvisorReviews() {
   const { reviews, details, loading } = useTripadvisorReviews(LOCATION_ID);
   const { language } = useLanguage();
+  const t = useTranslations('tripadvisor');
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -403,11 +405,11 @@ export default function TripadvisorReviews() {
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
               <TripadvisorIcon />
               <span style={{ fontSize: 11, fontWeight: 700, color: "#da6927", letterSpacing: 2, textTransform: "uppercase" }}>
-                Tripadvisor
+                {t('kicker')}
               </span>
             </div>
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-3 uppercase">
-              {language === 'pt' ? 'O que dizem os nossos exploradores' : 'What our explorers say'}
+              {t('title')}
             </h2>
           </div>
 
@@ -421,13 +423,13 @@ export default function TripadvisorReviews() {
                 <div style={{ fontSize: 32, fontWeight: 800, color: "#1a1a1a", lineHeight: 1 }}>
                   {details.rating?.toFixed(1) || "—"}
                 </div>
-                <div style={{ fontSize: 11, color: "#999", marginTop: 2 }}>de 5</div>
+                <div style={{ fontSize: 11, color: "#999", marginTop: 2 }}>{t('outOfFive')}</div>
               </div>
               <div style={{ width: 1, height: 40, background: "#eee" }} />
               <div>
                 <Stars rating={Math.round(details.rating || 0)} size={18} />
                 <p style={{ fontSize: 12, color: "#777", margin: 0, marginTop: 4 }}>
-                  {details.count || 0} {language === 'pt' ? 'avaliações' : 'reviews'}
+                  {details.count || 0} {t('reviewsLabel')}
                 </p>
               </div>
             </div>
@@ -461,7 +463,7 @@ export default function TripadvisorReviews() {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-4 bg-[#da6927] text-white px-8 py-4 sm:px-12 sm:py-6 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white hover:text-[#0d4357] transition-colors duration-300 shadow-xl focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
         >
-          <span>{language === 'pt' ? 'Ver todas as avaliações no Tripadvisor' : 'See all reviews on Tripadvisor'}</span>
+          <span>{t('ctaAll')}</span>
           <ArrowRight size={16} />
         </a>
       </div>

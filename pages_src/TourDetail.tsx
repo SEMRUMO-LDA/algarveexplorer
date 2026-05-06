@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import FooterCTA from '@/components/FooterCTA';
 import PageTransition from '@/components/PageTransition';
 import BookingModal from '@/components/BookingModal';
@@ -11,6 +11,7 @@ import { useSharedImage } from '@/components/SharedImageTransition';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import { tours as kibanTours, TourEntry, imageUrl, imageObjectPosition } from '@/services/kiban';
 import { useLanguage } from '@/lib/LanguageContext';
+import { Link } from '@/i18n/navigation';
 import {
   Clock, ArrowRight, Check, X,
   Info, Users, Mountain, ShieldCheck, Award, Flame,
@@ -32,6 +33,10 @@ const TourDetail: React.FC = () => {
   // of relying on the i18n widget mutating the DOM (which loses to React
   // re-renders).
   const { language } = useLanguage();
+  const t = useTranslations('tourDetail');
+  const tNav = useTranslations('nav');
+  const tCommon = useTranslations('common');
+  const tTour = useTranslations('tour');
 
   useEffect(() => {
     if (slug) loadTour();
@@ -75,11 +80,11 @@ const TourDetail: React.FC = () => {
 
   const formatDuration = (minutes?: number) => {
     if (!minutes) return 'N/A';
-    if (minutes < 60) return `${minutes} min`;
+    if (minutes < 60) return tTour('minutesShort', { n: minutes });
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
-    if (mins === 0) return `${hours}h`;
-    return `${hours}h ${mins}min`;
+    if (mins === 0) return tTour('hoursShort', { n: hours });
+    return tTour('hoursAndMinutes', { h: hours, m: mins });
   };
 
   if (loading) {
@@ -87,7 +92,7 @@ const TourDetail: React.FC = () => {
       <div className="min-h-screen bg-[#fffbf9] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#da6927] mx-auto mb-4"></div>
-          <p className="text-brand-body/60 text-sm uppercase tracking-widest">A carregar...</p>
+          <p className="text-brand-body/60 text-sm uppercase tracking-widest">{tCommon('loading')}</p>
         </div>
       </div>
     );
@@ -97,13 +102,13 @@ const TourDetail: React.FC = () => {
     return (
       <div className="pt-32 px-6 text-center min-h-screen bg-[#fffbf9] flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold font-montserrat text-brand-navy mb-6 uppercase tracking-tight">
-          Tour não encontrado
+          {t('notFoundTitle')}
         </h1>
         <Link
           href="/tours"
           className="bg-[#da6927] text-white px-8 py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg"
         >
-          Voltar para todos os tours
+          {t('backToTours')}
         </Link>
       </div>
     );
@@ -145,9 +150,9 @@ const TourDetail: React.FC = () => {
               className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/80"
               variants={staggerItem}
             >
-              <Link href="/" className="hover:text-white">Início</Link>
+              <Link href="/" className="hover:text-white">{tNav('home')}</Link>
               <span className="text-white/50">/</span>
-              <Link href="/tours" className="hover:text-white">Tours</Link>
+              <Link href="/tours" className="hover:text-white">{tNav('tours')}</Link>
               <span className="text-white/50">/</span>
               <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs truncate max-w-[260px]">{tour.title}</span>
             </motion.div>
@@ -181,7 +186,7 @@ const TourDetail: React.FC = () => {
 
                 {/* Description */}
                 <div>
-                  <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">A Experiência</span>
+                  <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('experienceKicker')}</span>
                   <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight leading-tight uppercase">
                     {tour.title}
                   </h2>
@@ -205,10 +210,10 @@ const TourDetail: React.FC = () => {
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
                       <div>
                         <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
-                          Diário Visual
+                          {t('galleryKicker')}
                         </span>
                         <h3 className="text-3xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
-                          Galeria
+                          {t('galleryTitle')}
                         </h3>
                       </div>
                       <div className="flex gap-3">
@@ -238,9 +243,9 @@ const TourDetail: React.FC = () => {
                 {/* Highlights — visual cards with gallery photos */}
                 {tour.highlights.length > 0 && (
                   <div>
-                    <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">Destaques</span>
+                    <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('highlightsKicker')}</span>
                     <h3 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy mb-10 uppercase tracking-tight">
-                      O que vai viver
+                      {t('highlightsTitle')}
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       {tour.highlights.map((h, i) => {
@@ -276,7 +281,7 @@ const TourDetail: React.FC = () => {
                 {tour.itinerary && (
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy mb-10 uppercase tracking-[0.15em]">
-                      O Itinerário
+                      {t('itineraryTitle')}
                     </h3>
                     <div
                       className="prose max-w-none text-brand-body/80 font-light leading-relaxed"
@@ -292,7 +297,7 @@ const TourDetail: React.FC = () => {
                       <MapPin className="text-[#da6927] flex-shrink-0 mt-1" size={24} />
                       <div>
                         <h3 className="text-2xl font-bold font-montserrat text-brand-navy mb-2 uppercase tracking-tight">
-                          Ponto de Encontro
+                          {t('meetingPointTitle')}
                         </h3>
                         {tour.meeting_point && (
                           <div
@@ -305,7 +310,7 @@ const TourDetail: React.FC = () => {
 
                     {tour.pickup_zones.length > 0 && (
                       <div className="mt-8 pt-8 border-t border-slate-100">
-                        <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-4">Zonas de Recolha</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-4">{t('pickupZonesLabel')}</p>
                         <div className="flex flex-wrap gap-2">
                           {tour.pickup_zones.map((zone, i) => (
                             <span key={i} className="bg-[#da6927]/10 text-[#da6927] text-sm px-4 py-2 rounded-full font-medium">
@@ -324,7 +329,7 @@ const TourDetail: React.FC = () => {
                     {tour.inclusions.length > 0 && (
                       <div>
                         <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-8 flex items-center gap-2">
-                          <Check size={14} className="text-[#da6927]" /> Incluído
+                          <Check size={14} className="text-[#da6927]" /> {t('inclusionsTitle')}
                         </h4>
                         <ul className="space-y-4">
                           {tour.inclusions.map((item, i) => (
@@ -339,7 +344,7 @@ const TourDetail: React.FC = () => {
                     {tour.exclusions.length > 0 && (
                       <div>
                         <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-8 flex items-center gap-2">
-                          <X size={14} className="text-red-500" /> Não incluído
+                          <X size={14} className="text-red-500" /> {t('exclusionsTitle')}
                         </h4>
                         <ul className="space-y-4">
                           {tour.exclusions.map((item, i) => (
@@ -358,7 +363,7 @@ const TourDetail: React.FC = () => {
                 {tour.what_to_bring.length > 0 && (
                   <div className="bg-[#fcfcf9] border border-slate-100 rounded-3xl p-10">
                     <h4 className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-body/80 mb-6">
-                      O que trazer
+                      {t('whatToBringTitle')}
                     </h4>
                     <ul className="flex flex-wrap gap-3">
                       {tour.what_to_bring.map((item, i) => (
@@ -377,7 +382,7 @@ const TourDetail: React.FC = () => {
                       <AlertTriangle className="text-amber-600 flex-shrink-0 mt-1" size={24} />
                       <div className="flex-1">
                         <h3 className="text-xl font-bold font-montserrat text-brand-navy mb-4 uppercase tracking-tight">
-                          Requisitos e Restrições
+                          {t('requirementsTitle')}
                         </h3>
                         {tour.physical_requirements && (
                           <p className="text-brand-body/80 text-[15px] font-light leading-relaxed mb-6">
@@ -386,7 +391,7 @@ const TourDetail: React.FC = () => {
                         )}
                         {tour.health_restrictions.length > 0 && (
                           <>
-                            <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-3">Não recomendado para:</p>
+                            <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-3">{t('healthRestrictionsLabel')}</p>
                             <ul className="space-y-2">
                               {tour.health_restrictions.map((r, i) => (
                                 <li key={i} className="text-brand-body/70 text-sm font-light flex items-start gap-2">
@@ -405,7 +410,7 @@ const TourDetail: React.FC = () => {
                 {/* Additional Info */}
                 {tour.additional_info && (
                   <div className="border-l-4 border-[#da6927] pl-8">
-                    <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-3">Informação adicional</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-brand-body/80 mb-3">{t('additionalInfoLabel')}</p>
                     <div
                       className="prose max-w-none text-brand-body/80 font-light leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: tour.additional_info }}
@@ -417,16 +422,16 @@ const TourDetail: React.FC = () => {
                 {tour.cancellation_policy.length > 0 && (
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy mb-8 uppercase tracking-tight">
-                      Política de Cancelamento
+                      {t('cancellationTitle')}
                     </h3>
                     <div className="space-y-3">
                       {tour.cancellation_policy.map((tier, i) => (
                         <div key={i} className="flex items-center justify-between p-5 bg-white border border-slate-100 rounded-2xl">
                           <span className="text-brand-body/80 font-light">
-                            {tier.label || `Cancelamento com ${tier.hours_before}h+ de antecedência`}
+                            {tier.label || t('cancellationTier', { h: tier.hours_before })}
                           </span>
                           <span className="font-bold text-brand-navy">
-                            {tier.refund_percent}% reembolso
+                            {t('refundLine', { n: tier.refund_percent })}
                           </span>
                         </div>
                       ))}
@@ -434,11 +439,11 @@ const TourDetail: React.FC = () => {
                     {tour.weather_policy && tour.weather_policy !== 'none' && (
                       <p className="text-sm text-brand-body/60 font-light mt-4">
                         {tour.weather_policy === 'full_refund'
-                          ? 'Em caso de cancelamento por condições meteorológicas, reembolso total.'
+                          ? t('weatherFullRefund')
                           : tour.weather_policy === 'reschedule'
-                          ? 'Em caso de cancelamento por condições meteorológicas, a tour pode ser remarcada.'
+                          ? t('weatherReschedule')
                           : tour.weather_policy === 'partial_refund'
-                          ? 'Em caso de cancelamento por condições meteorológicas, reembolso parcial.'
+                          ? t('weatherPartialRefund')
                           : tour.weather_policy}
                       </p>
                     )}
@@ -449,7 +454,7 @@ const TourDetail: React.FC = () => {
                 {tour.faq.length > 0 && (
                   <div>
                     <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy mb-8 uppercase tracking-tight flex items-center gap-3">
-                      <HelpCircle className="text-[#da6927]" size={28} /> Perguntas Frequentes
+                      <HelpCircle className="text-[#da6927]" size={28} /> {t('faqTitle')}
                     </h3>
                     <div className="space-y-3">
                       {tour.faq.map((item, i) => (
@@ -478,7 +483,7 @@ const TourDetail: React.FC = () => {
                 {/* Fine print */}
                 {tour.fine_print && (
                   <div className="border-t border-slate-100 pt-12">
-                    <p className="text-xs font-bold uppercase tracking-widest text-brand-body/60 mb-4">Letra Miúda</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-brand-body/60 mb-4">{t('finePrintLabel')}</p>
                     <div
                       className="prose prose-sm max-w-none text-xs text-brand-body/60 font-light leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: tour.fine_print }}
@@ -499,20 +504,20 @@ const TourDetail: React.FC = () => {
                   />
                   <div className="relative z-10 bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl">
                     <h3 className="text-2xl md:text-3xl font-bold font-montserrat text-brand-navy uppercase tracking-tight mb-6">
-                      Reserva
+                      {t('bookingCardTitle')}
                     </h3>
 
                     <div className="mb-8">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-xs text-brand-body/60 uppercase tracking-wider">Desde</span>
+                        <span className="text-xs text-brand-body/60 uppercase tracking-wider">{t('fromShort')}</span>
                         <span className="text-4xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tighter">
                           €{tour.price_adult}
                         </span>
-                        <span className="text-xs text-brand-body/60 uppercase tracking-wider">/ adulto</span>
+                        <span className="text-xs text-brand-body/60 uppercase tracking-wider">{t('perAdult')}</span>
                       </div>
                       {tour.price_child > 0 && (
                         <p className="text-sm text-brand-body/70 font-light mt-2">
-                          €{tour.price_child} / criança {tour.child_age_range && `(${tour.child_age_range})`}
+                          {t('childPriceLine', { price: tour.price_child, range: tour.child_age_range ? `(${tour.child_age_range})` : '' })}
                         </p>
                       )}
                     </div>
@@ -523,20 +528,20 @@ const TourDetail: React.FC = () => {
                         {tour.instant_confirmation && (
                           <div className="flex items-center gap-3">
                             <Zap className="text-[#da6927] flex-shrink-0" size={16} />
-                            <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Confirmação Imediata</span>
+                            <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">{t('instantConfirmation')}</span>
                           </div>
                         )}
                         {tour.is_digital_ticket && (
                           <div className="flex items-center gap-3">
                             <Ticket className="text-[#da6927] flex-shrink-0" size={16} />
-                            <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Bilhete Digital</span>
+                            <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">{t('digitalTicket')}</span>
                           </div>
                         )}
                         {tour.languages.length > 0 && (
                           <div className="flex items-center gap-3">
                             <Languages className="text-[#da6927] flex-shrink-0" size={16} />
                             <div className="flex items-baseline gap-2">
-                              <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">Idiomas</span>
+                              <span className="text-xs font-bold uppercase tracking-wider text-brand-navy">{t('languages')}</span>
                               <span className="text-xs text-brand-body/60 uppercase tracking-wider">{tour.languages.join(', ')}</span>
                             </div>
                           </div>
@@ -549,9 +554,9 @@ const TourDetail: React.FC = () => {
                         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                           <div className="flex items-center gap-3">
                             <Users size={16} className="text-[#da6927]" />
-                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Capacidade</span>
+                            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{t('capacity')}</span>
                           </div>
-                          <span className="font-bold text-brand-navy text-xs">Até {tour.capacity}</span>
+                          <span className="font-bold text-brand-navy text-xs">{t('upTo', { n: tour.capacity })}</span>
                         </div>
                       )}
                     </div>
@@ -559,11 +564,11 @@ const TourDetail: React.FC = () => {
                     {/* Informational tags: direct-booking discount + high demand */}
                     <div className="mb-5 flex flex-wrap gap-1.5">
                       <span className="inline-flex items-center bg-[#da6927]/10 text-[#da6927] text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider border border-[#da6927]/20">
-                        10% Desconto — Promocode: ALGARVE10
+                        {tTour('directBookingDiscount')}
                       </span>
                       {tour.likely_to_sell_out && (
                         <span className="inline-flex items-center gap-1 bg-red-50 text-red-700 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider border border-red-200">
-                          <Flame size={10} /> Muito Procurado
+                          <Flame size={10} /> {tTour('likelyToSellOut')}
                         </span>
                       )}
                     </div>
@@ -579,7 +584,7 @@ const TourDetail: React.FC = () => {
                       if (mode === 'disabled') {
                         return (
                           <div className="text-center text-sm text-gray-500 italic py-3">
-                            Reservas indisponíveis para esta experiência.
+                            {t('bookingUnavailable')}
                           </div>
                         );
                       }
@@ -598,7 +603,7 @@ const TourDetail: React.FC = () => {
                           }}
                           className="flex items-center justify-center gap-3 w-full bg-[#0d4357] hover:bg-[#da6927] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                         >
-                          <span>{isExternal ? (tour.external_booking_label || 'Reservar Agora') : 'Reservar Agora'}</span>
+                          <span>{isExternal ? (tour.external_booking_label || t('bookNow')) : t('bookNow')}</span>
                           <ArrowRight size={14} />
                         </button>
                       );
@@ -616,13 +621,13 @@ const TourDetail: React.FC = () => {
             <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
               <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                 <div>
-                  <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">Continue a Explorar</span>
+                  <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('recommendedKicker')}</span>
                   <h2 className="text-4xl md:text-5xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">
-                    Mais Aventuras
+                    {t('recommendedTitle')}
                   </h2>
                 </div>
                 <Link href="/tours" className="text-brand-navy font-bold uppercase tracking-widest text-[11px] border-b border-[#0d4357] pb-2 hover:text-[#da6927] hover:border-[#da6927]">
-                  Ver Todos os Tours
+                  {t('viewAllTours')}
                 </Link>
               </div>
 

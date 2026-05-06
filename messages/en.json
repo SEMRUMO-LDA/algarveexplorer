@@ -3,7 +3,10 @@
     "bookNow": "Book Now",
     "menu": "Menu",
     "loading": "Loading...",
-    "tryAgain": "Please try again."
+    "tryAgain": "Please try again.",
+    "explore": "Explore",
+    "readMore": "Read more",
+    "send": "Send"
   },
   "nav": {
     "home": "Home",
@@ -26,5 +29,487 @@
     "newsletterSuccess": "Subscribed successfully!",
     "newsletterError": "Error. Please try again.",
     "copyright": "Algarve Explorer Tours @ 2026 BUILT BY AORUBRO"
+  },
+  "tour": {
+    "travellersChoice": "Travellers' Choice",
+    "likelyToSellOut": "Likely to Sell Out",
+    "upTo": "Up to {n}",
+    "capacity": "Capacity",
+    "duration": "Duration",
+    "instantConfirmation": "✓ Instant confirmation",
+    "fromPrice": "From",
+    "explore": "Explore",
+    "directBookingDiscount": "10% Discount — Promocode: ALGARVE10",
+    "bookingUnavailable": "Booking is currently unavailable for this experience.",
+    "minutesShort": "{n} min",
+    "hoursShort": "{n}h",
+    "hoursAndMinutes": "{h}h {m}min"
+  },
+  "home": {
+    "scrollNav": {
+      "home": "Home",
+      "experiences": "Experiences",
+      "transfers": "Transfers",
+      "about": "About",
+      "reviews": "Reviews"
+    },
+    "hero": {
+      "kicker": "ALGARVE EXPLORER TOURS",
+      "title": "Discover the Algarve\nfew people know",
+      "subtitle": "Trails, horse riding, transfers — every detail crafted for an authentic experience in southern Portugal.",
+      "ctaPrimary": "Explore Adventures",
+      "ctaSecondary": "The Algarve"
+    },
+    "featured": {
+      "kicker": "HAND-PICKED ADVENTURES",
+      "title": "The Algarve is so much more than beaches",
+      "subtitle": "Discover hidden trails, authentic flavours and pristine landscapes far from the tourist crowds.",
+      "empty": "No featured tours available right now."
+    },
+    "transfers": {
+      "kicker": "TRUSTED SHUTTLES",
+      "title": "Transfers built for explorers",
+      "subtitle": "From the airport to the trailhead with comfort, safety and room for all your gear."
+    },
+    "about": {
+      "kicker": "OUR STORY",
+      "title": "Some experiences stay with us for life.",
+      "body": "With roots in Algarve tourism since 2016, Algarve Explorer was born from a love for the most authentic side of southern Portugal.\n\nWe believe the best discoveries happen at nature's pace, on paths only the locals know.\n\nOur mission is to take you beyond the postcards, to the true soul of the Algarve.",
+      "cta": "Get to know us"
+    }
+  },
+  "tours": {
+    "breadcrumbCurrent": "Tours",
+    "hero": {
+      "kicker": "Explore",
+      "title": "THE ADVENTURES",
+      "subtitle": "From challenging mountain peaks to serene coastal trails, our tours are crafted for those who appreciate nature and adventure in their purest form."
+    },
+    "selectedTitle": "Some experiences stay with us for life.",
+    "selectedKicker": "HAND-PICKED ADVENTURES",
+    "stats": {
+      "guidedAdventures": "Guided Adventures",
+      "trailsExplored": "Trails Explored",
+      "happyExplorers": "Happy Explorers",
+      "yearsExperience": "10+ years of experience"
+    },
+    "loading": "Loading tours...",
+    "empty": "No tours available right now."
+  },
+  "tourDetail": {
+    "notFoundTitle": "Tour not found",
+    "backToTours": "Back to all tours",
+    "experienceKicker": "The Experience",
+    "galleryKicker": "Visual Diary",
+    "galleryTitle": "Gallery",
+    "highlightsKicker": "Highlights",
+    "highlightsTitle": "What you'll experience",
+    "itineraryTitle": "The Itinerary",
+    "meetingPointTitle": "Meeting Point",
+    "pickupZonesLabel": "Pickup Zones",
+    "inclusionsTitle": "Included",
+    "exclusionsTitle": "Not included",
+    "whatToBringTitle": "What to bring",
+    "requirementsTitle": "Requirements and Restrictions",
+    "healthRestrictionsLabel": "Not recommended for:",
+    "additionalInfoLabel": "Additional info",
+    "cancellationTitle": "Cancellation Policy",
+    "cancellationTier": "Cancel {h}h+ in advance",
+    "refundLine": "{n}% refund",
+    "weatherFullRefund": "In case of cancellation due to weather, full refund.",
+    "weatherReschedule": "In case of cancellation due to weather, the tour can be rescheduled.",
+    "weatherPartialRefund": "In case of cancellation due to weather, partial refund.",
+    "faqTitle": "Frequently Asked Questions",
+    "finePrintLabel": "Fine Print",
+    "bookingCardTitle": "Book",
+    "fromShort": "From",
+    "perAdult": "/ adult",
+    "childPriceLine": "€{price} / child {range}",
+    "instantConfirmation": "Instant Confirmation",
+    "digitalTicket": "Digital Ticket",
+    "languages": "Languages",
+    "capacity": "Capacity",
+    "upTo": "Up to {n}",
+    "bookingUnavailable": "Booking is currently unavailable for this experience.",
+    "bookNow": "Book Now",
+    "recommendedKicker": "Keep Exploring",
+    "recommendedTitle": "More Adventures",
+    "viewAllTours": "View All Tours"
+  },
+  "contacts": {
+    "breadcrumbCurrent": "Contact",
+    "kicker": "Let's Talk?",
+    "title": "CONTACT US",
+    "intro": "Got questions about a tour? Need a custom transfer? We're here to make your Algarve adventure happen.",
+    "infoKicker": "OUR HOME BASE",
+    "phoneLabel": "WhatsApp / Call",
+    "phoneNote": "(Portuguese mobile rate)",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "locationValue": "Faro, Portugal",
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "ALEX RIDER",
+      "email": "Email",
+      "emailPlaceholder": "ALEX@EMAIL.COM",
+      "subject": "Subject",
+      "subjectTour": "TOUR BOOKING",
+      "subjectTransfer": "TRANSFER REQUEST",
+      "subjectOther": "OTHER",
+      "message": "Message",
+      "messagePlaceholder": "TELL US ABOUT YOUR ADVENTURE...",
+      "submit": "SEND MESSAGE",
+      "submitting": "SENDING...",
+      "errorGeneric": "Could not send. Please try again.",
+      "successTitle": "Message Sent!",
+      "successBody": "We'll be in touch shortly."
+    }
+  },
+  "about": {
+    "breadcrumbCurrent": "Our Story",
+    "kicker": "ALGARVE EXPLORER",
+    "title": "EXPERIENCE SINCE 2016",
+    "subtitle": "Sharing the Algarve's best-kept secrets through a unique and memorable experience.",
+    "missionKicker": "OUR MISSION",
+    "missionTitle": "Authentic experiences brought to life!",
+    "missionParagraph1": "With roots in tourism since 2016, Algarve Explorer was founded by proud and passionate locals with one purpose: to show the hidden gems of southern Portugal, away from the hurry and noise of conventional tourism.",
+    "missionParagraph2": "We travel at nature's pace, discovering the soul of the landscape one step at a time, taking every opportunity to broaden horizons and build lasting memories through trails, horseback rides, wine tastings, beer tastings, transfers and more.",
+    "missionCta": "Discover the Trails",
+    "commitmentKicker": "OUR COMMITMENT",
+    "commitmentTitle": "Community and Sustainability",
+    "commitmentParagraph1": "Champions of the local economy and the communities around us, we work in partnership with local producers, guides and other regional professionals.",
+    "commitmentParagraph2": "Algarve Explorer promotes sustainable development and contributes to the well-being of the Algarve, strengthening the social fabric that holds us together.",
+    "values": {
+      "localPartners": "Local Partners",
+      "localPartnersDesc": "Guided by regional experts.",
+      "ecoFocus": "Eco Focus",
+      "ecoFocusDesc": "Preserving the trails for tomorrow.",
+      "slowTravel": "Slow Travel",
+      "slowTravelDesc": "Escape the noise and the hurry.",
+      "totalCare": "Total Care",
+      "totalCareDesc": "Safety and regional knowledge."
+    }
+  },
+  "algarve": {
+    "breadcrumbCurrent": "The Algarve",
+    "kicker": "Southern Portugal",
+    "title": "A HAVEN\nFOR THE SOUL",
+    "subtitle": "From dramatic Atlantic cliffs to the ancient peaks of Monchique, the Algarve offers a diversity of terrain that invites slow exploration and a deep connection with nature.",
+    "narrativeKicker": "Why Explore Here",
+    "narrativeTitle": "Beyond the coastal resorts",
+    "narrativeParagraph1": "The Algarve is world-famous for its golden beaches, but its true heart lies inland. The \"Barrocal\" and the \"Serra\" offer a rugged, authentic landscape where time seems to slow down.",
+    "narrativeParagraph2": "We focus on these hidden gems — the cork oak forests, the shepherds' paths and the traditional villages where you can still taste the authentic flavour of Portuguese life.",
+    "narrativeCta": "See Adventures",
+    "regions": {
+      "monchiqueName": "Serra de Monchique",
+      "monchiqueDesc": "The 'Garden of the Algarve'. Lush peaks, mountain springs and ancient cork oak forests.",
+      "barrocalName": "The Barrocal",
+      "barrocalDesc": "The limestone belt. Technical trails through orange groves, dry-stone walls and hidden villages.",
+      "costaVicentinaName": "Costa Vicentina",
+      "costaVicentinaDesc": "The wild West. Dramatic cliffs, sea breeze and paths carved by fishermen over centuries."
+    },
+    "seasonsKicker": "All year round",
+    "seasonsTitle": "Distinct Seasons",
+    "seasonsParagraph1": "The Algarve is a region of contrasts, offering unique experiences depending on when you choose to explore.",
+    "seasonsParagraph2": "From the lush bloom of spring to mild, calm winters, each season reveals a different character of our landscapes.",
+    "seasons": {
+      "springTitle": "Spring",
+      "springSubtitle": "MAR - MAY",
+      "springDesc": "A tapestry of wildflowers. The hills are lush and the air fills with the scent of rockrose and lavender.",
+      "summerTitle": "Summer",
+      "summerSubtitle": "JUN - AUG",
+      "summerDesc": "Long sunny days. Ideal for early-morning explorations followed by refreshing dips in hidden river pools.",
+      "autumnTitle": "Autumn",
+      "autumnSubtitle": "SEP - NOV",
+      "autumnDesc": "The 'Golden Season'. Soft light, warm Atlantic waters and the perfect temperature for long hikes.",
+      "winterTitle": "Winter",
+      "winterSubtitle": "DEC - FEB",
+      "winterDesc": "Calm, fresh and clear. While Northern Europe freezes, the Algarve's trails stay welcoming and serene."
+    }
+  },
+  "transfers": {
+    "breadcrumbCurrent": "Transfers",
+    "kicker": "Logistics",
+    "title": "TRAIL TRANSFERS",
+    "subtitle": "Reliable point-to-point transport built for hikers and outdoor enthusiasts. We bridge your arrival and the trailhead.",
+    "loading": "Loading transfers...",
+    "empty": "No transfers available right now.",
+    "card": {
+      "kicker": "REGULAR ROUTE",
+      "fromLabel": "From",
+      "upToParticipants": "Up to {n} people",
+      "gearSpace": "Gear Space",
+      "bookCta": "BOOK TRANSFER"
+    },
+    "quote": {
+      "kicker": "Custom Logistics",
+      "title": "NEED A \nSHUTTLE?",
+      "body": "From solo explorers to large groups, we handle the logistics. Trail drop-offs, event support, or regional luggage transport.",
+      "insurance": "INSURED AND LICENSED",
+      "cta": "REQUEST QUOTE"
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: March 26, 2026",
+    "intro": "At Algarve Explorer, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "content": [
+          "**Personal Information:** When you book a tour or contact us, we may collect personal information including your name, email address, phone number, and payment details.",
+          "**Booking Information:** Details about your tour reservations, preferences, and any special requirements.",
+          "**Technical Data:** We automatically collect certain information about your device, including IP address, browser type, and usage data through cookies and similar technologies.",
+          "**Communications:** Records of your correspondence with us, including emails and messages."
+        ]
+      },
+      {
+        "title": "2. How We Use Your Information",
+        "content": [
+          "**Tour Services:** To process bookings, manage reservations, and provide you with tour experiences.",
+          "**Communication:** To send booking confirmations, updates, and respond to your inquiries.",
+          "**Improvement:** To analyze usage patterns and improve our website and services.",
+          "**Marketing:** With your consent, to send promotional materials about our tours and special offers.",
+          "**Legal Compliance:** To comply with legal obligations and protect our rights."
+        ]
+      },
+      {
+        "title": "3. Legal Basis for Processing (GDPR)",
+        "content": [
+          "**Contract Performance:** Processing necessary to fulfill our contract with you for tour services.",
+          "**Legitimate Interests:** For business operations, fraud prevention, and service improvement.",
+          "**Consent:** For marketing communications and non-essential cookies.",
+          "**Legal Obligation:** To comply with applicable laws and regulations."
+        ]
+      },
+      {
+        "title": "4. Data Sharing and Disclosure",
+        "content": [
+          "**Service Providers:** We share data with trusted partners who help us operate our business (payment processors, booking systems, email services).",
+          "**Legal Requirements:** We may disclose information when required by law or to protect our rights.",
+          "**Business Transfers:** In the event of a merger or acquisition, your information may be transferred.",
+          "We do not sell your personal information to third parties."
+        ]
+      },
+      {
+        "title": "5. Cookies and Tracking Technologies",
+        "content": [
+          "**Essential Cookies:** Necessary for website functionality.",
+          "**Analytics Cookies:** To understand how visitors use our site.",
+          "**Marketing Cookies:** For targeted advertising (with your consent).",
+          "You can control cookies through your browser settings. Disabling cookies may affect site functionality."
+        ]
+      },
+      {
+        "title": "6. Data Security",
+        "content": [
+          "We implement appropriate technical and organizational measures to protect your personal information:",
+          "• SSL encryption for data transmission",
+          "• Secure payment processing",
+          "• Regular security assessments",
+          "• Limited access to personal data",
+          "However, no method of transmission over the internet is 100% secure."
+        ]
+      },
+      {
+        "title": "7. Data Retention",
+        "content": [
+          "We retain your personal information only as long as necessary:",
+          "• Booking data: 7 years (for tax and legal purposes)",
+          "• Marketing data: Until you withdraw consent",
+          "• Technical data: Up to 2 years",
+          "After the retention period, we securely delete or anonymize your data."
+        ]
+      },
+      {
+        "title": "8. Your Rights (GDPR)",
+        "content": [
+          "**Right to Access:** Request a copy of your personal data.",
+          "**Right to Rectification:** Correct inaccurate or incomplete data.",
+          "**Right to Erasure:** Request deletion of your data (\"right to be forgotten\").",
+          "**Right to Restriction:** Limit how we process your data.",
+          "**Right to Data Portability:** Receive your data in a structured format.",
+          "**Right to Object:** Object to processing based on legitimate interests.",
+          "**Right to Withdraw Consent:** Withdraw consent for marketing or cookies at any time.",
+          "To exercise these rights, contact us using the details below."
+        ]
+      },
+      {
+        "title": "9. International Data Transfers",
+        "content": [
+          "Your data is primarily processed within the European Union. If we transfer data outside the EU, we ensure appropriate safeguards are in place, such as Standard Contractual Clauses or adequacy decisions."
+        ]
+      },
+      {
+        "title": "10. Children's Privacy",
+        "content": [
+          "Our services are not directed to children under 16. We do not knowingly collect personal information from children. If you believe we have inadvertently collected such information, please contact us immediately."
+        ]
+      },
+      {
+        "title": "11. Third-Party Links",
+        "content": [
+          "Our website may contain links to third-party websites. We are not responsible for the privacy practices of these sites. Please review their privacy policies before providing any information."
+        ]
+      },
+      {
+        "title": "12. Updates to This Policy",
+        "content": [
+          "We may update this Privacy Policy periodically. Changes will be posted on this page with an updated \"Last Updated\" date. We encourage you to review this policy regularly."
+        ]
+      },
+      {
+        "title": "13. Alternative Consumer Dispute Resolution",
+        "content": [
+          "At Algarve Explorer, we are committed to providing an excellent service, based on rigour, transparency and the trust placed in us by every client. Aware that situations may arise where expectations are not fully met, we make available to our clients the appropriate mechanisms for handling complaints and resolving consumer disputes.",
+          "**Direct Contact**",
+          "Before resorting to any formal dispute resolution mechanism, we ask that you contact us directly so that we can assess the situation and seek the best solution.",
+          "We are available through:",
+          "• E-mail: algarveexplorer@gmail.com",
+          "• Phone: +351 968 306 031",
+          "We undertake to respond to all complaints within a maximum of **15 business days**, in line with industry best practices.",
+          "**Complaints Book**",
+          "In compliance with Decree-Law no. 156/2005 of 15 September, and its amendments, we have a **Complaints Book** in physical format at our establishment, and in electronic format, accessible at www.livroreclamacoes.pt",
+          "**Alternative Dispute Resolution (ADR)**",
+          "Pursuant to **Law no. 144/2015 of 8 September**, which establishes the legal framework for out-of-court consumer dispute resolution mechanisms, we inform you that, in the event of a consumer dispute, the consumer may resort to an Alternative Consumer Dispute Resolution Entity. This is a simple, fast, free or low-cost means that dispenses with recourse to the courts.",
+          "**Territorially Competent Entity**",
+          "**Algarve Consumer Dispute Arbitration Centre (CIMAAL)**",
+          "• Address: Edifício Ninho de Empresas, Estrada da Penha, 8005-131 Faro",
+          "• Phone: (+351) 289 823 135",
+          "• E-mail: cimaal@cimaal.pt",
+          "• Website: www.consumoalgarve.pt",
+          "**Other ADR Entities in Portugal**",
+          "The consumer may also consult the full list of Alternative Consumer Dispute Resolution entities available in Portugal at the **Consumer Portal**, at www.consumidor.gov.pt",
+          "**European Online Dispute Resolution Platform (ODR)**",
+          "For disputes arising from contracts concluded online with customers residing in other European Union Member States, the European Online Dispute Resolution Platform is also available, created by Regulation (EU) no. 524/2013, accessible at: https://ec.europa.eu/consumers/odr",
+          "Algarve Explorer is a brand operated by **AGOSTO CORAJOSO UNIPESSOAL LDA.**",
+          "• NIPC: 518 372 251",
+          "• Registered Office: Travessa de Santa Eulália, Lote 4 Loja F, 8200-269 Albufeira",
+          "• RNAAT no. 1197/2024"
+        ]
+      }
+    ],
+    "contact": {
+      "title": "14. Contact Us",
+      "intro": "If you have questions about this Privacy Policy or wish to exercise your rights, please contact us:",
+      "company": "Algarve Explorer Tours",
+      "address": "Albufeira, Algarve, Portugal",
+      "email": "info@algarveexplorer.com",
+      "phone": "+351 XXX XXX XXX"
+    }
+  },
+  "experiences": {
+    "title": "Experiences in the Algarve",
+    "subtitle": "Discover the best experiences and adventures on the Algarve coast",
+    "filters": {
+      "all": "All",
+      "tours": "Tours",
+      "transfers": "Transfers",
+      "experiences": "Experiences"
+    },
+    "featuredTitle": "Featured",
+    "allTitle": "All Experiences",
+    "empty": "No experiences found",
+    "loading": "Loading experiences...",
+    "card": {
+      "featuredBadge": "Featured",
+      "upTo": "Up to {n}"
+    }
+  },
+  "experienceDetail": {
+    "loading": "Loading...",
+    "notFound": "Experience not found.",
+    "backToList": "Back"
+  },
+  "footerCTA": {
+    "kicker": "Start Your Journey",
+    "title": "Ready to explore the Algarve differently?",
+    "subtitle": "Planning can be complicated. Exploring doesn't have to be.\nLet us guide you to the right experience.",
+    "ctaPrimary": "See experiences",
+    "ctaSecondary": "Talk to us"
+  },
+  "tripadvisor": {
+    "kicker": "Tripadvisor",
+    "title": "What our explorers say",
+    "outOfFive": "out of 5",
+    "reviewsLabel": "reviews",
+    "ctaAll": "See all reviews on Tripadvisor"
+  },
+  "booking": {
+    "kicker": "Book",
+    "close": "Close",
+    "errors": {
+      "loadAvailability": "Could not load availability.",
+      "checkout": "Could not create booking. Please try again.",
+      "couponNeedsEmail": "Please enter your email before applying the code.",
+      "couponNeedsEmailShort": "Fill in the email above before applying the code.",
+      "couponInvalid": "Invalid code.",
+      "emailFormat": "Please check the email format."
+    },
+    "validation": {
+      "pickDate": "Pick a date",
+      "pickTime": "Pick a time",
+      "needName": "Enter your name",
+      "emailInvalid": "Invalid email"
+    },
+    "date": {
+      "title": "When would you like to go?",
+      "other": "Other date",
+      "chosen": "Chosen date:",
+      "dayLabels": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      "monthLabels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      "localeTag": "en-GB"
+    },
+    "time": {
+      "title": "Time",
+      "loading": "Checking availability…",
+      "noSlots": "No availability for this date. Try another.",
+      "soldOut": "sold out",
+      "spotsLeft": "{n} spots left"
+    },
+    "party": {
+      "title": "People",
+      "adults": "Adults",
+      "children": "Children",
+      "perPerson": "{price} per person",
+      "perChild": "{price} per child",
+      "removeAdult": "Remove adult",
+      "addAdult": "Add adult",
+      "removeChild": "Remove child",
+      "addChild": "Add child"
+    },
+    "customer": {
+      "title": "Your details",
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "notes": "Notes",
+      "optional": "(optional)",
+      "notesPlaceholder": "Allergies, special requests, etc."
+    },
+    "coupon": {
+      "title": "Promo code",
+      "placeholder": "E.G. WELCOME10",
+      "apply": "Apply",
+      "applied": "Discount of {amount} applied",
+      "remove": "Remove code"
+    },
+    "summary": {
+      "title": "Summary",
+      "date": "Date",
+      "time": "Time",
+      "people": "People",
+      "adultsLine": "{n, plural, one {1 adult} other {# adults}}",
+      "childrenLine": "{n, plural, one {1 child} other {# children}}",
+      "discountLine": "Discount ({code})",
+      "total": "Total"
+    },
+    "submit": {
+      "processing": "Processing…",
+      "cta": "Book for {amount}",
+      "trustStripe": "Secure payment via Stripe",
+      "trustEmail": "Instant email confirmation",
+      "trustCancel": "Free cancellation up to 24h before"
+    }
   }
 }

@@ -1,16 +1,19 @@
 'use client';
 
 import { useState, useEffect, ReactNode } from 'react';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { experiences as kibanExperiences, ExperienceEntry } from '@/services/kiban';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Clock, Users, MapPin, Star, Loader2 } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
 
 export default function Experiences() {
   const [experiencesList, setExperiencesList] = useState<ExperienceEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'tours' | 'transfers' | 'experiences'>('all');
+  const t = useTranslations('experiences');
+  const tFilters = useTranslations('experiences.filters');
 
   useEffect(() => {
     loadExperiences();
@@ -45,7 +48,7 @@ export default function Experiences() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-bold text-white mb-6"
           >
-            Experiências no Algarve
+            {t('title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -53,7 +56,7 @@ export default function Experiences() {
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-300 max-w-3xl mx-auto"
           >
-            Descobre as melhores experiências e aventuras na costa algarvia
+            {t('subtitle')}
           </motion.p>
         </div>
       </section>
@@ -65,25 +68,25 @@ export default function Experiences() {
             active={filter === 'all'}
             onClick={() => setFilter('all')}
           >
-            Todas
+            {tFilters('all')}
           </FilterButton>
           <FilterButton
             active={filter === 'tours'}
             onClick={() => setFilter('tours')}
           >
-            Tours
+            {tFilters('tours')}
           </FilterButton>
           <FilterButton
             active={filter === 'transfers'}
             onClick={() => setFilter('transfers')}
           >
-            Transfers
+            {tFilters('transfers')}
           </FilterButton>
           <FilterButton
             active={filter === 'experiences'}
             onClick={() => setFilter('experiences')}
           >
-            Experiências
+            {tFilters('experiences')}
           </FilterButton>
         </div>
       </section>
@@ -93,7 +96,7 @@ export default function Experiences() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
             <Star className="w-8 h-8 text-amber-500 fill-amber-500" />
-            Em Destaque
+            {t('featuredTitle')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredExperiences.map((exp) => (
@@ -112,13 +115,13 @@ export default function Experiences() {
         ) : filteredExperiences.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-slate-400">
-              Nenhuma experiência encontrada
+              {t('empty')}
             </p>
           </div>
         ) : (
           <>
             <h2 className="text-2xl font-bold text-white mb-8">
-              Todas as Experiências
+              {t('allTitle')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredExperiences
@@ -166,6 +169,7 @@ function ExperienceCard({
   featured?: boolean;
 }) {
   const { language } = useLanguage();
+  const tCard = useTranslations('experiences.card');
   const title = language === 'pt' ? experience.title_pt : experience.title_en;
   const description = language === 'pt'
     ? experience.short_description_pt || experience.description_pt
@@ -191,7 +195,7 @@ function ExperienceCard({
               {featured && (
                 <div className="absolute top-4 right-4 px-3 py-1 bg-amber-500 text-white text-sm font-bold rounded-full flex items-center gap-1">
                   <Star className="w-4 h-4 fill-white" />
-                  Destaque
+                  {tCard('featuredBadge')}
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
@@ -233,7 +237,7 @@ function ExperienceCard({
               {experience.max_participants && (
                 <div className="flex items-center gap-1">
                   <Users className="w-4 h-4" />
-                  Até {experience.max_participants}
+                  {tCard('upTo', { n: experience.max_participants })}
                 </div>
               )}
               {experience.meeting_point_pt && (

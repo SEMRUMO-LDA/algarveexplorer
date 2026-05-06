@@ -1,21 +1,24 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import Link from 'next/link';
-import { Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, Leaf, ArrowRight, ArrowLeft, Footprints, ShieldCheck, Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import ParallaxCard from '@/components/ParallaxCard';
+import { Link } from '@/i18n/navigation';
 
 const About: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
+  const t = useTranslations('about');
+  const tNav = useTranslations('nav');
 
   const slides = [
-    { title: 'Parceiros Locais', icon: <Users size={32} />, desc: 'Guiados por especialistas regionais.' },
-    { title: 'Foco Ecológico', icon: <Leaf size={32} />, desc: 'Preservar os trilhos para o amanhã.' },
-    { title: 'Viagens Lentas', icon: <Footprints size={32} />, desc: 'Fuja do ruído e da pressa.' },
-    { title: 'Cuidado Total', icon: <ShieldCheck size={32} />, desc: 'Segurança e conhecimento regional.' }
+    { title: t('values.localPartners'), icon: <Users size={32} />, desc: t('values.localPartnersDesc') },
+    { title: t('values.ecoFocus'), icon: <Leaf size={32} />, desc: t('values.ecoFocusDesc') },
+    { title: t('values.slowTravel'), icon: <Footprints size={32} />, desc: t('values.slowTravelDesc') },
+    { title: t('values.totalCare'), icon: <ShieldCheck size={32} />, desc: t('values.totalCareDesc') }
   ];
 
   const handleScroll = () => {
@@ -37,7 +40,6 @@ const About: React.FC = () => {
 
   return (
     <div className="bg-[#fffbf9] min-h-screen overflow-x-hidden">
-      {/* Editorial Dark Header - Matching Transfers Page */}
       <section className="relative pt-32 pb-20 md:pt-64 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 pointer-events-none">
           <img
@@ -45,60 +47,56 @@ const About: React.FC = () => {
             alt="About Algarve Explorer"
             className="w-full h-full object-cover"
           />
-          {/* Scrim Overlay - Editorial Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0d4357]/80 via-[#0d4357]/20 to-transparent"></div>
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
+            <Link href="/" className="hover:text-[#da6927] transition-colors">{tNav('home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">A Nossa História</span>
+            <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">{t('breadcrumbCurrent')}</span>
           </div>
 
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">ALGARVE EXPLORER</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('kicker')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 tracking-tighter leading-none uppercase">
-            EXPERIÊNCIA DESDE 2016
+            {t('title')}
           </h1>
           <p className="text-white max-w-2xl text-lg md:text-xl font-light leading-relaxed">
-            A partilhar os segredos mais escondidos do Algarve através de uma experiência única e memorável.
+            {t('subtitle')}
           </p>
         </div>
       </section>
 
-      {/* Brand Narrative & Image Composition */}
       <section className="py-16 md:py-24 lg:py-32 bg-[#fffbf9]">
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
 
-            {/* Left Column: Brand Story */}
             <div className="w-full lg:w-1/2 order-1 lg:order-1">
               <div className="max-w-xl">
                 <div className="flex items-center mb-10">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">A NOSSA MISSÃO</span>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('missionKicker')}</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-12 tracking-tight leading-[1.1] uppercase">
-                  Experiências autênticas que ganham vida!
+                  {t('missionTitle')}
                 </h2>
                 <div className="space-y-8 text-brand-body/90 text-lg md:text-xl font-light leading-relaxed">
-                  <p>Com experiência no setor do turismo desde 2016, a Algarve Explorer foi criada por orgulhosos e apaixonados algarvios com o intuito de mostrar as joias escondidas da região Sul de Portugal longe da pressa e do ruído do turismo convencional.</p>
-                  <p>Viajamos ao ritmo da natureza, descobrindo a alma da paisagem um passo de cada vez, aproveitando cada oportunidade para alargar horizons e criar memórias duradouras através de trilhos, passeios a cavalo, degustação de vinhos, provas de cerveja, transfers...</p>
+                  <p>{t('missionParagraph1')}</p>
+                  <p>{t('missionParagraph2')}</p>
                 </div>
                 <div className="mt-16">
                   <Link
                     href="/tours"
                     className="inline-flex items-center space-x-4 bg-[#0d4357] text-white px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
                   >
-                    <span>Descobrir os Trilhos</span>
+                    <span>{t('missionCta')}</span>
                     <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                   </Link>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Image Composition (Collage) */}
             <div className="w-full lg:w-1/2 order-2 lg:order-2">
               <div className="relative h-[400px] md:h-[500px] w-full max-w-2xl mx-auto">
                 <ParallaxCard
@@ -127,7 +125,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Values Grid */}
       <section className="relative py-32 md:py-48 bg-[#fffbf9] overflow-hidden">
         <AnimatedBlob
           className="bottom-0 -right-24"
@@ -138,13 +135,13 @@ const About: React.FC = () => {
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-center">
             <div className="pr-0 lg:pr-12">
-              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">O NOSSO COMPROMISSO</span>
-              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">Comunidade e Sustentabilidade</h2>
+              <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">{t('commitmentKicker')}</span>
+              <h2 className="text-4xl md:text-5xl lg:text-5xl font-bold font-montserrat text-brand-navy mb-8 tracking-tight uppercase leading-none">{t('commitmentTitle')}</h2>
               <div className="space-y-6 text-brand-body/90 text-lg font-light leading-relaxed mb-16">
-                <p>Apoiantes da economia local e das comunidades que nos rodeiam, trabalhamos em parceria com produtores locais, guias e outros profissionais da região.</p>
-                <p>A Algarve Explorer promove o desenvolvimento sustentável e contribui para o bem-estar do Algarve, fortalecendo o tecido social que nos une!</p>
+                <p>{t('commitmentParagraph1')}</p>
+                <p>{t('commitmentParagraph2')}</p>
               </div>
-              
+
               <div className="flex items-center space-x-6 lg:space-x-8">
                 <div className="flex space-x-3">
                   <button onClick={() => scrollSlider('left')} className="group w-12 h-12 lg:w-14 lg:h-14 rounded-full border border-[#0d4357]/20 flex items-center justify-center hover:bg-[#0d4357] hover:border-[#0d4357] outline-none transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
@@ -154,11 +151,11 @@ const About: React.FC = () => {
                     <ArrowRight size={20} strokeWidth={1.5} className="text-brand-navy group-hover:text-white group-hover:translate-x-1 transition-all duration-500" />
                   </button>
                 </div>
-                
+
                 <div className="flex-1 h-[2px] bg-[#0d4357]/10 relative overflow-hidden rounded-full">
                   <div className="absolute top-0 left-0 h-full bg-[#da6927] transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] rounded-full" style={{ width: `${((activeSlide + 1) / slides.length) * 100}%` }} />
                 </div>
-                
+
                 <div className="text-sm font-bold tracking-widest text-brand-navy font-montserrat w-16 text-right">
                   0{activeSlide + 1} <span className="text-brand-body/30">/ 0{slides.length}</span>
                 </div>
@@ -175,8 +172,8 @@ const About: React.FC = () => {
                 {slides.map((val, i) => {
                   const isActive = activeSlide === i;
                   return (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     className={`flex-none w-[85%] sm:w-[60%] lg:w-[65%] xl:w-[55%] snap-center p-8 lg:p-12 rounded-[2rem] border transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col justify-between min-h-[360px]
                       ${isActive ? 'bg-[#0d4357] border-white/10 shadow-[0_20px_40px_-15px_rgba(13,67,87,0.3)] scale-100 opacity-100 translate-y-0' : 'bg-white border-[#0d4357]/10 scale-95 opacity-50 blur-[1px] hover:blur-none hover:opacity-100 translate-y-4'}
                     `}

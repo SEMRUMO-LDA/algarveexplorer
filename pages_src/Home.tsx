@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { ArrowRight, ChevronRight, ChevronLeft, Star, Clock, Users, Award, Flame } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useSensoryTheme } from '@/lib/SensoryContext';
+import { Link } from '@/i18n/navigation';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import ParallaxCard from '@/components/ParallaxCard';
@@ -55,6 +56,9 @@ const RevealingImage: React.FC<{ src: string; alt: string; className: string; de
 const Home: React.FC = () => {
   const { language } = useLanguage();
   const { vibrate } = useSensoryTheme();
+  const t = useTranslations('home');
+  const tCommon = useTranslations('common');
+  const tTour = useTranslations('tour');
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(true); // Default to true to prevent initial video load on mobile
   const [featuredTours, setFeaturedTours] = useState<TourEntry[]>([]);
@@ -85,23 +89,25 @@ const Home: React.FC = () => {
 
   const formatDuration = (minutes: number) => {
     if (!minutes) return '';
-    if (minutes < 60) return `${minutes} min`;
+    if (minutes < 60) return tTour('minutesShort', { n: minutes });
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
-    if (mins === 0) return `${hours}h`;
-    return `${hours}h ${mins}min`;
+    if (mins === 0) return tTour('hoursShort', { n: hours });
+    return tTour('hoursAndMinutes', { h: hours, m: mins });
   };
 
   const paddingLeftBase = "max(1.5rem, calc((100vw - 1600px) / 2 + 1.5rem))";
   const paddingLeftLg = "max(3rem, calc((100vw - 1600px) / 2 + 3rem))";
 
-  // Define sections for the scroll indicator
+  // Define sections for the scroll indicator. ScrollIndicator picks the
+  // language-appropriate label via the `language` prop, so we translate both
+  // halves up-front here and let the component pick the matching one.
   const sections = [
-    { id: 'hero', label: 'Home', labelPt: 'Início' },
-    { id: 'experiences', label: 'Experiences', labelPt: 'Experiências' },
-    { id: 'transfers', label: 'Transfers', labelPt: 'Transfers' },
-    { id: 'about', label: 'About', labelPt: 'Sobre' },
-    { id: 'testimonials', label: 'Reviews', labelPt: 'Avaliações' }
+    { id: 'hero', label: t('scrollNav.home'), labelPt: t('scrollNav.home') },
+    { id: 'experiences', label: t('scrollNav.experiences'), labelPt: t('scrollNav.experiences') },
+    { id: 'transfers', label: t('scrollNav.transfers'), labelPt: t('scrollNav.transfers') },
+    { id: 'about', label: t('scrollNav.about'), labelPt: t('scrollNav.about') },
+    { id: 'testimonials', label: t('scrollNav.reviews'), labelPt: t('scrollNav.reviews') }
   ];
 
   return (
@@ -132,12 +138,12 @@ const Home: React.FC = () => {
 
         <div className="relative px-4 md:px-8 lg:px-16 w-full z-10">
           <div className="w-full">
-            <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">ALGARVE EXPLORER TOURS</span>
+            <span className="text-[11px] font-semibold text-white uppercase tracking-[0.4em] mb-4 md:mb-6 block">{t('hero.kicker')}</span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-montserrat text-white leading-[0.9] tracking-tighter mb-6 md:mb-10 uppercase whitespace-pre-line drop-shadow-2xl">
-              {"Descubra o Algarve\nque poucos conhecem"}
+              {t('hero.title')}
             </h1>
             <p className="font-sans text-white/90 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 md:mb-12 max-w-2xl">
-              Trilhos, passeios a cavalo, transfers, tudo pensado para uma experiência autêntica no Sul de Portugal.
+              {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6">
               <Link
@@ -145,14 +151,14 @@ const Home: React.FC = () => {
                 onClick={() => vibrate(15)}
                 className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-[#da6927] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-[#0d4357] transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                Explorar Aventuras
+                {t('hero.ctaPrimary')}
               </Link>
               <Link
                 href="/algarve"
                 onClick={() => vibrate(15)}
                 className="inline-flex items-center justify-center min-h-[44px] sm:min-h-[48px] bg-white/10 backdrop-blur-md border border-white/30 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-brand-navy transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                O Algarve
+                {t('hero.ctaSecondary')}
               </Link>
             </div>
           </div>
@@ -163,12 +169,12 @@ const Home: React.FC = () => {
         {/* Title Section – Reduced padding and margin for better flow */}
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 pt-12 md:pt-16 pb-2 relative z-10 w-full shrink-0">
           <div className="max-w-2xl">
-            <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-3 block">AVENTURAS SELECIONADAS</span>
+            <span className="text-[#da6927] text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] mb-2 md:mb-3 block">{t('featured.kicker')}</span>
             <h2 className="text-2xl md:text-4xl font-bold font-montserrat text-brand-navy tracking-tight mb-2 md:mb-3 uppercase">
-              O Algarve é Muito Mais do que Praias
+              {t('featured.title')}
             </h2>
             <p className="text-brand-body/80 text-sm md:text-xl font-light leading-relaxed">
-              Descubra trilhos escondidos, sabores autênticos e paisagens intocadas longe das multidões turísticas.
+              {t('featured.subtitle')}
             </p>
           </div>
         </div>
@@ -240,14 +246,14 @@ const Home: React.FC = () => {
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#da6927] mx-auto mb-4"></div>
                   <p className="text-brand-body/60 text-sm uppercase tracking-widest">
-                    A carregar...
+                    {tCommon('loading')}
                   </p>
                 </div>
               </div>
             ) : featuredTours.length === 0 ? (
               <div className="flex items-center justify-center w-full py-32">
                 <p className="text-brand-body/60 text-lg">
-                  Nenhum tour em destaque no momento.
+                  {t('featured.empty')}
                 </p>
               </div>
             ) : (
@@ -275,12 +281,12 @@ const Home: React.FC = () => {
                         )}
                         {tour.travellers_choice && (
                           <span className="bg-[#da6927] text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
-                            <Award size={10} /> Travellers&apos; Choice
+                            <Award size={10} /> {tTour('travellersChoice')}
                           </span>
                         )}
                         {tour.likely_to_sell_out && (
                           <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg w-fit flex items-center gap-1">
-                            <Flame size={10} /> Muito Procurado
+                            <Flame size={10} /> {tTour('likelyToSellOut')}
                           </span>
                         )}
                       </div>
@@ -302,7 +308,7 @@ const Home: React.FC = () => {
                         )}
                         {tour.capacity > 0 && (
                           <span className="text-brand-body/60 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5">
-                            <Users size={12} /> Até {tour.capacity}
+                            <Users size={12} /> {tTour('upTo', { n: tour.capacity })}
                           </span>
                         )}
                       </div>
@@ -321,18 +327,18 @@ const Home: React.FC = () => {
                         <div className="flex flex-col">
                           {tour.instant_confirmation && (
                             <span className="text-[8px] font-bold uppercase tracking-wider text-green-600 mb-1">
-                              ✓ Confirmação imediata
+                              {tTour('instantConfirmation')}
                             </span>
                           )}
                           <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-brand-body/60 mb-0.5">
-                            A partir de
+                            {tTour('fromPrice')}
                           </span>
                           <span className="text-xl md:text-2xl font-bold font-montserrat text-brand-navy tracking-tight">
                             €{tour.price_adult}
                           </span>
                         </div>
                         <div className="flex items-center space-x-2 text-brand-body group-hover:text-[#da6927] transition-colors">
-                          <span className="text-[10px] font-bold uppercase tracking-widest">Explorar</span>
+                          <span className="text-[10px] font-bold uppercase tracking-widest">{tTour('explore')}</span>
                           <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
@@ -369,14 +375,14 @@ const Home: React.FC = () => {
             <div className="w-full lg:w-1/2 order-2 lg:order-1">
               <div className="inline-flex items-center mb-6">
                 <span className="text-[#da6927] text-[11px] font-bold uppercase tracking-[0.4em]">
-                  SHUTTLES DE CONFIANÇA
+                  {t('transfers.kicker')}
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-white tracking-tight mb-8 uppercase leading-tight">
-                Transfers pensados para exploradores
+                {t('transfers.title')}
               </h2>
               <p className="text-white text-lg md:text-xl font-light leading-relaxed mb-12">
-                Do aeroporto aos trilhos com conforto, segurança e espaço para todo o seu equipamento.
+                {t('transfers.subtitle')}
               </p>
 
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-white p-3 md:p-4">
@@ -454,15 +460,13 @@ const Home: React.FC = () => {
         <div className="w-full lg:w-1/2 lg:min-h-screen lg:sticky lg:top-0 flex items-center justify-start bg-[#fffbf9] lg:bg-transparent py-16 md:py-24 lg:py-0">
           <div className="max-w-2xl px-6 md:px-8 lg:pl-24 lg:pr-10">
             <div className="inline-flex items-center mb-6">
-              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">A NOSSA HISTÓRIA</span>
+              <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#da6927]">{t('about.kicker')}</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold font-montserrat text-brand-navy leading-[1.1] tracking-tight mb-8 uppercase">
-              Há experiências que levamos connosco para a vida toda.
+              {t('about.title')}
             </h2>
-            <div className="text-brand-body/90 text-base md:text-lg font-light leading-relaxed mb-10">
-              Com experiência no setor do turismo desde 2016, a Algarve Explorer nasceu da paixão por revelar o lado mais autêntico do Sul de Portugal.<br /><br />
-              Acreditamos que as melhores descobertas são feitas ao ritmo da natureza, por caminhos conhecidos apenas pelos locais.<br /><br />
-              A nossa missão é levá-lo para além dos postais, até à verdadeira alma do Algarve.
+            <div className="text-brand-body/90 text-base md:text-lg font-light leading-relaxed mb-10 whitespace-pre-line">
+              {t('about.body')}
             </div>
 
             <div>
@@ -470,7 +474,7 @@ const Home: React.FC = () => {
                 href="/about"
                 className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] sm:text-[12px] hover:bg-white hover:text-[#0d4357] transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2"
               >
-                <span>Conheça-nos melhor</span>
+                <span>{t('about.cta')}</span>
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
             </div>

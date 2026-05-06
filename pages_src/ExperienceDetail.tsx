@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useLanguage } from '@/lib/LanguageContext';
+import { Link } from '@/i18n/navigation';
 import FooterCTA from '@/components/FooterCTA';
 import PageTransition from '@/components/PageTransition';
 import ParallaxImage from '@/components/ParallaxImage';

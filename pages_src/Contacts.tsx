@@ -1,17 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { Mail, Phone, MapPin, ArrowRight, Plus, CheckCircle, AlertCircle } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import FooterCTA from '@/components/FooterCTA';
 import AnimatedBlob from '@/components/AnimatedBlob';
 import { forms } from '@/services/kiban';
+import { Link } from '@/i18n/navigation';
 
 const Contacts: React.FC = () => {
+  const t = useTranslations('contacts');
+  const tForm = useTranslations('contacts.form');
+  const tNav = useTranslations('nav');
   const [formState, setFormState] = useState({
     name: '',
     email: '',
-    subject: 'RESERVA DE TOUR',
+    subject: tForm('subjectTour'),
     message: '',
   });
   const [submitting, setSubmitting] = useState(false);
@@ -32,7 +36,7 @@ const Contacts: React.FC = () => {
         message: formState.message,
       });
       setSubmitted(true);
-      setFormState({ name: '', email: '', subject: 'RESERVA DE TOUR', message: '' });
+      setFormState({ name: '', email: '', subject: tForm('subjectTour'), message: '' });
     } catch (err) {
       console.error('Error submitting form:', err);
       setError(true);
@@ -56,19 +60,19 @@ const Contacts: React.FC = () => {
         </div>
         <div className="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
           <div className="flex items-center space-x-2 mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
-            <Link href="/" className="hover:text-[#da6927] transition-colors">Início</Link>
+            <Link href="/" className="hover:text-[#da6927] transition-colors">{tNav('home')}</Link>
             <span className="text-white/20">/</span>
-            <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">Contactos</span>
+            <span className="inline-flex items-center bg-[#fff1e6] text-[#da6927] px-4 py-1.5 rounded-full normal-case tracking-normal font-semibold text-xs">{t('breadcrumbCurrent')}</span>
           </div>
           <div className="flex items-center space-x-3 mb-6 text-[#da6927]">
             <Plus size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">Vamos Falar?</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-white">{t('kicker')}</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold font-montserrat text-white mb-8 uppercase tracking-tighter leading-none">
-            CONTACTE-NOS
+            {t('title')}
           </h1>
           <p className="font-sans text-white/90 text-lg md:text-xl font-light leading-relaxed max-w-3xl mb-12">
-            Tem dúvidas sobre uma tour? Precisa de um transfer personalizado? Estamos aqui para tornar a sua aventura no Algarve realidade.
+            {t('intro')}
           </p>
         </div>
       </section>
@@ -89,7 +93,7 @@ const Contacts: React.FC = () => {
             <div className="lg:col-span-4">
               <div className="flex items-center space-x-3 mb-12 text-brand-body/80">
                 <Plus size={16} className="text-[#da6927]" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-brand-body/90">O NOSSO RECANTO</span>
+                <span className="text-[11px] font-bold uppercase tracking-[0.4em] text-brand-body/90">{t('infoKicker')}</span>
               </div>
 
               <div className="space-y-10">
@@ -97,7 +101,7 @@ const Contacts: React.FC = () => {
                 <div className="border-l-2 border-[#da6927] pl-8 group">
                   <div className="flex items-center space-x-3 mb-2">
                     <Phone size={14} className="text-[#da6927]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">WhatsApp / Call</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{t('phoneLabel')}</span>
                   </div>
                   <a
                     href="tel:+351968306031"
@@ -105,14 +109,14 @@ const Contacts: React.FC = () => {
                   >
                     +351 968 306 031
                   </a>
-                  <span className="text-[9px] text-brand-body/30 italic">(chamada para rede móvel nacional)</span>
+                  <span className="text-[9px] text-brand-body/30 italic">{t('phoneNote')}</span>
                 </div>
 
                 {/* Email */}
                 <div className="border-l-2 border-[#da6927] pl-8 group">
                   <div className="flex items-center space-x-3 mb-2">
                     <Mail size={14} className="text-[#da6927]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Email</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{t('emailLabel')}</span>
                   </div>
                   <a
                     href="mailto:algarveexplorer@gmail.com"
@@ -126,9 +130,9 @@ const Contacts: React.FC = () => {
                 <div className="border-l-2 border-[#da6927] pl-8 group">
                   <div className="flex items-center space-x-3 mb-2">
                     <MapPin size={14} className="text-[#da6927]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Localização</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{t('locationLabel')}</span>
                   </div>
-                  <p className="text-xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">Faro, Portugal</p>
+                  <p className="text-xl font-bold font-montserrat text-brand-navy tracking-tight uppercase">{t('locationValue')}</p>
                 </div>
               </div>
             </div>
@@ -139,10 +143,10 @@ const Contacts: React.FC = () => {
                 <div className="flex flex-col items-center justify-center py-20 text-center">
                   <CheckCircle size={48} className="text-green-500 mb-6" />
                   <h3 className="text-2xl font-bold font-montserrat text-brand-navy mb-4 uppercase">
-                    Mensagem Enviada!
+                    {tForm('successTitle')}
                   </h3>
                   <p className="text-brand-body/60 text-lg font-light">
-                    Entraremos em contacto em breve.
+                    {tForm('successBody')}
                   </p>
                 </div>
               ) : (
@@ -151,57 +155,57 @@ const Contacts: React.FC = () => {
                     <div className="flex items-center gap-3 bg-red-50 border border-red-200 text-red-700 p-4 rounded-xl">
                       <AlertCircle size={20} />
                       <span className="text-sm font-medium">
-                        Erro ao enviar. Tente novamente.
+                        {tForm('errorGeneric')}
                       </span>
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Nome Completo</label>
+                      <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{tForm('fullName')}</label>
                       <input
                         type="text"
                         required
                         value={formState.name}
                         onChange={(e) => setFormState(s => ({ ...s, name: e.target.value }))}
-                        placeholder="ALEX RIDER"
+                        placeholder={tForm('fullNamePlaceholder')}
                         className="w-full bg-transparent border-b-2 border-brand-body/10 focus:border-[#da6927] pb-4 outline-none font-sans font-medium text-brand-body placeholder:text-brand-body/80 placeholder:font-light uppercase transition-colors"
                       />
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Email</label>
+                      <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{tForm('email')}</label>
                       <input
                         type="email"
                         required
                         value={formState.email}
                         onChange={(e) => setFormState(s => ({ ...s, email: e.target.value }))}
-                        placeholder="ALEX@EMAIL.COM"
+                        placeholder={tForm('emailPlaceholder')}
                         className="w-full bg-transparent border-b-2 border-brand-body/10 focus:border-[#da6927] pb-4 outline-none font-sans font-medium text-brand-body placeholder:text-brand-body/80 placeholder:font-light uppercase transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Assunto</label>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{tForm('subject')}</label>
                     <select
                       value={formState.subject}
                       onChange={(e) => setFormState(s => ({ ...s, subject: e.target.value }))}
                       className="w-full bg-transparent border-b-2 border-brand-body/10 focus:border-[#da6927] pb-4 outline-none font-sans font-medium text-brand-body appearance-none uppercase transition-colors cursor-pointer"
                     >
-                      <option>RESERVA DE TOUR</option>
-                      <option>PEDIDO DE TRANSFER</option>
-                      <option>OUTRO</option>
+                      <option>{tForm('subjectTour')}</option>
+                      <option>{tForm('subjectTransfer')}</option>
+                      <option>{tForm('subjectOther')}</option>
                     </select>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">Mensagem</label>
+                    <label className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-body/80">{tForm('message')}</label>
                     <textarea
                       rows={6}
                       required
                       value={formState.message}
                       onChange={(e) => setFormState(s => ({ ...s, message: e.target.value }))}
-                      placeholder="CONTE-NOS SOBRE A SUA AVENTURA..."
+                      placeholder={tForm('messagePlaceholder')}
                       className="w-full bg-transparent border-b-2 border-brand-body/10 focus:border-[#da6927] pb-4 outline-none font-sans font-medium text-brand-body placeholder:text-brand-body/80 placeholder:font-light uppercase transition-colors resize-none"
                     ></textarea>
                   </div>
@@ -211,7 +215,7 @@ const Contacts: React.FC = () => {
                     disabled={submitting}
                     className="inline-flex items-center space-x-3 bg-[#0d4357] text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-[#da6927] transition-all duration-300 shadow-lg group focus:outline-none focus:ring-2 focus:ring-[#da6927] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <span>{submitting ? 'A ENVIAR...' : 'ENVIAR MENSAGEM'}</span>
+                    <span>{submitting ? tForm('submitting') : tForm('submit')}</span>
                     <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
                   </button>
                 </form>
