@@ -4,7 +4,7 @@ import { routing } from './i18n/routing';
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-const KIBAN_URL = process.env.NEXT_PUBLIC_KIBAN_URL || '';
+const KIBAN_URL = process.env.NEXT_PUBLIC_KIBAN_API_URL || '';
 const KIBAN_TENANT = process.env.NEXT_PUBLIC_KIBAN_TENANT || 'algarveexplorer';
 
 type Hit = { to: string; type: string } | null;

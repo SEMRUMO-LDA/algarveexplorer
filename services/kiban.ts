@@ -6,7 +6,7 @@
 // SDK: @kiban/client (opcional, aqui usamos fetch direto)
 // ===================================
 
-const KIBAN_URL = process.env.NEXT_PUBLIC_KIBAN_URL || '';
+const KIBAN_URL = process.env.NEXT_PUBLIC_KIBAN_API_URL || '';
 const KIBAN_API_KEY = process.env.NEXT_PUBLIC_KIBAN_API_KEY || '';
 const KIBAN_TENANT = process.env.NEXT_PUBLIC_KIBAN_TENANT || 'algarveexplorer';
 

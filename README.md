@@ -26,8 +26,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Variable | Description |
 |---|---|
-| `NEXT_PUBLIC_KIBAN_URL` | KIBAN CMS API base URL |
+| `NEXT_PUBLIC_KIBAN_API_URL` | KIBAN CMS API base URL |
 | `NEXT_PUBLIC_KIBAN_API_KEY` | KIBAN CMS public API key |
+| `NEXT_PUBLIC_KIBAN_TENANT` | KIBAN tenant id (e.g. `algarveexplorer`) |
 | `NEXT_PUBLIC_GEMINI_API_KEY` | Google Gemini AI key |
 | `TRIPADVISOR_API_KEY` | TripAdvisor Content API key |
 
